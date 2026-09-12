@@ -24,7 +24,7 @@ const abbr = (team: any) => String(team?.abbreviation ?? team?.abbr ?? "").toUpp
 const id = (game: any, i = 0) => String(game?.id ?? game?.game_id ?? i);
 const href = (game: any, i = 0) => `/games/${encodeURIComponent(id(game, i))}`;
 const time = (game: any) => { const n = new Date(game?.startsAt ?? game?.date ?? game?.start_time ?? game?.kickoff ?? "").getTime(); return Number.isFinite(n) ? n : null; };
-const home = (game: any) => abbr(game?.home_team) === "SEA";
+const home = (game: any) => abbr(game?.home_team) === "{Abbreviation}";
 const opponent = (game: any) => home(game) ? game?.visitor_team : game?.home_team;
 const opp = (game: any) => abbr(opponent(game));
 const teamName = (team: any, fallback: string) => String(team?.full_name ?? team?.name ?? fallback);
@@ -60,7 +60,7 @@ const regularFinals = completed.filter((game) => phase(game) === "Regular season
 
 const standingRows = Array.isArray(standings?.data) ? standings.data : Array.isArray(standings?.teams) ? standings.teams : [];
 const standingTeam = (row: any) => row?.team ?? row;
-const seaStanding = standingRows.find((row: any) => abbr(standingTeam(row)) === "SEA");
+const seaStanding = standingRows.find((row: any) => abbr(standingTeam(row)) === "{Abbreviation}");
 const divisionRank = seaStanding?.division_rank ?? seaStanding?.divisionRank ?? null;
 
 const stats = Array.isArray(nfl?.playerSeasonStats) ? nfl.playerSeasonStats : [];
@@ -101,7 +101,7 @@ const glanceModel = scheduleSource ? buildHomepageGlance({ nfl: { ...scheduleSou
     <div class="scorebody">
       <div><p class="location">{home(featured) ? "Home · vs." : "Away · at"}</p><h2 id="featured-title">{teamName(opponent(featured), opp(featured) || "Opponent")}</h2>
         {(featuredView.seaRecord || featuredView.opponentRecord) && <p class="records">{featuredView.seaRecord && <>SEA {featuredView.seaRecord}</>}{featuredView.seaRecord && featuredView.opponentRecord && <> · </>}{featuredView.opponentRecord && <>{opp(featured)} {featuredView.opponentRecord}</>}</p>}</div>
-      {marks.has("SEA") && marks.has(opp(featured)) && <div class="marks" aria-hidden="true"><img src={marks.get("SEA")} alt="" width="78" height="78" decoding="async"/><span>{home(featured) ? "VS" : "AT"}</span><img src={marks.get(opp(featured))} alt="" width="78" height="78" decoding="async"/></div>}
+      {marks.has("{Abbreviation}") && marks.has(opp(featured)) && <div class="marks" aria-hidden="true"><img src={marks.get("{Abbreviation}")} alt="" width="78" height="78" decoding="async"/><span>{home(featured) ? "VS" : "AT"}</span><img src={marks.get(opp(featured))} alt="" width="78" height="78" decoding="async"/></div>}
       <div class="main-result">
         {state === "final" && score(featured, true) !== null && score(featured, false) !== null ? <><span>{result(featured)} · Final</span><strong>{score(featured, true)}–{score(featured, false)}</strong></>
           : state === "live" ? <><span>{[featuredView.quarter, featuredView.clock].filter(Boolean).join(" · ") || "Game in progress"}</span><strong>{featuredView.liveScore ? `${featuredView.liveScore.{team}}–${featuredView.liveScore.opponent}` : "LIVE"}</strong></>

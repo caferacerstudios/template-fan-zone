@@ -4,6 +4,7 @@ import { writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderProject, teamSettings } from './render.mjs';
+import { loadEventSpySite, prepareEventSpy } from './eventspy.mjs';
 import { loadNewsSite, retainNews, restoreNews, prepareNews } from './news.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -16,6 +17,8 @@ const workRoot = path.join(root, '.team-build');
 try {
   const team = teamSettings(process.env.TEAM);
   const newsSite = loadNewsSite(root, team.slug);
+  const ticketSite = loadEventSpySite(root, team.slug);
+  team.abbreviation = ticketSite.abbreviation;
   team.name = newsSite.name;
   team.upper = newsSite.name.toUpperCase();
   team.location = newsSite.city;
@@ -36,8 +39,9 @@ try {
     restoreNews(target, retained);
     console.log(`Rendered ${count} template files for ${team.name}: ${path.relative(root, target)}`);
   }
+  if (isBuild || renderOnly || command === 'dev') await prepareEventSpy(root, target, ticketSite);
   if (isBuild || command === 'dev') prepareNews(target, newsSite);
-  console.log(`Theme: ${team.theme.key}. News is selected by team. Other NFL data still comes from the original copy.`);
+  console.log(`Theme: ${team.theme.key}. News, schedule and tickets are selected by team.`);
 
   if (!renderOnly) {
     const child = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', command, ...(args.length ? ['--', ...args] : [])], {

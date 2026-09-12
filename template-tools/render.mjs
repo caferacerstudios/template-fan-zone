@@ -20,8 +20,9 @@ export function renderText(text, team) {
   // Standalone Seattle facts, code identifiers, and seattle-... URLs are retained.
   const withLocation = text.replace(/\b(?:Seattle|SEATTLE|seattle)(?=\s+\{(?:Team|TEAM|team)\})/g,
     (word) => word === 'SEATTLE' ? team.location.toUpperCase() : word === 'seattle' ? team.location.toLowerCase() : team.location);
-  return withLocation.replace(/\{(?:team|Team|TEAM|Location|LOCATION|ThemeKey|ThemeStylesheet|ThemeFavicon|BrandMark|HeroMark|FanTagline)\}/g, (token) => ({
+  return withLocation.replace(/\{(?:team|Team|TEAM|Location|LOCATION|ThemeKey|ThemeStylesheet|ThemeFavicon|BrandMark|HeroMark|FanTagline|Abbreviation)\}/g, (token) => ({
     '{team}': team.slug, '{Team}': team.name, '{TEAM}': team.upper,
+    '{Abbreviation}': team.abbreviation ?? (team.slug === 'seahawks' ? 'SEA' : team.slug === 'broncos' ? 'DEN' : ''),
     '{Location}': team.location, '{LOCATION}': team.location.toUpperCase(),
     '{ThemeKey}': team.theme.key, '{ThemeStylesheet}': team.theme.stylesheet,
     '{ThemeFavicon}': team.theme.favicon, '{BrandMark}': team.theme.brandMark,

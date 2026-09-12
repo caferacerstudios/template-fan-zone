@@ -8,7 +8,7 @@ const TEAM_ABBR = new Map([
   ["San Francisco 49ers", "SF"], ["Tennessee Titans", "TEN"], ["Washington Commanders", "WAS"],
 ]);
 
-const {TEAM} = { abbreviation: "SEA", full_name: "Seattle {Team}" };
+const {TEAM} = { abbreviation: "{Abbreviation}", full_name: "Seattle {Team}" };
 const text = (value) => String(value ?? "").trim();
 const abbreviation = (team) => text(team?.abbreviation ?? team?.abbr).toUpperCase();
 const phase = (row) => schedulePhase(row) ?? text(row?.phase ?? row?.season_type ?? row?.seasonType).toLowerCase();
@@ -67,7 +67,7 @@ function scores(result, matchupTeams) {
   const entries = [...text(result).matchAll(/(?:^|,\s*)(.+?)\s+(\d+)(?=,|$)/g)];
   if (entries.length !== 2) return {};
   const byName = new Map(entries.map(([, name, score]) => [name.replace(/^Seattle {Team}$/, "{Team}"), Number(score)]));
-  const value = (team) => byName.get(team.abbreviation === "SEA" ? "{Team}" : team.full_name.replace(/^(?:Arizona|Carolina|Chicago|Dallas|Denver|Kansas City|Las Vegas|Los Angeles|New England|New York|Philadelphia|San Francisco|Tennessee|Washington) /, ""));
+  const value = (team) => byName.get(team.abbreviation === "{Abbreviation}" ? "{Team}" : team.full_name.replace(/^(?:Arizona|Carolina|Chicago|Dallas|Denver|Kansas City|Las Vegas|Los Angeles|New England|New York|Philadelphia|San Francisco|Tennessee|Washington) /, ""));
   const away = value(matchupTeams.visitor_team), home = value(matchupTeams.home_team);
   return Number.isFinite(away) && Number.isFinite(home) ? { visitor_team_score: away, home_team_score: home } : {};
 }

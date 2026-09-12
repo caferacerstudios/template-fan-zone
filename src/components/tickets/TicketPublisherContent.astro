@@ -16,7 +16,7 @@ const hasDate = Boolean(dateLabel);
 const kickoffLabel = game?.game?.timeConfirmed && game.game.startsAt ? formatKickoff(game.game, "time") : observation?.event?.localTimeLabel ?? null;
 const venueLabel = game?.venue ?? observation?.event?.venue ?? null;
 const locationLabel = game?.editorial?.location ?? observation?.event?.location ?? null;
-const matchup = pageMetadata?.matchup ?? (game ? `${game.home ? `${game.opponentName} at Seattle {Team}` : `Seattle {Team} at ${game.opponentName}`}` : null);
+const matchup = pageMetadata?.matchup ?? (game ? `${game.home ? `${game.opponentName} at {Location} {Team}` : `{Location} {Team} at ${game.opponentName}`}` : null);
 const statusLabel = game?.completed ? "Final" : game?.game?.state === "in_progress" ? "In progress" : game?.game?.state === "postponed" ? "Postponed" : game?.game?.state === "tbd" ? "Details not confirmed" : "Scheduled";
 const datedGames = eligibleGames.filter((item) => item && !item.completed);
 ---
@@ -25,8 +25,8 @@ const datedGames = eligibleGames.filter((item) => item && !item.completed);
   {section === "intro" && (
   <>
   <header class="publisher-intro">
-    <h1>{routeStyle === "tickets" ? "Seattle {Team} Ticket Finder" : pageMetadata?.h1 ?? "Seattle {Team} game guide"}</h1>
-    <p>{routeStyle === "games" && pageMetadata ? pageMetadata.summary : "Use the Ticket Finder to compare recent Seattle {Team} ticket price snapshots before visiting a provider. {Team} Fan Zone does not sell tickets, hold ticket inventory, or guarantee that a displayed price is still available. The tool organizes validated event summaries and marketplace observations so fans can see what was reported, when it was checked, and what limitations apply."}</p>
+    <h1>{routeStyle === "tickets" ? "{Location} {Team} Ticket Finder" : pageMetadata?.h1 ?? "{Location} {Team} game guide"}</h1>
+    <p>{routeStyle === "games" && pageMetadata ? pageMetadata.summary : "Use the Ticket Finder to compare recent {Location} {Team} ticket price snapshots before visiting a provider. {Team} Fan Zone does not sell tickets, hold ticket inventory, or guarantee that a displayed price is still available. The tool organizes validated event summaries and marketplace observations so fans can see what was reported, when it was checked, and what limitations apply."}</p>
   </header>
 
   {routeStyle === "games" && game && (
@@ -40,9 +40,9 @@ const datedGames = eligibleGames.filter((item) => item && !item.completed);
         {kickoffLabel && <div><dt>Pacific kickoff</dt><dd><time datetime={dateValue}>{kickoffLabel}</time></dd></div>}
         {venueLabel && <div><dt>Venue</dt><dd>{venueLabel}</dd></div>}
         {locationLabel && <div><dt>Location</dt><dd>{locationLabel}</dd></div>}
-        <div><dt>Home/away</dt><dd>{game.home ? "Seattle home game" : "Seattle away game"}</dd></div>
+        <div><dt>Home/away</dt><dd>{game.home ? "{Location} home game" : "{Location} away game"}</dd></div>
         <div><dt>Game status</dt><dd>{statusLabel}</dd></div>
-        {game.completed && game.seaScore != null && game.opponentScore != null && <div><dt>Final score</dt><dd>Seattle {game.seaScore}, {game.opponentName} {game.opponentScore}</dd></div>}
+        {game.completed && game.seaScore != null && game.opponentScore != null && <div><dt>Final score</dt><dd>{Location} {game.seaScore}, {game.opponentName} {game.opponentScore}</dd></div>}
       </dl>
       <p><a href="/schedule">View the full {Team} schedule</a></p>
     </section>
@@ -56,7 +56,7 @@ const datedGames = eligibleGames.filter((item) => item && !item.completed);
           {datedGames.map((item) => {
             const itemDateValue = item.game?.startsAt ?? item.game?.date ?? null;
             const itemDateLabel = itemDateValue ? formatPacificCalendarDate(itemDateValue, { month: "short", day: "numeric", year: "numeric" }) : null;
-            return <li><a href={`/games/${encodeURIComponent(item.id)}/`}>{item.home ? `${item.opponentName} at Seattle {Team}` : `Seattle {Team} at ${item.opponentName}`}</a><span>{item.weekLabel}{itemDateLabel ? `, ${itemDateLabel}` : ", date not confirmed"}</span></li>;
+            return <li><a href={`/games/${encodeURIComponent(item.id)}/`}>{item.home ? `${item.opponentName} at {Location} {Team}` : `{Location} {Team} at ${item.opponentName}`}</a><span>{item.weekLabel}{itemDateLabel ? `, ${itemDateLabel}` : ", date not confirmed"}</span></li>;
           })}
         </ul>
       ) : (

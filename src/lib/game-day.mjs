@@ -26,7 +26,7 @@ function matchingRecord(game, side) {
 
 export function gameDayView(game, now = new Date()) {
   if (!game) return null;
-  const sea = abbreviation(game.homeTeam) === "SEA" ? game.homeTeam : abbreviation(game.awayTeam) === "SEA" ? game.awayTeam : null;
+  const sea = abbreviation(game.homeTeam) === "{Abbreviation}" ? game.homeTeam : abbreviation(game.awayTeam) === "{Abbreviation}" ? game.awayTeam : null;
   const opponent = game.opponent;
   const opponentAbbr = abbreviation(opponent);
   const opponentName = teamName(opponent, game.opponentConfirmed === false ? "Opponent TBD" : opponentAbbr || "Opponent TBD");
@@ -50,7 +50,7 @@ export function gameDayView(game, now = new Date()) {
   const substantive = game.opponentConfirmed !== false && Boolean(game.date || game.venue || game.network || game.radio);
   return {
     status, phaseWeek: `${phaseLabel(game.phase)}${game.week ? ` Week ${game.week}` : ""}`,
-    sea, seaAbbr: abbreviation(sea) || "SEA", seaName: teamName(sea, "Seattle {Team}"), opponent, opponentAbbr, opponentName, result, liveScore, date, kickoff, detailHref,
+    sea, seaAbbr: abbreviation(sea) || "{Abbreviation}", seaName: teamName(sea, "Seattle {Team}"), opponent, opponentAbbr, opponentName, result, liveScore, date, kickoff, detailHref,
     location: game.isHome ? "Home vs." : game.isHome === false ? "Away at" : "Location TBD",
     network: game.network || null, radio: game.radio || null, venue: game.venue || null, venueUrl: game.venueUrl || null,
     division: new Set(["ARI", "LAR", "SF"]).has(opponentAbbr),
@@ -81,7 +81,7 @@ export function gameCalendar(game, canonicalBase) {
   if (["bye", "canceled", "postponed"].includes(game?.state)) return { enabled: false, label: "Calendar unavailable", reason: "This event does not currently have a confirmed active kickoff." };
   if (!game?.dateConfirmed || !game?.date || !game?.timeConfirmed || !game?.startsAt) return { enabled: false, label: "Calendar unavailable — kickoff not confirmed", reason: "Add to calendar becomes available when the date and kickoff time are confirmed." };
   const opponentName = teamName(game.opponent, "Opponent TBD");
-  const sea = abbreviation(game.homeTeam) === "SEA" ? game.homeTeam : abbreviation(game.awayTeam) === "SEA" ? game.awayTeam : null;
+  const sea = abbreviation(game.homeTeam) === "{Abbreviation}" ? game.homeTeam : abbreviation(game.awayTeam) === "{Abbreviation}" ? game.awayTeam : null;
   const seaName = teamName(sea, "Seattle {Team}");
   const location = game.isHome ? `Home vs. ${opponentName}` : `Away at ${opponentName}`;
   const detailPath = game.canonicalUrl || `/games/${encodeURIComponent(String(game.id))}`;

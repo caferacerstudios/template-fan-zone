@@ -1,20 +1,20 @@
 import { formatKickoff, formatPacificCalendarDate } from "./schedule.mjs";
 
-const TEAM_NAME = "Seattle {Team}";
+const TEAM_NAME = "{Location} {Team}";
 const PACIFIC = "America/Los_Angeles";
 const text = (value) => String(value ?? "").trim();
 
 export function gameMatchup(game) {
-  if (!game) return "Seattle {Team} game";
+  if (!game) return "{Location} {Team} game";
   return game.home ? `${game.opponentName} at ${TEAM_NAME}` : `${TEAM_NAME} at ${game.opponentName}`;
 }
 
 export function gamePageMetadata(game) {
   if (!game) return {
-    title: "Seattle {Team} Game Guide | {Team} Fan Zone",
-    h1: "Seattle {Team} Game Guide",
-    description: "Seattle {Team} game information, viewing details, schedule context, and matchup coverage.",
-    summary: "Review the available Seattle {Team} game details and schedule context.",
+    title: "{Location} {Team} Game Guide | {Team} Fan Zone",
+    h1: "{Location} {Team} Game Guide",
+    description: "{Location} {Team} game information, viewing details, schedule context, and matchup coverage.",
+    summary: "Review the available {Location} {Team} game details and schedule context.",
   };
   const matchup = gameMatchup(game);
   const season = Number(game.game?.season) || new Date(game.game?.startsAt ?? game.game?.date ?? Date.now()).getFullYear();
@@ -25,14 +25,14 @@ export function gamePageMetadata(game) {
   const venue = game.venue;
   const place = venue ? ` at ${venue}` : "";
   const status = game.completed && game.seaScore != null && game.opponentScore != null
-    ? `Seattle ${game.seaScore}, ${game.opponentName} ${game.opponentScore}`
+    ? `{Location} ${game.seaScore}, ${game.opponentName} ${game.opponentScore}`
     : text(game.game?.state ?? game.game?.status) || "Scheduled";
   return {
     matchup, season,
     title: `${matchup}: ${game.weekLabel} Guide (${season}) | {Team} Fan Zone`,
     h1: `${matchup}: ${game.weekLabel} Game Guide (${season})`,
     description: `${matchup} ${game.weekLabel} guide for the ${season} season${timing}${place}. See game status, viewing information, game-day details, and matchup context.`,
-    summary: `${matchup} is Seattle's ${game.home ? "home" : "away"} game for ${game.weekLabel} of the ${season} season${timing}${place}. Current status: ${status}. This page keeps the confirmed game facts and any maintained preview or recap together at the same URL.`,
+    summary: `${matchup} is {Location}'s ${game.home ? "home" : "away"} game for ${game.weekLabel} of the ${season} season${timing}${place}. Current status: ${status}. This page keeps the confirmed game facts and any maintained preview or recap together at the same URL.`,
   };
 }
 

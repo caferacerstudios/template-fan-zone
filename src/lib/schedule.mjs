@@ -1,4 +1,4 @@
-const TEAM = "SEA";
+const TEAM = "{Abbreviation}";
 const PACIFIC = "America/Los_Angeles";
 
 export const SCHEDULE_PHASES = ["preseason", "regular", "postseason"];

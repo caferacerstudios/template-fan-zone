@@ -126,23 +126,33 @@ Adding a manually authored story for another team requires an explicit `team`
 field on that story. All news collections and the front-page photo catalog are
 filtered by the build's team.
 
+## Team tickets
+
+See [docs/modular-eventspy.md](docs/modular-eventspy.md) for the EventSpy build
+command and runtime feed mappings. News, schedule and tickets now select the
+configured team. Seattle keeps its existing ticket output format and directory.
+Broncos schedules come from the authenticated team schedule cache, never a
+renamed Seattle schedule.
+
 ## Remaining scope
 
 **A Broncos or Patriots build is a template demonstration, not publishable team
-coverage yet.** Outside the news pipeline, it still substitutes the original team's word in template JSON, URL strings, validators, and identifiers. It
+coverage yet.** Outside the configured news, schedule and EventSpy paths, it
+still substitutes the original team's word in some template content. It
 does not research or rewrite the surrounding facts. In particular:
 
-- Standalone Seattle references in factual content, `SEA`, numeric API/team IDs, NFC West, stadium names, player identities,
-  schedules, scores, historical claims, and the local timezone are still from the
-  original copy. Team-specific article imports do not correct the other data.
+- Standalone Seattle references in factual content, NFC West, historical claims,
+  and local timezone labels still need review. Untagged Seattle game editorial,
+  recaps, roster and player profiles are omitted from non-Seattle builds until
+  those team feeds are connected.
 - External citations and official-team URL paths containing the token also change;
   links outside the news pipeline still need real per-team source configuration before publishing.
 - The source domain is templated to `<team>fanzone.com`; actual domains and email
   addresses must be configured before deployment. No domains are registered here.
 - Team/player logos, photos, and existing editorial artwork remain the original assets. Any text
   baked into bitmap images cannot be changed by word substitution.
-- The matching Airflow update in `homelab-airflow` configures daily news only.
-  Ticket/NFL/recap collectors, credentials, services, timers and ports stay as configured.
+- The matching EventSpy update in `homelab-airflow` adds team ticket tasks.
+  The remaining roster, statistics and recap pipeline migrations are separate work.
 
 Daily news now uses per-team snapshots. Before a real second team is
 published, connect its remaining IDs and feeds, replace its history/assets,

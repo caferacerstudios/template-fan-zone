@@ -11,7 +11,7 @@ const TEAM_ABBR = new Map([
 
 export const gameId = (game, index = 0) => String(game?.id ?? game?.game_id ?? game?.gameId ?? index);
 export const teamAbbr = (team, fallback = "") => String(team?.abbreviation ?? fallback).toUpperCase();
-export const {team}AreHome = (game) => teamAbbr(game?.home_team) === "SEA";
+export const {team}AreHome = (game) => teamAbbr(game?.home_team) === "{Abbreviation}";
 export const opponentAbbreviation = (game) => teamAbbr({team}AreHome(game) ? game?.visitor_team : game?.home_team);
 export const opponentTeam = (game) => {team}AreHome(game) ? game?.visitor_team : game?.home_team;
 export const venueName = (game) => game?.venue?.name ?? game?.venue ?? game?.stadium?.name ?? game?.stadium ?? null;
@@ -27,11 +27,11 @@ export function scheduleGames(archive) {
 
 export function coverageGame(row, season = 2026, week = null) {
   const opponent = { abbreviation: TEAM_ABBR.get(row.opponent) ?? "", full_name: row.opponent };
-  const seattle = { abbreviation: "SEA", full_name: "Seattle {Team}" };
+  const seattle = { abbreviation: "{Abbreviation}", full_name: "Seattle {Team}" };
   return normalizeGame({
     id: String(row.gameId), season, week, phase: "regular", date: row.localDate,
     status: "Scheduled", home_team: row.homeAway === "home" ? seattle : opponent,
-    visitor_team: row.homeAway === "home" ? opponent : seattle, venue: row.homeAway === "home" ? "Lumen Field" : null,
+    visitor_team: row.homeAway === "home" ? opponent : seattle, venue: row.venue ?? null,
   }, season);
 }
 
@@ -40,7 +40,7 @@ export function gameCollection(archive, coverage = []) {
   const known = new Set(scheduled.map((game, index) => gameId(game, index)));
   return [...scheduled, ...coverage.filter((row) => !known.has(String(row.gameId))).map((row) => {
     const coverageIndex = coverage.indexOf(row);
-    const inferredWeek = coverageIndex < 10 ? coverageIndex + 1 : coverageIndex + 2;
+    const inferredWeek = row.week ?? (coverageIndex < 10 ? coverageIndex + 1 : coverageIndex + 2);
     return coverageGame(row, Number(archive?.season) || 2026, inferredWeek);
   })];
 }
@@ -81,7 +81,7 @@ export function ticketGameModels(archive, coverage = [], recaps = null) {
     return [row.gameId, detail && {
       id: detail.id, game: detail.game, home: detail.home, completed: detail.completed,
       opponentAbbr: detail.opponentAbbr, opponentName: detail.opponentName, venue: detail.venue,
-      {team}Logo: nflTeamLogoUrl("SEA"), opponentLogo: nflTeamLogoUrl(detail.opponentAbbr),
+      {team}Logo: nflTeamLogoUrl("{Abbreviation}"), opponentLogo: nflTeamLogoUrl(detail.opponentAbbr),
       seaScore: detail.seaScore, opponentScore: detail.opponentScore, outcome: detail.outcome,
       weekLabel: detail.weekLabel, previousId: coverage[index - 1]?.gameId ?? null,
       nextId: coverage[index + 1]?.gameId ?? null,
@@ -95,7 +95,7 @@ export function gameDayPageModel(archive, requestedId, coverage = [], { editoria
   if (!details) return null;
   return {
     ...details,
-    {team}Logo: nflTeamLogoUrl("SEA"),
+    {team}Logo: nflTeamLogoUrl("{Abbreviation}"),
     opponentLogo: nflTeamLogoUrl(details.opponentAbbr),
     previousId: details.previous ? gameId(details.previous) : null,
     nextId: details.next ? gameId(details.next) : null,

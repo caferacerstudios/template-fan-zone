@@ -33,6 +33,13 @@ Current rosters and historical player statistics are separate. The `sfz_roster_r
 
 Roster import runs after EventSpy/NFL imports so selected official membership is retained. It leaves historical statistical totals and their season unchanged. Before the first roster snapshot, Seattle retains its checked-in roster and updates; other teams show empty roster/update sections. A present invalid snapshot or broken link stops publication. See [roster-airflow.md](../docs/roster-airflow.md) for the contract and freshness behavior. The provider's historical player directory is never promoted into current membership.
 
+Game-day and viewing guide snapshots are a separate, optional input. After the
+guide DAG succeeds, use `FAN_ZONE_GUIDES_ENABLED=1` in the preview checkout to
+import that team's `-guides/current` collection. The default is off. A first test
+with `--stage-only` keeps served `dist/` intact. See
+[game-guides-airflow.md](../docs/game-guides-airflow.md) for the contract, validation,
+per-record freshness, and production adoption boundary.
+
 Only the selected team's history, style, and content are emitted. Other team history files remain build inputs outside the published website. Game opponents can naturally appear in schedules, standings, and sourced history.
 
 A successful build stages its complete output before swapping `dist/`. A build or data-validation failure keeps the previous preview available.

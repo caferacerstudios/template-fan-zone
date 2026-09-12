@@ -7,7 +7,8 @@ export function getWatchGuideEntry(game, watchGuide) {
   if (!Number.isInteger(season) || !PHASES.has(phase) || !Number.isInteger(week)) return null;
   if (Number(watchGuide?.season) !== season || !Array.isArray(watchGuide?.games)) return null;
   return watchGuide.games.find((entry) =>
-    String(entry?.phase ?? "").toLowerCase() === phase && Number(entry?.week) === week
+    String(entry?.phase ?? "").toLowerCase() === phase && Number(entry?.week) === week &&
+    (entry?.gameId === undefined || String(entry.gameId) === String(game?.id ?? game?.game_id))
   ) ?? null;
 }
 

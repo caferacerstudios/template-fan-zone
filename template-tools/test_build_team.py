@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('build_team', Path(__file__).with_name('build-team.py'))
 module = importlib.util.module_from_spec(spec)
@@ -32,6 +33,35 @@ class BuildCommandTests(unittest.TestCase):
             self.assertNotIn(f'type=bind,src={current},dst={current},readonly', command)
             self.assertIn(f'type=bind,src={roster},dst={roster},readonly', command)
             self.assertEqual(command[-4:], ['node:22-bookworm', 'npm', 'run', 'build'])
+
+    def test_guides_mount_only_after_opt_in_and_keep_stage_only(self):
+        with tempfile.TemporaryDirectory() as temporary, patch.dict('os.environ', {}, clear=True):
+            root = Path(temporary)
+            for name in ('broncos-nfl', 'broncos-news', 'broncos-recaps', 'broncos-guides'):
+                (root / name / 'current').mkdir(parents=True)
+            config = root / 'config/active-sites.json'
+            config.parent.mkdir()
+            config.write_text(json.dumps({'broncos': {
+                'nfl_snapshot_dir': str(root / 'broncos-nfl/current'),
+                'news_snapshot_dir': str(root / 'broncos-news/current'),
+                'recap_snapshot_dir': str(root / 'broncos-recaps/current'),
+                'eventspy': {'schedule_file': str(root / 'schedules/broncos.json')},
+            }}))
+            mount = f'type=bind,src={root / "broncos-guides"},dst={root / "broncos-guides"},readonly'
+            self.assertNotIn(mount, module.build_command(root, 'broncos'))
+            (root / '.env').write_text('OPENAI_API_KEY=never-forward\nexport FAN_ZONE_GUIDES_ENABLED="1" # preview\n')
+            command = module.build_command(root, 'broncos', stage_only=True)
+            self.assertIn(mount, command)
+            self.assertIn('FAN_ZONE_GUIDES_ENABLED=1', command)
+            self.assertIn('FANZONE_STAGE_ONLY=1', command)
+            self.assertNotIn('never-forward', ' '.join(command))
+            with patch.dict('os.environ', {'FAN_ZONE_GUIDES_ENABLED': '0'}):
+                command = module.build_command(root, 'broncos')
+                self.assertNotIn(mount, command)
+                self.assertIn('FAN_ZONE_GUIDES_ENABLED=0', command)
+            (root / 'broncos-guides/current').rmdir()
+            with self.assertRaisesRegex(ValueError, 'Missing guide snapshot'):
+                module.build_command(root, 'broncos')
 
     def test_new_team_requires_nfl_snapshot_before_docker(self):
         with tempfile.TemporaryDirectory() as temporary:

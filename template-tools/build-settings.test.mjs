@@ -12,13 +12,13 @@ test('each checkout supplies its own public settings without exporting collectio
     'export ADS_ENABLED=true', 'ADS_TXT_RECORD="google.com, pub-123, DIRECT, f08c47fec0942fa0"',
     "PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN='fixture-public-token' # website setting",
     'OPENAI_API_KEY=fixture-secret', 'BALLDONTLIE_API_KEY=fixture-secret',
-    'TEAM=broncos', 'FANZONE_STAGE_ONLY=0', 'HOMEPAGE_FEED_NOW=1900-01-01',
+    'TEAM=broncos', 'FANZONE_STAGE_ONLY=0', 'HOMEPAGE_FEED_NOW=1900-01-01', 'FAN_ZONE_GUIDES_ENABLED=1',
   ].join('\n'));
   const environment = { ADS_ENABLED: 'false' };
   await loadBuildSettings(root, environment);
   assert.deepEqual(environment, { ADS_ENABLED: 'false',
     ADS_TXT_RECORD: 'google.com, pub-123, DIRECT, f08c47fec0942fa0',
-    PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN: 'fixture-public-token' });
+    PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN: 'fixture-public-token', FAN_ZONE_GUIDES_ENABLED: '1' });
 });
 
 test('a checkout without local settings retains its existing defaults', async t => {

@@ -23,6 +23,10 @@ def build_command(root, slug, config_file=None):
     if not nfl_current.is_dir() and (slug != 'seahawks' or nfl_current.parent.exists()):
         raise ValueError(f'Missing NFL snapshot: {nfl_current}. Run refresh_nfl_snapshot_{slug} in the sfz_nfl_refresh DAG before building this team.')
     candidates = [Path(site[key]).parent for key in ('news_snapshot_dir', 'nfl_snapshot_dir', 'recap_snapshot_dir')]
+    news_current = str(site['news_snapshot_dir'])
+    if not news_current.endswith('-news/current'):
+        raise ValueError('news_snapshot_dir must end in -news/current to select the team roster snapshot')
+    candidates.append(Path(news_current[:-len('-news/current')] + '-roster/current').parent)
     candidates.append(Path(site['eventspy']['schedule_file']).parent)
     mounts = []
     for directory in sorted(set(candidates), key=lambda value: len(value.parts)):

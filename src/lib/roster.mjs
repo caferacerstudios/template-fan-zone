@@ -1,4 +1,4 @@
-export const ROSTER_STATUSES = ["Active", "Practice Squad", "Reserve/Injured", "PUP", "Commissioner Exempt", "Released", "Waived", "Historical"];
+export const ROSTER_STATUSES = ["Active", "Practice Squad", "Reserve/Injured", "PUP", "Commissioner Exempt", "Suspended", "Reserve/Non-Football Injury", "Released", "Waived", "Historical"];
 const HISTORICAL_STATUSES = new Set(["released", "waived", "retired", "historical", "former"]);
 
 const id = (player) => String(player?.id ?? player?.playerId ?? "").trim();
@@ -20,7 +20,7 @@ export function practiceSquadPlayers(store) {
 
 export function reserveRosterPlayers(store) {
   const rows = Array.isArray(store?.players) ? store.players : [];
-  return rows.filter((player) => ["Reserve/Injured", "PUP", "Commissioner Exempt"].includes(player.status));
+  return rows.filter((player) => ["Reserve/Injured", "PUP", "Commissioner Exempt", "Suspended", "Reserve/Non-Football Injury"].includes(player.status));
 }
 
 export function currentRosterDirectoryPlayers(store) {

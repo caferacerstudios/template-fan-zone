@@ -1,12 +1,12 @@
 ---
 import {Team}Layout from "../../layouts/{Team}Layout.astro";
-import { TRANSACTION_TYPES, formatUpdateDate, playerPath, transactions, transactionsFreshness, transactionsMetadata } from "../../lib/team-updates";
+import { TRANSACTION_TYPES, formatUpdateDate, playerUpdatePath, transactions, transactionsFreshness, transactionsMetadata } from "../../lib/team-updates";
 ---
 <{Team}Layout pageTitle="Seattle {Team} Transactions" pageTagline="A sourced, chronological record of signings, releases, waivers, trades, reserve-list changes and contracts. Newest updates appear first." activePath="/team/transactions" monetizationEligible={false} breadcrumbs={[{name:"Home",href:"/"},{name:"Roster",href:"/players"},{name:"Transactions",href:"/team/transactions"}]}>
   <nav class="utility-nav" aria-label="Team updates"><a aria-current="page" href="/team/transactions">Transactions</a><a href="/team/injuries">Injuries &amp; status</a></nav>
   <aside class:list={["freshness", { stale: transactionsFreshness.stale }]} aria-label="Transaction data freshness">
     <strong>{transactionsFreshness.stale ? "Last verified snapshot" : "Current verified snapshot"}</strong>
-    <span>Updated {formatUpdateDate(transactionsMetadata.asOf)} from <a href={transactionsMetadata.sourceUrl} rel="noopener noreferrer">{transactionsMetadata.sourcePublisher}</a>.</span>
+    <span>Updated {formatUpdateDate(transactionsMetadata.asOf)}{transactionsMetadata.sourceUrl && <> from <a href={transactionsMetadata.sourceUrl} rel="noopener noreferrer">{transactionsMetadata.sourcePublisher}</a></>}.</span>
     <span>{transactionsFreshness.stale ? transactionsFreshness.message : transactionsMetadata.sourceNote}</span>
   </aside>
   <section class="filters" aria-labelledby="filter-title">
@@ -20,7 +20,7 @@ import { TRANSACTION_TYPES, formatUpdateDate, playerPath, transactions, transact
   {transactions.length ? <ol class="updates">
     {transactions.map((move) => <li data-transaction={move.transactionType}>
       <div class="update-head"><time datetime={move.timestamp}>{formatUpdateDate(move.timestamp)}</time><span class:list={["verification", move.updateStatus.toLowerCase()]}>{move.updateStatus}</span><span class="type">{move.transactionType}</span></div>
-      <h2><a href={playerPath(move.playerId)}>{move.playerName || `Player ${move.playerId}`}</a></h2>
+      <h2>{playerUpdatePath(move) ? <a href={playerUpdatePath(move)}>{move.playerName || `Player ${move.playerId}`}</a> : (move.playerName || "Team transaction")}</h2>
       <p>{move.description}</p>
       {(move.previousStatus || move.newStatus) && <p class="status-change"><span>{move.previousStatus || "Not specified"}</span><b aria-hidden="true">→</b><span>{move.newStatus || "Not specified"}</span></p>}
       <a class="source" href={move.sourceUrl} rel="noopener noreferrer">Source: {move.sourcePublisher} ↗</a>

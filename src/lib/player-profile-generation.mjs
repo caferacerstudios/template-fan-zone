@@ -76,7 +76,12 @@ function bestRow(rows, id) { return id ? rows.filter((r) => providerId(r) === id
 export function enrichRoster(rosterStore, nflData, directory = [], log = console.warn, tierStore = {}, careerStore = {}, editorialStore = {}) {
   const rows = Array.isArray(nflData?.playerSeasonStats) ? nflData.playerSeasonStats : [];
   return (rosterStore?.players || []).filter(isCurrentRosterPlayer).map((roster) => {
-    const match = matchRosterPlayer(roster, directory, rows, log), provider = match?.provider, stats = selectRelevantStats(roster.position, bestRow(rows, match?.providerPlayerId));
+    const verifiedId = rosterStore?.identityPolicy === 'verified-provider-id' ? roster.balldontlieId : null;
+    const verifiedProvider = Number.isInteger(verifiedId) && verifiedId > 0 ? [...directory, ...rows.map(row => row.player)].find(player => providerId(player) === String(verifiedId)) : null;
+    const match = rosterStore?.identityPolicy === 'verified-provider-id'
+      ? (verifiedProvider ? { provider: verifiedProvider, providerPlayerId: String(verifiedId), source: 'verifiedRosterId' } : null)
+      : matchRosterPlayer(roster, directory, rows, log);
+    const provider = match?.provider, stats = selectRelevantStats(roster.position, bestRow(rows, match?.providerPlayerId));
     const canonicalRosterId=String(roster.id), extra=factsForPlayer(canonicalRosterId,careerStore,editorialStore);
     const career = extra.career && (!extra.career.providerPlayerId || !match?.providerPlayerId || String(extra.career.providerPlayerId)===String(match.providerPlayerId)) ? extra.career : null;
     const meaningful=Object.keys(stats).length>0 || (career?.recentSeasons||[]).some((season)=>Object.values(season).some((value)=>typeof value==="number"&&value>0));

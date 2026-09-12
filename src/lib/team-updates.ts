@@ -1,7 +1,7 @@
 import injuriesStore from "../data/team/injuries.json";
 import transactionsStore from "../data/team/transactions.json";
 import rosterStore from "../data/team/roster.json";
-import { currentInjuryStatuses, newestFirst, transactionFreshness } from "./team-updates-core.mjs";
+import { currentInjuryStatuses, newestFirst, transactionFreshness, updatePlayerPath } from "./team-updates-core.mjs";
 
 export const TRANSACTION_TYPES = [
   "Signed", "Waived", "Released", "Claimed", "Injured Reserve", "PUP",
@@ -15,6 +15,7 @@ export type UpdateStatus = (typeof UPDATE_STATUSES)[number];
 
 /** Append records to the store; never edit an older event to represent a new move. */
 export interface TransactionRecord {
+  entityType?: "player" | "transaction";
   timestamp: string;
   playerId: string | number;
   playerName?: string;
@@ -79,13 +80,22 @@ export const transactionsMetadata = {
   sourceNote: transactionsStore.sourceNote,
 };
 
+export const injuriesMetadata = injuriesStore as typeof injuriesStore & {
+  availability?: "available" | "unavailable";
+  availabilityReason?: string | null;
+  sourceCheckedAt?: string | null;
+};
+
 export const injuryStatuses = currentInjuryStatuses(
   (injuriesStore.records as unknown[]).filter(isInjuryStatusRecord),
   transactions,
   rosterStore,
+  injuriesStore,
 ) as InjuryStatusRecord[];
 
 export const playerPath = (id: string | number) => `/players/${encodeURIComponent(String(id))}`;
-export const formatUpdateDate = (value: string) => new Intl.DateTimeFormat("en-US", {
+const knownPlayerIds = new Set((rosterStore.players || []).flatMap(player => [String(player.id), ...((player as { legacyIds?: string[] }).legacyIds || []).map(String)]));
+export const playerUpdatePath = (row: TransactionRecord | InjuryStatusRecord) => updatePlayerPath(row, knownPlayerIds);
+export const formatUpdateDate = (value: string | null | undefined) => !value || !Number.isFinite(Date.parse(value)) ? "Not available" : new Intl.DateTimeFormat("en-US", {
   timeZone: "America/Los_Angeles", year: "numeric", month: "short", day: "numeric",
 }).format(new Date(value));

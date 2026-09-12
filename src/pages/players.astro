@@ -5,7 +5,7 @@ import ContinueFanZone from "../components/ContinueFanZone.astro";
 import { getSeasonContext } from "../lib/season-context";
 import data from "../data/nfl/{team}.json";
 import rosterStore from "../data/team/roster.json";
-import injuriesStore from "../data/team/injuries.json";
+import { injuryStatuses } from "../lib/team-updates";
 import transactionsStore from "../data/team/transactions.json";
 import { currentRosterDirectoryCount, currentRosterPlayers, practiceSquadPlayers, reserveRosterPlayers, rosterCount } from "../lib/roster.mjs";
 import { latestPlayerUpdates } from "../lib/team-updates-core.mjs";
@@ -18,7 +18,7 @@ const currentGroups = [
   { id:"reserve", title:"Reserve status", players:reserve, caption:`Current ${rosterStore.season} Seattle {Team} reserve and exempt lists` },
 ];
 const positions = [...new Set(currentGroups.flatMap((group) => group.players).map((p) => p.position).filter(Boolean))].sort();
-const updates = latestPlayerUpdates([...(transactionsStore.records || []), ...(injuriesStore.records || [])], rosterStore);
+const updates = latestPlayerUpdates([...(transactionsStore.records || []), ...injuryStatuses], rosterStore);
 const rosterGroups = currentGroups.map((group) => ({ ...group, players:group.players.map((p) => ({ ...p, update:updates.get(String(p.id)) })) }));
 const rosterDirectoryCount = currentRosterDirectoryCount(rosterStore);
 const sourceContext = getSeasonContext(data, "regular season");

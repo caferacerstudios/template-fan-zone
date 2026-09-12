@@ -1,6 +1,6 @@
 # Team builds from the template
 
-Use the same checkout at `/home/laurawkr/templatefanzone`. The `TEAM` choice selects the team's name, city, style, history, news, NFL snapshot, game recaps, and ticket feed.
+Use the same checkout at `/home/laurawkr/templatefanzone`. The `TEAM` choice selects the team's name, city, style, history, news, NFL snapshot, roster/injury/transaction snapshot, game recaps, and ticket feed.
 
 ```bash
 cd /home/laurawkr/templatefanzone
@@ -29,7 +29,9 @@ The daily article tasks and game recap tasks publish separate collections. A new
 
 The build imports complete team NFL snapshots before rendering pages. Its refreshed schedule also binds the reviewed EventSpy coverage; an older standalone ticket schedule cannot replace newer NFL game status. Standings use the selected division: NFC West for Seattle, AFC West for Denver and Kansas City, and NFC North for Green Bay and Minnesota. Opponent names and IDs remain literal data.
 
-Current rosters and historical player statistics are separate. For new teams, only explicit `currentRoster` records populate the roster directory. The `/players` endpoint's historical player directory does not prove current roster membership and is not promoted into a current roster.
+Current rosters and historical player statistics are separate. The `sfz_roster_refresh` DAG's `refresh_roster_<team>` tasks publish the official roster, injury reports, and transactions. Their collection path derives from `news_snapshot_dir` by replacing `-news/current` with `-roster/current` (for example `/var/lib/boncosfz-roster/current`). The helper mounts this parent read-only when it exists. Build after the task succeeds to import the new roster.
+
+Roster import runs after EventSpy/NFL imports so selected official membership is retained. It leaves historical statistical totals and their season unchanged. Before the first roster snapshot, Seattle retains its checked-in roster and updates; other teams show empty roster/update sections. A present invalid snapshot or broken link stops publication. See [roster-airflow.md](../docs/roster-airflow.md) for the contract and freshness behavior. The provider's historical player directory is never promoted into current membership.
 
 Only the selected team's history, style, and content are emitted. Other team history files remain build inputs outside the published website. Game opponents can naturally appear in schedules, standings, and sourced history.
 

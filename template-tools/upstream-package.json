@@ -10,7 +10,7 @@
     "generate-player-profiles": "node scripts/generate-player-profiles.mjs",
     "refresh-player-career-facts": "node scripts/refresh-player-career-facts.mjs",
     "refresh-team-roster": "node scripts/refresh-team-roster.mjs",
-    "prebuild": "node scripts/refresh-team-roster.mjs && node scripts/import-nfl-snapshot.mjs --if-available && node scripts/import-recap-snapshot.mjs --if-available && node scripts/import-news-snapshot.mjs --if-available && node scripts/generate-player-profiles.mjs",
+    "prebuild": "node scripts/import-news-snapshot.mjs --if-available && node scripts/generate-player-profiles.mjs",
     "build": "node scripts/validate-production-schedule.mjs --source && astro build && node scripts/validate-production-schedule.mjs --dist",
     "test:tickets": "node --test tests/tickets.test.mjs",
     "test:tickets:sync": "node --test tests/ticket-sync.test.mjs tests/ticket-http.test.mjs",

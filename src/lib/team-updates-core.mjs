@@ -36,10 +36,17 @@ const EXPECTED_ROSTER_STATUS = new Map([
   ["Injured Reserve", "Reserve/Injured"], ["PUP", "PUP"],
   ["Waived", "Waived"], ["Released", "Released"],
 ]);
-const ROSTER_STATUS_VALUES = new Set(["Active", "Practice Squad", "Reserve/Injured", "PUP", "Commissioner Exempt", "Released", "Waived", "Historical"]);
-const INJURY_ROSTER_STATUSES = new Set(["Reserve/Injured", "PUP"]);
+const ROSTER_STATUS_VALUES = new Set(["Active", "Practice Squad", "Reserve/Injured", "PUP", "Commissioner Exempt", "Suspended", "Reserve/Non-Football Injury", "Released", "Waived", "Historical"]);
+const INJURY_ROSTER_STATUSES = new Set(["Reserve/Injured", "PUP", "Reserve/Non-Football Injury"]);
 
-export function currentInjuryStatuses(injuries, transactions, rosterStore) {
+export function updatePlayerPath(row, knownIds) {
+  if (row?.entityType === 'transaction' || String(row?.playerId ?? '').startsWith('transaction-')) return null;
+  const id = String(row?.playerId ?? '');
+  return id && knownIds.has(id) ? `/players/${encodeURIComponent(id)}` : null;
+}
+
+export function currentInjuryStatuses(injuries, transactions, rosterStore, metadata = {}) {
+  const reportKeys = Array.isArray(metadata.currentReportKeys) ? new Set(metadata.currentReportKeys) : null;
   const current = new Map((rosterStore?.players || [])
     .filter((player) => INJURY_ROSTER_STATUSES.has(player.status))
     .map((player) => [String(player.id), player]));
@@ -50,6 +57,7 @@ export function currentInjuryStatuses(injuries, transactions, rosterStore) {
   for (const row of newestFirst(injuries || [], (entry) => entry.date).filter(isApplicablePlayerUpdate)) {
     if (["Practice Participation", "Game Status"].includes(row.reportType)) {
       const report = `${String(row.date).slice(0, 10)}:${row.playerId}:${row.reportType}`;
+      if (reportKeys !== null && !reportKeys.has(report)) continue;
       if (reports.has(report)) continue;
       reports.add(report);
       result.push(row);
@@ -74,6 +82,19 @@ export function currentInjuryStatuses(injuries, transactions, rosterStore) {
       status: row.newStatus, description: row.description, sourcePublisher: row.sourcePublisher,
       sourceUrl: row.sourceUrl, updateStatus: row.updateStatus,
     });
+  }
+  // A current roster can verify a reserve category even when the club's
+  // practice report omits that player. The roster timestamp is an observation,
+  // not an inferred placement date, diagnosis or return timetable.
+  if (Number.isFinite(Date.parse(rosterStore?.asOf)) && rosterStore?.sourceUrl && rosterStore?.sourcePublisher) {
+    for (const [playerId, player] of current) {
+      const identity = `${playerId}:${player.status}`;
+      if (covered.has(identity)) continue;
+      result.push({ date: rosterStore.asOf, playerId, playerName: player.name,
+        reportType: 'Roster Status', status: player.status,
+        description: `Official roster lists ${player.name} as ${player.sourceStatus || player.status} as of ${String(rosterStore.asOf).slice(0, 10)}.`,
+        sourcePublisher: rosterStore.sourcePublisher, sourceUrl: rosterStore.sourceUrl, updateStatus: 'Official' });
+    }
   }
   return newestFirst(result, (entry) => entry.date);
 }
@@ -100,6 +121,7 @@ export function transactionFreshness(store, now = new Date()) {
 export function transactionRosterMismatches(transactionStore, rosterStore) {
   const latest = new Map();
   for (const row of newestFirst(transactionStore?.records || [], (record) => record.timestamp)) {
+    if (row.entityType === 'transaction' || String(row.playerId ?? '').startsWith('transaction-')) continue;
     const key = String(row.playerId ?? "");
     if (key && !latest.has(key)) latest.set(key, row);
   }

@@ -9,6 +9,7 @@ import ContinueFanZone from "../../components/ContinueFanZone.astro";
 import { getSeasonContext, unavailableMessage } from "../../lib/season-context";
 import rosterData from "../../data/nfl/players.json";
 import currentRosterData from "../../data/team/roster.json";
+import { verifiedRosterStatRows } from "../../lib/roster-provider.mjs";
 import seasonData from "../../data/nfl/{team}.json";
 import careerFactsData from "../../data/team/player-career-facts.json";
 import editorialFactsData from "../../data/team/player-profile-editorial-facts.json";
@@ -82,7 +83,7 @@ function playerNameFromAny(obj) {
   const p = obj?.player ?? obj;
   if (!p) return "Unknown";
   const full =
-    p?.full_name ||
+    p?.full_name || p?.name ||
     `${p?.first_name || ""} ${p?.last_name || ""}`.trim();
   return full || "Unknown";
 }
@@ -96,7 +97,9 @@ function findRosterPlayer(id) {
 }
 
 function bestStatRowForPlayer(id) {
-  const rows = Array.isArray(seasonData?.playerSeasonStats) ? seasonData.playerSeasonStats : [];
+  const allRows = Array.isArray(seasonData?.playerSeasonStats) ? seasonData.playerSeasonStats : [];
+  const verifiedRows = verifiedRosterStatRows(currentRosterData, dataPlayerIds, allRows);
+  const rows = verifiedRows ?? allRows;
   const key = String(id);
 
   function n(v) {
@@ -111,7 +114,7 @@ function bestStatRowForPlayer(id) {
   for (const r of rows) {
     const rid = r?.player?.id ?? r?.player_id ?? null;
     if (rid === null || rid === undefined) continue;
-    if (String(rid) !== key && (!currentName || playerNameFromAny(r).toLowerCase() !== currentName)) continue;
+    if (verifiedRows === null && String(rid) !== key && (!currentName || playerNameFromAny(r).toLowerCase() !== currentName)) continue;
     if (!best || totalYards(r) > totalYards(best)) best = r;
   }
   return best;

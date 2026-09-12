@@ -1,14 +1,15 @@
 ---
 import {Team}Layout from "../../layouts/{Team}Layout.astro";
-import { formatUpdateDate, injuryStatuses, playerPath } from "../../lib/team-updates";
+import { formatUpdateDate, injuryStatuses, injuriesMetadata, playerUpdatePath } from "../../lib/team-updates";
 ---
 <{Team}Layout pageTitle="Seattle {Team} Injuries & Status" pageTagline="Sourced injury, reserve-list and participation-status updates, kept separate from roster transactions and medical speculation." activePath="/team/injuries" monetizationEligible={false} breadcrumbs={[{name:"Home",href:"/"},{name:"Roster",href:"/players"},{name:"Injuries & status",href:"/team/injuries"}]}>
   <nav class="utility-nav" aria-label="Team updates"><a href="/team/transactions">Transactions</a><a aria-current="page" href="/team/injuries">Injuries &amp; status</a></nav>
   <p class="notice"><strong>About this tracker:</strong> An absent entry does not mean a player is healthy. Diagnoses, severity, and recovery timelines are included only when a cited source explicitly supports them.</p>
+  <p class="notice">Last verified report: {formatUpdateDate(injuriesMetadata.asOf)}. {injuriesMetadata.availability === "unavailable" ? `A current report could not be verified. ${injuriesMetadata.availabilityReason || "Previous dated observations are retained in the archive."}` : injuriesMetadata.sourceNote}</p>
   {injuryStatuses.length ? <ol class="updates">
     {injuryStatuses.map((entry) => <li>
       <div class="update-head"><time datetime={entry.date}>{formatUpdateDate(entry.date)}</time><span class:list={["verification", entry.updateStatus.toLowerCase()]}>{entry.updateStatus}</span>{entry.reportType && <span class="report-type">{entry.reportType}</span>}<span class="status">{entry.status}</span></div>
-      <h2><a href={playerPath(entry.playerId)}>{entry.playerName || `Player ${entry.playerId}`}</a></h2>
+      <h2>{playerUpdatePath(entry) ? <a href={playerUpdatePath(entry)}>{entry.playerName || `Player ${entry.playerId}`}</a> : (entry.playerName || `Player ${entry.playerId}`)}</h2>
       <p>{entry.description}</p><a class="source" href={entry.sourceUrl} rel="noopener noreferrer">Source: {entry.sourcePublisher} ↗</a>
     </li>)}
   </ol> : <div class="empty"><h2>No current injury-status entries have been imported for this period.</h2><p>This is a no-data state, not a statement that every player is healthy.</p></div>}

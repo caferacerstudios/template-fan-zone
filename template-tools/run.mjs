@@ -8,6 +8,7 @@ import { renderProject, teamSettings } from './render.mjs';
 import { loadEventSpySite, prepareEventSpy } from './eventspy.mjs';
 import { loadNflSite, selectNflSnapshot, prepareNflSnapshot, prepareRecaps } from './nfl.mjs';
 import { loadNewsSite, retainNews, restoreNews, prepareNews } from './news.mjs';
+import { prepareRoster } from './roster.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const args = process.argv.slice(2);
@@ -48,6 +49,9 @@ try {
     await prepareEventSpy(root, target, ticketSite, selected?.schedule);
     await prepareNflSnapshot(target, nflSite, selected);
     await prepareRecaps(target, nflSite);
+    // EventSpy clears legacy ancillary files; NFL imports historical statistics.
+    // Apply authoritative current membership and sourced updates after both.
+    await prepareRoster(target, nflSite);
   }
   if (isBuild || command === 'dev') prepareNews(target, newsSite);
   console.log(`Theme: ${team.theme.key}. News, NFL data, recaps and tickets are selected by team.`);

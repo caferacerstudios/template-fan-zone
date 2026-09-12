@@ -1,0 +1,7 @@
+{
+  "team": "seahawks",
+  "name": "Seahawks",
+  "city": "Seattle",
+  "source_domains": ["seahawks.com", "nfl.com"],
+  "news_snapshot_dir": "/var/lib/sfz-news/current"
+}

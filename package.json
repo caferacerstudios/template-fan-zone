@@ -27,7 +27,7 @@
     "fetch-ebay": "node template-tools/run.mjs fetch-ebay",
     "build:refresh": "node template-tools/run.mjs build",
     "render": "node template-tools/run.mjs --render-only",
-    "test:template": "node --test template-tools/template.test.mjs"
+    "test:template": "node --test template-tools/*.test.mjs"
   },
   "dependencies": {
     "astro": "^5.16.6",

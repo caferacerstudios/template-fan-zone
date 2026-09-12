@@ -12,8 +12,8 @@ const quickLinks = topics.map((topic) => ({ href: `#${topic.toLowerCase().replac
 ---
 
 <{Team}Layout
-  title="{Team} Around the Web | Curated Seattle Reading"
-  description="A hand-curated {Team} reading digest with source attribution, original Seattle-focused commentary, and links to worthwhile reporting around the web."
+  title="{Team} Around the Web | Curated {Location} Reading"
+  description="A hand-curated {Team} reading digest with source attribution, original {Location}-focused commentary, and links to worthwhile reporting around the web."
   pageTitle="Around the Web"
   pageTagline="Worthwhile {Team} reporting, selected and explained by the {Team} Fan Zone editorial desk."
   activePath="/news/around-the-web"
@@ -34,7 +34,7 @@ const quickLinks = topics.map((topic) => ({ href: `#${topic.toLowerCase().replac
         <div><p class="edition-label">Curated edition · {formatDate(currentEdition.publishedDate)}</p><h2 id="edition-title">{currentEdition.title}</h2></div>
         <p>{currentEdition.introduction}</p>
       </section>
-      <p class="curation-note"><strong>How this works:</strong> SFZ editors choose each link and write every “Why this matters to Seattle” note. We link to publishers normally; we do not reproduce their stories, excerpts, or images. This edition carries no advertising.</p>
+      <p class="curation-note"><strong>How this works:</strong> SFZ editors choose each link and write every “Why this matters to {Location}” note. We link to publishers normally; we do not reproduce their stories, excerpts, or images. This edition carries no advertising.</p>
       {topics.map((topic) => {
         const topicEntries = entries.filter((entry) => entry.topic === topic);
         const topicId = topic.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -46,7 +46,7 @@ const quickLinks = topics.map((topic) => ({ href: `#${topic.toLowerCase().replac
                 <article class="source-card">
                   <div class="source-meta"><span class="publisher">{entry.publisher}</span>{entry.paywall && <span class="paywall">Paywall</span>}<time datetime={entry.publicationDate}>Published {formatDate(entry.publicationDate)}</time></div>
                   <h3><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.title}<span class="external-mark" aria-hidden="true">↗</span><span class="visually-hidden"> (opens publisher site in a new tab)</span></a></h3>
-                  <div class="annotation"><p class="annotation-label">Why this matters to Seattle</p><p>{entry.whyItMatters}</p></div>
+                  <div class="annotation"><p class="annotation-label">Why this matters to {Location}</p><p>{entry.whyItMatters}</p></div>
                   <footer><span>Added {formatDate(entry.dateAdded)}</span><span>Editor: {entry.editor}</span></footer>
                   {entry.relatedStories?.length > 0 && (
                     <nav class="related" aria-label={`Related {Team} Fan Zone stories for ${entry.title}`}>

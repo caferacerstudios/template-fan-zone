@@ -5,6 +5,7 @@ import path from 'node:path';
 import {createHash, randomUUID} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {applyGeneratedCorrections, GENERATED_IMAGE, normalizeGeneratedCitations, validateGeneratedCollection} from '../src/lib/news-artifacts.mjs';
+import {NEWS_SITE, assertNewsTeam} from '../src/lib/news-team.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = filename => JSON.parse(fs.readFileSync(filename, 'utf8'));
@@ -20,12 +21,12 @@ function writeAtomic(filename, bytes) {
   } finally { fs.rmSync(temporary, {force: true}); }
 }
 
-export function importNewsSnapshot({projectRoot = root, snapshotDir = process.env.NEWS_SNAPSHOT_DIR || '/var/lib/sfz-news/current', checkOnly = false, ifAvailable = false, now = Date.now()} = {}) {
+export function importNewsSnapshot({projectRoot = root, site = NEWS_SITE, snapshotDir = process.env.NEWS_SNAPSHOT_DIR || site.news_snapshot_dir, checkOnly = false, ifAvailable = false, now = Date.now()} = {}) {
   const target = path.join(projectRoot, 'src/data/news/generated-articles.json');
   const correctionsFile = path.join(projectRoot, 'src/data/news/generated-corrections.json');
   const corrections = fs.existsSync(correctionsFile) ? read(correctionsFile) : {articles:{}};
   const stored = read(target);
-  const existing = validateGeneratedCollection(applyGeneratedCorrections(normalizeGeneratedCitations(stored), corrections));
+  const existing = validateGeneratedCollection(applyGeneratedCorrections(normalizeGeneratedCitations(stored), corrections), {site});
   let present = true;
   try { fs.lstatSync(snapshotDir); } catch (error) { if (error.code === 'ENOENT') present = false; else throw error; }
   if (!present && ifAvailable) {
@@ -43,6 +44,7 @@ export function importNewsSnapshot({projectRoot = root, snapshotDir = process.en
   const selected = fs.realpathSync(snapshotDir);
   const manifest = read(path.join(selected, 'manifest.json'));
   if (!object(manifest) || manifest.schema_version !== 1 || !object(manifest.files) || !Object.hasOwn(manifest.files, 'articles.json') || typeof manifest.runId !== 'string' || !manifest.runId || !/^[a-f0-9]{40}$/.test(manifest.sourceCommit ?? '') || !Number.isFinite(Date.parse(manifest.updatedAt)) || Date.parse(manifest.updatedAt) > now + 300000) throw new Error('Invalid news manifest');
+  assertNewsTeam(manifest, site.team, 'News manifest');
   const files = new Map();
   for (const [name, checksum] of Object.entries(manifest.files)) {
     if (name !== 'articles.json' && !/^images\/[a-f0-9]{64}\.(jpg|png|webp)$/.test(name)) throw new Error('Invalid snapshot file path');
@@ -54,7 +56,7 @@ export function importNewsSnapshot({projectRoot = root, snapshotDir = process.en
   }
   const normalized = normalizeGeneratedCitations(JSON.parse(files.get('articles.json').toString('utf8')));
   const corrected = applyGeneratedCorrections(normalized, corrections);
-  const document = validateGeneratedCollection(corrected);
+  const document = validateGeneratedCollection(corrected, {site});
   if (document.articles.length !== manifest.articleCount) throw new Error('News manifest count mismatch');
   const incomingSlugs = new Set(document.articles.map(a => a.slug));
   if (existing.articles.some(a => !incomingSlugs.has(a.slug))) throw new Error('News snapshot would remove stored history; import stopped');

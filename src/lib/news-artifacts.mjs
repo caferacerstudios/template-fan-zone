@@ -1,7 +1,8 @@
 // Shared data contract for the Airflow news importer and Astro's news collection.
+import { NEWS_SITE, assertNewsTeam, tagNewsCollection } from './news-team.mjs';
 export const NEWS_SNAPSHOT_VERSION = 1;
 export const GENERATED_IMAGE = /^\/images\/news\/generated\/([a-f0-9]{64}\.(?:jpg|png|webp))$/;
-const categories = new Set(['News', 'Analysis', 'Contract Strategy', 'Roster', 'Injuries', 'Game Week', 'Hard Knocks', 'NFC West']);
+const categories = new Set(['News', 'Analysis', 'Contract Strategy', 'Roster', 'Injuries', 'Game Week', 'Hard Knocks', 'NFC West', 'NFC East', 'NFC North', 'NFC South', 'AFC West', 'AFC East', 'AFC North', 'AFC South']);
 const object = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = (value, max = 10000) => typeof value === 'string' && value.trim() && value.length <= max && !/[\x00-\x08\x0b\x0c\x0e-\x1f<>]/.test(value);
 const timestamp = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(value) && Number.isFinite(Date.parse(value));
@@ -49,11 +50,11 @@ export function applyGeneratedCorrections(document, corrections = {}) {
   return result;
 }
 
-function validSource(url) {
+function validSource(url, site) {
   try {
     const parsed = new URL(url);
     return parsed.protocol === 'https:' && !parsed.username && !parsed.password &&
-      /^(?:[a-z0-9-]+\.)*(?:{team}|nfl)\.com$/.test(parsed.hostname);
+      site.source_domains.some(domain => parsed.hostname === domain || parsed.hostname.endsWith('.' + domain));
   } catch { return false; }
 }
 
@@ -78,19 +79,22 @@ function validateParagraph(value, sources) {
   if (/\[S\d+\]/.test(value)) throw new Error('Unnormalized generated source marker');
 }
 
-export function validateGeneratedCollection(document) {
+export function validateGeneratedCollection(document, { site = NEWS_SITE } = {}) {
   if (!object(document) || document.schema_version !== NEWS_SNAPSHOT_VERSION || !Array.isArray(document.articles)) throw new Error('Invalid generated news collection');
+  assertNewsTeam(document, site.team, 'News collection');
+  const slugPattern = new RegExp(`^daily-${site.team}-\\d{4}-\\d{2}-\\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$`);
   const slugs = new Set();
   const days = new Set();
   for (const a of document.articles) {
     const fail = () => { throw new Error(`Invalid generated article: ${a?.slug ?? 'unknown'}`); };
-    if (!object(a) || typeof a.slug !== 'string' || !/^daily-{team}-\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug) || a.slug.length > 140 || slugs.has(a.slug)) fail();
+    assertNewsTeam(a, site.team, `Article ${a?.slug ?? 'unknown'}`);
+    if (!object(a) || typeof a.slug !== 'string' || !slugPattern.test(a.slug) || a.slug.length > 140 || slugs.has(a.slug)) fail();
     if (!text(a.headline, 180) || !text(a.dek, 360) || !text(a.author, 160) || !categories.has(a.category) || !['draft', 'published', 'archived'].includes(a.status) || typeof a.featured !== 'boolean') fail();
     if (!timestamp(a.publishedAt) || !timestamp(a.updatedAt) || Date.parse(a.updatedAt) < Date.parse(a.publishedAt)) fail();
     if (!Array.isArray(a.tags) || !a.tags.length || a.tags.some(t => !text(t, 60)) || !(a.season === null || Number.isInteger(a.season)) || !(a.opponent === null || text(a.opponent, 160))) fail();
     const g = a.generation;
-    if (!object(g) || g.kind !== 'ai' || !/^\d{4}-\d{2}-\d{2}$/.test(g.publicationDay ?? '') || !Number.isFinite(Date.parse(g.publicationDay)) || !a.slug.startsWith(`daily-{team}-${g.publicationDay}-`) || days.has(g.publicationDay) || !text(g.model, 100)) fail();
-    if (!Array.isArray(a.sources) || a.sources.length < 2 || a.sources.some(s => !object(s) || !text(s.label, 500) || !validSource(s.url))) fail();
+    if (!object(g) || g.kind !== 'ai' || !/^\d{4}-\d{2}-\d{2}$/.test(g.publicationDay ?? '') || !Number.isFinite(Date.parse(g.publicationDay)) || !a.slug.startsWith(`daily-${site.team}-${g.publicationDay}-`) || days.has(g.publicationDay) || !text(g.model, 100)) fail();
+    if (!Array.isArray(a.sources) || a.sources.length < 2 || a.sources.some(s => !object(s) || !text(s.label, 500) || !validSource(s.url, site))) fail();
     const sources = new Set(a.sources.map(s => s.url));
     if (sources.size < 2 || !Array.isArray(a.body) || !a.body.length) fail();
     for (const block of a.body) {
@@ -106,11 +110,11 @@ export function validateGeneratedCollection(document) {
     slugs.add(a.slug);
     days.add(g.publicationDay);
   }
-  return document;
+  return tagNewsCollection(document, site);
 }
 
-export function mergePublishedArticles(authored, generated, now = Date.now()) {
-  const combined = [...authored, ...generated];
+export function mergePublishedArticles(authored, generated, now = Date.now(), team = NEWS_SITE.team) {
+  const combined = [...authored, ...generated].filter(article => (article.team ?? 'seahawks') === team);
   const slugs = new Set();
   for (const article of combined) {
     if (slugs.has(article.slug)) throw new Error(`Authored/generated news slug collision: ${article.slug}`);

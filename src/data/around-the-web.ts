@@ -1,3 +1,4 @@
+import { NEWS_SITE } from "../lib/news-team.mjs";
 export type CuratedTopic = "Championship follow-up" | "Franchise context" | "Seattle football culture";
 
 export interface CuratedLink {
@@ -21,16 +22,16 @@ export interface CuratedEdition {
 }
 
 // Hand-selected source links and SFZ annotations only. Article text is never imported or stored.
-export const currentEdition: CuratedEdition = {
+const seattleEdition: CuratedEdition = {
   title: "The view after Seattle’s second title",
   publishedDate: "2026-02-13",
   introduction:
-    "Seattle’s second championship is the center of this edition, but the useful reading goes beyond the celebration. These picks connect the official account of the win to the franchise arc that preceded it and to the fan traditions that make a {Team} title feel distinctly Pacific Northwest.",
+    "Seattle’s second championship is the center of this edition, but the useful reading goes beyond the celebration. These picks connect the official account of the win to the franchise arc that preceded it and to the fan traditions that make a Seahawks title feel distinctly Pacific Northwest.",
   entries: [
     {
-      title: "The {Team} are Super Bowl LX champions",
-      publisher: "Seattle {Team}",
-      url: "https://www.{team}.com/news/2025-the-{team}-are-super-bowl-lx-champions",
+      title: "The Seahawks are Super Bowl LX champions",
+      publisher: "Seattle Seahawks",
+      url: "https://www.seahawks.com/news/2025-the-seahawks-are-super-bowl-lx-champions",
       publicationDate: "2026-02-08",
       dateAdded: "2026-02-09",
       topic: "Championship follow-up",
@@ -43,21 +44,21 @@ export const currentEdition: CuratedEdition = {
       ],
     },
     {
-      title: "Seattle {Team} team facts",
+      title: "Seattle Seahawks team facts",
       publisher: "Pro Football Hall of Fame",
-      url: "https://www.profootballhof.com/teams/seattle-{team}/team-facts",
+      url: "https://www.profootballhof.com/teams/seattle-seahawks/team-facts",
       publicationDate: "2026-02-09",
       dateAdded: "2026-02-10",
       topic: "Championship follow-up",
       whyItMatters:
-        "The updated franchise ledger puts another Seattle championship in one compact historical frame. It is a useful reference point when weighing where this team belongs alongside the {Team}’ other conference champions and title winner.",
+        "The updated franchise ledger puts another Seattle championship in one compact historical frame. It is a useful reference point when weighing where this team belongs alongside the Seahawks’ other conference champions and title winner.",
       editor: "SFZ Editorial Desk",
       relatedStories: [{ title: "Walk through the SFZ franchise timeline", url: "/history#timeline" }],
     },
     {
-      title: "Seattle {Team} team history",
+      title: "Seattle Seahawks team history",
       publisher: "Pro Football Hall of Fame",
-      url: "https://www.profootballhof.com/teams/seattle-{team}/team-history",
+      url: "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
       publicationDate: "2026-02-09",
       dateAdded: "2026-02-11",
       topic: "Franchise context",
@@ -67,21 +68,21 @@ export const currentEdition: CuratedEdition = {
       relatedStories: [{ title: "Read SFZ’s History & The 12s guide", url: "/history" }],
     },
     {
-      title: "Seattle {Team} team profile and Hall of Famers",
+      title: "Seattle Seahawks team profile and Hall of Famers",
       publisher: "Pro Football Hall of Fame",
-      url: "https://www.profootballhof.com/teams/seattle-{team}/",
+      url: "https://www.profootballhof.com/teams/seattle-seahawks/",
       publicationDate: "2026-02-09",
       dateAdded: "2026-02-11",
       topic: "Franchise context",
       whyItMatters:
         "Championships prompt legacy debates, and Seattle’s standard-setters provide the right baseline. The Hall’s team profile is a clean starting point for comparing this era’s leading players with the franchise figures already enshrined in Canton.",
       editor: "SFZ Editorial Desk",
-      relatedStories: [{ title: "Browse the current {Team} roster", url: "/players" }],
+      relatedStories: [{ title: "Browse the current Seahawks roster", url: "/players" }],
     },
     {
       title: "The history of the 12s",
-      publisher: "Seattle {Team}",
-      url: "https://www.{team}.com/news/the-history-of-the-12s",
+      publisher: "Seattle Seahawks",
+      url: "https://www.seahawks.com/news/the-history-of-the-12s",
       publicationDate: "2024-12-15",
       dateAdded: "2026-02-12",
       topic: "Seattle football culture",
@@ -98,7 +99,7 @@ export const currentEdition: CuratedEdition = {
       dateAdded: "2026-02-12",
       topic: "Seattle football culture",
       whyItMatters:
-        "Seattle’s open-air home is part of the competitive and emotional identity surrounding every {Team} run. The venue history connects the current celebration to the stadium era that began in 2002 and became synonymous with the 12s.",
+        "Seattle’s open-air home is part of the competitive and emotional identity surrounding every Seahawks run. The venue history connects the current celebration to the stadium era that began in 2002 and became synonymous with the 12s.",
       editor: "SFZ Editorial Desk",
       relatedStories: [{ title: "Find upcoming home dates on the SFZ schedule", url: "/schedule" }],
     },
@@ -106,3 +107,5 @@ export const currentEdition: CuratedEdition = {
 };
 
 export const MIN_MEANINGFUL_ENTRIES = 4;
+
+export const currentEdition: CuratedEdition = { ...seattleEdition, entries: NEWS_SITE.team === "seahawks" ? seattleEdition.entries : [] };

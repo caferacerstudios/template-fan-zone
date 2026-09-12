@@ -43,11 +43,13 @@ async function walk(root, directory = '') {
   return files;
 }
 
-export async function renderProject(root, destination, team, { linkDependencies = true } = {}) {
+export async function renderProject(root, destination, team, { linkDependencies = true, newsSite } = {}) {
   const decoder = new TextDecoder('utf-8', { fatal: true });
   const sources = await walk(root);
   const outputs = new Set();
   for (const relative of sources) {
+    if (relative === 'config/active-sites.json' || relative === 'src/data/news-site.json') continue;
+    if (team.slug !== 'seahawks' && relative.startsWith('public/images/news/generated/')) continue;
     const renderedPath = renderText(relative, team);
     if (outputs.has(renderedPath)) throw new Error(`Two template files render to ${renderedPath}`);
     outputs.add(renderedPath);
@@ -57,7 +59,15 @@ export async function renderProject(root, destination, team, { linkDependencies 
     const buffer = await readFile(source);
     let content;
     try { content = decoder.decode(buffer); } catch { content = null; }
-    if (content === null || buffer.includes(0)) await copyFile(source, target);
+    if (relative === 'src/data/news/generated-articles.json') {
+      const original = JSON.parse(content);
+      // These records are content, not string-substitution templates.
+      const articles = original.articles.filter(article => (article.team ?? 'seahawks') === team.slug)
+        .map(article => ({ ...article, team: article.team ?? 'seahawks' }));
+      await writeFile(target, JSON.stringify({ ...original, team: team.slug, articles }, null, 2) + '\n');
+    } else if (relative === 'src/lib/news.ts' || relative === 'src/data/around-the-web.ts' || relative.startsWith('src/data/news/')) {
+      await copyFile(source, target);
+    } else if (content === null || buffer.includes(0)) await copyFile(source, target);
     else await writeFile(target, renderThemeStyles(renderText(content, team), relative, team.theme));
   }
   const manifest = JSON.parse(await readFile(path.join(root, 'template-tools/files.json'), 'utf8'));
@@ -66,6 +76,10 @@ export async function renderProject(root, destination, team, { linkDependencies 
     if (outputs.has(renderText(entry.path, team))) await chmod(path.join(destination, renderText(entry.path, team)), Number(entry.mode));
   }
   const pkg = JSON.parse(renderText(await readFile(path.join(root, 'template-tools/upstream-package.json'), 'utf8'), team));
+  if (newsSite) {
+    await mkdir(path.join(destination, 'src/data'), { recursive: true });
+    await writeFile(path.join(destination, 'src/data/news-site.json'), JSON.stringify(newsSite, null, 2) + '\n');
+  }
   await writeFile(path.join(destination, 'package.json'), JSON.stringify(pkg, null, 2) + '\n');
   if (linkDependencies) await symlink(path.join(root, 'node_modules'), path.join(destination, 'node_modules'), 'dir');
   await writeFile(path.join(destination, '.template-team.json'), JSON.stringify({ team: team.slug, theme: team.theme.key, kind: 'word-substitution-template' }, null, 2) + '\n');

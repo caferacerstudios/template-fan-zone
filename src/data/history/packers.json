@@ -1,0 +1,216 @@
+{
+  "team": "packers",
+  "fullName": "Green Bay Packers",
+  "city": "Green Bay",
+  "firstSeason": "1919",
+  "heroSubtitle": "& A Community's Team",
+  "heroDescription": "Explore Green Bay's football story through its early survival, championship eras, Lambeau Field and the players who helped shape the Packers.",
+  "timelineKicker": "Small-city roots, generations of champions",
+  "timeline": [
+    {
+      "year": "1919",
+      "title": "A team takes shape in Green Bay",
+      "description": "Meetings at the Green Bay Press-Gazette in August brought the Packers together. The Indian Packing Company sponsored their first two seasons.",
+      "category": "Beginnings",
+      "sourceUrl": "https://www.packers.com/history/timeline",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1921",
+      "title": "Green Bay joins the league",
+      "description": "The Packers entered the American Professional Football Association, which took the NFL name in 1922. Their league debut came two years after the team's founding.",
+      "category": "League roots",
+      "sourceUrl": "https://www.packers.com/history/timeline",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1923",
+      "title": "The community buys in",
+      "description": "The Green Bay Football Corporation was incorporated in August. Its stock sale helped keep the franchise alive and established the community connection central to its identity.",
+      "category": "Community ownership",
+      "sourceUrl": "https://www.packers.com/news/early-stock-sales-were-lifesavers-16616049",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1929–31",
+      "title": "Three straight NFL championships",
+      "description": "Green Bay's first titles came in three consecutive seasons. Before a championship playoff system existed, the league awarded those crowns through the final standings.",
+      "category": "First dynasty",
+      "sourceUrl": "https://www.packers.com/history/championship-seasons",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1935",
+      "title": "Don Hutson changes the passing game",
+      "description": "Hutson signed in February and began an eleven-season Packers career. His receiving helped expand the possibilities of an offense in an era still dominated by running.",
+      "category": "An offensive pioneer",
+      "sourceUrl": "https://www.packers.com/history/hof/don-hutson",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1957",
+      "title": "A new home opens",
+      "description": "Green Bay dedicated its new City Stadium on September 29 with a 21–17 win over Chicago. The stadium later became Lambeau Field.",
+      "category": "Lambeau Field",
+      "sourceUrl": "https://www.packers.com/news/lambeau-field-turns-60-19466022",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1959",
+      "title": "Vince Lombardi arrives",
+      "description": "Lombardi became head coach and general manager in January. A 7–5 finish that fall gave the Packers their first winning season in twelve years.",
+      "category": "A turnaround begins",
+      "sourceUrl": "https://www.packers.com/history/timeline",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1961",
+      "title": "A championship at home",
+      "description": "On December 31, Green Bay beat the New York Giants 37–0 in the NFL Championship Game, beginning the title-winning stretch of Lombardi's Packers.",
+      "category": "Lombardi's dynasty",
+      "sourceUrl": "https://www.packers.com/history/playoff-history",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1966",
+      "title": "Winners of the first Super Bowl",
+      "description": "The 1966 campaign ended with a 35–10 victory over Kansas City on January 15, 1967. Green Bay became the first AFL–NFL world championship game winner.",
+      "category": "Super Bowl I",
+      "sourceUrl": "https://www.profootballhof.com/teams/green-bay-packers/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1967",
+      "title": "The Ice Bowl and another Super Bowl",
+      "description": "Bart Starr's late sneak beat Dallas in the December 31 Ice Bowl. Green Bay then defeated Oakland in Super Bowl II on January 14, 1968.",
+      "category": "A second three-peat",
+      "sourceUrl": "https://www.packers.com/history/timeline",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "1996",
+      "title": "The championship returns to Green Bay",
+      "description": "The Packers completed the 1996 season by beating New England 35–21 in Super Bowl XXXI on January 26, 1997, ending their long wait for another title.",
+      "category": "Super Bowl XXXI",
+      "sourceUrl": "https://www.packers.com/history/playoff-history",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "year": "2010",
+      "title": "A road through the playoffs",
+      "description": "Wins at Philadelphia, Atlanta and Chicago carried Green Bay to Super Bowl XLV. The Packers beat Pittsburgh 31–25 on February 6, 2011.",
+      "category": "Super Bowl XLV",
+      "sourceUrl": "https://www.packers.com/history/playoff-history",
+      "sourceName": "Green Bay Packers"
+    }
+  ],
+  "eras": [
+    {
+      "title": "Lambeau and the early champions",
+      "description": "Curly Lambeau helped build the club from its local beginnings. His Packers won six NFL championships, including the consecutive titles of 1929, 1930 and 1931.",
+      "sourceUrl": "https://www.profootballhof.com/teams/green-bay-packers/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Hutson's passing revolution",
+      "description": "Don Hutson gave Green Bay a receiving threat defenses struggled to contain. Championships in 1936, 1939 and 1944 extended the club's success into another generation.",
+      "sourceUrl": "https://www.packers.com/history/",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "title": "The Lombardi standard",
+      "description": "Five NFL titles between the 1961 and 1967 seasons defined this era. Its final two championship seasons also produced victories in the first two Super Bowls.",
+      "sourceUrl": "https://www.profootballhof.com/teams/green-bay-packers/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Favre, Rodgers and renewed success",
+      "description": "Brett Favre helped bring a title back after the 1996 season. Aaron Rodgers later led the offense during the 2010 championship run.",
+      "sourceUrl": "https://www.packers.com/history/",
+      "sourceName": "Green Bay Packers"
+    }
+  ],
+  "numbers": [
+    {
+      "value": "1919",
+      "label": "First season, before league membership",
+      "sourceUrl": "https://www.profootballhof.com/teams/green-bay-packers/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "13",
+      "label": "NFL championships listed by the team",
+      "sourceUrl": "https://www.packers.com/history/championship-seasons",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "value": "4",
+      "label": "Super Bowl wins: I, II, XXXI and XLV",
+      "sourceUrl": "https://www.packers.com/history/championship-seasons",
+      "sourceName": "Green Bay Packers"
+    },
+    {
+      "value": "5",
+      "label": "NFL titles in the 1961–67 seasons",
+      "sourceUrl": "https://www.profootballhof.com/teams/green-bay-packers/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "2",
+      "label": "Runs of three straight NFL titles",
+      "sourceUrl": "https://www.packers.com/history/championship-seasons",
+      "sourceName": "Green Bay Packers"
+    }
+  ],
+  "players": [
+    {
+      "label": "Receiving pioneer",
+      "name": "Don Hutson"
+    },
+    {
+      "label": "Early passing star",
+      "name": "Arnie Herber"
+    },
+    {
+      "label": "Versatile halfback",
+      "name": "Tony Canadeo"
+    },
+    {
+      "label": "Championship quarterback",
+      "name": "Bart Starr"
+    },
+    {
+      "label": "Versatile scorer",
+      "name": "Paul Hornung"
+    },
+    {
+      "label": "Middle linebacker",
+      "name": "Ray Nitschke"
+    },
+    {
+      "label": "Offensive line anchor",
+      "name": "Forrest Gregg"
+    },
+    {
+      "label": "An era at quarterback",
+      "name": "Brett Favre"
+    },
+    {
+      "label": "Defensive front leader",
+      "name": "Reggie White"
+    },
+    {
+      "label": "Secondary playmaker",
+      "name": "Charles Woodson"
+    }
+  ],
+  "playerSource": {
+    "url": "https://www.packers.com/history/hall-of-famers",
+    "label": "Green Bay Packers Hall of Famers"
+  },
+  "methodology": "This independent overview uses the Packers' historical archive and Pro Football Hall of Fame records. Timeline entries and figures link to their sources. Season labels distinguish a football campaign from a Super Bowl played the following calendar year. Players are an across-era selection, not a ranking; NFL championship totals include the Super Bowl victories rather than adding them again.",
+  "heroArtwork": "stadium",
+  "metaTitle": "Green Bay Packers History, Eras and Franchise Players",
+  "metaDescription": "Explore a sourced guide to Green Bay Packers history, including franchise milestones, defining eras, notable players and fan traditions.",
+  "heroKicker": "Green Bay football · Since 1919"
+}

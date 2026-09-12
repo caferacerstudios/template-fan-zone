@@ -1,0 +1,208 @@
+{
+  "team": "vikings",
+  "fullName": "Minnesota Vikings",
+  "city": "Minnesota",
+  "firstSeason": "1961",
+  "heroSubtitle": "& Minnesota's football story",
+  "heroDescription": "Trace Minnesota football from its expansion beginnings through Bud Grant's contenders, the Metrodome's passing stars, and an unforgettable playoff finish in Minneapolis.",
+  "timelineKicker": "From the first kickoff to the Minneapolis Miracle",
+  "timeline": [
+    {
+      "year": "1960",
+      "title": "Minnesota gets its NFL team",
+      "description": "The NFL awarded Minnesota a franchise on January 28. The Vikings name followed that September, ahead of the team's debut season.",
+      "category": "Beginnings",
+      "sourceUrl": "https://www.vikings.com/history/franchise-timeline",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "year": "1961",
+      "title": "Tarkenton makes an immediate impression",
+      "description": "In Minnesota's regular-season debut, rookie Fran Tarkenton threw four touchdown passes and ran for another as the Vikings defeated Chicago 37–13.",
+      "category": "First season",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1967",
+      "title": "Bud Grant takes the sideline",
+      "description": "Grant arrived from Winnipeg to lead Minnesota, beginning the coaching era that would carry the franchise into sustained contention.",
+      "category": "Grant era",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1969",
+      "title": "An NFL championship before the merger",
+      "description": "Minnesota beat Cleveland 27–7 on January 4, 1970, to claim the 1969 NFL title. Kansas City then defeated the Vikings in Super Bowl IV.",
+      "category": "Championship season",
+      "sourceUrl": "https://www.vikings.com/history/franchise-timeline",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "year": "1971",
+      "title": "A defensive tackle wins MVP",
+      "description": "Alan Page became the first defensive player chosen as the Associated Press NFL MVP, earning the award for his 1971 season.",
+      "category": "Purple People Eaters",
+      "sourceUrl": "https://www.vikings.com/news/longform/alan-page-nfl-mvp-honor-50-years-later",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "year": "1973–1976",
+      "title": "Three NFC crowns in four seasons",
+      "description": "The Vikings won the NFC in the 1973, 1974, and 1976 seasons, reaching Super Bowls VIII, IX, and XI under Grant.",
+      "category": "Conference contenders",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1982",
+      "title": "Football moves under the dome",
+      "description": "Minnesota left Metropolitan Stadium for the Metrodome, trading its outdoor home for an indoor chapter in franchise history.",
+      "category": "A new home",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1998",
+      "title": "Moss helps ignite a 15-win season",
+      "description": "Rookie Randy Moss caught 17 touchdowns as Minnesota finished 15–1 and scored 556 points. Atlanta ended the run in the NFC Championship Game.",
+      "category": "Metrodome fireworks",
+      "sourceUrl": "https://www.vikings.com/news/celebrate-98-vikings-look-back-at-memorable-season",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "year": "2012",
+      "title": "Peterson's remarkable return",
+      "description": "After a major knee injury the previous December, Adrian Peterson rushed for 2,097 yards and earned the NFL MVP award.",
+      "category": "An MVP season",
+      "sourceUrl": "https://www.vikings.com/news/adrian-peterson-ring-of-honor-inductee-2026",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "year": "2016",
+      "title": "U.S. Bank Stadium opens a chapter",
+      "description": "The Vikings began playing at U.S. Bank Stadium, introducing a new home for Minnesota football in downtown Minneapolis.",
+      "category": "Stadium era",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2017",
+      "title": "The Minneapolis Miracle",
+      "description": "On January 14, 2018, Case Keenum found Stefon Diggs for a 61-yard touchdown as time expired, beating New Orleans 29–24 in the Divisional Round.",
+      "category": "Playoff moments",
+      "sourceUrl": "https://www.vikings.com/news/vikings-top-saints-29-24-on-61-yard-td-on-final-play-20253730",
+      "sourceName": "Minnesota Vikings"
+    }
+  ],
+  "eras": [
+    {
+      "title": "Tarkenton and the outdoor years",
+      "description": "Metropolitan Stadium framed the early Vikings story: Tarkenton's improvisation, Grant's arrival, and a franchise learning how to contend.",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "The Purple People Eaters",
+      "description": "Alan Page, Carl Eller, Jim Marshall, and Gary Larsen formed the defensive line associated with Minnesota's tough identity. Page's 1971 MVP season became its defining individual honor.",
+      "sourceUrl": "https://www.vikings.com/news/longform/alan-page-nfl-mvp-honor-50-years-later",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "title": "The Metrodome passing show",
+      "description": "Dennis Green's 1998 team paired Randall Cunningham with Randy Moss, Cris Carter, and Jake Reed. Its explosive offense made a 15–1 season a lasting touchstone.",
+      "sourceUrl": "https://www.vikings.com/news/celebrate-98-vikings-look-back-at-memorable-season",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "title": "A stadium's first playoff memory",
+      "description": "U.S. Bank Stadium's first playoff game ended with Diggs racing into the end zone. The Minneapolis Miracle turned one final snap into a shared Minnesota memory.",
+      "sourceUrl": "https://www.vikings.com/news/vikings-top-saints-29-24-on-61-yard-td-on-final-play-20253730",
+      "sourceName": "Minnesota Vikings"
+    }
+  ],
+  "numbers": [
+    {
+      "value": "1961",
+      "label": "First Vikings season",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "4",
+      "label": "Super Bowl appearances from the 1969–1976 seasons",
+      "sourceUrl": "https://www.profootballhof.com/teams/minnesota-vikings/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "15",
+      "label": "Regular-season wins in 1998",
+      "sourceUrl": "https://www.vikings.com/news/celebrate-98-vikings-look-back-at-memorable-season",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "value": "2,097",
+      "label": "Peterson's rushing yards in 2012",
+      "sourceUrl": "https://www.vikings.com/news/adrian-peterson-ring-of-honor-inductee-2026",
+      "sourceName": "Minnesota Vikings"
+    },
+    {
+      "value": "61",
+      "label": "Yards on the Minneapolis Miracle touchdown",
+      "sourceUrl": "https://www.vikings.com/news/vikings-top-saints-29-24-on-61-yard-td-on-final-play-20253730",
+      "sourceName": "Minnesota Vikings"
+    }
+  ],
+  "players": [
+    {
+      "label": "Scrambling quarterback",
+      "name": "Fran Tarkenton"
+    },
+    {
+      "label": "Defensive tackle",
+      "name": "Alan Page"
+    },
+    {
+      "label": "Defensive end",
+      "name": "Carl Eller"
+    },
+    {
+      "label": "Safety",
+      "name": "Paul Krause"
+    },
+    {
+      "label": "Center",
+      "name": "Mick Tingelhoff"
+    },
+    {
+      "label": "Offensive tackle",
+      "name": "Ron Yary"
+    },
+    {
+      "label": "Offensive guard",
+      "name": "Randall McDaniel"
+    },
+    {
+      "label": "Receiving craftsman",
+      "name": "Cris Carter"
+    },
+    {
+      "label": "Interior pass rusher",
+      "name": "John Randle"
+    },
+    {
+      "label": "Deep threat",
+      "name": "Randy Moss"
+    }
+  ],
+  "playerSource": {
+    "url": "https://www.profootballhof.com/teams/minnesota-vikings/team-greats",
+    "label": "Pro Football Hall of Fame: Vikings greats"
+  },
+  "methodology": "This independent guide uses the Vikings' historical archive and Pro Football Hall of Fame records. Season labels identify the football season; January playoff dates are stated separately. The 1969 NFL championship preceded the merger and is distinct from a Super Bowl victory. Player selections span eras and are not a ranking.",
+  "heroArtwork": "stadium",
+  "metaTitle": "Minnesota Vikings History, Eras and Franchise Players",
+  "metaDescription": "Explore a sourced guide to Minnesota Vikings history, including franchise milestones, defining eras, notable players and fan traditions.",
+  "heroKicker": "Minnesota football · Since 1961"
+}

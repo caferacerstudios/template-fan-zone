@@ -1,0 +1,232 @@
+{
+  "team": "seahawks",
+  "fullName": "Seattle Seahawks",
+  "city": "Seattle",
+  "firstSeason": "1976",
+  "heroSubtitle": "& The 12s",
+  "heroDescription": "A sourced guide to the franchise timeline, championship eras, defining players, iconic numbers and the fan culture that shaped Seattle football.",
+  "timelineKicker": "From expansion team to two-time champion",
+  "timeline": [
+    {
+      "year": "1974",
+      "title": "Seattle is awarded an NFL franchise",
+      "description": "The NFL granted Seattle its expansion franchise on June 4, setting the stage for the club to begin play in 1976.",
+      "category": "Beginnings",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1976",
+      "title": "Football arrives at the Kingdome",
+      "description": "The expansion Seahawks played their first season in the NFC, with Jim Zorn and Steve Largent beginning a partnership that helped define the early club.",
+      "category": "Kingdome era",
+      "sourceUrl": "https://www.historylink.org/File/10217",
+      "sourceName": "HistoryLink"
+    },
+    {
+      "year": "1983",
+      "title": "The first playoff run",
+      "description": "In Chuck Knox’s first season, Seattle beat Denver and Miami before its breakthrough postseason ended in the AFC Championship Game.",
+      "category": "Kingdome era",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1984",
+      "title": "No. 12 is retired for the fans",
+      "description": "Seattle retired the number 12 on December 15 as a tribute to the home crowd and its impact on games.",
+      "category": "The 12s",
+      "sourceUrl": "https://www.seahawks.com/news/the-history-of-the-12s",
+      "sourceName": "Seattle Seahawks"
+    },
+    {
+      "year": "1989",
+      "title": "A Kingdome roar changes the rules",
+      "description": "The NFL briefly introduced an excessive-crowd-noise rule during an era when visiting offenses struggled to communicate inside the Kingdome.",
+      "category": "The 12s",
+      "sourceUrl": "https://www.seahawks.com/news/the-history-of-the-12s",
+      "sourceName": "Seattle Seahawks"
+    },
+    {
+      "year": "1997",
+      "title": "The franchise stays in the Northwest",
+      "description": "Paul Allen’s purchase secured the Seahawks’ future in the Pacific Northwest and cleared the way for a new stadium project.",
+      "category": "Seattle football",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2002",
+      "title": "A new outdoor home",
+      "description": "The Seahawks opened their new stadium, beginning the venue era that continues today at Lumen Field.",
+      "category": "Lumen Field era",
+      "sourceUrl": "https://www.lumenfield.com/venue-info/stadium-history-facts",
+      "sourceName": "Lumen Field"
+    },
+    {
+      "year": "2002",
+      "title": "Seattle returns to the NFC",
+      "description": "NFL realignment moved the Seahawks from the AFC West to the NFC West, the conference where they had played their inaugural season.",
+      "category": "Conference move",
+      "sourceUrl": "https://www.profootballhof.com/news/top-seeds",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2003",
+      "title": "The 12 Flag tradition begins",
+      "description": "Twelve original season-ticket holders raised the 12 Flag before the October 12 home game, launching a lasting pregame ritual.",
+      "category": "The 12s",
+      "sourceUrl": "https://www.seahawks.com/fans/the-12s/",
+      "sourceName": "Seattle Seahawks"
+    },
+    {
+      "year": "2005",
+      "title": "The first NFC crown",
+      "description": "A 13–3 team powered by Shaun Alexander, Matt Hasselbeck and Walter Jones won the NFC and reached the franchise’s first Super Bowl.",
+      "category": "Championship season",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2010",
+      "title": "Beast Quake shakes Seattle",
+      "description": "Marshawn Lynch’s 67-yard playoff touchdown against New Orleans sent the stadium crowd into a celebration measured by a nearby seismic station.",
+      "category": "Iconic moment",
+      "sourceUrl": "https://www.seahawks.com/news/the-history-of-the-12s",
+      "sourceName": "Seattle Seahawks"
+    },
+    {
+      "year": "2013",
+      "title": "Defense carries Seattle to the summit",
+      "description": "The top-seeded Seahawks capped a dominant season by winning Super Bowl XLVIII, the first league championship in franchise history.",
+      "category": "Championship season",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2014",
+      "title": "Back-to-back NFC champions",
+      "description": "Seattle returned to the Super Bowl after winning a second consecutive NFC championship.",
+      "category": "Championship season",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "2025",
+      "title": "A second Lombardi Trophy",
+      "description": "A 14–3 regular season ended with Seattle defeating New England 29–13 in Super Bowl LX for the franchise’s second league championship.",
+      "category": "Championship season",
+      "sourceUrl": "https://www.seahawks.com/news/2025-the-seahawks-are-super-bowl-lx-champions",
+      "sourceName": "Seattle Seahawks"
+    }
+  ],
+  "eras": [
+    {
+      "title": "Kingdome beginnings",
+      "description": "Jim Zorn’s improvisation and Steve Largent’s precision gave the expansion club its first personality. Chuck Knox’s hard-running teams then delivered Seattle’s first deep playoff run.",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Holmgren’s offense",
+      "description": "Matt Hasselbeck, Shaun Alexander and a line anchored by Walter Jones powered the 2005 team to 13 wins and the franchise’s first NFC championship.",
+      "sourceUrl": "https://www.profootballhof.com/news/jones-paves-way-for-seahawks-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Legion of Boom",
+      "description": "The 2013 defense led the NFL in points allowed, yards allowed and takeaways, then overwhelmed Denver in Super Bowl XLVIII.",
+      "sourceUrl": "https://www.profootballhof.com/news/moments-in-nfl-history-nfl-s-28th-franchise-forms-in-seattle",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "A new champion",
+      "description": "The 2025 Seahawks paired a 14–3 regular season with a defense that held New England scoreless for three quarters in Super Bowl LX.",
+      "sourceUrl": "https://www.seahawks.com/news/2025-the-seahawks-are-super-bowl-lx-champions",
+      "sourceName": "Seattle Seahawks"
+    }
+  ],
+  "numbers": [
+    {
+      "value": "12",
+      "label": "Number retired for the fans",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "1976",
+      "label": "First season on the field",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "4",
+      "label": "NFC championships",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "2",
+      "label": "Super Bowl titles",
+      "sourceUrl": "https://www.profootballhof.com/teams/seattle-seahawks/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "137.6",
+      "label": "dBA crowd record set in 2013",
+      "sourceUrl": "https://www.seahawks.com/news/the-history-of-the-12s",
+      "sourceName": "Seattle Seahawks"
+    }
+  ],
+  "players": [
+    {
+      "label": "Early spark",
+      "name": "Jim Zorn"
+    },
+    {
+      "label": "Receiving standard",
+      "name": "Steve Largent"
+    },
+    {
+      "label": "Ground game",
+      "name": "Curt Warner"
+    },
+    {
+      "label": "Defensive force",
+      "name": "Kenny Easley"
+    },
+    {
+      "label": "Inside presence",
+      "name": "Cortez Kennedy"
+    },
+    {
+      "label": "Blind-side anchor",
+      "name": "Walter Jones"
+    },
+    {
+      "label": "MVP runner",
+      "name": "Shaun Alexander"
+    },
+    {
+      "label": "Franchise passer",
+      "name": "Russell Wilson"
+    },
+    {
+      "label": "Beast Mode",
+      "name": "Marshawn Lynch"
+    },
+    {
+      "label": "LOB leaders",
+      "name": "Richard Sherman · Bobby Wagner"
+    }
+  ],
+  "playerSource": {
+    "url": "https://www.profootballhof.com/teams/seattle-seahawks/",
+    "label": "Explore team greats and records at the Pro Football Hall of Fame"
+  },
+  "methodology": "Timeline claims are paraphrased from the linked source on each entry. We prioritize the Pro Football Hall of Fame, HistoryLink’s Washington history encyclopedia, Lumen Field, and team-published records. Numbers are included only when those sources state them directly. This page favors defining moments over completeness.",
+  "heroArtwork": "seattle",
+  "metaTitle": "Seattle Seahawks History, Eras and The 12s",
+  "metaDescription": "Explore a sourced guide to Seattle Seahawks history, including franchise milestones, championship eras, notable players and the story of the 12s.",
+  "heroKicker": "Seattle football · Since 1976"
+}

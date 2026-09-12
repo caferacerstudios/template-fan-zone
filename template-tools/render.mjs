@@ -47,9 +47,21 @@ async function walk(root, directory = '') {
 export async function renderProject(root, destination, team, { linkDependencies = true, newsSite } = {}) {
   const decoder = new TextDecoder('utf-8', { fatal: true });
   const sources = await walk(root);
+  const historyPrefix = 'src/data/history/';
+  const selectedHistory = `${historyPrefix}${team.slug}.json`;
+  if (sources.some(relative => relative.startsWith(historyPrefix))) {
+    if (!sources.includes(selectedHistory)) {
+      throw new Error(`Add sourced history for TEAM=${team.slug} at ${selectedHistory} before building. History is never borrowed from another team.`);
+    }
+    const history = JSON.parse(await readFile(path.join(root, selectedHistory), 'utf8'));
+    if (history.team !== team.slug) throw new Error(`History team does not match TEAM=${team.slug}: ${selectedHistory}`);
+  }
   const outputs = new Set();
   for (const relative of sources) {
     if (relative === 'config/active-sites.json' || relative === 'src/data/news-site.json') continue;
+    // Only the selected history enters Astro. Facts and citations are literal data.
+    if (relative === 'src/data/history-timeline.json') continue;
+    if (relative.startsWith(historyPrefix) && relative !== selectedHistory) continue;
     if (team.slug !== 'seahawks' && relative.startsWith('public/images/news/generated/')) continue;
     const renderedPath = renderText(relative, team);
     if (outputs.has(renderedPath)) throw new Error(`Two template files render to ${renderedPath}`);
@@ -66,7 +78,7 @@ export async function renderProject(root, destination, team, { linkDependencies 
       const articles = original.articles.filter(article => (article.team ?? 'seahawks') === team.slug)
         .map(article => ({ ...article, team: article.team ?? 'seahawks' }));
       await writeFile(target, JSON.stringify({ ...original, team: team.slug, articles }, null, 2) + '\n');
-    } else if (relative === 'src/lib/news.ts' || relative === 'src/data/around-the-web.ts' || relative.startsWith('src/data/news/')) {
+    } else if (relative.startsWith(historyPrefix) || relative === 'src/lib/news.ts' || relative === 'src/data/around-the-web.ts' || relative.startsWith('src/data/news/')) {
       await copyFile(source, target);
     } else if (content === null || buffer.includes(0)) await copyFile(source, target);
     else await writeFile(target, renderThemeStyles(renderText(content, team), relative, team.theme));

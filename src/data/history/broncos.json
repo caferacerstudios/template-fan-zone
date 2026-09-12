@@ -1,0 +1,216 @@
+{
+  "team": "broncos",
+  "fullName": "Denver Broncos",
+  "city": "Denver",
+  "firstSeason": "1960",
+  "heroSubtitle": "& Broncos Country",
+  "heroDescription": "From the AFL's opening game to Orange Crush, John Elway's comebacks and championship defenses, explore the people and moments behind Broncos Country.",
+  "timelineKicker": "From AFL beginnings to three Super Bowl titles",
+  "timeline": [
+    {
+      "year": "1959",
+      "category": "Beginnings",
+      "title": "Denver joins the new AFL",
+      "description": "Bob Howsam received an AFL charter franchise on August 14, 1959. The Broncos would begin playing the following year.",
+      "sourceUrl": "https://www.profootballhof.com/teams/denver-broncos/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1960",
+      "category": "AFL years",
+      "title": "The AFL's first game belongs to Denver",
+      "description": "On September 9, Denver beat the Boston Patriots 13–10 in the AFL's first regular-season game, opening the franchise's inaugural season with a win.",
+      "sourceUrl": "https://www.profootballhof.com/teams/denver-broncos/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1962",
+      "category": "Team identity",
+      "title": "Orange and blue arrive",
+      "description": "Under coach and general manager Jack Faulkner, Denver replaced its original brown-and-gold look. The orange uniforms debuted in a September 7 win over San Diego.",
+      "sourceUrl": "https://www.denverbroncos.com/news/legend-and-legacy-orange-s-origin-14944477",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "1977",
+      "category": "Orange Crush",
+      "title": "A first trip to the Super Bowl",
+      "description": "A 12–2 regular season and the Orange Crush defense set up Denver's breakthrough. The Broncos beat Oakland 20–17 in the AFC Championship on January 1, 1978, to reach Super Bowl XII.",
+      "sourceUrl": "https://www.denverbroncos.com/team/history/1977",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "1983",
+      "category": "The Elway years",
+      "title": "John Elway comes to Denver",
+      "description": "On May 2, the Broncos acquired John Elway from the Baltimore Colts. The trade brought Denver the quarterback who would lead its offense for sixteen seasons.",
+      "sourceUrl": "https://www.denverbroncos.com/news/the-shock-waves-may-never-subside-an-oral-history-of-the-broncos-franchise-alter",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "1986",
+      "category": "The Elway years",
+      "title": "The Drive",
+      "description": "The 1986 season's AFC Championship was played on January 11, 1987. Elway led a 98-yard touchdown march to tie Cleveland before Denver won 23–20 in overtime.",
+      "sourceUrl": "https://www.denverbroncos.com/news/legend-and-legacy-the-drive-14983643",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "1997",
+      "category": "Championship seasons",
+      "title": "Denver wins its first Lombardi Trophy",
+      "description": "The 1997 season ended with a 31–24 victory over Green Bay in Super Bowl XXXII on January 25, 1998. MVP Terrell Davis ran for 157 yards and three touchdowns.",
+      "sourceUrl": "https://www.denverbroncos.com/news/way-back-wednesday-broncos-greatest-win-packers-super-bowl",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "1998",
+      "category": "Championship seasons",
+      "title": "Back-to-back champions",
+      "description": "Denver repeated after the 1998 season, defeating Atlanta in Super Bowl XXXIII on January 31, 1999. Elway earned the game's MVP award in his final NFL appearance.",
+      "sourceUrl": "https://www.denverbroncos.com/news/sacco-sez-a-look-back-at-memories-from-super-bowl-xxxiii",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "2001",
+      "category": "Mile High",
+      "title": "A new stadium carries the Mile High name",
+      "description": "The Broncos opened their new regular-season home, then called Invesco Field at Mile High, with a 31–20 victory over the Giants on September 10.",
+      "sourceUrl": "https://www.denverbroncos.com/news/sacco-sez-the-memories-that-loom-large-20-years-after-denver-s-opener-vs-the-gia",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "2012",
+      "category": "The Manning years",
+      "title": "Peyton Manning starts a new chapter",
+      "description": "Manning joined Denver and earned Comeback Player of the Year after missing the previous season through injury. His four Broncos seasons produced four AFC West titles.",
+      "sourceUrl": "https://www.denverbroncos.com/team/tradition/ring-of-fame/peyton-manning",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "2013",
+      "category": "The Manning years",
+      "title": "An offense rewrites the record book",
+      "description": "Manning threw 55 touchdown passes as Denver scored 606 regular-season points. Both totals set NFL records, and Manning earned his fifth league MVP award.",
+      "sourceUrl": "https://www.denverbroncos.com/news/manning-named-most-valuable-player-12559371",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "year": "2015",
+      "category": "Championship seasons",
+      "title": "Defense delivers Super Bowl 50",
+      "description": "Denver capped the 2015 season by beating Carolina 24–10 on February 7, 2016. Super Bowl MVP Von Miller recorded 2.5 sacks and forced two fumbles in Manning's final game.",
+      "sourceUrl": "https://www.denverbroncos.com/news/this-date-in-broncos-history-broncos-win-super-bowl-50-20344514",
+      "sourceName": "Denver Broncos"
+    }
+  ],
+  "eras": [
+    {
+      "title": "AFL roots",
+      "description": "Denver began as an AFL charter member. The early years brought the league's first regular-season win, a growing local following and the foundations of a permanent football home in Colorado.",
+      "sourceUrl": "https://www.profootballhof.com/teams/denver-broncos/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Orange Crush and Mile High",
+      "description": "The Orange Crush name grew from Denver's late-1970s defense. In the stands, the South Stands and the stomping tradition known as Mile High Thunder became part of Broncos Country's identity.",
+      "sourceUrl": "https://www.denverbroncos.com/team/tradition/",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "title": "The championship breakthrough",
+      "description": "Mike Shanahan became head coach in 1995 and led Denver to consecutive Super Bowl wins after the 1997 and 1998 seasons. His teams made the running game a central part of their success.",
+      "sourceUrl": "https://www.denverbroncos.com/team/tradition/ring-of-fame/mike-shanahan",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "title": "Manning and the No Fly Zone",
+      "description": "The 2015 champions paired Manning's experience with Von Miller, DeMarcus Ware and the No Fly Zone secondary. A defense featuring Aqib Talib and Chris Harris Jr. helped secure Denver's third title.",
+      "sourceUrl": "https://www.denverbroncos.com/team/tradition/sb50-reunion",
+      "sourceName": "Denver Broncos"
+    }
+  ],
+  "numbers": [
+    {
+      "value": "1960",
+      "label": "First season, as an AFL charter club",
+      "sourceUrl": "https://www.profootballhof.com/teams/denver-broncos/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "98",
+      "label": "Yards covered by The Drive in the 1986 AFC Championship",
+      "sourceUrl": "https://www.denverbroncos.com/news/legend-and-legacy-the-drive-14983643",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "value": "2,008",
+      "label": "Terrell Davis rushing yards in his 1998 MVP season",
+      "sourceUrl": "https://www.denverbroncos.com/team/tradition/ring-of-fame/terrell-davis",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "value": "55",
+      "label": "Peyton Manning touchdown passes in the 2013 regular season",
+      "sourceUrl": "https://www.denverbroncos.com/news/manning-named-most-valuable-player-12559371",
+      "sourceName": "Denver Broncos"
+    },
+    {
+      "value": "3",
+      "label": "Super Bowl titles: XXXII, XXXIII and 50",
+      "sourceUrl": "https://www.profootballhof.com/teams/denver-broncos/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    }
+  ],
+  "players": [
+    {
+      "label": "Early ground game",
+      "name": "Floyd Little"
+    },
+    {
+      "label": "Orange Crush linebacker",
+      "name": "Randy Gradishar"
+    },
+    {
+      "label": "Franchise quarterback",
+      "name": "John Elway"
+    },
+    {
+      "label": "Championship safety",
+      "name": "Steve Atwater"
+    },
+    {
+      "label": "MVP runner",
+      "name": "Terrell Davis"
+    },
+    {
+      "label": "Receiving tight end",
+      "name": "Shannon Sharpe"
+    },
+    {
+      "label": "Receiving standard",
+      "name": "Rod Smith"
+    },
+    {
+      "label": "Coverage cornerstone",
+      "name": "Champ Bailey"
+    },
+    {
+      "label": "Record-setting passer",
+      "name": "Peyton Manning"
+    },
+    {
+      "label": "Manning-era receiver",
+      "name": "Demaryius Thomas"
+    }
+  ],
+  "playerSource": {
+    "url": "https://www.denverbroncos.com/team/tradition/ring-of-fame/",
+    "label": "Denver Broncos Ring of Fame"
+  },
+  "methodology": "This independent overview draws on Denver Broncos historical records and the Pro Football Hall of Fame. Timeline years follow the football season where relevant; descriptions give the calendar dates of postseason games. Player selections illustrate different eras and are not a ranking. Each timeline entry, era and number links to its source.",
+  "heroArtwork": "mountains",
+  "metaTitle": "Denver Broncos History, Eras and Franchise Players",
+  "metaDescription": "Explore a sourced guide to Denver Broncos history, including franchise milestones, defining eras, notable players and fan traditions.",
+  "heroKicker": "Denver football · Since 1960"
+}

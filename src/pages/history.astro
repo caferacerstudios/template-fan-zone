@@ -1,15 +1,9 @@
 ---
 import {Team}Layout from "../layouts/{Team}Layout.astro";
-import timeline from "../data/history-timeline.json";
+import history from "../data/history/{team}.json";
 
-const sourceName = (url: string) => url.includes("historylink.org")
-  ? "HistoryLink"
-  : url.includes("lumenfield.com")
-    ? "Lumen Field"
-    : url.includes("profootballhof.com")
-      ? "Pro Football Hall of Fame"
-      : "Seattle {Team}";
-
+// This is a static, build-time import. No alternate team data reaches the browser.
+if (history.team !== "{team}") throw new Error("History does not match the selected build team");
 const quickLinks = [
   { href: "#timeline", label: "Timeline" },
   { href: "#eras", label: "Eras & identities" },
@@ -17,11 +11,15 @@ const quickLinks = [
   { href: "#players", label: "Franchise players" },
   { href: "#sources", label: "Sources & method" },
 ];
+const seo = {
+  title: history.metaTitle,
+  description: history.metaDescription,
+  canonicalPath: "/history",
+};
 ---
 
 <{Team}Layout
-  title="History & The 12s | {Team} Fan Zone"
-  description="A sourced, independent guide to Seattle {Team} history, the 12s, franchise eras, iconic players, and championship seasons."
+  {seo}
   activePath="/history"
   {quickLinks}
   rightLinks={[
@@ -40,8 +38,10 @@ const quickLinks = [
           <path d="M-52 155C80 76 201 223 339 148S579 82 810 159" />
           <path d="M-60 194C88 117 211 258 357 186S595 122 818 197" />
         </g>
-        <path class="mountain" d="M-10 330 118 237l61 47 89-113 70 74 51-39 89 77 86-101 68 75 138 73Z" />
-        <g class="skyline">
+        {history.heroArtwork === "seattle" ? (
+          <>
+            <path class="mountain" d="M-10 330 118 237l61 47 89-113 70 74 51-39 89 77 86-101 68 75 138 73Z" />
+            <g class="skyline">
           <path d="M397 330v-39h23v-39h21v78m29 0v-61h35v61m24 0v-82h27v82m23 0v-51h45v51" />
           <path d="M461 269h53m-28 0v-74m-14 19h28m-14-19 7-28 7 28" />
         </g>
@@ -49,12 +49,25 @@ const quickLinks = [
         <path class="flag-pole" d="M122 305V72" />
         <path class="flag" d="M128 79c68-29 126 34 209-1v139c-83 36-141-27-209 2Z" />
         <text x="164" y="186">12</text>
+          </>
+        ) : history.heroArtwork === "mountains" ? (
+          <g class="denver-art">
+            <path class="mountain" d="M-30 390 168 143l73 105 117-209 138 226 96-153 198 278Z" />
+            <path class="snow" d="m276 185 82-146 91 149-72-46-28 37-24-25Z" />
+            <path class="ridgeline" d="M-30 390 168 143l73 105 117-209 138 226 96-153 198 278" />
+          </g>
+        ) : (
+          <g class="stadium-art">
+            <path d="M45 290Q380 170 715 290v90H45Z" />
+            <path d="M80 278v-88m-28 0h56m544 88v-88m-28 0h56M45 320Q380 210 715 320M45 350Q380 250 715 350" />
+          </g>
+        )}
       </svg>
     </div>
     <div class="hero-copy">
-      <p class="hero-kicker">Seattle football · Since 1976</p>
-      <h1 id="history-title">Seattle {Team} History <span>&amp; The 12s</span></h1>
-      <p>A sourced guide to the franchise timeline, championship eras, defining players, iconic numbers and the fan culture that shaped Seattle football.</p>
+      <p class="hero-kicker">{history.heroKicker}</p>
+      <h1 id="history-title">{history.fullName} History <span>{history.heroSubtitle}</span></h1>
+      <p>{history.heroDescription}</p>
       <a href="#timeline">Start at the beginning <span aria-hidden="true">↓</span></a>
     </div>
   </section>
@@ -63,18 +76,19 @@ const quickLinks = [
 
   <section class="timeline-section" id="timeline" aria-labelledby="timeline-title">
     <div class="section-heading">
-      <p>From expansion team to two-time champion</p>
-      <h2 id="timeline-title">The Seattle timeline</h2>
+      <p>{history.timelineKicker}</p>
+      <h2 id="timeline-title">The {history.city} timeline</h2>
     </div>
+    <p class="section-intro">Playoff milestones are grouped with their NFL season, which can end in the following calendar year.</p>
     <ol class="timeline">
-      {timeline.map((item) => (
+      {history.timeline.map((item) => (
         <li>
-          <div class="timeline-year">{item.year}</div>
+          <div class:list={["timeline-year", { wide: item.year.length > 4 }]}>{item.year}</div>
           <article>
             <span class="category">{item.category}</span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <a href={item.sourceUrl} target="_blank" rel="noreferrer">Source: {sourceName(item.sourceUrl)} <span class="visually-hidden">(opens in a new tab)</span> ↗</a>
+            <a href={item.sourceUrl} target="_blank" rel="noreferrer">Source: {item.sourceName} <span class="visually-hidden">(opens in a new tab)</span> ↗</a>
           </article>
         </li>
       ))}
@@ -82,45 +96,46 @@ const quickLinks = [
   </section>
 
   <section id="eras" aria-labelledby="eras-title">
-    <div class="section-heading">
-      <p>Sounds, styles and turning points</p>
-      <h2 id="eras-title">Eras &amp; identities</h2>
-    </div>
+    <div class="section-heading"><p>Sounds, styles and turning points</p><h2 id="eras-title">Eras &amp; identities</h2></div>
     <div class="era-grid">
-      <article><span>01</span><h3>Kingdome beginnings</h3><p>Jim Zorn’s improvisation and Steve Largent’s precision gave the expansion club its first personality. Chuck Knox’s hard-running teams then delivered Seattle’s first deep playoff run.</p><a href="https://www.profootballhof.com/teams/seattle-{team}/team-history" target="_blank" rel="noreferrer">Era source ↗</a></article>
-      <article><span>02</span><h3>Holmgren’s offense</h3><p>Matt Hasselbeck, Shaun Alexander and a line anchored by Walter Jones powered the 2005 team to 13 wins and the franchise’s first NFC championship.</p><a href="https://www.profootballhof.com/news/jones-paves-way-for-{team}-history" target="_blank" rel="noreferrer">Era source ↗</a></article>
-      <article><span>03</span><h3>Legion of Boom</h3><p>The 2013 defense led the NFL in points allowed, yards allowed and takeaways, then overwhelmed Denver in Super Bowl XLVIII.</p><a href="https://www.profootballhof.com/news/moments-in-nfl-history-nfl-s-28th-franchise-forms-in-seattle" target="_blank" rel="noreferrer">Era source ↗</a></article>
-      <article><span>04</span><h3>A new champion</h3><p>The 2025 {Team} paired a 14–3 regular season with a defense that held New England scoreless for three quarters in Super Bowl LX.</p><a href="https://www.{team}.com/news/2025-the-{team}-are-super-bowl-lx-champions" target="_blank" rel="noreferrer">Era source ↗</a></article>
+      {history.eras.map((era, index) => (
+        <article>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{era.title}</h3><p>{era.description}</p>
+          <a href={era.sourceUrl} target="_blank" rel="noreferrer">Source: {era.sourceName} ↗</a>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="numbers-section" id="numbers" aria-labelledby="numbers-title">
     <div class="section-heading light"><p>Verified franchise facts</p><h2 id="numbers-title">Iconic numbers</h2></div>
     <div class="numbers-strip">
-      <a href="https://www.profootballhof.com/teams/seattle-{team}/team-facts" target="_blank" rel="noreferrer"><strong>12</strong><span>Number retired for the fans</span></a>
-      <a href="https://www.profootballhof.com/teams/seattle-{team}/team-history" target="_blank" rel="noreferrer"><strong>1976</strong><span>First season on the field</span></a>
-      <a href="https://www.profootballhof.com/teams/seattle-{team}/team-facts" target="_blank" rel="noreferrer"><strong>4</strong><span>NFC championships</span></a>
-      <a href="https://www.profootballhof.com/teams/seattle-{team}/team-facts" target="_blank" rel="noreferrer"><strong>2</strong><span>Super Bowl titles</span></a>
-      <a href="https://www.{team}.com/news/the-history-of-the-12s" target="_blank" rel="noreferrer"><strong>137.6</strong><span>dBA crowd record set in 2013</span></a>
+      {history.numbers.map((number) => (
+        <a href={number.sourceUrl} target="_blank" rel="noreferrer" aria-label={`${number.value}: ${number.label}. Source: ${number.sourceName}`}>
+          <strong>{number.value}</strong><span>{number.label}</span>
+        </a>
+      ))}
     </div>
   </section>
 
   <section id="players" aria-labelledby="players-title">
     <div class="section-heading"><p>Names across generations</p><h2 id="players-title">Franchise players</h2></div>
-    <p class="section-intro">Not a ranking—just a cross-era starting lineup for exploring the people who shaped Seattle football. Hall of Fame and franchise-record context is verified through the Pro Football Hall of Fame.</p>
+    <p class="section-intro">A selection across eras for exploring the people who shaped {history.city} football.</p>
     <div class="player-cloud">
-      <span><small>Early spark</small>Jim Zorn</span><span><small>Receiving standard</small>Steve Largent</span><span><small>Ground game</small>Curt Warner</span><span><small>Defensive force</small>Kenny Easley</span><span><small>Inside presence</small>Cortez Kennedy</span><span><small>Blind-side anchor</small>Walter Jones</span><span><small>MVP runner</small>Shaun Alexander</span><span><small>Franchise passer</small>Russell Wilson</span><span><small>Beast Mode</small>Marshawn Lynch</span><span><small>LOB leaders</small>Richard Sherman · Bobby Wagner</span>
+      {history.players.map((player) => <span><small>{player.label}</small>{player.name}</span>)}
     </div>
-    <a class="player-source" href="https://www.profootballhof.com/teams/seattle-{team}/" target="_blank" rel="noreferrer">Explore team greats and records at the Pro Football Hall of Fame ↗</a>
+    <a class="player-source" href={history.playerSource.url} target="_blank" rel="noreferrer">{history.playerSource.label} ↗</a>
   </section>
 
   <section class="methodology" id="sources" aria-labelledby="sources-title">
     <div><p>How this page was built</p><h2 id="sources-title">Sources &amp; method</h2></div>
-    <p>Timeline claims are paraphrased from the linked source on each entry. We prioritize the Pro Football Hall of Fame, HistoryLink’s Washington history encyclopedia, Lumen Field, and team-published records. Numbers are included only when those sources state them directly. This page favors defining moments over completeness; send corrections through the <a href="/contact#corrections">corrections process</a>.</p>
+    <p>{history.methodology} Send corrections through the <a href="/contact#corrections">corrections process</a>.</p>
   </section>
 
   <style>
     .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.history-hero{position:relative;min-height:560px;margin:calc(clamp(1.25rem,4vw,3.25rem) * -1) calc(clamp(1.25rem,4vw,3.25rem) * -1) 0;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(1.5rem,6vw,4rem);background:linear-gradient(145deg,#031525 15%,#0b2d49 100%);color:#fff}.hero-art{position:absolute;inset:0;opacity:.9}.hero-art svg{width:100%;height:100%;display:block;overflow:visible}.topo{fill:none;stroke:#b8c2c8;stroke-width:2;opacity:.17}.mountain{fill:#061c30;opacity:.72}.skyline{fill:none;stroke:#b8c2c8;stroke-width:5;opacity:.38}.wave{fill:none;stroke:#70c934;stroke-width:5;opacity:.7}.flag-pole{fill:none;stroke:#b8c2c8;stroke-width:5}.flag{fill:#70c934;opacity:.94}.hero-art text{fill:#031525;font:900 92px var(--font-display);letter-spacing:-8px}.hero-copy{position:relative;z-index:1;max-width:720px;text-shadow:0 2px 15px #031525}.hero-kicker{margin:0 0 .75rem!important;color:var(--action-green);font:900 .78rem var(--font-display);letter-spacing:.15em;text-transform:uppercase}.hero-copy h1{margin:0;color:#fff;font:900 clamp(3.2rem,9vw,7rem)/.78 var(--font-display);letter-spacing:-.04em;text-transform:uppercase}.hero-copy h1 span{display:block;color:var(--action-green)}.hero-copy>p:not(.hero-kicker){max-width:620px;margin:1.25rem 0;color:#fff;font-size:clamp(1rem,2vw,1.2rem);font-weight:650}.hero-copy>a{display:inline-flex;min-height:44px;align-items:center;gap:.65rem;color:#fff;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.independent-note{max-width:none!important;margin:0;padding:1rem 1.25rem;background:#dfe8d8;border-left:7px solid var(--action-green);color:var(--navy-900)}.section-heading{margin:3.5rem 0 1.25rem}.section-heading p,.methodology>div p{margin:0!important;color:#4b711f;font:900 .72rem var(--font-display);letter-spacing:.12em;text-transform:uppercase}.section-heading h2,.methodology h2{margin:.2rem 0 0;font-size:clamp(2rem,5vw,3.5rem);line-height:.95}.timeline{position:relative;margin:0;padding:0;list-style:none}.timeline::before{content:"";position:absolute;top:0;bottom:0;left:55px;width:3px;background:var(--navy-800)}.timeline li{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr);gap:1rem;padding:0 0 1.2rem}.timeline-year{position:relative;z-index:1;align-self:start;padding:.6rem .35rem;background:var(--action-green);clip-path:polygon(0 0,90% 0,100% 50%,90% 100%,0 100%);color:var(--navy-950);font:900 1.1rem var(--font-display);text-align:center}.timeline article{padding:1rem 1.1rem;border:var(--border-crisp);background:#fff;box-shadow:var(--shadow-sm)}.category{color:#4b711f;font:900 .65rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.timeline h3{margin:.2rem 0 .35rem;font-size:1.25rem}.timeline p{margin:0 0 .55rem;color:var(--slate-700)}.timeline a,.era-grid a,.player-source{font-size:.75rem;font-weight:850}.era-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.era-grid article{position:relative;padding:1.4rem;overflow:hidden;border-top:5px solid var(--navy-800);background:#fff;box-shadow:var(--shadow-sm)}.era-grid article>span{position:absolute;right:.7rem;top:-.7rem;color:var(--slate-100);font:900 5rem var(--font-display)}.era-grid h3{position:relative;margin:0;font-size:1.35rem}.era-grid p{position:relative;color:var(--slate-700)}.numbers-section{margin:3.5rem calc(clamp(1.25rem,4vw,3.25rem) * -1) 0;padding:2.5rem clamp(1.25rem,4vw,3.25rem) 3rem;background:var(--navy-900);color:#fff}.numbers-section .section-heading{margin:0 0 1.25rem}.section-heading.light p{color:var(--action-green)}.section-heading.light h2{color:#fff}.numbers-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #ffffff38;border-bottom:1px solid #ffffff38}.numbers-strip a{display:grid;align-content:start;gap:.35rem;min-width:0;padding:1.2rem .8rem;color:#fff;text-decoration:none;border-left:1px solid #ffffff38}.numbers-strip a:first-child{border-left:0}.numbers-strip strong{color:var(--action-green);font:900 clamp(2rem,5vw,3.8rem)/1 var(--font-display);font-variant-numeric:tabular-nums}.numbers-strip span{font-size:.72rem;font-weight:800;text-transform:uppercase}.section-intro{color:var(--slate-700)}.player-cloud{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;margin:1.25rem 0}.player-cloud span{min-width:0;padding:.85rem;border-left:4px solid var(--action-green);background:#fff;color:var(--navy-900);font:900 .9rem var(--font-display);text-transform:uppercase;box-shadow:var(--shadow-sm)}.player-cloud small{display:block;margin-bottom:.25rem;color:var(--slate-700);font:.6rem var(--font-body);letter-spacing:.07em}.methodology{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);gap:1.5rem;margin-top:3.5rem;padding:1.5rem;border:1px dashed var(--slate-500);background:var(--slate-100)}.methodology h2{font-size:1.7rem}.methodology>p{margin:0;color:var(--slate-700)}
+    .timeline-year.wide{font-size:.8rem;overflow-wrap:anywhere}.snow{fill:#fff;opacity:.2}.ridgeline{fill:none;stroke:var(--action-green);stroke-width:4;opacity:.6}.stadium-art{fill:none;stroke:var(--action-green);stroke-width:4;opacity:.25}
     @media(max-width:800px){.history-hero{min-height:500px}.numbers-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.numbers-strip a{border-bottom:1px solid #ffffff38}.numbers-strip a:nth-child(odd){border-left:0}.player-cloud{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:560px){.history-hero{min-height:470px}.hero-art svg{width:170%;transform:translateX(-24%)}.hero-copy h1{font-size:3.35rem}.timeline::before{left:37px}.timeline li{grid-template-columns:76px minmax(0,1fr);gap:.65rem}.timeline-year{font-size:.9rem}.timeline article{padding:.85rem}.era-grid,.methodology{grid-template-columns:1fr}.numbers-strip,.player-cloud{grid-template-columns:1fr}.numbers-strip a{border-left:0}.section-heading{margin-top:2.75rem}}
   </style>

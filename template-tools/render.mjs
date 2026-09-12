@@ -47,7 +47,8 @@ export function renderText(text, team) {
 async function walk(root, directory = '') {
   const files = [];
   for (const entry of await readdir(path.join(root, directory), { withFileTypes: true })) {
-    if (!directory && ['.git', 'node_modules', 'dist', '.astro', '.team-build', '.sites-runtime', 'template-tools'].includes(entry.name)) continue;
+    if (!directory && ['.git', 'node_modules', 'dist', '.astro', '.team-build', '.sites-runtime', 'runtime', 'template-tools'].includes(entry.name)) continue;
+    if (!directory && entry.name.startsWith('.sfz-publish')) continue;
     if (!directory && ['package.json', 'package-lock.json', 'README.md', '.gitignore'].includes(entry.name)) continue;
     if (entry.name === '.env' || entry.name.startsWith('.env.') || entry.name.endsWith('.log')) continue;
     const relative = path.join(directory, entry.name);

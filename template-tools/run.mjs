@@ -9,6 +9,7 @@ import { loadEventSpySite, prepareEventSpy } from './eventspy.mjs';
 import { loadNflSite, selectNflSnapshot, prepareNflSnapshot, prepareRecaps } from './nfl.mjs';
 import { loadNewsSite, retainNews, restoreNews, prepareNews } from './news.mjs';
 import { prepareRoster } from './roster.mjs';
+import { loadBuildSettings } from './build-settings.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const args = process.argv.slice(2);
@@ -18,6 +19,7 @@ const isBuild = ['build', 'build:offline', 'build:production-offline', 'test'].i
 const workRoot = path.join(root, '.team-build');
 
 try {
+  await loadBuildSettings(root);
   const team = teamSettings(process.env.TEAM);
   const newsSite = loadNewsSite(root, team.slug);
   const ticketSite = loadEventSpySite(root, team.slug);
@@ -72,7 +74,11 @@ try {
       });
     } finally { signals.forEach((signal, index) => process.off(signal, handlers[index])); }
     if (code !== 0) throw new Error(`${command} failed with exit code ${code}; no build was published to dist.`);
-    if (isBuild) {
+    if (isBuild && process.env.FANZONE_STAGE_ONLY === '1') {
+      await access(path.join(target, 'dist/index.html'));
+      writeFileSync(path.join(workRoot, 'staged-build.json'), JSON.stringify({ team: team.slug, command, builtAt: new Date().toISOString(), output: path.relative(root, path.join(target, 'dist')) }, null, 2) + '\n');
+      console.log(`Staged build complete: ${path.relative(root, path.join(target, 'dist'))}; dist/ was not replaced.`);
+    } else if (isBuild) {
       const published = path.join(root, 'dist');
       const staging = path.join(workRoot, `.publish-${randomUUID()}`);
       const previous = path.join(workRoot, `.previous-${randomUUID()}`);

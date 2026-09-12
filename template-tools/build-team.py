@@ -10,7 +10,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def build_command(root, slug, config_file=None):
+def build_command(root, slug, config_file=None, *, stage_only=False):
     root = Path(root).resolve()
     config_file = Path(config_file or root / 'config/active-sites.json').resolve()
     document = json.loads(config_file.read_text())
@@ -45,6 +45,8 @@ def build_command(root, slug, config_file=None):
     except ValueError:
         command += ['--mount', f'type=bind,src={config_file},dst=/tmp/active-sites.json,readonly']
         config_path = Path('/tmp/active-sites.json')
+    if stage_only:
+        command += ['-e', 'FANZONE_STAGE_ONLY=1']
     command += ['-e', f'TEAM={slug}', '-e', f'ACTIVE_SITES_FILE={config_path}', '-e', 'NPM_CONFIG_CACHE=/tmp/npm-cache', 'node:22-bookworm', 'npm', 'run', 'build']
     return command
 
@@ -53,10 +55,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('team', choices=['seahawks', 'broncos', 'packers', 'vikings', 'chiefs'])
     parser.add_argument('--dry-run', action='store_true', help='Check inputs and print the Docker command without building.')
+    parser.add_argument('--stage-only', action='store_true', help='Build and validate in .team-build without replacing the served dist directory.')
     args = parser.parse_args()
     try:
-        command = build_command(ROOT, args.team, os.environ.get('ACTIVE_SITES_FILE'))
-        print(f'Building {args.team} from {ROOT}; a successful build updates dist/.', flush=True)
+        command = build_command(ROOT, args.team, os.environ.get('ACTIVE_SITES_FILE'), stage_only=args.stage_only)
+        result = 'validated output stays in .team-build; dist/ is retained' if args.stage_only else 'a successful build updates dist/'
+        print(f'Building {args.team} from {ROOT}; {result}.', flush=True)
         if args.dry_run:
             print(shlex.join(command))
             return

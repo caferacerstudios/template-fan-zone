@@ -141,12 +141,11 @@ does not research or rewrite the surrounding facts. In particular:
   addresses must be configured before deployment. No domains are registered here.
 - Team/player logos, photos, and existing editorial artwork remain the original assets. Any text
   baked into bitmap images cannot be changed by word substitution.
-- This does not migrate Airflow, ticket snapshots, credentials, Docker mounts,
-  services, timers, ports, or anything from the server filesystem.
+- The matching Airflow update in `homelab-airflow` configures daily news only.
+  Ticket/NFL/recap collectors, credentials, services, timers and ports stay as configured.
 
-The source content is deliberately retained because this step is a copy, not a
-content deletion or a data-pipeline migration. Before a real second team is
-published, connect that team's IDs and feeds, supply its news snapshot and replace its history/assets,
+Daily news now uses per-team snapshots. Before a real second team is
+published, connect its remaining IDs and feeds, replace its history/assets,
 and check its external links and hosting settings.
 
 The original online build is available as `TEAM=<word> npm run build:refresh` for
@@ -155,5 +154,5 @@ commands **inside the rendered copy**. Do not use it as a working multi-team fee
 until those team IDs and source settings have been configured.
 
 Original project instructions are in [docs/upstream-README.md](docs/upstream-README.md).
-They now contain placeholders; server-copy and deployment steps will be handled
-separately after this repository is created.
+For the active daily-news configuration and existing server build command,
+see [docs/modular-news.md](docs/modular-news.md).

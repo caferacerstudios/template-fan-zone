@@ -1,70 +1,79 @@
-# Team news and photo folders
+# Daily articles controlled by active sites
 
-The website changes are implemented. The private Airflow repository and live
-server were not accessible, so its DAG, SSH hook, host runner, and photo selector
-have **not** been changed. This document defines their configuration handoff.
+The existing `sfz_daily_article` DAG reads the Airflow Variable
+`fan_zone_active_sites` once per run. It maps `generate_article` and
+`save_run_receipt` over entries with `enabled: true`. The mapped tasks display
+team slugs in Airflow. The existing daily 08:00 America/Los_Angeles schedule,
+`sfz_news_host` connection, retry policy and DAG pause state are preserved.
 
-## Shared configuration
-
-`config/active-sites.json` is the JSON value for the Airflow Variable
-`fan_zone_active_sites`. Each entry contains identity, source domains, prompt
-instructions, and explicit snapshot/photo paths:
-
-| Team | Accepted snapshot | Drop photos here |
+| Team | Daily article output | Photo folder |
 | --- | --- | --- |
 | Seahawks | `/var/lib/sfz-news/current` | `/var/lib/sfz-news/photos/` |
 | Broncos | `/var/lib/boncosfz-news/current` | `/var/lib/boncosfz-news/photos/` |
 
-`boncosfz` is intentional: it matches the requested server directory. The team
-slug remains `broncos`. Future entries can use
-`/var/lib/<team-slug>fz-news/current` and `/var/lib/<team-slug>fz-news/photos`.
-Always configure the paths explicitly. Do not move the working Seahawks files.
+`boncosfz` matches the requested directory spelling; the team slug is `broncos`.
+The checked-in `config/active-sites.json` starts with both teams enabled.
+An existing Airflow Variable takes precedence and is preserved during installation.
 
-`enabled` is intended for Airflow scheduling. A manual `TEAM=broncos` build still
-works when it is false. Denver is initially disabled and its BALLDONTLIE ID is
-`null` pending verification; do not guess an ID or enable its data tasks yet.
+## Configuration
 
-The website reads the local JSON, not the Airflow API. After changing the Variable
-in the UI, export/copy its value into this file before building. A single-variable
-Airflow export wrapped in `fan_zone_active_sites` is also accepted. Alternatively
-point `ACTIVE_SITES_FILE` at that exported file. The repository file is the
-reviewable configuration; UI edits do not automatically commit themselves.
+Open <http://localhost:8085/variables> and edit `fan_zone_active_sites`.
+Its value is the plain JSON object in `config/active-sites.json`.
+Each team supplies `enabled`, `name`, `city`, `source_domains`,
+`prompts.article`, `news_snapshot_dir` and `news_photos_dir`.
+`abbreviation` and `balldontlie_team_id` are retained as site metadata;
+daily articles do not call BALLDONTLIE, so Denver's ID can remain null.
+Optional `website_root` defaults to `/home/laurawkr/seahawksfanzone` for Seattle
+and `/home/laurawkr/templatefanzone` for other teams. Publication days default
+to the existing America/Los_Angeles timezone.
 
-## Create the Denver photo bucket
+To add a team, copy an entry, set its slug/name/city, source domains, article
+prompt, and separate `/var/lib/<site>-news/current` and sibling `photos` paths.
+Create the new parent with user-owned `photos`, `assets`, `days` and `releases`
+subfolders before enabling it. Setting `enabled: false` removes its mapped tasks
+from the next run. Do not create `current` manually: the runner publishes that
+symlink after validating a complete release. The supplied installer initializes
+these directories for the configured new teams.
 
-On wkr, run as laurawkr:
+The Variable is read at task runtime, not during DAG parsing. The checked-in
+JSON is a fallback only when the Variable is absent. Invalid or overlapping
+paths fail validation before any article task starts. Editing the UI changes
+subsequent runs; it does not change an already-loaded run or commit a Git file.
+After UI edits, export/copy this Variable's value to `config/active-sites.json`
+in both checkouts and commit that file. The website also accepts Airflow's
+single-variable export envelope via `ACTIVE_SITES_FILE`.
 
-```bash
-sudo install -d -o laurawkr -g "$(id -gn)" -m 0755 /var/lib/boncosfz-news/photos
-```
+## Existing Seattle behavior
 
-From your computer, copy photos to:
+The existing news SSH connection and forced command are reused. Old Seattle
+requests still work; the new optional `site` payload carries the JSON config.
+The installer does not reinstall keys or alter connections, services or DAG
+pause settings. It does not invoke the original Airflow setup installer.
 
-```text
-laurawkr@192.168.88.3:/var/lib/boncosfz-news/photos/
-```
+Seattle keeps its existing `days`, `assets`, `photos`, `releases`, model config
+and `current` snapshot. Accepted days are reused without another paid generation.
+A new team gets separate state and photos. Its initial model is copied from
+Seattle only when the new team's model config is missing. The existing OpenAI
+credential remains in the original production environment file.
 
-The existing Seahawks destination stays:
+Each article, collection, manifest and receipt carries a `team` value. Existing
+untagged Seattle history remains valid; new team history requires explicit tags.
+The configured article prompt supplements the shared research/writing rules.
+Photo selection uses only the selected team's folder, history and visible
+front-page articles, retaining the existing hash and no-repeat rules. Add photos
+and their normal `metadata.json` captions/credits to the team's photo folder.
+An insufficient pool uses the existing illustration fallback. Selected image
+bytes remain in accepted snapshots if input photos are later removed.
 
-```text
-laurawkr@192.168.88.3:/var/lib/sfz-news/photos/
-```
+Daily articles and game recaps remain separate. This update changes no recap,
+NFL-data, ticket DAG or collector.
 
-These are ordinary server folders, not cloud buckets. Keep the current JPEG,
-PNG, WebP and optional `metadata.json` conventions. Provide subject/caption/credit
-metadata for each file just as with Seahawks. Use eight or more distinct images
-to support the current seven-story exclusion rule; insufficient pools should
-keep the existing neutral illustration behavior. Selected photos remain attached
-to their articles even when the input photo is later removed.
+## Website build
 
-Do not manually create or copy a `current` snapshot. The producer publishes that
-pointer only after validating a complete release.
-
-## Build on wkr
-
-Extract the updated source directly into `/home/laurawkr/templatefanzone`.
-Keep `.git`, `template-preview.conf`, dependencies, and `.team-build` in place.
-Install dependencies once with `npm ci` if they are not already installed.
+The daily DAG publishes articles; a website build imports them. It does not
+build or deploy the website itself. The template site's root is
+`/home/laurawkr/templatefanzone`. The installer builds its Broncos preview.
+After future articles arrive, rebuild it using:
 
 ```bash
 cd /home/laurawkr/templatefanzone
@@ -75,84 +84,28 @@ docker run --rm --user "$(id -u):$(id -g)" \
   node:22-bookworm npm run build
 ```
 
-For Seahawks, use `TEAM=seahawks` and replace both mount paths with
-`/var/lib/sfz-news`. Mount the complete news parent: `current` can be a symlink
-into `releases`, and mounting just that symlink or `photos` is insufficient.
+For a Seattle template build use `TEAM=seahawks` and `/var/lib/sfz-news` in
+both mount positions. Mount the parent directory because `current` points into
+`releases`. The existing preview container serves `dist`; refresh the browser
+after a successful build. No preview Docker Compose command is needed.
 
-The build renders the selected theme, imports that team's validated articles and
-retained images, then runs offline Astro. It does not generate articles or make
-paid/API calls. The existing preview container serves `dist`; refresh the browser
-after success. No Docker Compose command is needed for that preview.
+The website imports the selected team's validated articles and retained images,
+then runs offline Astro without article generation or API refreshes. News source
+text and citations remain literal; Seattle stories are excluded from Broncos.
+A missing first Broncos snapshot produces an empty news page. Malformed,
+mixed-team or incomplete snapshots fail the build while preserving served
+`dist`. Existing accepted website article history is retained.
 
-`NEWS_SNAPSHOT_DIR` can override the source path for a test or relocated snapshot.
-The team checks still apply. Source templates, server snapshots and input photos
-are never rewritten by the build. If a snapshot is missing, the build retains
-previous tagged news for that team; a new team starts with no articles. Corrupt,
-mixed-team, or incomplete snapshots fail while the previous `dist` remains served.
+The source catalogs `/data/news-front-page.json` and
+`scripts/export-news-catalog.mjs` include team tags. The host uses the selected
+team's catalog for photo exclusion. Other website datasets remain outside this
+news update.
 
-## Airflow integration to apply to the real runner
+## Checks
 
-Keep the existing shared DAGs and map their tasks over enabled site entries read
-once at task runtime. Pass each team's validated config through the existing
-restricted SSH hook/runner; preserve its command restrictions. Do not build an
-arbitrary shell command from the Variable or assume the current hook accepts new
-arguments before it has been updated.
-
-For each news task:
-
-1. Use the parent of `news_snapshot_dir` as that team's news runtime root. Keep
-   days, request caches, usage, accepted articles, retained assets, releases and
-   any locks under that root. Deduplicate by team and publication day.
-2. Select photos only from `news_photos_dir`. Keep the existing content-hash,
-   no-repeat and caption/credit behavior, using that team's accepted history and
-   its own front-page catalog. Never mix another site's exclusion list.
-3. Use configured name/city, allowed source domains and `prompts.article` with the
-   existing shared research/writing requirements. Stamp identity from config,
-   not model-generated prose. Recaps use `prompts.recap` separately.
-4. Publish to exactly `news_snapshot_dir` after validating the release. Leave the
-   last accepted release unchanged on failure. A Broncos task must never write
-   to `/var/lib/sfz-news`.
-
-The existing `/data/news-front-page.json` endpoint keeps its array shape and now
-includes each article's `team`. `scripts/export-news-catalog.mjs` similarly keeps
-its authored/visible lists and includes team identity. When wiring the producer,
-use the selected site's catalog, including its currently displayed photos.
-
-## Snapshot additions
-
-Preserve the current version-1 structure and checksum rules. Add the same field
-to the manifest, `articles.json` collection, and each generated article:
-
-```json
-"team": "broncos"
-```
-
-Example collection shape (an empty accepted collection):
-
-```json
-{"schema_version": 1, "team": "broncos", "articles": []}
-```
-
-Generated slugs remain `daily-<team>-YYYY-MM-DD-<story>`. Include the team slug in the
-article's existing `tags` array, for example `"tags": ["Analysis", "broncos"]`.
-The importer also ensures that tag exists in the website copy. Preserve the
-existing article fields, citations, dates, disclosure and image metadata.
-
-Recalculate checksums after writing tagged JSON. Include every historical
-article and referenced hashed image in each complete snapshot; the importer
-rejects a release that would erase accepted local history. New teams require
-explicit identity at all three levels. Legacy untagged Seattle releases alone
-remain compatible and gain tags in the imported website copy.
-
-The website never assigns random input photos on a rebuild. It copies the
-already-selected `images/<hash>.<extension>` bytes from the accepted snapshot
-to `public/images/news/generated/`, verifying their hashes before exposing the
-new article collection.
-
-## Validation
-
-`npm run test:template` covers configured paths, official source domains, team
-identity rejection, legacy Seattle compatibility, per-team publication days,
-raw article preservation, and retained image/history behavior. The normal build
-also validates all imported articles. Other NFL datasets and their API IDs are
-still from the original template; this change connects news only.
+The news tests cover legacy Seattle requests and retained history, per-team
+prompts/photos/paths, mapped tasks, JSON validation and receipt identity.
+The website's `npm run test:template` and news snapshot tests cover team
+filtering, checksums and history preservation. They do not call paid APIs.
+The installer validates the update and commits/pushes only its listed files
+using the server's existing Git credentials.

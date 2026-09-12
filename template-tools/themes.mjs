@@ -10,6 +10,36 @@ const broncosPalette = {
   '#edf6e8': '#fff0e8', '#dfeeda': '#ffe2d2', '#c9e7b5': '#ffd3bd',
 };
 
+// Fan-site palettes: light accents on dark surfaces, darker links on paper.
+// Status colors are deliberately outside this brand-only mapping.
+function fanPalette({ darkest, dark, surface, accent, light, focus, link, wash, tint, border }) {
+  return {
+    '#031525': darkest, '#071f34': dark, '#0b2d49': surface,
+    '#70c934': accent, '#69be28': accent, '#83da47': light, '#9be65c': focus,
+    ...Object.fromEntries([
+      '#2f660b', '#315f12', '#386f13', '#397a12', '#398000',
+      '#41651b', '#4b711f', '#4d861e', '#285d08',
+    ].map(color => [color, link])),
+    '#edf6e8': wash, '#dfeeda': tint, '#c9e7b5': border,
+  };
+}
+
+const packersPalette = fanPalette({
+  darkest: '#142820', dark: '#2a433a', surface: '#36594b',
+  accent: '#ffb612', light: '#ffce59', focus: '#ffdf91', link: '#305a40',
+  wash: '#f3f6ed', tint: '#e4edda', border: '#c7d8b7',
+});
+const vikingsPalette = fanPalette({
+  darkest: '#23123d', dark: '#4f2683', surface: '#5e3990',
+  accent: '#ffc62f', light: '#ffda73', focus: '#ffe59c', link: '#633992',
+  wash: '#f4f0f9', tint: '#e9dff3', border: '#d5bfe9',
+});
+const chiefsPalette = fanPalette({
+  darkest: '#400916', dark: '#8f1028', surface: '#b5122d',
+  accent: '#ffb81c', light: '#ffd06b', focus: '#ffe39b', link: '#b5122d',
+  wash: '#fff1f2', tint: '#fbdde2', border: '#f2b9c3',
+});
+
 export const TEAM_THEMES = {
   seahawks: {
     key: 'seahawks', stylesheet: '', favicon: '', palette: {},
@@ -21,6 +51,24 @@ export const TEAM_THEMES = {
     favicon: '/favicons/broncos.svg', palette: broncosPalette,
     brandMark: 'BFZ', heroMark: 'DEN',
     fanTagline: 'Independent football coverage for Broncos fans.',
+  },
+  packers: {
+    key: 'packers', stylesheet: '/styles/themes/packers.css',
+    favicon: '/favicons/packers.svg', palette: packersPalette,
+    brandMark: 'PFZ', heroMark: 'GB',
+    fanTagline: 'Independent football coverage for Packers fans.',
+  },
+  vikings: {
+    key: 'vikings', stylesheet: '/styles/themes/vikings.css',
+    favicon: '/favicons/vikings.svg', palette: vikingsPalette,
+    brandMark: 'VFZ', heroMark: 'MIN',
+    fanTagline: 'Independent football coverage for Vikings fans.',
+  },
+  chiefs: {
+    key: 'chiefs', stylesheet: '/styles/themes/chiefs.css',
+    favicon: '/favicons/chiefs.svg', palette: chiefsPalette,
+    brandMark: 'CFZ', heroMark: 'KC',
+    fanTagline: 'Independent football coverage for Chiefs fans.',
   },
 };
 

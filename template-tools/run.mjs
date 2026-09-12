@@ -1,10 +1,12 @@
-import { mkdir, rm, cp, readFile, access } from 'node:fs/promises';
+import { mkdir, rm, cp, readFile, access, rename } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderProject, teamSettings } from './render.mjs';
 import { loadEventSpySite, prepareEventSpy } from './eventspy.mjs';
+import { loadNflSite, selectNflSnapshot, prepareNflSnapshot, prepareRecaps } from './nfl.mjs';
 import { loadNewsSite, retainNews, restoreNews, prepareNews } from './news.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -18,6 +20,8 @@ try {
   const team = teamSettings(process.env.TEAM);
   const newsSite = loadNewsSite(root, team.slug);
   const ticketSite = loadEventSpySite(root, team.slug);
+  const nflSite = loadNflSite(root, team.slug);
+  team.division = nflSite.division;
   team.abbreviation = ticketSite.abbreviation;
   team.name = newsSite.name;
   team.upper = newsSite.name.toUpperCase();
@@ -39,13 +43,18 @@ try {
     restoreNews(target, retained);
     console.log(`Rendered ${count} template files for ${team.name}: ${path.relative(root, target)}`);
   }
-  if (isBuild || renderOnly || command === 'dev') await prepareEventSpy(root, target, ticketSite);
+  if (isBuild || renderOnly || command === 'dev') {
+    const selected = await selectNflSnapshot(target, nflSite);
+    await prepareEventSpy(root, target, ticketSite, selected?.schedule);
+    await prepareNflSnapshot(target, nflSite, selected);
+    await prepareRecaps(target, nflSite);
+  }
   if (isBuild || command === 'dev') prepareNews(target, newsSite);
-  console.log(`Theme: ${team.theme.key}. News, schedule and tickets are selected by team.`);
+  console.log(`Theme: ${team.theme.key}. News, NFL data, recaps and tickets are selected by team.`);
 
   if (!renderOnly) {
     const child = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', command, ...(args.length ? ['--', ...args] : [])], {
-      cwd: target, env: { ...process.env, ASTRO_TELEMETRY_DISABLED: '1' }, stdio: ['inherit', 'pipe', 'pipe'],
+      cwd: target, env: { ...process.env, NFL_SNAPSHOT_DIR: process.env.NFL_SNAPSHOT_DIR || nflSite.nfl_snapshot_dir, RECAP_SNAPSHOT_DIR: process.env.RECAP_SNAPSHOT_DIR || nflSite.recap_snapshot_dir, ASTRO_TELEMETRY_DISABLED: '1' }, stdio: ['inherit', 'pipe', 'pipe'],
     });
     child.stdout.pipe(process.stdout, { end: false });
     child.stderr.pipe(process.stderr, { end: false });
@@ -60,8 +69,18 @@ try {
     } finally { signals.forEach((signal, index) => process.off(signal, handlers[index])); }
     if (code !== 0) throw new Error(`${command} failed with exit code ${code}; no build was published to dist.`);
     if (isBuild) {
-      await rm(path.join(root, 'dist'), { recursive: true, force: true });
-      await cp(path.join(target, 'dist'), path.join(root, 'dist'), { recursive: true });
+      const published = path.join(root, 'dist');
+      const staging = path.join(workRoot, `.publish-${randomUUID()}`);
+      const previous = path.join(workRoot, `.previous-${randomUUID()}`);
+      let movedPrevious = false;
+      try {
+        await cp(path.join(target, 'dist'), staging, { recursive: true });
+        await access(path.join(staging, 'index.html'));
+        if (existsSync(published)) { await rename(published, previous); movedPrevious = true; }
+        try { await rename(staging, published); }
+        catch (error) { if (movedPrevious) await rename(previous, published); throw error; }
+      } finally { await rm(staging, { recursive: true, force: true }); }
+      await rm(previous, { recursive: true, force: true }).catch(error => console.warn(`Build published; previous output retained at ${previous}: ${error.message}`));
       writeFileSync(path.join(workRoot, 'last-build.json'), JSON.stringify({ team: team.slug, command, builtAt: new Date().toISOString() }, null, 2) + '\n');
       console.log(`Build complete: dist/ (${team.name})`);
     }

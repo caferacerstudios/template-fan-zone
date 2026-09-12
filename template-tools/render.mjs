@@ -3,6 +3,17 @@ import path from 'node:path';
 import { TEAM_LOCATIONS } from './locations.mjs';
 import { themeSettings, renderThemeStyles } from './themes.mjs';
 
+const DIVISION_TEAMS = {
+  'NFC West': ['ARI', 'LAR', 'SEA', 'SF'], 'NFC North': ['CHI', 'DET', 'GB', 'MIN'],
+  'NFC East': ['DAL', 'NYG', 'PHI', 'WAS'], 'NFC South': ['ATL', 'CAR', 'NO', 'TB'],
+  'AFC West': ['DEN', 'KC', 'LAC', 'LV'], 'AFC North': ['BAL', 'CIN', 'CLE', 'PIT'],
+  'AFC East': ['BUF', 'MIA', 'NE', 'NYJ'], 'AFC South': ['HOU', 'IND', 'JAX', 'TEN'],
+};
+const IDENTITIES = {
+  seahawks: ['SEA', 'NFC West'], broncos: ['DEN', 'AFC West'], packers: ['GB', 'NFC North'],
+  vikings: ['MIN', 'NFC North'], chiefs: ['KC', 'AFC West'], patriots: ['NE', 'AFC East'],
+};
+
 export function teamSettings(value) {
   const slug = String(value ?? '').trim().toLowerCase();
   // These tokens can occur inside identifiers as well as names and URLs.
@@ -12,7 +23,8 @@ export function teamSettings(value) {
   if (!Object.hasOwn(TEAM_LOCATIONS, slug)) {
     throw new Error(`No location configured for TEAM=${slug}. Add it to template-tools/locations.mjs.`);
   }
-  return { slug, name: slug[0].toUpperCase() + slug.slice(1), upper: slug.toUpperCase(), location: TEAM_LOCATIONS[slug], theme: themeSettings(slug) };
+  return { slug, name: slug[0].toUpperCase() + slug.slice(1), upper: slug.toUpperCase(), location: TEAM_LOCATIONS[slug],
+    abbreviation: IDENTITIES[slug]?.[0], division: IDENTITIES[slug]?.[1], theme: themeSettings(slug) };
 }
 
 export function renderText(text, team) {
@@ -20,13 +32,15 @@ export function renderText(text, team) {
   // Standalone Seattle facts, code identifiers, and seattle-... URLs are retained.
   const withLocation = text.replace(/\b(?:Seattle|SEATTLE|seattle)(?=\s+\{(?:Team|TEAM|team)\})/g,
     (word) => word === 'SEATTLE' ? team.location.toUpperCase() : word === 'seattle' ? team.location.toLowerCase() : team.location);
-  return withLocation.replace(/\{(?:team|Team|TEAM|Location|LOCATION|ThemeKey|ThemeStylesheet|ThemeFavicon|BrandMark|HeroMark|FanTagline|Abbreviation)\}/g, (token) => ({
+  return withLocation.replace(/\{(?:team|Team|TEAM|Location|LOCATION|ThemeKey|ThemeStylesheet|ThemeFavicon|BrandMark|HeroMark|FanTagline|Abbreviation|Division|DivisionTeams|Conference)\}/g, (token) => ({
     '{team}': team.slug, '{Team}': team.name, '{TEAM}': team.upper,
     '{Abbreviation}': team.abbreviation ?? (team.slug === 'seahawks' ? 'SEA' : team.slug === 'broncos' ? 'DEN' : ''),
     '{Location}': team.location, '{LOCATION}': team.location.toUpperCase(),
     '{ThemeKey}': team.theme.key, '{ThemeStylesheet}': team.theme.stylesheet,
     '{ThemeFavicon}': team.theme.favicon, '{BrandMark}': team.theme.brandMark,
     '{HeroMark}': team.theme.heroMark, '{FanTagline}': team.theme.fanTagline,
+    '{Division}': team.division ?? '', '{Conference}': team.division?.split(' ')[0] ?? '',
+    '{DivisionTeams}': JSON.stringify(DIVISION_TEAMS[team.division] ?? []),
   })[token]);
 }
 
@@ -62,6 +76,8 @@ export async function renderProject(root, destination, team, { linkDependencies 
     // Only the selected history enters Astro. Facts and citations are literal data.
     if (relative === 'src/data/history-timeline.json') continue;
     if (relative.startsWith(historyPrefix) && relative !== selectedHistory) continue;
+    if (relative.startsWith('public/styles/themes/') && relative !== `public${team.theme.stylesheet}`) continue;
+    if (relative.startsWith('public/favicons/') && relative !== `public${team.theme.favicon}`) continue;
     if (team.slug !== 'seahawks' && relative.startsWith('public/images/news/generated/')) continue;
     const renderedPath = renderText(relative, team);
     if (outputs.has(renderedPath)) throw new Error(`Two template files render to ${renderedPath}`);

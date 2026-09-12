@@ -1,5 +1,5 @@
 import { schedulePhase, scheduleState } from "./schedule.mjs";
-const SEA = "SEA";
+const SEA = "{Abbreviation}";
 
 function integer(value) {
   const parsed = Number(value);

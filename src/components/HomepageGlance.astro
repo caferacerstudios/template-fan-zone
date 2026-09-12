@@ -16,7 +16,7 @@ const date = (value) => value ? new Intl.DateTimeFormat("en-US", { timeZone: "Am
       <span class="label">Season status</span>
       {model.seasonStatus.record && <strong class="dominant">{model.seasonStatus.record}</strong>}
       <b>{model.seasonStatus.label}</b>
-      {model.seasonStatus.rank && <p>{model.seasonStatus.rank} in NFC West</p>}
+      {model.seasonStatus.rank && <p>{model.seasonStatus.rank} in {Division}</p>}
       {model.seasonStatus.detail && <p class="qualifier">{model.seasonStatus.detail}</p>}
       {!model.seasonStatus.record && !model.seasonStatus.detail && <p class="qualifier">No completed {model.seasonStatus.label.toLowerCase()} games yet.</p>}
       {(model.seasonStatus.streak || model.seasonStatus.pointDifferential !== null) && <p class="supporting">{model.seasonStatus.streak && <>Streak {model.seasonStatus.streak}</>}{model.seasonStatus.streak && model.seasonStatus.pointDifferential !== null && <> · </>}{model.seasonStatus.pointDifferential !== null && <>Point diff. {model.seasonStatus.pointDifferential > 0 ? "+" : ""}{model.seasonStatus.pointDifferential}</>}</p>}

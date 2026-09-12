@@ -57,7 +57,7 @@ const updatedLabel = watchGuide.updatedAt ? new Intl.DateTimeFormat("en-US", { m
 <TicketPublisherContent {routeStyle} game={selectedGame} pageMetadata={metadata} eligibleGames={Object.values(ticketModels)} section="intro" />
 {routeStyle === "games" && selectedGame && !isBye && (
   <div class="game-guide-cards">
-      <section class="detail-panel viewing-panel">
+      {(watchEntry || !selectedGame.completed) && <section class="detail-panel viewing-panel">
         <h2>{watchHeading}</h2>
         {watchEntry ? <>
           <dl class="watch-details">
@@ -81,7 +81,7 @@ const updatedLabel = watchGuide.updatedAt ? new Intl.DateTimeFormat("en-US", { m
           {/\bregional coverage\b/i.test(watchEntry.national ?? "") && <p class="watch-note">Availability depends on your local broadcast market.</p>}
           {updatedLabel && <p class="watch-updated">Last updated <time datetime={watchGuide.updatedAt}>{updatedLabel}</time></p>}
         </> : <p>Viewing information coming soon.</p>}
-      </section>
+      </section>}
       {!selectedGame.completed && <GameDayGuide guide={gameDayGuide} />}
   </div>
 )}

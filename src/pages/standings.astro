@@ -12,19 +12,19 @@ import watchGuide from "../data/nfl/watch-guide-2026.json";
 let standingsData: any = null;
 try { standingsData = (await import("../data/nfl/standings.json")).default; } catch {}
 
-const WEST = new Set(["SEA", "LAR", "SF", "ARI"]);
-const NAMES: Record<string, string> = { SEA: "Seattle {Team}", LAR: "Los Angeles Rams", SF: "San Francisco 49ers", ARI: "Arizona Cardinals" };
+const WEST = new Set({DivisionTeams});
+const NAMES: Record<string, string> = { SEA: "Seattle Seahawks", LAR: "Los Angeles Rams", SF: "San Francisco 49ers", ARI: "Arizona Cardinals", DEN: "Denver Broncos", KC: "Kansas City Chiefs", LV: "Las Vegas Raiders", LAC: "Los Angeles Chargers", GB: "Green Bay Packers", MIN: "Minnesota Vikings", CHI: "Chicago Bears", DET: "Detroit Lions" };
 const rawGames = Array.isArray(scheduleData?.games) ? scheduleData.games : [...(scheduleData?.gamesPreseason ?? []),...(scheduleData?.gamesRegular ?? []),...(scheduleData?.gamesPostseason ?? [])];
 const schedule = normalizeSchedule({ ...scheduleData, games:reconcileOfficialSchedule(rawGames,watchGuide) }, scheduleData?.season);
 const season = schedule.season;
 const hasPhasedStandings = STANDINGS_PHASES.every((phase) => standingsData?.phases?.[phase]?.phase === phase);
 if (!hasPhasedStandings) {
-  const teams = Object.entries(NAMES).map(([abbreviation, full_name]) => ({ abbreviation, full_name, conference: "NFC" }));
+  const teams = Object.entries(NAMES).filter(([code]) => WEST.has(code)).map(([abbreviation, full_name]) => ({ abbreviation, full_name, conference: "{Conference}" }));
   standingsData = buildPhasedStandings({ season, updatedAt: schedule.updatedAt, games: schedule.games, teams });
   standingsData.refreshedDuringBuild = false;
 }
 validateStandings(standingsData);
-reconcileStandings(standingsData, schedule.games, ["SEA"]);
+reconcileStandings(standingsData, schedule.games, ["{Abbreviation}"]);
 const defaultPhase = activeStandingsPhase(schedule.games);
 const phaseLabels: Record<string, string> = { preseason: "Preseason", regular: "Regular Season", postseason: "Postseason" };
 
@@ -42,8 +42,8 @@ function divisionRows(value: any) {
   const direct = rowsFrom(value).filter((row) => WEST.has(abbr(row)));
   if (direct.length) return direct;
   const divisions = value?.divisions;
-  if (Array.isArray(divisions)) return rowsFrom(divisions.find((item: any) => /nfc\s*west/i.test(String(item?.name ?? item?.division ?? "")))).filter((row) => WEST.has(abbr(row)));
-  const entry = divisions && typeof divisions === "object" ? Object.entries(divisions).find(([key]) => /nfc[_\s-]*west/i.test(key)) : null;
+  if (Array.isArray(divisions)) return rowsFrom(divisions.find((item: any) => String(item?.name ?? item?.division ?? "").replace(/[_\s-]+/g, " ").toLowerCase() === "{Division}".toLowerCase())).filter((row) => WEST.has(abbr(row)));
+  const entry = divisions && typeof divisions === "object" ? Object.entries(divisions).find(([key]) => key.replace(/[_\s-]+/g, " ").toLowerCase() === "{Division}".toLowerCase()) : null;
   return rowsFrom(entry?.[1]).filter((row) => WEST.has(abbr(row)));
 }
 function priorPayload(value: any) {
@@ -80,8 +80,8 @@ function standingsRows(value: any) {
 function ordinal(value: any) { const n = Number(value); if (!Number.isFinite(n)) return String(value ?? "—"); const suffix = n % 100 >= 11 && n % 100 <= 13 ? "th" : n % 10 === 1 ? "st" : n % 10 === 2 ? "nd" : n % 10 === 3 ? "rd" : "th"; return `${n}${suffix}`; }
 function playoff(game: any) { const type = String(game?.seasonType ?? game?.season_type ?? "").toLowerCase(); return type.includes("post") || type.includes("playoff") || game?.postseason === true || game?.is_postseason === true; }
 function final(game: any) { return /final|finished|complete/i.test(String(game?.status ?? "")); }
-function opponent(game: any) { const home = abbr(game?.home_team), away = abbr(game?.visitor_team); return home === "SEA" ? away : home; }
-function home(game: any) { return abbr(game?.home_team) === "SEA"; }
+function opponent(game: any) { const home = abbr(game?.home_team), away = abbr(game?.visitor_team); return home === "{Abbreviation}" ? away : home; }
+function home(game: any) { return abbr(game?.home_team) === "{Abbreviation}"; }
 function gameHref(game: any, index: number) { return `/games/${encodeURIComponent(String(game?.id ?? game?.game_id ?? index))}`; }
 function result(game: any) { const hs = num(game, ["home_team_score", "homeTeamScore"]), as = num(game, ["visitor_team_score", "away_team_score", "visitorTeamScore"]); if (hs === null || as === null) return "Final score unavailable"; const sea = home(game) ? hs : as, opp = home(game) ? as : hs; return `${sea === opp ? "T" : sea > opp ? "W" : "L"} ${sea}–${opp}`; }
 function gamesBehind(row: any, leader: any) {
@@ -91,17 +91,17 @@ function gamesBehind(row: any, leader: any) {
 }
 
 const views = STANDINGS_PHASES.map((phase) => {
-  const rows = standingsData?.phases?.[phase]?.rows ?? [];
-  const games = schedule.games.filter((game) => game.phase === phase && WEST.has(opponent(game)) && opponent(game) !== "SEA");
+  const rows = (standingsData?.phases?.[phase]?.rows ?? []).filter(row => WEST.has(row.abbreviation));
+  const games = schedule.games.filter((game) => game.phase === phase && WEST.has(opponent(game)) && opponent(game) !== "{Abbreviation}");
   const hasGames = rows.some((row) => row.gamesPlayed > 0);
-  return { phase, label: phaseLabels[phase], rows, hasGames, seattle: rows.find((row) => row.abbreviation === "SEA"), leader: rows[0], upcoming: games.filter((game) => game.state !== "completed"), completed: games.filter((game) => game.state === "completed"), officialRank: standingsData?.phases?.[phase]?.officialRank === true };
+  return { phase, label: phaseLabels[phase], rows, hasGames, seattle: rows.find((row) => row.abbreviation === "{Abbreviation}"), leader: rows[0], upcoming: games.filter((game) => game.state !== "completed"), completed: games.filter((game) => game.state === "completed"), officialRank: standingsData?.phases?.[phase]?.officialRank === true };
 });
 const hasMeaningfulStandings = views.some((view) => view.hasGames);
 ---
 
 <{Team}Layout
-  seo={{ title: `${season} Seattle {Team} NFC West Standings`, description: `Track Seattle's ${season} NFC West position, record and division results once games begin, with preseason and regular-season records clearly separated.`, canonicalPath: "/standings", robots: hasMeaningfulStandings ? "index, follow" : "noindex, follow" }}
-  pageTitle="Seattle {Team} NFC West Standings"
+  seo={{ title: `${season} Seattle {Team} {Division} Standings`, description: `Track {Location}'s ${season} {Division} position, record and division results once games begin, with preseason and regular-season records clearly separated.`, canonicalPath: "/standings", robots: hasMeaningfulStandings ? "index, follow" : "noindex, follow" }}
+  pageTitle="Seattle {Team} {Division} Standings"
   pageTagline={`${season} division position, record, splits and schedule context, shown only after relevant games are completed.`}
   activePath="/standings"
   pageType="standings"
@@ -112,7 +112,7 @@ const hasMeaningfulStandings = views.some((view) => view.hasGames);
   {views.map((view) => <div data-phase-panel={view.phase} hidden={view.phase !== defaultPhase}>
   <div class="data-context"><strong>{season} {view.label}</strong><span>Data through: {formatPacificTime(standingsData.updatedAt)} (Pacific Time)</span><span>Includes every final {view.label.toLowerCase()} game recorded as of the data timestamp above.</span></div>
   <header class="race-header">
-    <p class="eyebrow">NFC West {view.phase === "regular" ? "standings" : `${view.label.toLowerCase()} records`}</p>
+    <p class="eyebrow">{Division} {view.phase === "regular" ? "standings" : `${view.label.toLowerCase()} records`}</p>
     <h2>{season} {view.label} {view.phase === "regular" ? "standings" : "records"}</h2>
     {view.seattle && view.hasGames ? (
       <div class="sea-summary">
@@ -131,9 +131,9 @@ const hasMeaningfulStandings = views.some((view) => view.hasGames);
 
   <section class="standings-section">
     <div class="section-heading">
-      <h2>NFC West {view.label.toLowerCase()} standings</h2>
+      <h2>{Division} {view.label.toLowerCase()} standings</h2>
     </div>
-    {view.rows.length && view.hasGames ? <NfcWestTable rows={view.rows} label={`${season} ${view.label} NFC West standings`} showSplits={view.phase === "regular"} rankLabel={view.officialRank ? "Rank" : "Order"} /> : <SeasonState title={`${view.label} table opens after completed games`} explanation={`There are no completed ${view.label.toLowerCase()} games with sourced scores, so a four-team 0-0 table would add no useful information.`} actionHref="/schedule" actionLabel={`View the ${season} schedule`} priorHref="/history" priorLabel="Explore {Team} history" icon="NFC" />}
+    {view.rows.length && view.hasGames ? <NfcWestTable rows={view.rows} label={`${season} ${view.label} {Division} standings`} showSplits={view.phase === "regular"} rankLabel={view.officialRank ? "Rank" : "Order"} /> : <SeasonState title={`${view.label} table opens after completed games`} explanation={`There are no completed ${view.label.toLowerCase()} games with sourced scores, so a four-team 0-0 table would add no useful information.`} actionHref="/schedule" actionLabel={`View the ${season} schedule`} priorHref="/history" priorLabel="Explore {Team} history" icon="{Conference}" />}
   </section>
 
   <div class="division-grid">
@@ -142,14 +142,14 @@ const hasMeaningfulStandings = views.some((view) => view.hasGames);
       {view.upcoming.length ? <ul class="game-list">{view.upcoming.map((game, index) => <li>
         <div><strong>{home(game) ? "vs." : "at"} {NAMES[opponent(game)] ?? opponent(game)}</strong><span>{formatKickoff(game)}</span></div>
         <a href={gameHref(game, index)}>Game page →</a>
-      </li>)}</ul> : <p class="empty">No upcoming NFC West games are scheduled.</p>}
+      </li>)}</ul> : <p class="empty">No upcoming {Division} games are scheduled.</p>}
     </section>
 
     <section class="module" aria-labelledby="completed-heading">
       <h2 id="completed-heading">Division results</h2>
       {view.completed.length ? <ul class="series-list">{view.completed.map((game) => <li>
         <strong>{home(game) ? "vs." : "at"} {opponent(game)}</strong><span>{result(game)}</span>
-      </li>)}</ul> : <p class="empty">No NFC West results are available yet.</p>}
+      </li>)}</ul> : <p class="empty">No {Division} results are available yet.</p>}
     </section>
   </div>
   </div>)}

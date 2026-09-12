@@ -57,6 +57,9 @@ function preserveRecaps(target, snapshotRecaps) {
 
 export function importNflSnapshot({
   projectRoot = root,
+  expectedTeam = "{team}",
+  expectedAbbreviation = "{Abbreviation}",
+  expectedTeamId = null,
   snapshotDir = process.env.NFL_SNAPSHOT_DIR || "/var/lib/sfz-nfl/current",
   maxAgeHours = process.env.NFL_SNAPSHOT_MAX_AGE_HOURS === undefined ? null : Number(process.env.NFL_SNAPSHOT_MAX_AGE_HOURS),
   now = Date.now(),
@@ -73,6 +76,7 @@ export function importNflSnapshot({
   const selected = fs.realpathSync(snapshotDir);
   const manifest = read(path.join(selected, "manifest.json"));
   if (manifest.schema_version !== 1 || !object(manifest.files) || !Number.isInteger(manifest.season)) throw new Error("Invalid NFL snapshot manifest");
+  if ((manifest.team != null && manifest.team !== expectedTeam) || (manifest.team == null && expectedTeam !== "seahawks")) throw new Error(`NFL snapshot belongs to a different team: expected ${expectedTeam}`);
   const refreshedAt = Date.parse(manifest.updatedAt);
   if (!Number.isFinite(refreshedAt) || refreshedAt > now + 300000) throw new Error("NFL snapshot has an invalid/future updatedAt");
   if (maxAgeHours !== null && now - refreshedAt > maxAgeHours * 3600000) throw new Error("NFL snapshot is stale under the configured maximum age");
@@ -98,6 +102,7 @@ export function importNflSnapshot({
   const schedule = payloads["{team}.json"];
   const players = payloads["players.json"];
   const standings = payloads["standings.json"];
+  if (schedule.team?.abbreviation !== expectedAbbreviation || players.team?.abbreviation !== expectedAbbreviation || (expectedTeamId != null && schedule.team?.id !== expectedTeamId)) throw new Error(`NFL snapshot team does not match ${expectedTeam}`);
   validateProductionSchedule(schedule);
   const normalized = normalizeSchedule(schedule, manifest.season);
   if (!normalized.gamesRegular.length || !Array.isArray(schedule.playerSeasonStats) || !schedule.playerSeasonStats.length || !Array.isArray(players.playerSeasonStats) || !players.playerSeasonStats.length) throw new Error("NFL snapshot has empty schedule or player statistics");

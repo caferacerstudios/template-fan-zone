@@ -15,7 +15,7 @@ function validateManifest(manifest, now) {
   if (!object(manifest) || manifest.schema_version !== 1 || !Number.isInteger(manifest.season)
       || !nonempty(manifest.runId) || !/^[a-f0-9]{40}$/.test(manifest.sourceCommit)
       || !nonempty(manifest.nflSourceRunId) || !Number.isFinite(Date.parse(manifest.nflSourceUpdatedAt))
-      || manifest.model !== "gpt-4o-mini"
+      || !nonempty(manifest.model)
       || ![manifest.generatedCount, manifest.requestCount, manifest.openaiRequestCount].every((n) => Number.isInteger(n) && n >= 0)
       || !Array.isArray(manifest.generatedGameIds) || manifest.generatedCount !== manifest.generatedGameIds.length
       || manifest.generatedGameIds.some((id) => typeof id !== "string" || !/^\d+$/.test(id))
@@ -30,6 +30,8 @@ function validateManifest(manifest, now) {
 
 export function importRecapSnapshot({
   projectRoot = root,
+  expectedTeam = "{team}",
+  expectedAbbreviation = "{Abbreviation}",
   snapshotDir = process.env.RECAP_SNAPSHOT_DIR || "/var/lib/sfz-recaps/current",
   now = Date.now(),
   checkOnly = false,
@@ -46,6 +48,7 @@ export function importRecapSnapshot({
   if (!fs.lstatSync(manifestPath).isFile()) throw new Error("Recap manifest must be a regular file");
   const manifest = read(manifestPath);
   validateManifest(manifest, now);
+  if ((manifest.team != null && manifest.team !== expectedTeam) || (manifest.team == null && expectedTeam !== "seahawks")) throw new Error(`Recap snapshot belongs to a different team: expected ${expectedTeam}`);
   const filename = path.join(selected, "gameRecaps.json");
   if (!fs.lstatSync(filename).isFile()) throw new Error("Recap snapshot must contain a regular gameRecaps.json file");
   const bytes = fs.readFileSync(filename);
@@ -53,7 +56,11 @@ export function importRecapSnapshot({
   if (typeof checksum !== "string" || !/^[a-f0-9]{64}$/.test(checksum) || createHash("sha256").update(bytes).digest("hex") !== checksum) throw new Error("Recap snapshot checksum mismatch: gameRecaps.json");
   const incoming = JSON.parse(bytes.toString("utf8"));
   if (!object(incoming) || !object(incoming.recaps) || incoming.season !== manifest.season || incoming.updatedAt !== manifest.updatedAt) throw new Error("Recap snapshot season/timestamp mismatch or invalid recap map");
+  if (incoming.team != null && incoming.team !== expectedTeam) throw new Error(`Recap content belongs to a different team: expected ${expectedTeam}`);
   for (const [id, recap] of Object.entries(incoming.recaps)) {
+    if (recap.team != null && recap.team !== expectedTeam) throw new Error(`Wrong team in recap ${id}`);
+    const codes = [recap.game?.home_team, recap.game?.visitor_team, recap.game?.away_team, recap.game?.homeTeam, recap.game?.awayTeam].map(team => team?.abbreviation).filter(Boolean);
+    if ((codes.length && !codes.includes(expectedAbbreviation)) || (expectedTeam !== "seahawks" && !codes.includes(expectedAbbreviation))) throw new Error(`Recap ${id} does not identify a ${expectedTeam} game`);
     if (!object(recap) || (recap.gameId != null && String(recap.gameId) !== id) || (recap.game != null && String(recap.game.id ?? recap.game.game_id) !== id)) throw new Error(`Invalid recap identity: ${id}`);
   }
   for (const id of manifest.generatedGameIds) {
@@ -77,7 +84,7 @@ export function importRecapSnapshot({
   }
   const result = { status: "success", snapshotDir: selected, updatedAt: manifest.updatedAt, season: manifest.season, generatedCount: manifest.generatedCount, checkOnly };
   if (!checkOnly) {
-    atomicWriteJson(target, { ...existing, season: incoming.season, updatedAt: incoming.updatedAt, recaps });
+    atomicWriteJson(target, { ...existing, team: expectedTeam, season: incoming.season, updatedAt: incoming.updatedAt, recaps });
     console.log(`Imported recap snapshot ${manifest.updatedAt} from ${selected}`);
   }
   return result;

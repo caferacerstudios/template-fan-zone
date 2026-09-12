@@ -57,7 +57,7 @@ function clearForeignAncillaryData(root, destination, site, season) {
     'src/data/team/injuries.json': { records: [], asOf: null, sourcePublisher: null, sourceUrl: null, sourceNote: 'Team injury reports are not configured yet.' },
     'src/data/team/player-career-facts.json': { players: {}, updatedAt: null },
     'src/data/team/player-profile-tiers.json': { players: {} },
-    'src/data/team/player-profile-editorial-facts.json': { facts: {} },
+    'src/data/team/player-profile-editorial-facts.json': { facts: [] },
   };
   for (const [relative, empty] of Object.entries(files)) {
     const source = path.join(root, relative), target = path.join(destination, relative);
@@ -72,8 +72,9 @@ function clearForeignAncillaryData(root, destination, site, season) {
   if (fs.existsSync(standings)) fs.writeFileSync(path.join(destination, 'src/data/nfl/standings.json'), renderText(fs.readFileSync(standings, 'utf8'), { ...teamSettings('seahawks'), abbreviation: 'SEA' }));
 }
 
-export async function prepareEventSpy(root, destination, site) {
-  const schedule = readSelectedSchedule(root, site);
+export async function prepareEventSpy(root, destination, site, selectedSchedule = null) {
+  const schedule = selectedSchedule ?? readSelectedSchedule(root, site);
+  if (schedule.fixture === true || schedule.team?.abbreviation !== site.abbreviation) throw new Error(`Refusing to use another team's schedule for ${site.slug}.`);
   const reviewed = read(path.join(root, 'config/eventspy', site.eventspy.coverage_file));
   const { normalizeSchedule } = await import(pathToFileURL(path.join(destination, 'src/lib/schedule.mjs')).href);
   const normalized = normalizeSchedule(schedule, schedule.season);
@@ -94,8 +95,8 @@ export async function prepareEventSpy(root, destination, site) {
   if (site.slug !== 'seahawks') {
     const filename = path.join(destination, 'package.json');
     const pkg = read(filename);
-    // Other team data pipelines are a later migration. Do not run Seattle's
-    // NFL/recap import or its roster/profile generators for another team.
+    // Selected snapshots are imported by the outer build. Do not run the
+    // legacy Seattle roster/profile generators for another team.
     pkg.scripts.prebuild = 'node scripts/import-news-snapshot.mjs --if-available';
     write(filename, pkg);
   }

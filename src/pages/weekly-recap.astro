@@ -7,7 +7,7 @@ import recapData from "../data/nfl/gameRecaps.json";
 const abbr = (team) => String(team?.abbreviation ?? team?.abbr ?? "").toUpperCase();
 const key = (game, index = 0) => String(game?.id ?? game?.game_id ?? index);
 const final = (game) => /final|finished|complete/i.test(String(game?.status ?? ""));
-const home = (game) => abbr(game?.home_team) === "SEA";
+const home = (game) => abbr(game?.home_team) === "{Abbreviation}";
 const opponentTeam = (game) => home(game) ? game?.visitor_team : game?.home_team;
 const opponent = (game) => opponentTeam(game)?.full_name ?? opponentTeam(game)?.name ?? abbr(opponentTeam(game)) ?? "Opponent";
 const phase = (game) => { const value = String(game?.season_type ?? game?.seasonType ?? "").toLowerCase(); if (value.includes("pre")) return "Preseason"; if (game?.postseason || value.includes("post") || value.includes("playoff")) return "Postseason"; return "Regular season"; };
@@ -67,7 +67,7 @@ const seo = { title:"Seattle {Team} Game Recaps | {Team} Fan Zone", description:
       <p class="byline">{featured.category} · Updated {displayDate(featured.updatedAt)}{readingTime(featured.recap) && ` · ${readingTime(featured.recap)} min read`}</p>
       <a class="primary" href={`/games/${encodeURIComponent(featured.id)}`} data-analytics-event="article_open" data-analytics-article-category={featured.category} data-analytics-season={featured.season} data-analytics-opponent={abbr(opponentTeam(featured.game))}>Read the full game center →</a>
     </div>
-    <div class="feature-mark" aria-hidden="true"><span>SEA</span><b>{outcome(featured.game)}</b><span>{abbr(opponentTeam(featured.game))}</span></div>
+    <div class="feature-mark" aria-hidden="true"><span>{Abbreviation}</span><b>{outcome(featured.game)}</b><span>{abbr(opponentTeam(featured.game))}</span></div>
   </article> : <SeasonState title="No authored recaps are available" explanation="Recaps appear only after a completed game has sourced results and authored coverage. Nothing has been generated to fill this archive." actionHref="/schedule" actionLabel="View the schedule" priorHref="/news" priorLabel="Read {Team} coverage" icon="R" />}
 
   {groups.size > 0 && <section class="archive" aria-labelledby="archive-title">

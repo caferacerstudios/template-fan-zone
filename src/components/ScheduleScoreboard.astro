@@ -5,7 +5,7 @@ const { game, href, opponentName, opponentAbbr, home, venue, network, live = fal
 ---
 <section class:list={["scoreboard", live && "scoreboard--live"]} aria-labelledby="next-game-title">
   <div class="topline"><span>Up next</span><span>{game?.week ? `Week ${game.week}` : "Upcoming game"}</span></div>
-  <div class="body"><div><p class="eyebrow">{home ? "Home" : "Away"}</p><h1 id="next-game-title">{home ? "vs" : "at"} {opponentName}</h1><p class="kickoff">{formatScheduleDate(game)}</p></div><div class="marks" aria-hidden="true"><TeamMark abbreviation="SEA" name="Seattle {Team}" size={84} decorative /><span>{home ? "vs" : "at"}</span><TeamMark abbreviation={opponentAbbr} name={opponentName} size={84} decorative /></div></div>
+  <div class="body"><div><p class="eyebrow">{home ? "Home" : "Away"}</p><h1 id="next-game-title">{home ? "vs" : "at"} {opponentName}</h1><p class="kickoff">{formatScheduleDate(game)}</p></div><div class="marks" aria-hidden="true"><TeamMark abbreviation="{Abbreviation}" name="Seattle {Team}" size={84} decorative /><span>{home ? "vs" : "at"}</span><TeamMark abbreviation={opponentAbbr} name={opponentName} size={84} decorative /></div></div>
   <div class="details">{venue && <span>{venue}</span>}{network && <span>TV: {network}</span>}<a href={href}>{live ? "Game Center" : "Preview"} →</a></div>
 </section>
 <style>

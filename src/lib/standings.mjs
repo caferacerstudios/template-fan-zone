@@ -1,9 +1,11 @@
 import { schedulePhase, scheduleState } from "./schedule.mjs";
 
 export const STANDINGS_PHASES = ["preseason", "regular", "postseason"];
-const WEST = new Set(["ARI", "LAR", "SF", "SEA"]);
+const WEST = new Set({DivisionTeams});
 const NAMES = {
-  ARI: "Arizona Cardinals", LAR: "Los Angeles Rams", SF: "San Francisco 49ers", SEA: "Seattle {Team}",
+  ARI: "Arizona Cardinals", LAR: "Los Angeles Rams", SF: "San Francisco 49ers", SEA: "Seattle Seahawks",
+  DEN: "Denver Broncos", KC: "Kansas City Chiefs", LV: "Las Vegas Raiders", LAC: "Los Angeles Chargers",
+  GB: "Green Bay Packers", MIN: "Minnesota Vikings", CHI: "Chicago Bears", DET: "Detroit Lions",
 };
 
 const text = (value) => String(value ?? "").trim();
@@ -47,7 +49,6 @@ export function aggregateStandings(games, teams, phase) {
       const outcome = ownScore === otherScore ? "ties" : ownScore > otherScore ? "wins" : "losses";
       own[outcome] += 1;
       if (WEST.has(code) && WEST.has(other)) own[`division${outcome[0].toUpperCase()}${outcome.slice(1)}`] += 1;
-      // The current page only consumes NFC West data, whose opponents are all NFC.
       // Conference splits require conference metadata and are populated below when present.
       const opponent = rows.get(other);
       if (own.conference && opponent?.conference && own.conference === opponent.conference) own[`conference${outcome[0].toUpperCase()}${outcome.slice(1)}`] += 1;

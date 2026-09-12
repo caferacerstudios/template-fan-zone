@@ -100,7 +100,7 @@ const glanceModel = scheduleSource ? buildHomepageGlance({ nfl: { ...scheduleSou
     <div class="topline"><span>{featured.season} {phase(featured)}</span><span>{featuredView.phaseWeek}</span><span class="state">{state === "live" ? "LIVE" : state === "final" ? "Final" : "Upcoming"}</span></div>
     <div class="scorebody">
       <div><p class="location">{home(featured) ? "Home · vs." : "Away · at"}</p><h2 id="featured-title">{teamName(opponent(featured), opp(featured) || "Opponent")}</h2>
-        {(featuredView.seaRecord || featuredView.opponentRecord) && <p class="records">{featuredView.seaRecord && <>SEA {featuredView.seaRecord}</>}{featuredView.seaRecord && featuredView.opponentRecord && <> · </>}{featuredView.opponentRecord && <>{opp(featured)} {featuredView.opponentRecord}</>}</p>}</div>
+        {(featuredView.seaRecord || featuredView.opponentRecord) && <p class="records">{featuredView.seaRecord && <>{Abbreviation} {featuredView.seaRecord}</>}{featuredView.seaRecord && featuredView.opponentRecord && <> · </>}{featuredView.opponentRecord && <>{opp(featured)} {featuredView.opponentRecord}</>}</p>}</div>
       {marks.has("{Abbreviation}") && marks.has(opp(featured)) && <div class="marks" aria-hidden="true"><img src={marks.get("{Abbreviation}")} alt="" width="78" height="78" decoding="async"/><span>{home(featured) ? "VS" : "AT"}</span><img src={marks.get(opp(featured))} alt="" width="78" height="78" decoding="async"/></div>}
       <div class="main-result">
         {state === "final" && score(featured, true) !== null && score(featured, false) !== null ? <><span>{result(featured)} · Final</span><strong>{score(featured, true)}–{score(featured, false)}</strong></>

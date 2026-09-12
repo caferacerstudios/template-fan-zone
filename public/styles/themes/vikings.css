@@ -1,0 +1,59 @@
+/* Independent Vikings fan-site presentation: purple, gold and cool surfaces. */
+body[data-team="vikings"][data-theme="vikings"] {
+  --off-white: #faf9fc;
+  --color-bg-primary: #eeebf3;
+  --color-border: #d6ccdf;
+  --color-action: #633992;
+  --font-display: "Arial Narrow", "Roboto Condensed", "Franklin Gothic Medium", Impact, sans-serif;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --shadow-lg: 0 16px 42px #23123d14;
+}
+body[data-team="vikings"][data-theme="vikings"]::before { display: none; }
+body[data-team="vikings"][data-theme="vikings"] .lr-header { border-bottom: 5px solid #ffc62f; }
+body[data-team="vikings"][data-theme="vikings"] .vikings-header-bg {
+  background: linear-gradient(125deg, transparent 65%, #ffffff09 65% 67%, transparent 67% 72%, #ffc62f0d 72% 75%, transparent 75%), #4f2683;
+}
+body[data-team="vikings"][data-theme="vikings"] .sfz-mark { clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); color: #23123d; }
+body[data-team="vikings"][data-theme="vikings"] .lr-site-title { letter-spacing: .04em; }
+body[data-team="vikings"][data-theme="vikings"] .lr-site-tagline { color: #e6def0; letter-spacing: .14em; }
+body[data-team="vikings"][data-theme="vikings"] .hero-copy h1 { font-size: clamp(2.6rem, 6.5vw, 5.5rem); line-height: .98; text-wrap: balance; }
+body[data-team="vikings"][data-theme="vikings"] .vikings-paper::before { width: 96px; transform: skewX(-15deg); }
+body[data-team="vikings"][data-theme="vikings"] .home-intro {
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, .7fr);
+  align-items: center;
+  gap: 2rem;
+  background: linear-gradient(125deg, #23123d, #4f2683);
+  border-top: 0;
+  border-bottom: 6px solid #ffc62f;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+body[data-team="vikings"][data-theme="vikings"] .home-intro::before {
+  background: linear-gradient(125deg, transparent 70%, #ffffff09 70% 71%, transparent 71% 78%, #ffc62f0a 78% 81%, transparent 81%);
+  opacity: 1;
+}
+body[data-team="vikings"][data-theme="vikings"] .home-intro h1 { max-width: 18ch; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -.025em; text-wrap: balance; }
+body[data-team="vikings"][data-theme="vikings"] .home-kicker { color: #ffda73; letter-spacing: .15em; }
+body[data-team="vikings"][data-theme="vikings"] .home-brand-line { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+body[data-team="vikings"][data-theme="vikings"] .home-brand-line span { color: #ffda73; }
+body[data-team="vikings"][data-theme="vikings"] .home-value { max-width: 56ch !important; line-height: 1.65; }
+body[data-team="vikings"][data-theme="vikings"] .home-intro__art { min-height: 210px; padding-block: 1.5rem; justify-items: center; align-content: center; border-block: 3px solid #ffc62f; }
+body[data-team="vikings"][data-theme="vikings"] .home-intro__art::before,
+body[data-team="vikings"][data-theme="vikings"] .home-intro__art::after { display: none; }
+body[data-team="vikings"][data-theme="vikings"] .home-intro__art strong { color: #ffc62f; font-size: clamp(3.5rem, 7.5vw, 6.5rem); line-height: 1; letter-spacing: -.035em; }
+body[data-team="vikings"][data-theme="vikings"] .home-intro__art > span:last-child { color: #fff; font-size: .75rem; letter-spacing: .16em; }
+body[data-team="vikings"][data-theme="vikings"] .lr-footer { background: #23123d; border-top: 5px solid #ffc62f; }
+/* The form badge means a win, regardless of the selected brand accent. */
+body[data-team="vikings"][data-theme="vikings"] .result-w { background: #70c934 !important; color: #071f34; }
+@media (max-width: 900px) {
+  body[data-team="vikings"][data-theme="vikings"] .home-intro { grid-template-columns: minmax(0, 1fr); }
+  body[data-team="vikings"][data-theme="vikings"] .home-intro__art { display: none; }
+}
+@media (max-width: 600px) {
+  body[data-team="vikings"][data-theme="vikings"] .lr-header-inner { gap: .75rem; }
+  body[data-team="vikings"][data-theme="vikings"] .sfz-brand { flex: 1 1 auto; min-width: 0; }
+  body[data-team="vikings"][data-theme="vikings"] .sfz-brand-copy { min-width: 0; }
+  body[data-team="vikings"][data-theme="vikings"] .lr-site-title { font-size: 1.1rem; }
+  body[data-team="vikings"][data-theme="vikings"] .sfz-mark { width: 44px; height: 42px; flex-shrink: 0; font-size: .9rem; }
+  body[data-team="vikings"][data-theme="vikings"] .home-intro h1 { font-size: clamp(2rem, 8.5vw, 3rem); max-width: 100%; }
+}

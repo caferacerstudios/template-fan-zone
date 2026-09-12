@@ -211,12 +211,12 @@ function teamAbbrFromAny(rosterPlayer, statRow) {
     rosterPlayer?.team ||
     statRow?.player?.team?.abbreviation ||
     statRow?.team_abbreviation ||
-    "SEA";
-  return String(a || "SEA").toUpperCase();
+    "{Abbreviation}";
+  return String(a || "{Abbreviation}").toUpperCase();
 }
 
 function teamLogoUrl(abbr) {
-  return `/images/nfl/teams/${String(abbr || "SEA").toUpperCase()}.png`;
+  return `/images/nfl/teams/${String(abbr || "{Abbreviation}").toUpperCase()}.png`;
 }
 
 // Normalize a name / filename to a "comparable" key:

@@ -34,15 +34,18 @@ export const GET: APIRoute = async () => {
   const current = Array.isArray(currentRoster?.players) ? currentRoster.players : [];
   const stats = Array.isArray(nfl?.playerSeasonStats) ? nfl.playerSeasonStats : [];
   const allPlayers = [...current, ...roster, ...stats];
-  const hasRecaps = Object.values(recaps?.recaps ?? {}).some((recap: any) => String(recap?.summary ?? recap?.excerpt ?? recap?.text ?? "").trim());
+  const recapText = (recap: any) => String(recap?.summary ?? recap?.excerpt ?? recap?.text ?? (Array.isArray(recap?.segments) ? recap.segments.map((part: any) => part?.name ?? part?.v ?? "").join("") : "")).trim();
   const hasStandingsSource = Boolean((Array.isArray(standings?.data) && standings.data.length) || (Array.isArray(standings?.teams) && standings.teams.length));
   const rawGames = Array.isArray(nfl?.games) ? nfl.games : [...(nfl?.gamesPreseason ?? []),...(nfl?.gamesRegular ?? []),...(nfl?.gamesPostseason ?? [])];
   const completeSchedule = { ...nfl, games:reconcileOfficialSchedule(rawGames,watchGuide) };
-  const hasStandings = hasStandingsSource || completeSchedule.games.some((game: any) => /final|finished|complete/i.test(String(game?.status ?? game?.state)));
+  const phasedStandings = ["preseason", "regular", "postseason"].every(phase => standings?.phases?.[phase]?.phase === phase);
+  const divisionTeams = new Set({DivisionTeams});
+  const hasStandings = phasedStandings ? Object.values(standings.phases).some((bucket: any) => (bucket.rows ?? []).some((row: any) => divisionTeams.has(row.abbreviation) && row.gamesPlayed > 0)) : hasStandingsSource || completeSchedule.games.some((game: any) => /final|finished|complete/i.test(String(game?.status ?? game?.state)));
+  const hasRecaps = Object.entries(recaps?.recaps ?? {}).some(([id, recap]: any) => { const game = completeSchedule.games.find((row: any) => String(row.id ?? row.game_id) === id) ?? recap?.game; return game && /final|finished|complete/i.test(String(game.status ?? game.state)) && Boolean(recapText(recap)); });
   const games = gameCollection(completeSchedule, EVENTSPY_COVERAGE).map((game: any) => gameDayPageModel(completeSchedule, String(game.id ?? game.game_id), EVENTSPY_COVERAGE, { recaps })).filter(Boolean);
   const eligibleGames = games.filter((model: any) => gameIndexability({
     game:model.game, id:model.id, opponentName:model.opponentName, canonicalPath:`/games/${encodeURIComponent(model.id)}`,
-    hasRecap:Boolean(recaps?.recaps?.[model.id]?.text ?? recaps?.recaps?.[model.id]?.summary),
+    hasRecap:Boolean(recapText(recaps?.recaps?.[model.id])),
     hasGuide:hasMeaningfulGameGuide(gameDayGuides?.games?.[model.id]),
     hasViewingInformation:hasMeaningfulViewingInformation(getWatchGuideEntry(model.game,watchGuide)),
   }).indexable);

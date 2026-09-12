@@ -1,6 +1,6 @@
 import { formatKickoff, normalizeSchedule } from "./schedule.mjs";
 
-const TEAM = "SEA";
+const TEAM = "{Abbreviation}";
 const text = (value) => String(value ?? "").trim();
 const abbr = (team) => text(team?.abbreviation ?? team?.abbr ?? team?.team_abbreviation ?? team?.teamAbbreviation).toUpperCase();
 const numeric = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;

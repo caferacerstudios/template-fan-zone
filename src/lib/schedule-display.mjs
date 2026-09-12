@@ -60,7 +60,7 @@ export function scheduleRow(game, { nextGameId = null, index = 0, now = new Date
 
   return {
     kind: "game", id: String(game?.id ?? game?.game_id ?? index), state, stateLabel, result,
-    resultLabel: result ? `SEA ${result.{team}}, ${opponentAbbr || "OPP"} ${result.opponent}` : null,
+    resultLabel: result ? `{Abbreviation} ${result.{team}}, ${opponentAbbr || "OPP"} ${result.opponent}` : null,
     week: game?.week ? `Week ${game.week}` : "Game", date, kickoff,
     homeAway: game?.isHome ? "vs" : "at", homeAwayLabel: game?.isHome ? "Home" : "Away",
     opponentAbbr, opponentName, network: game?.network || null, venue: game?.venue || null,

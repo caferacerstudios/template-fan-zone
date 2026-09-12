@@ -1,0 +1,56 @@
+/* Independent Chiefs fan-site presentation: red, gold and crisp white panels. */
+body[data-team="chiefs"][data-theme="chiefs"] {
+  --off-white: #fff;
+  --color-bg-primary: #f2eeed;
+  --color-border: #dfcdcf;
+  --color-action: #b5122d;
+  --font-display: "Arial Black", "Franklin Gothic Heavy", Impact, sans-serif;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --shadow-lg: 0 16px 40px #40091612;
+}
+body[data-team="chiefs"][data-theme="chiefs"]::before { display: none; }
+body[data-team="chiefs"][data-theme="chiefs"] .lr-header { border-bottom: 6px solid #ffb81c; }
+body[data-team="chiefs"][data-theme="chiefs"] .chiefs-header-bg { background: #b5122d; }
+body[data-team="chiefs"][data-theme="chiefs"] .sfz-mark { clip-path: none; background: #fff; color: #b5122d; border-bottom: 5px solid #ffb81c; width: 58px; height: 48px; letter-spacing: -.015em; }
+body[data-team="chiefs"][data-theme="chiefs"] .sfz-mark span { transform: none; }
+body[data-team="chiefs"][data-theme="chiefs"] .lr-site-title { letter-spacing: -.04em; }
+body[data-team="chiefs"][data-theme="chiefs"] .lr-site-tagline { color: #ffe4e8; }
+body[data-team="chiefs"][data-theme="chiefs"] .hero-copy h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; text-wrap: balance; }
+body[data-team="chiefs"][data-theme="chiefs"] .chiefs-paper::before { width: 100px; height: 6px; transform: none; background: #e31837; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro {
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, .7fr);
+  align-items: center;
+  gap: 2rem;
+  background: #b5122d;
+  border-top: 0;
+  border-bottom: 8px solid #ffb81c;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro::before { background: linear-gradient(90deg, transparent 70%, #e3183766 70% 74%, transparent 74% 80%, #ffffff07 80% 82%, transparent 82%); opacity: 1; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro h1 { max-width: 18ch; font-size: clamp(2.3rem, 4.8vw, 4rem); line-height: 1; letter-spacing: -.055em; text-wrap: balance; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-kicker { color: #ffe39b; letter-spacing: .13em; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-brand-line { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+body[data-team="chiefs"][data-theme="chiefs"] .home-brand-line span { color: #ffe39b; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-value { max-width: 56ch !important; line-height: 1.65; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art { min-height: 210px; padding-block: 1.5rem; justify-items: center; align-content: center; border-block: 6px double #fff; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art::before,
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art::after { display: none; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art strong { color: #fff; font-size: clamp(4rem, 8vw, 7rem); line-height: 1; letter-spacing: -.09em; }
+body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art > span:last-child { color: #ffe39b; font-size: .75rem; letter-spacing: .15em; }
+body[data-team="chiefs"][data-theme="chiefs"] .primary { color: #400916; }
+body[data-team="chiefs"][data-theme="chiefs"] .lr-footer { background: #8f1028; border-top: 6px solid #ffb81c; }
+/* The form badge means a win, regardless of the selected brand accent. */
+body[data-team="chiefs"][data-theme="chiefs"] .result-w { background: #70c934 !important; color: #071f34; }
+@media (max-width: 900px) {
+  body[data-team="chiefs"][data-theme="chiefs"] .home-intro { grid-template-columns: minmax(0, 1fr); }
+  body[data-team="chiefs"][data-theme="chiefs"] .home-intro__art { display: none; }
+}
+@media (max-width: 600px) {
+  body[data-team="chiefs"][data-theme="chiefs"] .lr-header-inner { gap: .75rem; }
+  body[data-team="chiefs"][data-theme="chiefs"] .sfz-brand { flex: 1 1 auto; min-width: 0; }
+  body[data-team="chiefs"][data-theme="chiefs"] .sfz-brand-copy { min-width: 0; }
+  body[data-team="chiefs"][data-theme="chiefs"] .lr-site-title { font-size: 1.05rem; }
+  body[data-team="chiefs"][data-theme="chiefs"] .sfz-mark { width: 44px; height: 40px; flex-shrink: 0; font-size: .85rem; }
+  body[data-team="chiefs"][data-theme="chiefs"] .home-intro h1 { font-size: clamp(2rem, 8.5vw, 3rem); max-width: 100%; }
+}

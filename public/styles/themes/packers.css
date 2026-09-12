@@ -1,0 +1,77 @@
+/* Independent Packers fan-site presentation: forest green, gold and warm paper. */
+body[data-team="packers"][data-theme="packers"] {
+  --off-white: #faf8f0;
+  --color-bg-primary: #e9ede6;
+  --color-border: #cbd4c8;
+  --color-action: #305a40;
+  --font-display: Rockwell, "Roboto Slab", Georgia, serif;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --shadow-lg: 0 14px 36px #14282014;
+}
+body[data-team="packers"][data-theme="packers"]::before { display: none; }
+body[data-team="packers"][data-theme="packers"] .lr-header { border-bottom: 6px solid #ffb612; }
+body[data-team="packers"][data-theme="packers"] .packers-header-bg { background: #2a433a; }
+body[data-team="packers"][data-theme="packers"] .sfz-mark {
+  clip-path: none;
+  border: 2px solid #ffb612;
+  background: transparent;
+  color: #ffb612;
+  width: 60px;
+  height: 48px;
+  letter-spacing: .02em;
+}
+body[data-team="packers"][data-theme="packers"] .sfz-mark span { transform: none; }
+body[data-team="packers"][data-theme="packers"] .lr-site-title { letter-spacing: -.025em; }
+body[data-team="packers"][data-theme="packers"] .lr-site-tagline { color: #e2e7db; }
+body[data-team="packers"][data-theme="packers"] .hero-copy h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; text-wrap: balance; }
+body[data-team="packers"][data-theme="packers"] .packers-paper::before { transform: none; width: 110px; }
+body[data-team="packers"][data-theme="packers"] .home-intro {
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, .7fr);
+  align-items: center;
+  gap: 2rem;
+  background: #2a433a;
+  border-top: 0;
+  border-bottom: 8px double #ffb612;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+body[data-team="packers"][data-theme="packers"] .home-intro::before {
+  background: repeating-linear-gradient(90deg, transparent 0 95px, #ffffff07 95px 96px);
+  opacity: 1;
+}
+body[data-team="packers"][data-theme="packers"] .home-intro h1 {
+  max-width: 18ch;
+  font-size: clamp(2.3rem, 4.8vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+}
+body[data-team="packers"][data-theme="packers"] .home-kicker { color: #ffce59; letter-spacing: .12em; }
+body[data-team="packers"][data-theme="packers"] .home-brand-line { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+body[data-team="packers"][data-theme="packers"] .home-brand-line span { color: #ffce59; }
+body[data-team="packers"][data-theme="packers"] .home-value { max-width: 56ch !important; line-height: 1.65; }
+body[data-team="packers"][data-theme="packers"] .home-intro__art {
+  min-height: 210px;
+  justify-items: center;
+  align-content: center;
+  border-block: 6px double #ffb612;
+}
+body[data-team="packers"][data-theme="packers"] .home-intro__art::before,
+body[data-team="packers"][data-theme="packers"] .home-intro__art::after { display: none; }
+body[data-team="packers"][data-theme="packers"] .home-intro__art strong { color: #ffb612; font-size: clamp(4rem, 8vw, 7rem); line-height: 1; letter-spacing: -.07em; }
+body[data-team="packers"][data-theme="packers"] .home-intro__art > span:last-child { color: #fff; letter-spacing: .15em; font-size: .75rem; }
+body[data-team="packers"][data-theme="packers"] .lr-footer { background: #2a433a; border-top: 6px solid #ffb612; }
+/* The form badge means a win, regardless of the selected brand accent. */
+body[data-team="packers"][data-theme="packers"] .result-w { background: #70c934 !important; color: #071f34; }
+@media (max-width: 900px) {
+  body[data-team="packers"][data-theme="packers"] .home-intro { grid-template-columns: minmax(0, 1fr); }
+  body[data-team="packers"][data-theme="packers"] .home-intro__art { display: none; }
+}
+@media (max-width: 600px) {
+  body[data-team="packers"][data-theme="packers"] .lr-header-inner { gap: .75rem; }
+  body[data-team="packers"][data-theme="packers"] .sfz-brand { flex: 1 1 auto; min-width: 0; }
+  body[data-team="packers"][data-theme="packers"] .sfz-brand-copy { min-width: 0; }
+  body[data-team="packers"][data-theme="packers"] .lr-site-title { font-size: 1.05rem; }
+  body[data-team="packers"][data-theme="packers"] .sfz-mark { width: 44px; height: 42px; flex-shrink: 0; font-size: .85rem; }
+  body[data-team="packers"][data-theme="packers"] .home-intro h1 { font-size: clamp(2rem, 8.5vw, 3rem); max-width: 100%; }
+}

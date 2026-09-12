@@ -63,8 +63,8 @@ export function gameIndexability({ game, id, opponentName, canonicalPath, hasRec
   const date = text(game?.startsAt ?? game?.date);
   const reasons = [];
   if (!gameId || game?.bye === true || game?.state === "bye") reasons.push("invalid game identity");
-  if (home !== "SEA" && away !== "SEA") reasons.push("not a {Team} game");
-  if (!opponent || opponent.toUpperCase() === "SEA") reasons.push("unresolved opponent");
+  if (home !== "{Abbreviation}" && away !== "{Abbreviation}") reasons.push("not a {Team} game");
+  if (!opponent || opponent.toUpperCase() === "{Abbreviation}") reasons.push("unresolved opponent");
   if (!date || !Number.isFinite(Date.parse(date))) reasons.push("unresolved game date");
   if (NON_INDEXABLE_STATUS.test(status)) reasons.push("non-indexable game status");
   if (canonicalPath !== `/games/${encodeURIComponent(gameId)}`) reasons.push("non-canonical route");

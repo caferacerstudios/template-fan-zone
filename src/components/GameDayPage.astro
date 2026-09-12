@@ -51,7 +51,8 @@ const streams = (watchEntry?.streams ?? []).filter((provider) => provider?.name 
 const outOfMarket = (watchEntry?.streams ?? []).filter((provider) => provider?.name === "NFL Sunday Ticket");
 const replay = watchEntry?.replay ?? [];
 const externalLink = (item) => item?.name && isHttpUrl(item?.url) ? item : null;
-const updatedLabel = watchGuide.updatedAt ? new Intl.DateTimeFormat("en-US", { month:"long", day:"numeric", year:"numeric", timeZone:"UTC" }).format(new Date(`${watchGuide.updatedAt}T12:00:00Z`)) : null;
+const watchUpdatedAt = watchEntry?.updatedAt ?? watchGuide.updatedAt;
+const updatedLabel = watchUpdatedAt ? new Intl.DateTimeFormat("en-US", { month:"long", day:"numeric", year:"numeric", timeZone:"UTC" }).format(new Date(`${watchUpdatedAt}T12:00:00Z`)) : null;
 ---
 <{Team}Layout title={pageTitle} description={description} seo={{title:pageTitle,description,canonicalPath:emittedCanonicalPath,robots}} structuredData={structuredData} activePath={routeStyle === "tickets" ? "/tickets" : ""} pageType="game_center" monetizationEligible={false} showPageHeader={false} breadcrumbs={[{name:"Home",href:"/"},{name:routeStyle === "tickets" ? "Tickets" : "Schedule",href:routeStyle === "tickets" ? "/tickets" : "/schedule"},{name:metadata?.h1 ?? pageTitle,href:canonicalPath}]}>
 <TicketPublisherContent {routeStyle} game={selectedGame} pageMetadata={metadata} eligibleGames={Object.values(ticketModels)} section="intro" />
@@ -79,7 +80,7 @@ const updatedLabel = watchGuide.updatedAt ? new Intl.DateTimeFormat("en-US", { m
           </div>
           {(streams.some((provider) => provider.note) || outOfMarket.some((provider) => provider.note) || replay.some((provider) => provider.note)) && <div class="watch-notes">{[...streams, ...outOfMarket, ...replay].filter((provider) => provider.note).map((provider) => <p><strong>{provider.name}:</strong> {provider.note}</p>)}</div>}
           {/\bregional coverage\b/i.test(watchEntry.national ?? "") && <p class="watch-note">Availability depends on your local broadcast market.</p>}
-          {updatedLabel && <p class="watch-updated">Last updated <time datetime={watchGuide.updatedAt}>{updatedLabel}</time></p>}
+          {updatedLabel && <p class="watch-updated">Last updated <time datetime={watchUpdatedAt}>{updatedLabel}</time></p>}
         </> : <p>Viewing information coming soon.</p>}
       </section>}
       {!selectedGame.completed && <GameDayGuide guide={gameDayGuide} />}

@@ -3,11 +3,33 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 import shlex
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def guides_enabled(root, environment=None):
+    """Read only this checkout's explicit opt-in; an exported value wins."""
+    environment = os.environ if environment is None else environment
+    value = environment.get('FAN_ZONE_GUIDES_ENABLED')
+    if value is None:
+        try:
+            lines = (Path(root) / '.env').read_text().splitlines()
+        except FileNotFoundError:
+            lines = []
+        for line in lines:
+            if not re.match(r'^\s*(?:export\s+)?FAN_ZONE_GUIDES_ENABLED\s*=', line):
+                continue
+            match = re.fullmatch(r'''\s*(?:export\s+)?FAN_ZONE_GUIDES_ENABLED\s*=\s*(['"]?)([01])\1\s*(?:#.*)?''', line)
+            if not match:
+                raise ValueError('FAN_ZONE_GUIDES_ENABLED must be 0 or 1')
+            value = match[2]
+    if value not in (None, '', '0', '1'):
+        raise ValueError('FAN_ZONE_GUIDES_ENABLED must be 0 or 1')
+    return value == '1'
 
 
 def build_command(root, slug, config_file=None, *, stage_only=False):
@@ -27,6 +49,12 @@ def build_command(root, slug, config_file=None, *, stage_only=False):
     if not news_current.endswith('-news/current'):
         raise ValueError('news_snapshot_dir must end in -news/current to select the team roster snapshot')
     candidates.append(Path(news_current[:-len('-news/current')] + '-roster/current').parent)
+    use_guides = guides_enabled(root)
+    if use_guides:
+        guide_current = Path(news_current[:-len('-news/current')] + '-guides/current')
+        if not guide_current.is_dir():
+            raise ValueError(f'Missing guide snapshot: {guide_current}. Run the guide DAG successfully before opting this build in.')
+        candidates.append(guide_current.parent)
     candidates.append(Path(site['eventspy']['schedule_file']).parent)
     mounts = []
     for directory in sorted(set(candidates), key=lambda value: len(value.parts)):
@@ -47,6 +75,9 @@ def build_command(root, slug, config_file=None, *, stage_only=False):
         config_path = Path('/tmp/active-sites.json')
     if stage_only:
         command += ['-e', 'FANZONE_STAGE_ONLY=1']
+    # Forward explicit 0 as well so a host override cannot be reversed by .env
+    # when the build wrapper reads local settings inside the container.
+    command += ['-e', f'FAN_ZONE_GUIDES_ENABLED={int(use_guides)}']
     command += ['-e', f'TEAM={slug}', '-e', f'ACTIVE_SITES_FILE={config_path}', '-e', 'NPM_CONFIG_CACHE=/tmp/npm-cache', 'node:22-bookworm', 'npm', 'run', 'build']
     return command
 

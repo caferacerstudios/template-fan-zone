@@ -95,6 +95,9 @@ export function reconcileOfficialSchedule(games, guide) {
   const byKey = new Map(rows.map((game, index) => [key(game), index]));
   const preseasonByIdentity = new Map(rows.map((game, index) => [preseasonIdentity(game, season), index]).filter(([identity]) => identity));
   for (const entry of guide.games) {
+    // Generated viewing records describe the selected NFL schedule. They never
+    // supply replacement kickoff/venue/status data to the schedule itself.
+    if (entry.scheduleAuthority === 'nfl-snapshot') continue;
     const entryKey = key(entry);
     const source = guideGame(entry, season);
     const identity = source && phase(entry) === "preseason" ? preseasonIdentity(source, season) : null;

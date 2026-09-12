@@ -1,0 +1,19 @@
+{"games":[
+{"gameId":"1392216","opponent":"New England Patriots","homeAway":"home","localDate":"2026-09-09"},
+{"gameId":"1392244","opponent":"Arizona Cardinals","homeAway":"away","localDate":"2026-09-20"},
+{"gameId":"1392256","opponent":"Washington Commanders","homeAway":"away","localDate":"2026-09-27"},
+{"gameId":"1392277","opponent":"Los Angeles Chargers","homeAway":"home","localDate":"2026-10-04"},
+{"gameId":"1392292","opponent":"San Francisco 49ers","homeAway":"home","localDate":"2026-10-11"},
+{"gameId":"1392295","opponent":"Denver Broncos","homeAway":"away","localDate":"2026-10-15"},
+{"gameId":"1392321","opponent":"Kansas City Chiefs","homeAway":"home","localDate":"2026-10-25"},
+{"gameId":"1392336","opponent":"Chicago Bears","homeAway":"home","localDate":"2026-11-02"},
+{"gameId":"1392349","opponent":"Arizona Cardinals","homeAway":"home","localDate":"2026-11-08"},
+{"gameId":"1392361","opponent":"Las Vegas Raiders","homeAway":"away","localDate":"2026-11-15"},
+{"gameId":"1392392","opponent":"San Francisco 49ers","homeAway":"away","localDate":"2026-11-29"},
+{"gameId":"1392408","opponent":"Dallas Cowboys","homeAway":"home","localDate":"2026-12-07"},
+{"gameId":"1392421","opponent":"New York Giants","homeAway":"home","localDate":"2026-12-13"},
+{"gameId":"1392425","opponent":"Philadelphia Eagles","homeAway":"away","localDate":"2026-12-19"},
+{"gameId":"1392443","opponent":"Los Angeles Rams","homeAway":"home","localDate":"2026-12-25"},
+{"gameId":"1392467","opponent":"Carolina Panthers","homeAway":"away","localDate":"2027-01-03"},
+{"gameId":"1392478","opponent":"Los Angeles Rams","homeAway":"away","localDate":null}
+]}

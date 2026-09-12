@@ -1,0 +1,5 @@
+---
+import GameDayPage from "../components/GameDayPage.astro";
+const gameId = Astro.url.searchParams.get("game");
+---
+<GameDayPage {gameId} routeStyle="tickets" />

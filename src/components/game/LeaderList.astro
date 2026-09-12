@@ -1,0 +1,5 @@
+---
+const { title, rows = [] } = Astro.props;
+---
+<div class="leader-list"><h3>{title}</h3><ul>{rows.map((row) => <li><span>{row.label}</span><strong>{row.name}</strong><b>{row.value.toLocaleString()} {row.unit}</b></li>)}</ul></div>
+

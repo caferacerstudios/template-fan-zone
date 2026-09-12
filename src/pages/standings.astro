@@ -1,0 +1,163 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+import NfcWestTable from "../components/NfcWestTable.astro";
+import SeasonState from "../components/SeasonState.astro";
+import { formatPacificTime } from "../lib/season-context";
+import { activeStandingsPhase, buildPhasedStandings, reconcileStandings, STANDINGS_PHASES, validateStandings } from "../lib/standings.mjs";
+import { formatKickoff, normalizeSchedule } from "../lib/schedule.mjs";
+import { reconcileOfficialSchedule } from "../lib/schedule-guide.mjs";
+import scheduleData from "../data/nfl/{team}.json";
+import watchGuide from "../data/nfl/watch-guide-2026.json";
+
+let standingsData: any = null;
+try { standingsData = (await import("../data/nfl/standings.json")).default; } catch {}
+
+const WEST = new Set(["SEA", "LAR", "SF", "ARI"]);
+const NAMES: Record<string, string> = { SEA: "Seattle {Team}", LAR: "Los Angeles Rams", SF: "San Francisco 49ers", ARI: "Arizona Cardinals" };
+const rawGames = Array.isArray(scheduleData?.games) ? scheduleData.games : [...(scheduleData?.gamesPreseason ?? []),...(scheduleData?.gamesRegular ?? []),...(scheduleData?.gamesPostseason ?? [])];
+const schedule = normalizeSchedule({ ...scheduleData, games:reconcileOfficialSchedule(rawGames,watchGuide) }, scheduleData?.season);
+const season = schedule.season;
+const hasPhasedStandings = STANDINGS_PHASES.every((phase) => standingsData?.phases?.[phase]?.phase === phase);
+if (!hasPhasedStandings) {
+  const teams = Object.entries(NAMES).map(([abbreviation, full_name]) => ({ abbreviation, full_name, conference: "NFC" }));
+  standingsData = buildPhasedStandings({ season, updatedAt: schedule.updatedAt, games: schedule.games, teams });
+  standingsData.refreshedDuringBuild = false;
+}
+validateStandings(standingsData);
+reconcileStandings(standingsData, schedule.games, ["SEA"]);
+const defaultPhase = activeStandingsPhase(schedule.games);
+const phaseLabels: Record<string, string> = { preseason: "Preseason", regular: "Regular Season", postseason: "Postseason" };
+
+function first(row: any, keys: string[]) { for (const key of keys) if (row?.[key] !== undefined && row?.[key] !== null && row?.[key] !== "") return row[key]; return null; }
+function team(row: any) { return row?.team ?? row?.team_info ?? row?.teamInfo ?? row; }
+function abbr(value: any) {
+  const raw = first(team(value), ["abbreviation", "abbr", "team_abbreviation", "teamAbbreviation"]) ?? first(value, ["team_abbreviation", "teamAbbreviation", "abbreviation", "abbr"]);
+  const result = String(raw ?? "").toUpperCase().replaceAll(".", "");
+  if (result === "LA" || result === "LA RAMS") return "LAR";
+  if (result === "SFO") return "SF";
+  return result;
+}
+function rowsFrom(value: any): any[] { if (Array.isArray(value)) return value; for (const key of ["data", "teams", "standings", "rows"]) if (Array.isArray(value?.[key])) return value[key]; return []; }
+function divisionRows(value: any) {
+  const direct = rowsFrom(value).filter((row) => WEST.has(abbr(row)));
+  if (direct.length) return direct;
+  const divisions = value?.divisions;
+  if (Array.isArray(divisions)) return rowsFrom(divisions.find((item: any) => /nfc\s*west/i.test(String(item?.name ?? item?.division ?? "")))).filter((row) => WEST.has(abbr(row)));
+  const entry = divisions && typeof divisions === "object" ? Object.entries(divisions).find(([key]) => /nfc[_\s-]*west/i.test(key)) : null;
+  return rowsFrom(entry?.[1]).filter((row) => WEST.has(abbr(row)));
+}
+function priorPayload(value: any) {
+  for (const key of ["previousSeason", "previous_season", "priorSeason", "prior_season", "previous", "prior"]) if (divisionRows(value?.[key]).length) return value[key];
+  const candidates = Array.isArray(value?.seasons) ? value.seasons.filter((item: any) => Number(item?.season ?? item?.year) < Number(season)) : [];
+  return candidates.sort((a: any, b: any) => Number(b?.season ?? b?.year) - Number(a?.season ?? a?.year))[0] ?? null;
+}
+function shown(row: any, keys: string[]) { const value = first(row, keys); return value === null ? "—" : String(value); }
+function num(row: any, keys: string[]) { const value = first(row, keys); const parsed = Number(value); return value === null || !Number.isFinite(parsed) ? null : parsed; }
+function splitRecord(row: any, prefix: "division" | "conference") {
+  const supplied = first(row, [`${prefix}_record`, `${prefix}Record`, prefix === "division" ? "div_record" : "conf_record"]);
+  if (supplied !== null) return String(supplied);
+  const wins = first(row, [`${prefix}_wins`, `${prefix}Wins`]), losses = first(row, [`${prefix}_losses`, `${prefix}Losses`]), ties = first(row, [`${prefix}_ties`, `${prefix}Ties`]);
+  return wins === null || losses === null ? "—" : ties !== null && Number(ties) !== 0 ? `${wins}-${losses}-${ties}` : `${wins}-${losses}`;
+}
+function marker(row: any) {
+  const label = first(row, ["playoff_status", "playoffStatus", "clinched_status", "clinchedStatus", "elimination_status", "eliminationStatus"]);
+  if (label !== null) return String(label);
+  if (first(row, ["clinched", "clinched_playoffs", "clinchedPlayoffs"]) === true) return "Clinched playoff berth";
+  if (first(row, ["eliminated", "eliminated_from_playoffs", "eliminatedFromPlayoffs"]) === true) return "Eliminated";
+  return null;
+}
+function standingsRows(value: any) {
+  return divisionRows(value).map((row, index) => {
+    const suppliedDiff = num(row, ["point_differential", "pointDifferential", "points_differential", "differential"]);
+    const pf = num(row, ["points_for", "pointsFor", "pf"]), pa = num(row, ["points_against", "pointsAgainst", "pa"]);
+    const diff = suppliedDiff ?? (pf !== null && pa !== null ? pf - pa : null);
+    const pctValue = num(row, ["win_percentage", "winPercentage", "win_pct", "winPct", "percentage", "pct"]);
+    const pct = pctValue === null ? "—" : (pctValue > 1 ? pctValue / 100 : pctValue).toFixed(3).replace(/^0/, "");
+    const code = abbr(row);
+    return { rank: shown(row, ["division_rank", "divisionRank", "rank", "position"]) === "—" ? String(index + 1) : shown(row, ["division_rank", "divisionRank", "rank", "position"]), abbreviation: code, name: first(team(row), ["full_name", "fullName", "name", "display_name", "displayName"]) ?? first(row, ["team_name", "teamName"]) ?? NAMES[code] ?? code, wins: shown(row, ["wins", "win", "w"]), losses: shown(row, ["losses", "loss", "l"]), ties: shown(row, ["ties", "tie", "t"]), percentage: pct, pointsFor: shown(row, ["points_for", "pointsFor", "pf"]), pointsAgainst: shown(row, ["points_against", "pointsAgainst", "pa"]), differential: diff === null ? "—" : diff > 0 ? `+${diff}` : String(diff), division: splitRecord(row, "division"), conference: splitRecord(row, "conference"), streak: shown(row, ["streak", "current_streak", "currentStreak"]), marker: marker(row) };
+  });
+}
+function ordinal(value: any) { const n = Number(value); if (!Number.isFinite(n)) return String(value ?? "—"); const suffix = n % 100 >= 11 && n % 100 <= 13 ? "th" : n % 10 === 1 ? "st" : n % 10 === 2 ? "nd" : n % 10 === 3 ? "rd" : "th"; return `${n}${suffix}`; }
+function playoff(game: any) { const type = String(game?.seasonType ?? game?.season_type ?? "").toLowerCase(); return type.includes("post") || type.includes("playoff") || game?.postseason === true || game?.is_postseason === true; }
+function final(game: any) { return /final|finished|complete/i.test(String(game?.status ?? "")); }
+function opponent(game: any) { const home = abbr(game?.home_team), away = abbr(game?.visitor_team); return home === "SEA" ? away : home; }
+function home(game: any) { return abbr(game?.home_team) === "SEA"; }
+function gameHref(game: any, index: number) { return `/games/${encodeURIComponent(String(game?.id ?? game?.game_id ?? index))}`; }
+function result(game: any) { const hs = num(game, ["home_team_score", "homeTeamScore"]), as = num(game, ["visitor_team_score", "away_team_score", "visitorTeamScore"]); if (hs === null || as === null) return "Final score unavailable"; const sea = home(game) ? hs : as, opp = home(game) ? as : hs; return `${sea === opp ? "T" : sea > opp ? "W" : "L"} ${sea}–${opp}`; }
+function gamesBehind(row: any, leader: any) {
+  if (!row || !leader) return "—";
+  const value = ((leader.wins - row.wins) + (row.losses - leader.losses)) / 2;
+  return value === 0 ? "—" : Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+const views = STANDINGS_PHASES.map((phase) => {
+  const rows = standingsData?.phases?.[phase]?.rows ?? [];
+  const games = schedule.games.filter((game) => game.phase === phase && WEST.has(opponent(game)) && opponent(game) !== "SEA");
+  const hasGames = rows.some((row) => row.gamesPlayed > 0);
+  return { phase, label: phaseLabels[phase], rows, hasGames, seattle: rows.find((row) => row.abbreviation === "SEA"), leader: rows[0], upcoming: games.filter((game) => game.state !== "completed"), completed: games.filter((game) => game.state === "completed"), officialRank: standingsData?.phases?.[phase]?.officialRank === true };
+});
+const hasMeaningfulStandings = views.some((view) => view.hasGames);
+---
+
+<{Team}Layout
+  seo={{ title: `${season} Seattle {Team} NFC West Standings`, description: `Track Seattle's ${season} NFC West position, record and division results once games begin, with preseason and regular-season records clearly separated.`, canonicalPath: "/standings", robots: hasMeaningfulStandings ? "index, follow" : "noindex, follow" }}
+  pageTitle="Seattle {Team} NFC West Standings"
+  pageTagline={`${season} division position, record, splits and schedule context, shown only after relevant games are completed.`}
+  activePath="/standings"
+  pageType="standings"
+  season={season}
+  monetizationEligible={hasMeaningfulStandings}
+>
+  <nav class="phase-tabs" aria-label="Standings phase">{views.map((view) => <a href={`?phase=${view.phase}`} data-phase-control={view.phase} aria-current={view.phase === defaultPhase ? "page" : undefined}>{view.label}</a>)}</nav>
+  {views.map((view) => <div data-phase-panel={view.phase} hidden={view.phase !== defaultPhase}>
+  <div class="data-context"><strong>{season} {view.label}</strong><span>Data through: {formatPacificTime(standingsData.updatedAt)} (Pacific Time)</span><span>Includes every final {view.label.toLowerCase()} game recorded as of the data timestamp above.</span></div>
+  <header class="race-header">
+    <p class="eyebrow">NFC West {view.phase === "regular" ? "standings" : `${view.label.toLowerCase()} records`}</p>
+    <h2>{season} {view.label} {view.phase === "regular" ? "standings" : "records"}</h2>
+    {view.seattle && view.hasGames ? (
+      <div class="sea-summary">
+        <div><span>{view.officialRank ? "Division rank" : "Division order"}</span><strong>{view.seattle.rank == null ? "Unavailable" : ordinal(view.seattle.rank)}</strong></div>
+        <div><span>Record</span><strong>{view.seattle.wins}-{view.seattle.losses}{view.seattle.ties ? `-${view.seattle.ties}` : ""}</strong></div>
+        <div><span>Division</span><strong>{view.phase === "regular" ? view.seattle.division : "Not applicable"}</strong></div>
+        <div><span>Conference</span><strong>{view.phase === "regular" ? view.seattle.conference : "Not applicable"}</strong></div>
+        <div><span>Games behind</span><strong>{view.phase === "regular" ? gamesBehind(view.seattle, view.leader) : "Not applicable"}</strong></div>
+      </div>
+    ) : <p class="race-empty">No completed {view.label.toLowerCase()} games yet; a zero record is not being treated as a meaningful standing.</p>}
+  </header>
+
+  {view.phase === "preseason" && <p class="season-notice">Preseason results do not affect regular-season standings or playoff position.</p>}
+  {!view.officialRank && view.rows.length === 4 && <p class="season-notice">{view.phase === "preseason" ? "These are preseason records, not a division position or playoff standing." : "Ordering is provisional; the source does not provide complete NFL tiebreakers."}</p>}
+  {view.rows.length > 0 && view.rows.length < 4 && <p class="season-notice">The source does not contain a complete four-team record set, so missing teams are omitted and no division order is calculated.</p>}
+
+  <section class="standings-section">
+    <div class="section-heading">
+      <h2>NFC West {view.label.toLowerCase()} standings</h2>
+    </div>
+    {view.rows.length && view.hasGames ? <NfcWestTable rows={view.rows} label={`${season} ${view.label} NFC West standings`} showSplits={view.phase === "regular"} rankLabel={view.officialRank ? "Rank" : "Order"} /> : <SeasonState title={`${view.label} table opens after completed games`} explanation={`There are no completed ${view.label.toLowerCase()} games with sourced scores, so a four-team 0-0 table would add no useful information.`} actionHref="/schedule" actionLabel={`View the ${season} schedule`} priorHref="/history" priorLabel="Explore {Team} history" icon="NFC" />}
+  </section>
+
+  <div class="division-grid">
+    <section class="module" aria-labelledby="upcoming-heading">
+      <h2 id="upcoming-heading">Upcoming division games</h2>
+      {view.upcoming.length ? <ul class="game-list">{view.upcoming.map((game, index) => <li>
+        <div><strong>{home(game) ? "vs." : "at"} {NAMES[opponent(game)] ?? opponent(game)}</strong><span>{formatKickoff(game)}</span></div>
+        <a href={gameHref(game, index)}>Game page →</a>
+      </li>)}</ul> : <p class="empty">No upcoming NFC West games are scheduled.</p>}
+    </section>
+
+    <section class="module" aria-labelledby="completed-heading">
+      <h2 id="completed-heading">Division results</h2>
+      {view.completed.length ? <ul class="series-list">{view.completed.map((game) => <li>
+        <strong>{home(game) ? "vs." : "at"} {opponent(game)}</strong><span>{result(game)}</span>
+      </li>)}</ul> : <p class="empty">No NFC West results are available yet.</p>}
+    </section>
+  </div>
+  </div>)}
+
+  <script is:inline>{`(()=>{const valid=new Set(${JSON.stringify(STANDINGS_PHASES)}),requested=new URLSearchParams(location.search).get('phase'),phase=valid.has(requested)?requested:${JSON.stringify(defaultPhase)};document.querySelectorAll('[data-phase-panel]').forEach(el=>el.hidden=el.dataset.phasePanel!==phase);document.querySelectorAll('[data-phase-control]').forEach(el=>el.toggleAttribute('aria-current',el.dataset.phaseControl===phase))})()`}</script>
+
+  <style>
+    .phase-tabs{display:flex;gap:.4rem;margin-bottom:1rem;flex-wrap:wrap}.phase-tabs a{padding:.55rem .75rem;border:var(--border-crisp);background:#fff;color:var(--navy-900);font-weight:900;text-decoration:none}.phase-tabs a[aria-current]{background:var(--navy-900);color:#fff;box-shadow:inset 0 -3px var(--action-green)}.data-context{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;color:var(--slate-700);font-size:.85rem}
+    .eyebrow{margin:0 0:.25rem;color:var(--slate-700);font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.race-header{padding:clamp(1.1rem,4vw,2rem);border-top:7px solid var(--action-green);background:var(--navy-950);color:#fff;box-shadow:var(--shadow-lg)}.race-header .eyebrow{color:var(--action-green)}.race-header h2{margin:0;color:#fff;font:900 clamp(2rem,7vw,4rem)/1 var(--font-display)}.sea-summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;margin-top:1.25rem;background:#ffffff24;border:1px solid #ffffff24}.sea-summary div{padding:.8rem;background:var(--navy-900)}.sea-summary span{display:block;color:var(--slate-300);font-size:.68rem;font-weight:800;text-transform:uppercase}.sea-summary strong{display:block;margin-top:.15rem;font:900 clamp(1.1rem,3vw,1.55rem) var(--font-display)}.race-empty{margin:1rem 0 0;color:var(--slate-300)}.season-notice,.archive-label,.marker-note,.empty{padding:.8rem 1rem;border:var(--border-crisp);background:var(--slate-100);color:var(--navy-900)}.season-notice{margin-top:1rem;border-left:5px solid var(--action-green)}.standings-section,.division-grid{margin-top:1.25rem}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:.7rem}.section-heading h2,.module h2{margin:0;color:var(--navy-900);font:900 1.55rem var(--font-display)}.tabs{display:flex;gap:.35rem}.tabs button{padding:.55rem .7rem;border:var(--border-crisp);background:#fff;color:var(--navy-900);font-weight:800;cursor:pointer}.tabs button[aria-selected="true"]{border-color:var(--navy-900);background:var(--navy-900);color:#fff;box-shadow:inset 0 -3px var(--action-green)}.archive-label,.marker-note{margin:.65rem 0;font-size:.85rem}.division-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:1rem}.module{min-width:0;padding:1rem;border:var(--border-crisp);background:#fff;box-shadow:var(--shadow-sm)}.game-list,.series-list{margin:.8rem 0 0;padding:0;list-style:none}.game-list li{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0;border-top:var(--border-crisp)}.game-list li div{display:grid;gap:.1rem}.game-list span,.game-list small{color:var(--slate-700);font-size:.72rem}.game-list a{flex:0 0 auto;color:var(--navy-900);font-weight:900}.series-list li{display:grid;grid-template-columns:minmax(9rem,1fr) 1fr;gap:.75rem;padding:.7rem 0;border-top:var(--border-crisp)}.series-list span{color:var(--slate-700)}@media(max-width:760px){.sea-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.section-heading{align-items:stretch;flex-direction:column}.division-grid{grid-template-columns:1fr}}@media(max-width:420px){.race-header{margin-inline:-.6rem}.game-list li{align-items:flex-start;flex-direction:column}.series-list li{grid-template-columns:1fr}.tabs{width:100%}.tabs button{flex:1}}
+  </style>
+</{Team}Layout>

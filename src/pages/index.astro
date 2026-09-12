@@ -1,0 +1,149 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+import AdSlot from "../components/AdSlot.astro";
+import HomepageStories from "../components/HomepageStories.astro";
+import HomepageGlance from "../components/HomepageGlance.astro";
+import { formatKickoff, normalizeSchedule, scheduleFreshness, selectFeaturedGame } from "../lib/schedule.mjs";
+import { reconcileOfficialSchedule } from "../lib/schedule-guide.mjs";
+import { gameDayView } from "../lib/game-day.mjs";
+import { injuryStatuses, transactions } from "../lib/team-updates";
+import { buildHomepageGlance } from "../lib/homepage-glance.mjs";
+import rosterStore from "../data/team/roster.json";
+import watchGuide from "../data/nfl/watch-guide-2026.json";
+import { currentRosterPlayers } from "../lib/roster.mjs";
+
+let nfl: any = null;
+let standings: any = null;
+let recapData: any = null;
+try { nfl = (await import("../data/nfl/{team}.json")).default; } catch {}
+try { standings = (await import("../data/nfl/standings.json")).default; } catch {}
+try { recapData = (await import("../data/nfl/gameRecaps.json")).default; } catch {}
+
+const now = new Date();
+const abbr = (team: any) => String(team?.abbreviation ?? team?.abbr ?? "").toUpperCase();
+const id = (game: any, i = 0) => String(game?.id ?? game?.game_id ?? i);
+const href = (game: any, i = 0) => `/games/${encodeURIComponent(id(game, i))}`;
+const time = (game: any) => { const n = new Date(game?.startsAt ?? game?.date ?? game?.start_time ?? game?.kickoff ?? "").getTime(); return Number.isFinite(n) ? n : null; };
+const home = (game: any) => abbr(game?.home_team) === "SEA";
+const opponent = (game: any) => home(game) ? game?.visitor_team : game?.home_team;
+const opp = (game: any) => abbr(opponent(game));
+const teamName = (team: any, fallback: string) => String(team?.full_name ?? team?.name ?? fallback);
+const score = (game: any, sea: boolean) => {
+  const value = sea === home(game) ? game?.home_team_score : game?.visitor_team_score;
+  const parsed = Number(value);
+  return value !== null && value !== undefined && Number.isFinite(parsed) ? parsed : null;
+};
+const phase = (game: any) => {
+  const value = String(game?.season_type ?? game?.seasonType ?? "").toLowerCase();
+  if (value.includes("pre")) return "Preseason";
+  if (game?.postseason || value.includes("post") || value.includes("playoff")) return "Postseason";
+  return "Regular season";
+};
+const week = (game: any) => game?.week !== null && game?.week !== undefined && String(game.week).trim() ? `Week ${game.week}` : "Game day";
+const marks = new Map(Object.keys(import.meta.glob("../../public/images/nfl/teams/*.{png,svg,webp}"))
+  .map((path) => [path.split("/").pop()?.split(".")[0]?.toUpperCase(), path.replace("../../public", "")]));
+
+const scheduleSource = nfl?.season ? { ...nfl, games:reconcileOfficialSchedule(Array.isArray(nfl.games) ? nfl.games : [...(nfl.gamesPreseason ?? []),...(nfl.gamesRegular ?? []),...(nfl.gamesPostseason ?? [])], watchGuide) } : null;
+const schedule = scheduleSource ? normalizeSchedule(scheduleSource, nfl.season) : null;
+const games = schedule?.games ?? [];
+const completed = games.filter((game) => game.state === "completed");
+const upcoming = games.filter((game) => !["completed", "canceled", "bye", "in_progress"].includes(game.state) && (time(game) ?? Number.MAX_SAFE_INTEGER) >= now.getTime());
+const selection = selectFeaturedGame(games, { now, offseason: nfl?.offseasonMilestone });
+const featured = selection.game;
+const featuredView = gameDayView(featured, now);
+const latest = completed.at(-1) ?? null;
+const latestRecap = completed.filter((game, i) => recapData?.recaps?.[id(game, games.indexOf(game))]).at(-1) ?? null;
+const latestScored = completed.filter((game) => score(game, true) !== null && score(game, false) !== null).at(-1) ?? null;
+const nextThree = upcoming.slice(0, 3);
+const result = (game: any) => score(game, true) === score(game, false) ? "T" : score(game, true)! > score(game, false)! ? "W" : "L";
+const regularFinals = completed.filter((game) => phase(game) === "Regular season" && score(game, true) !== null && score(game, false) !== null);
+
+const standingRows = Array.isArray(standings?.data) ? standings.data : Array.isArray(standings?.teams) ? standings.teams : [];
+const standingTeam = (row: any) => row?.team ?? row;
+const seaStanding = standingRows.find((row: any) => abbr(standingTeam(row)) === "SEA");
+const divisionRank = seaStanding?.division_rank ?? seaStanding?.divisionRank ?? null;
+
+const stats = Array.isArray(nfl?.playerSeasonStats) ? nfl.playerSeasonStats : [];
+const leader = (keys: string[]) => stats.map((row: any) => ({ row, value: keys.map((key) => row?.[key]).find((v) => typeof v === "number" && Number.isFinite(v)) }))
+  .filter((x: any) => x.value > 0).sort((a: any, b: any) => b.value - a.value)[0];
+const playerName = (row: any) => `${row?.player?.first_name ?? ""} ${row?.player?.last_name ?? ""}`.trim();
+const tacklesLeader = leader(["tackles", "total_tackles"]);
+const sacksLeader = leader(["sacks"]);
+const leaders = [
+  ["Passing leader", "Pass yards", leader(["passing_yards", "passingYards"])],
+  ["Rushing leader", "Rush yards", leader(["rushing_yards", "rushingYards"])],
+  ["Receiving leader", "Rec. yards", leader(["receiving_yards", "receivingYards"])],
+  ["Defensive leader", tacklesLeader ? "Tackles" : "Sacks", tacklesLeader ?? sacksLeader],
+].filter(([, , item]: any) => item?.row && playerName(item.row));
+const state = selection.state;
+const action = state === "live" ? "View Game Center" : state === "final" ? "Read Recap" : "View Preview";
+const freshness = scheduleFreshness(nfl?.updatedAt, now);
+const hasDashboard = Boolean(latestScored || nextThree.length || divisionRank || leaders.length || latest);
+const glanceModel = scheduleSource ? buildHomepageGlance({ nfl: { ...scheduleSource, currentRoster: currentRosterPlayers(rosterStore) }, standings, transactions, injuries: injuryStatuses, now }) : null;
+---
+
+<{Team}Layout activePath="/" showPageHeader={false} monetizationEligible={Boolean(featured || hasDashboard)}>
+  <header class="home-intro">
+    <div class="home-intro__copy">
+      <p class="home-kicker">Independent football coverage · {Location}</p>
+      <h1>{Location} {Team} News, Schedule, Roster and Analysis</h1>
+      <p class="home-brand-line">{Location} football, <span>in full view.</span></p>
+      <p class="home-value">Start with the next game, latest substantial story, current player-status news, roster and schedule. Results appear here as games are completed.</p>
+    </div>
+    <div class="home-intro__art" aria-hidden="true">
+      <strong>{HeroMark}</strong>
+      <span>{Location} football</span>
+    </div>
+  </header>
+
+  {featured && featuredView ? <section class={`scoreboard scoreboard--${state}`} aria-labelledby="featured-title">
+    <div class="topline"><span>{featured.season} {phase(featured)}</span><span>{featuredView.phaseWeek}</span><span class="state">{state === "live" ? "LIVE" : state === "final" ? "Final" : "Upcoming"}</span></div>
+    <div class="scorebody">
+      <div><p class="location">{home(featured) ? "Home · vs." : "Away · at"}</p><h2 id="featured-title">{teamName(opponent(featured), opp(featured) || "Opponent")}</h2>
+        {(featuredView.seaRecord || featuredView.opponentRecord) && <p class="records">{featuredView.seaRecord && <>SEA {featuredView.seaRecord}</>}{featuredView.seaRecord && featuredView.opponentRecord && <> · </>}{featuredView.opponentRecord && <>{opp(featured)} {featuredView.opponentRecord}</>}</p>}</div>
+      {marks.has("SEA") && marks.has(opp(featured)) && <div class="marks" aria-hidden="true"><img src={marks.get("SEA")} alt="" width="78" height="78" decoding="async"/><span>{home(featured) ? "VS" : "AT"}</span><img src={marks.get(opp(featured))} alt="" width="78" height="78" decoding="async"/></div>}
+      <div class="main-result">
+        {state === "final" && score(featured, true) !== null && score(featured, false) !== null ? <><span>{result(featured)} · Final</span><strong>{score(featured, true)}–{score(featured, false)}</strong></>
+          : state === "live" ? <><span>{[featuredView.quarter, featuredView.clock].filter(Boolean).join(" · ") || "Game in progress"}</span><strong>{featuredView.liveScore ? `${featuredView.liveScore.{team}}–${featuredView.liveScore.opponent}` : "LIVE"}</strong></>
+          : <><span>Countdown to kickoff</span><strong class="countdown" data-kickoff={featured.startsAt}>{formatKickoff(featured)}</strong></>}
+      </div>
+    </div>
+    <div class="details"><span>{formatKickoff(featured)}</span>{featured.venue && <span>{featured.venue}</span>}{featured.network && <span>Watch: {featured.network}</span>}<span><a href="/methodology">{freshness.label}</a></span></div>
+    <div class="actions"><a class="button primary" href={href(featured, games.indexOf(featured))}>{action} →</a><a class="button" href="/schedule">Full Schedule</a></div>
+  </section> : <section class="scoreboard empty"><p class="location">Offseason</p><h2 id="featured-title">{selection.offseason?.label ?? "Season overview"}</h2><p>{selection.offseason?.detail}</p><p>{freshness.label}</p><a class="button primary" href={selection.offseason?.href ?? "/schedule"}>Full Schedule</a></section>}
+
+  <HomepageStories />
+
+  <HomepageGlance model={glanceModel} />
+
+  <AdSlot
+    pageType="homepage"
+    placement="feed-break"
+    contentUnits={[featured, regularFinals.length > 0, latestScored, nextThree.length > 0, divisionRank, leaders.length > 0, latestRecap].filter(Boolean).length}
+  />
+
+  <aside class="history-teaser" aria-labelledby="history-teaser-title">
+    <div class="teaser-number" aria-hidden="true">12</div>
+    <div>
+      <p class="label">Beyond the current season</p>
+      <h2 id="history-teaser-title">History &amp; The 12s</h2>
+      <p>From the Kingdome roar to championship parades: explore the eras, players and fan traditions that made Seattle football feel like Seattle.</p>
+      <a href="/history">Enter the history hub →</a>
+    </div>
+  </aside>
+
+  <script is:inline>(()=>{const n=document.querySelector('.countdown[data-kickoff]');if(!n)return;const k=new Date(n.getAttribute('data-kickoff')).getTime();const r=()=>{const x=k-Date.now();if(x<=0){n.textContent='Kickoff time reached';return}const d=Math.floor(x/86400000),h=Math.floor(x%86400000/3600000),m=Math.floor(x%3600000/60000);n.textContent=d?`${d}d ${h}h ${m}m`:`${h}h ${m}m`};r();setInterval(r,60000)})()</script>
+  <style>.home-brand-line{margin:.85rem 0 0!important;color:#fff;font:900 clamp(1.2rem,2.4vw,1.75rem)/1.1 var(--font-display);letter-spacing:-.02em}.home-brand-line span{color:var(--action-green)}</style>
+  <style>
+    .home-value{margin:0 0 1rem;max-width:none!important;color:var(--navy-800);font-weight:750}.scoreboard{overflow:hidden;background:var(--navy-950);color:#fff;border-top:7px solid var(--action-green);box-shadow:var(--shadow-lg)}.topline{display:flex;gap:.6rem 1.25rem;flex-wrap:wrap;padding:.75rem clamp(1rem,4vw,2rem);border-bottom:1px solid #ffffff2b;color:var(--slate-300);font:800 .72rem var(--font-display);letter-spacing:.09em;text-transform:uppercase}.state{margin-left:auto;color:var(--action-green)}.scorebody{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.5rem;align-items:center;padding:clamp(1.4rem,5vw,3rem) clamp(1rem,4vw,2rem);background:linear-gradient(120deg,#70c9341a,transparent 45%)}.location,.label{margin:0 0 .35rem!important;color:#315f12;font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.scoreboard .location{color:var(--action-green)}.scoreboard h1{margin:0;color:#fff;font:900 clamp(2.25rem,7vw,5.5rem)/.88 var(--font-display);letter-spacing:-.035em;text-transform:uppercase;overflow-wrap:anywhere}.records{color:var(--slate-300)}.marks{display:flex;align-items:center;gap:.6rem}.marks img{width:clamp(48px,7vw,78px);height:clamp(48px,7vw,78px);object-fit:contain}.main-result{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:1rem;padding-top:1.25rem;border-top:1px solid #ffffff29}.main-result span{color:var(--slate-300);font-size:.76rem;text-transform:uppercase}.main-result strong{font:900 clamp(1.6rem,5vw,3.25rem) var(--font-display);font-variant-numeric:tabular-nums;text-align:right}.scoreboard--live .main-result strong{color:var(--action-green)}.details,.actions{display:flex;gap:.65rem 1.5rem;flex-wrap:wrap;padding:.85rem clamp(1rem,4vw,2rem)}.details{background:var(--navy-800);font-size:.85rem}.button{display:inline-flex;min-height:44px;align-items:center;padding:.6rem 1rem;border:2px solid var(--slate-500);color:#fff;text-decoration:none;font-weight:900}.primary{border-color:var(--action-green);background:var(--action-green);color:var(--navy-950)}.scoreboard.empty{padding:2rem}.glance{display:grid;grid-template-columns:1.35fr repeat(5,minmax(70px,1fr));margin-top:1rem;border:1px solid #aebdc6;background:#edf2f4;box-shadow:var(--shadow-sm)}.glance h2{margin:0;padding:1rem;display:flex;align-items:center;background:var(--navy-800);color:#fff;font-size:1rem}.glance a{display:grid;align-content:center;padding:.75rem;border-left:1px solid #c0ccd3;color:var(--navy-900);text-decoration:none}.glance a:hover{background:#dfe8ec}.glance span,.leader-list span,.leader-list small{color:var(--slate-700);font-size:.66rem;text-transform:uppercase}.glance strong{font:900 1.35rem var(--font-display)}.dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:2.25rem}.dashboard>h2,.leaders{grid-column:1/-1}.dashboard>h2{margin:0;padding-left:.75rem;border-left:5px solid var(--action-green)}.card{min-width:0;padding:1.2rem;border-color:#b7c4cb;background:#fdfefe}.card h3{margin:.4rem 0;color:var(--navy-900)}.card h3 small{color:var(--slate-700)}.card>p{margin:.35rem 0;color:var(--slate-700)}.card>a,.stat-links a{display:inline-block;margin-top:.7rem;color:#2f660b;font-weight:900}.card ol{padding:0;margin:.5rem 0;list-style:none}.card li+li{border-top:1px solid #c5d0d6}.card li a{display:flex;justify-content:space-between;gap:.7rem;padding:.6rem 0;color:var(--navy-900);text-decoration:none}.card li span{color:var(--slate-700);font-size:.73rem;text-align:right}.leader-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}.leader-list a{display:grid;padding:.75rem;border-left:3px solid var(--action-green);background:#e8eef1;color:var(--navy-900);text-decoration:none}.leader-list a:hover{background:#dbe5e9}.stat-links{display:flex;gap:1rem;flex-wrap:wrap}@media(max-width:800px){.glance{grid-template-columns:repeat(2,minmax(0,1fr))}.glance h2{grid-column:1/-1}.leader-list{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.scorebody,.dashboard{grid-template-columns:minmax(0,1fr)}.main-result{align-items:flex-start;flex-direction:column}.main-result strong{text-align:left}.state{margin-left:0}.actions{display:grid}.dashboard>h2,.leaders{grid-column:auto}.card li a{display:grid}.card li span{text-align:left}}@media(max-width:390px){.glance,.leader-list{grid-template-columns:minmax(0,1fr)}.glance a{border-left:0}}
+    .dashboard-empty{grid-column:1/-1;margin:0;padding:1rem;border:var(--border-crisp);color:var(--slate-700)}
+    .latest-moves{margin-top:1rem;padding:1rem;border:1px solid #b7c4cb;background:#f8fafb}.module-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem}.module-heading h2{margin:0}.tracker-links{display:flex;gap:.75rem;flex-wrap:wrap}.tracker-links a{color:#2f660b;font-weight:900}.latest-moves ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;padding:0;list-style:none}.latest-moves li{display:grid;align-content:start;gap:.25rem;padding:.75rem;border-left:4px solid var(--action-green);background:#e8eef1}.latest-moves li div{display:flex;gap:.4rem;justify-content:space-between;color:var(--slate-700);font-size:.7rem;text-transform:uppercase}.latest-moves li>a{color:var(--navy-900);font-weight:900}.latest-moves .move-source{min-height:44px;padding-top:.5rem;color:#2f660b;font-size:.78rem}@media(max-width:800px){.latest-moves ol{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){.latest-moves ol{grid-template-columns:1fr}.module-heading{align-items:start;flex-direction:column}}
+    .history-teaser{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.5rem;align-items:center;margin-top:2.25rem;padding:clamp(1.25rem,4vw,2rem);overflow:hidden;background:var(--navy-900);color:#fff;border-left:7px solid var(--action-green);box-shadow:var(--shadow-lg)}.history-teaser .teaser-number{font:900 clamp(4.5rem,12vw,8rem)/.75 var(--font-display);color:var(--action-green);letter-spacing:-.08em}.history-teaser h2{margin:.1rem 0;color:#fff;font-size:clamp(1.7rem,4vw,2.7rem)}.history-teaser p{margin:.4rem 0;color:var(--slate-100)}.history-teaser .label{color:var(--action-green)}.history-teaser a{display:inline-block;margin-top:.55rem;color:#fff;font-weight:900}
+    @media(max-width:600px){.dashboard-empty{grid-column:auto}}
+    .home-intro{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:2rem;align-items:end;margin:calc(clamp(1.25rem,4vw,3.25rem) * -1) calc(clamp(1.25rem,4vw,3.25rem) * -1) var(--section-space);padding:clamp(2rem,6vw,4.5rem) clamp(1.25rem,5vw,3.5rem);overflow:hidden;background:linear-gradient(135deg,var(--navy-950),var(--navy-800));color:#fff}.home-intro::before{content:"";position:absolute;inset:0;opacity:.2;background:repeating-radial-gradient(ellipse at 15% 120%,transparent 0 30px,#b8c2c8 31px 32px,transparent 33px 49px);pointer-events:none}.home-intro__copy,.home-intro__art{position:relative}.home-kicker{margin:0 0 .65rem!important;color:var(--action-green);font:850 .75rem var(--font-body);letter-spacing:.08em;text-transform:uppercase}.home-intro h1{margin:0;color:#fff;font:900 clamp(2.7rem,7vw,6.3rem)/.82 var(--font-display);letter-spacing:-.045em;text-transform:uppercase}.home-intro h1 span{color:var(--action-green)}.home-value{margin:1.2rem 0 0!important;max-width:58ch!important;color:var(--slate-100)!important;font-size:clamp(.98rem,1.6vw,1.12rem);font-weight:650;line-height:1.65}.home-intro__art{min-height:180px;display:grid;align-content:end;justify-items:end;border-bottom:2px solid #ffffff4a}.home-intro__art::before,.home-intro__art::after{content:"";position:absolute;right:0;bottom:0;width:100%;height:70%;clip-path:polygon(0 100%,28% 45%,43% 70%,65% 22%,100% 100%);background:#061c30}.home-intro__art::after{height:42%;background:#0d3859;clip-path:polygon(0 100%,38% 40%,54% 78%,73% 28%,100% 100%)}.home-intro__art strong,.home-intro__art>span:last-child{position:relative;z-index:1}.home-intro__art strong{color:#ffffff14;font:900 clamp(6rem,14vw,10rem)/.65 var(--font-display);letter-spacing:-.08em}.home-intro__art>span:last-child{padding:.35rem 0;color:var(--slate-300);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.scoreboard h2{margin:0;color:#fff;font:900 clamp(2.25rem,7vw,5.5rem)/.88 var(--font-display);letter-spacing:-.035em;text-transform:uppercase;overflow-wrap:anywhere}
+    .scoreboard{border-radius:var(--card-radius);box-shadow:none}.top-stories,.at-a-glance,.history-teaser{margin-top:var(--section-space)!important}.button{border-radius:var(--radius-sm);transition:background-color .18s ease,border-color .18s ease,color .18s ease}.button:hover{border-color:#fff}.primary:hover{background:#83da47;border-color:#83da47}.history-teaser{position:relative;border-radius:var(--card-radius);box-shadow:none;background:linear-gradient(115deg,var(--navy-950),var(--navy-800))}.history-teaser::after{content:"";position:absolute;inset:0 0 0 auto;width:38%;opacity:.13;background:repeating-radial-gradient(ellipse at 100% 50%,transparent 0 21px,#fff 22px 23px,transparent 24px 36px);pointer-events:none}.history-teaser>div{position:relative;z-index:1}
+    @media(max-width:720px){.home-intro{grid-template-columns:1fr}.home-intro__art{display:none}}
+    @media(max-width:600px){.home-intro{margin-top:-1.25rem;margin-inline:-1rem;padding:2.5rem 1rem 2.75rem}.home-intro h1{font-size:clamp(2.7rem,15vw,4.4rem)}.actions .button{justify-content:center;width:100%}.scorebody{gap:1rem}.marks{grid-row:2}.details{display:grid;grid-template-columns:1fr}.history-teaser{margin-inline:0}}
+    @media(max-width:520px){.history-teaser{grid-template-columns:1fr}.history-teaser .teaser-number{font-size:4.5rem}}
+  </style>
+</{Team}Layout>

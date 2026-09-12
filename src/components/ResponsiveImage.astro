@@ -1,0 +1,49 @@
+---
+interface Source {
+  srcset: string;
+  type: `image/${string}`;
+  media?: string;
+}
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  sources?: Source[];
+  srcset?: string;
+  sizes?: string;
+  priority?: boolean;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sources = [],
+  srcset,
+  sizes = "100vw",
+  priority = false,
+  class: className,
+} = Astro.props;
+---
+
+<picture>
+  {sources.map((source) => (
+    <source srcset={source.srcset} sizes={sizes} type={source.type} media={source.media} />
+  ))}
+  <img
+    class={className}
+    {src}
+    {srcset}
+    {sizes}
+    {alt}
+    {width}
+    {height}
+    loading={priority ? "eager" : "lazy"}
+    fetchpriority={priority ? "high" : "auto"}
+    decoding={priority ? "sync" : "async"}
+  />
+</picture>

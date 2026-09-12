@@ -1,0 +1,20 @@
+[Unit]
+Description={Team} Fan Zone season-wide EventSpy API collector (%i)
+Documentation=file:/home/laurawkr/{team}fanzone-dev/source/docs/ticket-sync-deployment.md
+ConditionPathIsReadWrite=/var/lib/sfz-eventspy-mirror/%i
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/laurawkr/{team}fanzone-dev
+ExecStart=/usr/bin/flock --nonblock /run/lock/sfz-eventspy-%i.lock /usr/bin/node source/scripts/tickets/eventspy-mirror.mjs --output-root /var/lib/sfz-eventspy-mirror/%i
+SuccessExitStatus=2
+TimeoutStartSec=10min
+Restart=no
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=/run/lock /var/lib/sfz-eventspy-mirror/%i
+
+[Install]
+WantedBy=multi-user.target

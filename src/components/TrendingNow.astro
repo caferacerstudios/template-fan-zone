@@ -1,0 +1,36 @@
+---
+import trendingData from "../data/trending.json";
+import { selectTrending, type TrendingCandidate } from "../lib/trending";
+
+const items = selectTrending(trendingData.items as TrendingCandidate[]);
+---
+
+{items.length > 0 && <section class="trending-now" aria-labelledby="trending-now-title">
+  <header>
+    <h2 id="trending-now-title">Trending Now</h2>
+    <a href="/methodology#trending-now">How this is selected</a>
+  </header>
+  <ol>
+    {items.map((item) => <li>
+      <a href={item.href}>
+        <span class="topic">{item.category}</span>
+        <span class="headline">{item.title}</span>
+      </a>
+    </li>)}
+  </ol>
+</section>}
+
+<style>
+  .trending-now{margin-top:1rem;padding:1rem clamp(1rem,3vw,1.5rem);border:1px solid #aebdc6;border-top:5px solid var(--action-green);background:#fff;box-shadow:var(--shadow-sm)}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:.65rem;border-bottom:1px solid #c5d0d6}
+  h2{margin:0;color:var(--navy-900);font:900 1.15rem var(--font-display);letter-spacing:.08em;text-transform:uppercase}
+  header a{color:#315f12;font-size:.72rem;font-weight:800}
+  ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1.4rem;margin:.35rem 0 0;padding-left:2rem}
+  li{padding:.65rem .2rem .65rem .15rem;color:var(--navy-800);font:900 1rem var(--font-display)}
+  li::marker{color:#315f12;font-variant-numeric:tabular-nums}
+  li a{display:grid;gap:.12rem;color:var(--navy-900);text-decoration:none}
+  li a:hover .headline{text-decoration:underline;text-decoration-color:var(--action-green);text-decoration-thickness:2px;text-underline-offset:3px}
+  .topic{color:#52636f;font:800 .63rem var(--font-body);letter-spacing:.08em;text-transform:uppercase}
+  .headline{line-height:1.25}
+  @media(max-width:600px){header{align-items:flex-start;flex-direction:column;gap:.3rem}ol{grid-template-columns:1fr}.trending-now{padding:.9rem 1rem}}
+</style>

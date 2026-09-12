@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixture": true,
+  "generatedAt": "2026-08-29T12:00:00Z",
+  "providerStatuses": [
+    { "provider": "fictional-box-office", "status": "connected-listings", "lastFetchedAt": "2026-08-29T11:55:00Z", "expiresAt": "2026-08-29T12:25:00Z", "errorCode": null },
+    { "provider": "fictional-verified", "status": "connected-listings", "lastFetchedAt": "2026-08-29T11:54:00Z", "expiresAt": "2026-08-29T12:24:00Z", "errorCode": null },
+    { "provider": "fictional-market-a", "status": "connected-listings", "lastFetchedAt": "2026-08-29T11:53:00Z", "expiresAt": "2026-08-29T12:23:00Z", "errorCode": null },
+    { "provider": "fictional-market-b", "status": "connected-listings", "lastFetchedAt": "2026-08-29T11:52:00Z", "expiresAt": "2026-08-29T12:22:00Z", "errorCode": null },
+    { "provider": "fictional-summary", "status": "event-summary", "lastFetchedAt": "2026-08-29T11:51:00Z", "expiresAt": "2026-08-29T12:21:00Z", "errorCode": null },
+    { "provider": "fictional-links", "status": "deep-link-only", "lastFetchedAt": "2026-08-29T11:50:00Z", "expiresAt": "2026-08-29T12:20:00Z", "errorCode": null },
+    { "provider": "fictional-stale", "status": "stale", "lastFetchedAt": "2026-08-28T11:00:00Z", "expiresAt": "2026-08-28T11:30:00Z", "errorCode": "STALE_DATA" },
+    { "provider": "fictional-outage", "status": "error", "lastFetchedAt": "2026-08-29T11:49:00Z", "expiresAt": null, "errorCode": "PROVIDER_UNAVAILABLE" }
+  ],
+  "events": [
+    {
+      "eventKey": "sea:fictional-2026-week-1",
+      "sfzGameId": "fictional-game-home-001",
+      "season": 2026,
+      "phase": "regular",
+      "week": 1,
+      "homeAway": "home",
+      "opponent": { "abbreviation": "SFO", "name": "Fictional San Francisco Football Club" },
+      "startTimeUtc": "2026-09-13T20:25:00Z",
+      "venueLocalStart": { "value": "2026-09-13T13:25:00", "timeZone": "America/Los_Angeles" },
+      "pacificTimeDisplay": "Sun, Sep 13 at 1:25 PM PT",
+      "venue": { "name": "Lumen Field", "city": "Seattle", "region": "WA", "country": "US" },
+      "providerEventReferences": [
+        { "provider": "fictional-box-office", "providerEventId": "FAKE-PRIMARY-HOME", "canonicalUrl": "https://fictional-box-office.example.invalid/events/home", "affiliateUrl": null, "sourceKind": "official-primary", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:55:00Z", "expiresAt": "2026-08-29T12:25:00Z", "status": "connected-listings", "errorCode": null },
+        { "provider": "fictional-verified", "providerEventId": "FAKE-VERIFIED-HOME", "canonicalUrl": "https://fictional-verified.example.invalid/events/home", "affiliateUrl": "https://fictional-verified.example.invalid/go/home?campaign=fictional", "sourceKind": "verified-resale", "matchMethod": "teams-venue-time", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:54:00Z", "expiresAt": "2026-08-29T12:24:00Z", "status": "connected-listings", "errorCode": null },
+        { "provider": "fictional-market-a", "providerEventId": "FAKE-MARKET-A-HOME", "canonicalUrl": "https://fictional-market-a.example.invalid/events/home", "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "teams-venue-time", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:53:00Z", "expiresAt": "2026-08-29T12:23:00Z", "status": "connected-listings", "errorCode": null },
+        { "provider": "fictional-market-b", "providerEventId": "FAKE-MARKET-B-HOME", "canonicalUrl": "https://fictional-market-b.example.invalid/events/home", "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "manual", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:52:00Z", "expiresAt": "2026-08-29T12:22:00Z", "status": "connected-listings", "errorCode": null },
+        { "provider": "fictional-summary", "providerEventId": "FAKE-SUMMARY-HOME", "canonicalUrl": "https://fictional-summary.example.invalid/events/home", "affiliateUrl": null, "sourceKind": "event-summary", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:51:00Z", "expiresAt": "2026-08-29T12:21:00Z", "status": "event-summary", "errorCode": null },
+        { "provider": "fictional-links", "providerEventId": "FAKE-LINK-HOME", "canonicalUrl": "https://fictional-links.example.invalid/events/home", "affiliateUrl": "https://fictional-links.example.invalid/go/home?campaign=fictional", "sourceKind": "deep-link", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:50:00Z", "expiresAt": "2026-08-29T12:20:00Z", "status": "deep-link-only", "errorCode": null },
+        { "provider": "fictional-stale", "providerEventId": "FAKE-STALE-HOME", "canonicalUrl": "https://fictional-stale.example.invalid/events/home", "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-28T11:00:00Z", "expiresAt": "2026-08-28T11:30:00Z", "status": "stale", "errorCode": "STALE_DATA" },
+        { "provider": "fictional-outage", "providerEventId": "FAKE-OUTAGE-HOME", "canonicalUrl": null, "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:49:00Z", "expiresAt": "2026-08-29T12:19:00Z", "status": "error", "errorCode": "PROVIDER_UNAVAILABLE" }
+      ],
+      "providerCoverage": ["fictional-box-office", "fictional-verified", "fictional-market-a", "fictional-market-b", "fictional-summary", "fictional-links", "fictional-stale", "fictional-outage"],
+      "listings": [
+        { "provider": "fictional-box-office", "providerListingId": "FAKE-PRIMARY-101", "sfzGameId": "fictional-game-home-001", "sourceKind": "official-primary", "sectionRaw": "Section 133", "sectionNormalized": "lower-bowl-sideline", "rowRaw": "Row J", "seatRange": { "from": "7", "to": "8" }, "allowedQuantities": [2], "currency": "USD", "basePriceCents": 15000, "mandatoryFeesCents": 2500, "allInPerTicketCents": 17500, "allInGroupTotalCents": 35000, "feeCompleteness": "all_in", "deliveryType": "mobile", "accessibleStatus": "not-accessible", "obstructedView": false, "limitedView": false, "productType": "admission", "sanitizedNotes": ["Fictional mobile-entry inventory."], "canonicalUrl": "https://fictional-box-office.example.invalid/listings/primary-101", "affiliateUrl": null, "fetchedAt": "2026-08-29T11:55:00Z", "expiresAt": "2026-08-29T12:25:00Z" },
+        { "provider": "fictional-verified", "providerListingId": "FAKE-VERIFIED-202", "sfzGameId": "fictional-game-home-001", "sourceKind": "verified-resale", "sectionRaw": "CLB 209", "sectionNormalized": "club-level", "rowRaw": "F", "seatRange": null, "allowedQuantities": [1, 2, 4], "currency": "USD", "basePriceCents": 18200, "mandatoryFeesCents": null, "allInPerTicketCents": 21400, "allInGroupTotalCents": null, "feeCompleteness": "provider_reported_all_in", "deliveryType": "mobile", "accessibleStatus": "unknown", "obstructedView": false, "limitedView": false, "productType": "admission", "sanitizedNotes": ["Fictional verified-resale listing."], "canonicalUrl": "https://fictional-verified.example.invalid/listings/verified-202", "affiliateUrl": "https://fictional-verified.example.invalid/go/verified-202?campaign=fictional", "fetchedAt": "2026-08-29T11:54:00Z", "expiresAt": "2026-08-29T12:24:00Z" },
+        { "provider": "fictional-market-a", "providerListingId": "FAKE-MARKET-A-303", "sfzGameId": "fictional-game-home-001", "sourceKind": "resale-marketplace", "sectionRaw": "SEC 326", "sectionNormalized": "upper-bowl", "rowRaw": "AA", "seatRange": null, "allowedQuantities": [2, 4], "currency": "USD", "basePriceCents": 8900, "mandatoryFeesCents": null, "allInPerTicketCents": null, "allInGroupTotalCents": null, "feeCompleteness": "unknown", "deliveryType": "electronic", "accessibleStatus": "unknown", "obstructedView": null, "limitedView": null, "productType": "admission", "sanitizedNotes": ["Fees are not reported in this fictional response."], "canonicalUrl": "https://fictional-market-a.example.invalid/listings/market-a-303", "affiliateUrl": null, "fetchedAt": "2026-08-29T11:53:00Z", "expiresAt": "2026-08-29T12:23:00Z" },
+        { "provider": "fictional-market-b", "providerListingId": "FAKE-MARKET-B-404", "sfzGameId": "fictional-game-home-001", "sourceKind": "resale-marketplace", "sectionRaw": "Section 312 Parking", "sectionNormalized": "north-lot", "rowRaw": "Lot C", "seatRange": null, "allowedQuantities": [1], "currency": "USD", "basePriceCents": 4500, "mandatoryFeesCents": 500, "allInPerTicketCents": 5000, "allInGroupTotalCents": 5000, "feeCompleteness": "all_in", "deliveryType": "mobile", "accessibleStatus": "unknown", "obstructedView": null, "limitedView": null, "productType": "parking", "sanitizedNotes": ["Parking only; does not include admission."], "canonicalUrl": "https://fictional-market-b.example.invalid/listings/parking-404", "affiliateUrl": null, "fetchedAt": "2026-08-29T11:52:00Z", "expiresAt": "2026-08-29T12:22:00Z" }
+      ],
+      "rescheduledFromUtc": null,
+      "updatedAt": "2026-08-29T11:55:00Z"
+    },
+    {
+      "eventKey": "sea:fictional-2026-week-12",
+      "sfzGameId": "fictional-game-away-012",
+      "season": 2026,
+      "phase": "regular",
+      "week": 12,
+      "homeAway": "away",
+      "opponent": { "abbreviation": "MIA", "name": "Fictional Miami Football Club" },
+      "startTimeUtc": "2026-11-29T21:05:00Z",
+      "venueLocalStart": { "value": "2026-11-29T16:05:00", "timeZone": "America/New_York" },
+      "pacificTimeDisplay": "Sun, Nov 29 at 1:05 PM PT",
+      "venue": { "name": "Fictional South Florida Stadium", "city": "Miami Gardens", "region": "FL", "country": "US" },
+      "providerEventReferences": [
+        { "provider": "fictional-market-a", "providerEventId": "FAKE-MARKET-A-AWAY", "canonicalUrl": "https://fictional-market-a.example.invalid/events/away", "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "provider-crosswalk", "matchConfidence": "high", "lastFetchedAt": "2026-08-29T11:53:00Z", "expiresAt": "2026-08-29T12:23:00Z", "status": "connected-listings", "errorCode": null }
+      ],
+      "providerCoverage": ["fictional-market-a"],
+      "listings": [
+        { "provider": "fictional-market-a", "providerListingId": "FAKE-AWAY-505", "sfzGameId": "fictional-game-away-012", "sourceKind": "resale-marketplace", "sectionRaw": "Section 118", "sectionNormalized": "lower-bowl-corner", "rowRaw": "12", "seatRange": null, "allowedQuantities": [2, 3], "currency": "USD", "basePriceCents": 12100, "mandatoryFeesCents": 2900, "allInPerTicketCents": 15000, "allInGroupTotalCents": null, "feeCompleteness": "estimated", "deliveryType": "mobile", "accessibleStatus": "accessible", "obstructedView": false, "limitedView": false, "productType": "admission", "sanitizedNotes": ["Fictional wheelchair-accessible inventory."], "canonicalUrl": "https://fictional-market-a.example.invalid/listings/away-505", "affiliateUrl": null, "fetchedAt": "2026-08-29T11:53:00Z", "expiresAt": "2026-08-29T12:23:00Z" }
+      ],
+      "rescheduledFromUtc": "2026-11-29T18:00:00Z",
+      "updatedAt": "2026-08-29T11:53:00Z"
+    }
+  ],
+  "unmatchedProviderEvents": [
+    { "provider": "fictional-market-b", "providerEventId": "FAKE-UNMATCHED-999", "canonicalUrl": null, "affiliateUrl": null, "sourceKind": "resale-marketplace", "matchMethod": "unmatched", "matchConfidence": "none", "lastFetchedAt": "2026-08-29T11:52:00Z", "expiresAt": "2026-08-29T12:22:00Z", "status": "pending", "errorCode": "EVENT_UNMATCHED" }
+  ]
+}

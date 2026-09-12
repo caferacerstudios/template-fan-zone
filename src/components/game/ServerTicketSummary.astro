@@ -1,0 +1,33 @@
+---
+import { currentProviderQuotes } from "../../lib/tickets/provider-quotes.mjs";
+import { formatPacificTimestamp } from "../../lib/game-page.mjs";
+
+const { observation = null, completed = false } = Astro.props;
+const providers = observation?.history ? currentProviderQuotes(observation.history) : [];
+const providerLabels = { ticketmaster: "Ticketmaster", stubhub: "StubHub", vividseats: "Vivid Seats", seatgeek: "SeatGeek" };
+const money = (cents) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
+const observedAt = observation?.collectedAt ?? null;
+const timestamp = formatPacificTimestamp(observedAt);
+const currentLowest = observation?.summary?.currentLowestCents;
+---
+
+<section class="server-ticket-summary" aria-labelledby="ticket-observation-heading">
+  <h2 id="ticket-observation-heading">{completed ? "Historical ticket observation" : "Current ticket observation"}</h2>
+  <dl>
+    <div><dt>Lowest observed price</dt><dd>{Number.isSafeInteger(currentLowest) ? money(currentLowest) : "No current price observation is available"}</dd></div>
+    <div><dt>Ticket-data timestamp</dt><dd>{timestamp ? <time datetime={observedAt}>{timestamp}</time> : "No accepted observation timestamp is available"}</dd></div>
+    <div><dt>Provider coverage</dt><dd>Ticketmaster, StubHub, Vivid Seats, and SeatGeek when a valid observation and destination are available</dd></div>
+    <div><dt>Fees</dt><dd>Observed starting prices may exclude taxes and fees; verify the final checkout total with the provider.</dd></div>
+  </dl>
+  <p>These are marketplace starting-price observations, not individual seat listings or guaranteed offers. Prices and availability can change between checks, and missing values do not mean a provider has no tickets.</p>
+  {providers.some((provider) => provider.priceCents != null && observation?.providerLinks?.[provider.provider]) && (
+    <div class="server-ticket-links">
+      <h3>Ticket choices</h3>
+      <ul>{providers.filter((provider) => provider.priceCents != null && observation.providerLinks?.[provider.provider]).map((provider) => <li><a href={observation.providerLinks[provider.provider]} rel="nofollow noopener">{providerLabels[provider.provider]} — observed from {money(provider.priceCents)}</a></li>)}</ul>
+    </div>
+  )}
+</section>
+
+<style>
+  .server-ticket-summary{width:min(1160px,calc(100% - 3rem));margin:1.25rem auto;padding:clamp(1rem,3vw,1.5rem);background:#fff;border:1px solid #d7dfe6;border-top:5px solid #69be28;border-radius:.8rem;color:#0b1f35}.server-ticket-summary h2{margin:0 0 .8rem;color:#002244}.server-ticket-summary dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#d7dfe6;border:1px solid #d7dfe6}.server-ticket-summary dl div{padding:.8rem;background:#f7f9fa}.server-ticket-summary dt{color:#536171;font-size:.78rem;font-weight:800;text-transform:uppercase}.server-ticket-summary dd{margin:.25rem 0 0;font-weight:800}.server-ticket-summary p{max-width:78ch;line-height:1.65}.server-ticket-links ul{display:flex;gap:.6rem 1rem;flex-wrap:wrap;padding:0;list-style:none}.server-ticket-links a{font-weight:800}@media(max-width:650px){.server-ticket-summary{width:calc(100% - 1.5rem)}.server-ticket-summary dl{grid-template-columns:1fr}}
+</style>

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "articles": {
+    "daily-{team}-2026-09-10-week-1-showed-the-{team}-biggest-early-season-question-can-their-secondary-depth-hold-up": {
+      "updatedAt": "2026-09-11T03:45:42Z",
+      "sourceUrls": [
+        "https://www.nfl.com/schedules/2026/by-team/seattle-{team}",
+        "https://www.{team}.com/news/2026-week-1-injury-report-{team}-vs-patriots",
+        "https://www.{team}.com/news/nick-emmanwori-tory-horton-inactive-for-{team}-opener-vs-patriots"
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "html": "Seattle opened the 2026 regular season with a 13–10 victory over New England. The final score establishes the result; the team’s pregame reporting establishes a separate, narrower point about safety availability. <a href=\"https://www.nfl.com/schedules/2026/by-team/seattle-{team}\">[1]</a> <a href=\"https://www.{team}.com/news/nick-emmanwori-tory-horton-inactive-for-{team}-opener-vs-patriots\">[3]</a>"
+        },
+        {
+          "type": "heading",
+          "heading": "What was known before kickoff"
+        },
+        {
+          "type": "paragraph",
+          "html": "Nick Emmanwori and Tory Horton had earlier been listed as questionable. On game day, Seattle confirmed that both were inactive. Starting safety Ty Okada had already been ruled out with a hamstring injury, while Emmanwori had been limited in practice after ankle surgery before training camp. Those facts describe availability entering the opener; they do not establish snap assignments, coverage outcomes or a recovery timeline. <a href=\"https://www.{team}.com/news/2026-week-1-injury-report-{team}-vs-patriots\">[2]</a> <a href=\"https://www.{team}.com/news/nick-emmanwori-tory-horton-inactive-for-{team}-opener-vs-patriots\">[3]</a>"
+        },
+        {
+          "type": "paragraph",
+          "html": "With Okada and Emmanwori sidelined, the {Team} signed safety AJ Finley from the practice squad and elevated Rodney Thomas II. {Team}.com reported before kickoff that one of them was expected to start in Okada’s place. That is verified evidence of how Seattle prepared its active roster, not evidence by itself of how either player performed during the game. <a href=\"https://www.{team}.com/news/nick-emmanwori-tory-horton-inactive-for-{team}-opener-vs-patriots\">[3]</a>"
+        },
+        {
+          "type": "heading",
+          "heading": "The next availability checkpoint"
+        },
+        {
+          "type": "paragraph",
+          "html": "Seattle’s next scheduled game is September 20 at Arizona, 11 days after the September 9 opener. The useful question during that interval is whether the team changes Emmanwori’s, Okada’s or Horton’s official participation and game-status designations. Until then, the opener supports a 1–0 result and a documented availability concern—not a conclusion about the secondary’s on-field performance. <a href=\"https://www.nfl.com/schedules/2026/by-team/seattle-{team}\">[1]</a> <a href=\"https://www.{team}.com/news/nick-emmanwori-tory-horton-inactive-for-{team}-opener-vs-patriots\">[3]</a>"
+        }
+      ]
+    }
+  }
+}

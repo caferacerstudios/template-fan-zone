@@ -1,0 +1,12 @@
+[Unit]
+Description=Schedule {Team} Fan Zone ticket synchronization (%i)
+
+[Timer]
+OnCalendar=*:0/15
+RandomizedDelaySec=2min
+Persistent=true
+AccuracySec=30s
+Unit=sfz-ticket-sync@%i.service
+
+[Install]
+WantedBy=timers.target

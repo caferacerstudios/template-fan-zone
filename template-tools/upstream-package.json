@@ -1,0 +1,34 @@
+{
+  "name": "{team}fanzone",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "test": "npm run build:offline && node --test tests/*.test.mjs",
+    "fetch-nfl": "node scripts/fetch-nfl.mjs",
+    "generate-game-recaps": "node scripts/generate-game-recaps.mjs",
+    "generate-player-profiles": "node scripts/generate-player-profiles.mjs",
+    "refresh-player-career-facts": "node scripts/refresh-player-career-facts.mjs",
+    "refresh-team-roster": "node scripts/refresh-team-roster.mjs",
+    "prebuild": "node scripts/refresh-team-roster.mjs && node scripts/import-nfl-snapshot.mjs --if-available && node scripts/import-recap-snapshot.mjs --if-available && node scripts/import-news-snapshot.mjs --if-available && node scripts/generate-player-profiles.mjs",
+    "build": "node scripts/validate-production-schedule.mjs --source && astro build && node scripts/validate-production-schedule.mjs --dist",
+    "test:tickets": "node --test tests/tickets.test.mjs",
+    "test:tickets:sync": "node --test tests/ticket-sync.test.mjs tests/ticket-http.test.mjs",
+    "tickets:sync": "node scripts/tickets/sync.mjs",
+    "tickets:eventspy": "node scripts/tickets/eventspy-mirror.mjs --output-root public/data/eventspy-mirror",
+    "tickets:eventspy-mirror": "node scripts/tickets/eventspy-mirror.mjs --output-root public/data/eventspy-mirror",
+    "tickets:match-report": "node scripts/tickets/generate-match-report.mjs",
+    "validate:tickets": "node scripts/tickets/validate-fixtures.mjs",
+    "build:offline": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "build:production-offline": "node scripts/validate-player-profiles.mjs --production && node scripts/validate-production-schedule.mjs --source && npm run build:offline && node scripts/validate-player-profiles.mjs --production --dist && node scripts/validate-production-schedule.mjs --dist",
+    "test:player-profiles": "node --test tests/player-profiles-static.test.mjs",
+    "test:player-profile-generator": "node --test tests/player-profile-generator.test.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fetch-ebay": "node scripts/fetch-ebay.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.16.6",
+    "playwright-core": "1.62.0"
+  }
+}

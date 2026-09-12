@@ -1,0 +1,91 @@
+---
+const { folder, intervalMs = 3500, height = 480, width = 480 } = Astro.props;
+
+let images = [];
+if (folder) {
+  try {
+    const data = await import(`../data/carousels/${folder}.json`);
+    const json = data.default ?? {};
+
+    // New format (preferred): { images: ["/images/.../file.jpg", ...] }
+    if (Array.isArray(json.images)) {
+      images = json.images;
+    } else {
+      // Back-compat old format: { files: ["a.jpg", "b.jpg"] }
+      const files = json.files ?? [];
+      images = Array.isArray(files) ? files.map((f) => `/images/${folder}/${f}`) : [];
+    }
+  } catch {
+    images = [];
+  }
+}
+
+const id = `carousel_${Math.random().toString(36).slice(2)}`;
+---
+
+{images.length === 0 ? null : (
+  <div class="rgf-carousel" id={id} style={`--h:${height}px;--w:${width}px;`}>
+    <div class="rgf-track">
+      {images.map((src, i) => (
+        <div class="rgf-slide" key={src}>
+          <img src={src} alt={`Carousel image ${i + 1}`} width={width} height={height} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding={i === 0 ? "sync" : "async"} />
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+<script define:vars={{ id, intervalMs }}>
+  const root = document.getElementById(id);
+  if (!root) return;
+
+  const track = root.querySelector(".rgf-track");
+  const slides = root.querySelectorAll(".rgf-slide");
+  if (!track || slides.length <= 1) return;
+
+  let idx = 0;
+  const go = (n) => {
+    idx = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+  };
+
+  setInterval(() => go(idx + 1), intervalMs);
+</script>
+
+<style>
+  .rgf-carousel {
+    width: min(100%, var(--w));
+    aspect-ratio: var(--w) / var(--h);
+    max-height: var(--h);
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 0 0 1rem 0;
+    background: #000; /* keeps letterboxing clean */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rgf-track { transition: none; }
+  }
+
+  .rgf-track {
+    display: flex;
+    height: 100%;
+    transition: transform 500ms ease;
+  }
+
+  .rgf-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex; /* centers the image within the slide */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rgf-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    object-position: center;
+    display: block;
+  }
+</style>

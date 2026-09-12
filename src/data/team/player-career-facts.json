@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-02T00:00:00Z",
+  "players": {
+    "sam-darnold": {
+      "canonicalRosterId": "sam-darnold",
+      "providerPlayerId": null,
+      "careerTimeline": [
+        {"from":2018,"to":2020,"team":"New York Jets"},
+        {"from":2021,"to":2022,"team":"Carolina Panthers"},
+        {"from":2023,"to":2023,"team":"San Francisco 49ers"},
+        {"from":2024,"to":2024,"team":"Minnesota Vikings"},
+        {"from":2025,"to":null,"team":"Seattle {Team}"}
+      ],
+      "careerTotals": {"games":100,"starts":90,"completions":1766,"attempts":2833,"passingYards":20431,"passingTouchdowns":123,"interceptions":82},
+      "recentSeasons": [
+        {"season":2025,"team":"Seattle {Team}","postseason":false,"games":17,"starts":17,"completions":323,"attempts":477,"completionPercentage":67.7,"passingYards":4048,"yardsPerAttempt":8.5,"passingTouchdowns":25,"interceptions":14,"passerRating":99.1,"sacks":27},
+        {"season":2024,"team":"Minnesota Vikings","postseason":false,"games":17,"starts":17,"completions":361,"attempts":545,"completionPercentage":66.2,"passingYards":4319,"yardsPerAttempt":7.9,"passingTouchdowns":35,"interceptions":12,"passerRating":102.5,"sacks":48},
+        {"season":2023,"team":"San Francisco 49ers","postseason":false,"games":10,"starts":1,"completions":28,"attempts":46,"completionPercentage":60.9,"passingYards":297,"yardsPerAttempt":6.5,"passingTouchdowns":2,"interceptions":1,"passerRating":85.1,"sacks":6}
+      ],
+      "postseason": {"season":2025,"games":3,"wins":3,"championship":"Super Bowl LX"},
+      "careerHighs": {"passingYards":{"value":4319,"season":2024},"passingTouchdowns":{"value":35,"season":2024},"completionPercentage":{"value":67.7,"season":2025}},
+      "sourceFacts": [{"id":"darnold-career-stats-through-2025","title":"Sam Darnold career","publisher":"Seattle {Team}","url":"https://www.{team}.com/team/players-roster/sam-darnold/career","reviewedAt":"2026-09-02"}]
+    }
+  }
+}

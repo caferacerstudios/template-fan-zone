@@ -1,0 +1,15 @@
+---
+import { normalizeTopic, TOPICS, type TopicSlug } from "../lib/fan-zone-taxonomy";
+
+const { topics = [], label = "Topics" } = Astro.props;
+const canonical = [...new Set(topics.map(normalizeTopic).filter((slug): slug is TopicSlug => Boolean(slug)))];
+---
+
+{canonical.length > 0 && <nav class="topic-chips" aria-label={label}>
+  <span>{label}</span>
+  {canonical.map((slug) => <a href={`/topics/${slug}`}>{TOPICS[slug].name}</a>)}
+</nav>}
+
+<style>
+  .topic-chips{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin:.65rem 0 1.15rem}.topic-chips>span{color:var(--slate-700);font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.topic-chips a{padding:.32rem .65rem;border:1px solid var(--slate-300);border-radius:999px;background:#fff;color:var(--navy-900);font-size:.75rem;font-weight:900;text-decoration:none}.topic-chips a:hover,.topic-chips a:focus-visible{border-color:var(--action-green);box-shadow:0 0 0 2px #69be2833}
+</style>

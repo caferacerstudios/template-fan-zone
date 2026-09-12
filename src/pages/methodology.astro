@@ -1,0 +1,70 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const title = "Methodology | {Team} Fan Zone";
+const description =
+  "How {Team} Fan Zone sources and updates schedule, team stats, and player stats.";
+---
+
+<{Team}Layout {title} {description} pageTitle="Methodology" pageTagline="How reporting, analysis, and data pages are prepared and maintained.">
+  <div class="card">
+    <h2>Editorial approach</h2>
+    <p>
+      {Team} Fan Zone publishes original analysis, recaps, and reference pages. Articles separate confirmed facts from
+      interpretation, link to supporting material when practical, and identify uncertainty rather than filling gaps with assumptions.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Data and source selection</h2>
+    <ul>
+      <li>Game schedule and final scores</li>
+      <li>Team season totals</li>
+      <li>Player season stats</li>
+    </ul>
+    <p>
+      Official team and league material is preferred for schedules, transactions, and direct announcements. Established
+      statistical and news sources may be used for additional context. Article-specific sources appear at the end of the story;
+      the broader <a href="/sources">Sources page</a> explains how sources are evaluated.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Updates and corrections</h2>
+    <p>
+      Updates typically run after games complete and may take a little time to
+      appear because data refreshes during scheduled site builds. Material article changes receive an updated date. Confirmed
+      factual errors are corrected as promptly as practical; correction requests can be sent through the
+      <a href="/contact#corrections"> Contact and Corrections page</a>.
+    </p>
+  </div>
+
+  <div class="card" id="trending-now">
+    <h2>How “Trending Now” Works</h2>
+    <p>
+      Trending is an editorial label with a fixed rule, not a claim about social-media activity. A story appears when an editor pins it with a future expiration, or when it was published in the last 14 days and has at least 100 verified first-party views. Expired pins are removed during the next site build. Pinned items come first; other eligible items are ordered by verified views and then publication time. The list is capped at five internal stories.
+    </p>
+    <p>
+      When first-party analytics are unavailable, no view count is inferred and only active editorial pins can qualify. Advertisements and external links are never eligible.
+    </p>
+  </div>
+
+  <div class="card" id="ticket-comparisons">
+    <h2>Ticket comparison methodology and data updates</h2>
+    <p><strong>Coverage levels:</strong> Connected listing providers supply individual offers. Event-summary providers supply event-level context that is displayed separately and never treated as a cheapest listing. Deep-link-only providers supply a destination without price data. The Ticket Finder's Provider coverage section publicly lists each connected provider, its actual coverage level, last successful refresh where available, stale or failed status, and material limitations.</p>
+    <p><strong>Event matching:</strong> Provider events are linked to schedule games using an approved provider crosswalk or a comparison of both teams, venue, and kickoff time. Ambiguous, low-confidence, unmatched, postponed, or materially changed events are held out until reviewed.</p>
+    <p><strong>Fee completeness:</strong> “All in” means the provider supplied sufficient mandatory-price information for the selected quantity. “Provider reported all in” is used only when a safe quantity total is supplied. Estimated and unknown values, event summaries, and totals with an ambiguous quantity basis are not ranked as cheapest. Taxes, delivery charges, or optional products are identified separately where applicable and are not guessed.</p>
+    <p><strong>Refresh and freshness:</strong> The page shows snapshot and provider check times. Data is refreshed independently of browsing; it is not a live checkout quote. Expired offers are omitted. A stale provider remains labeled stale and its values do not enter price rankings. Prices and availability can change between refresh and checkout, so users must confirm the final price and availability on the provider site.</p>
+    <p><strong>Ranking:</strong> Eligible offers are ranked within the same currency and selected quantity by the chosen all-in price, recency, seat-zone, or official-first sort. Official options remain visible but are not labeled cheapest unless they qualify under the same price rule. Commission, expected conversion, and provider payout are not ranking inputs; providers cannot buy higher organic placement. Any future sponsored placement must be labeled and visually separate.</p>
+    <p><strong>Similar offers:</strong> Offers with matching event, section, row, quantity, and close prices may be labeled similar. They are not claimed to be the same ticket, merged into a unique inventory count, or removed solely because marketplaces may syndicate inventory.</p>
+    <p>To report a bad match, stale value, missing limitation, or other correction, use the <a href="/contact#corrections">Contact and Corrections page</a> and include the game and provider.</p>
+  </div>
+
+  <div class="card">
+    <h2>Disclaimer</h2>
+    <p>
+      {Team} Fan Zone is an independent fan site and is not affiliated with
+      the NFL or the Seattle {Team}.
+    </p>
+  </div>
+</{Team}Layout>

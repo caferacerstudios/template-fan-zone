@@ -1,0 +1,91 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+import SeasonState from "../components/SeasonState.astro";
+import scheduleData from "../data/nfl/{team}.json";
+import recapData from "../data/nfl/gameRecaps.json";
+
+const abbr = (team) => String(team?.abbreviation ?? team?.abbr ?? "").toUpperCase();
+const key = (game, index = 0) => String(game?.id ?? game?.game_id ?? index);
+const final = (game) => /final|finished|complete/i.test(String(game?.status ?? ""));
+const home = (game) => abbr(game?.home_team) === "SEA";
+const opponentTeam = (game) => home(game) ? game?.visitor_team : game?.home_team;
+const opponent = (game) => opponentTeam(game)?.full_name ?? opponentTeam(game)?.name ?? abbr(opponentTeam(game)) ?? "Opponent";
+const phase = (game) => { const value = String(game?.season_type ?? game?.seasonType ?? "").toLowerCase(); if (value.includes("pre")) return "Preseason"; if (game?.postseason || value.includes("post") || value.includes("playoff")) return "Postseason"; return "Regular season"; };
+const week = (game) => game?.week != null && String(game.week).trim() ? `Week ${game.week}` : phase(game);
+const seaScore = (game) => Number(home(game) ? game?.home_team_score : game?.visitor_team_score);
+const oppScore = (game) => Number(home(game) ? game?.visitor_team_score : game?.home_team_score);
+const outcome = (game) => seaScore(game) === oppScore(game) ? "T" : seaScore(game) > oppScore(game) ? "W" : "L";
+const recapText = (recap) => String(recap?.summary ?? recap?.excerpt ?? recap?.text ?? (Array.isArray(recap?.segments) ? recap.segments.map((part) => part?.name ?? part?.v ?? "").join("") : "")).trim();
+const authoredText = (recap) => [recapText(recap), ...(recap?.bullets ?? []), ...(recap?.turningPoints ?? []).map((point) => point?.text ?? point?.description ?? "")].join(" ").replace(/\s+/g, " ").trim();
+const excerpt = (recap) => { const text = recapText(recap); if (text.length <= 230) return text; return `${text.slice(0, 230).replace(/\s+\S*$/, "")}…`; };
+const readingTime = (recap) => { const words = authoredText(recap).split(/\s+/).filter(Boolean).length; return words >= 200 ? Math.max(1, Math.ceil(words / 225)) : null; };
+const dateValue = (value) => { const time = new Date(value ?? 0).getTime(); return Number.isFinite(time) ? time : 0; };
+const displayDate = (value) => value ? new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", year: "numeric" }).format(new Date(value)) : "Date unavailable";
+
+const rawGames = Array.isArray(scheduleData?.games) ? scheduleData.games : [...(scheduleData?.gamesPreseason ?? []), ...(scheduleData?.gamesRegular ?? []), ...(scheduleData?.gamesPostseason ?? [])];
+const uniqueGames = rawGames.filter((game, index, all) => all.findIndex((other, otherIndex) => key(other, otherIndex) === key(game, index)) === index);
+const gamesById = new Map(uniqueGames.map((game, index) => [key(game, index), game]));
+const entries = Object.entries(recapData?.recaps ?? {}).map(([id, recap]: [string, any]) => ({ game: gamesById.get(id) ?? recap?.game, id, recap }))
+  .filter((entry) => entry.game && final(entry.game) && recapText(entry.recap))
+  .map((entry) => ({ ...entry, season: entry.recap?.season ?? entry.game?.season ?? recapData?.season ?? scheduleData?.season, updatedAt: entry.recap?.updatedAt ?? entry.recap?.publishedAt ?? entry.recap?.createdAt ?? recapData?.updatedAt ?? scheduleData?.updatedAt, category: entry.recap?.category ?? "Recap" }))
+  .sort((a, b) => dateValue(b.game?.date) - dateValue(a.game?.date));
+const featured = entries[0] ?? null;
+const groups = entries.slice(1).reduce((map, entry) => { const label = `${entry.season} ${phase(entry.game)}`; if (!map.has(label)) map.set(label, []); map.get(label).push(entry); return map; }, new Map());
+const currentSeason = Number(scheduleData?.season ?? recapData?.season);
+const currentEntries = entries.filter((entry) => Number(entry.season) === currentSeason);
+const archiveSeasons = [...new Set(entries.map((entry) => Number(entry.season)).filter(Number.isInteger))].sort((a, b) => b - a);
+const priorSeason = archiveSeasons.find((season) => season < currentSeason);
+const linkedArchiveSeasons = new Set();
+const archiveGroups = [...groups.entries()].map(([label, rows]) => {
+  const season = Number(rows[0]?.season);
+  const anchor = linkedArchiveSeasons.has(season) ? undefined : `season-${season}`;
+  linkedArchiveSeasons.add(season);
+  return { label, rows, anchor };
+});
+const seo = { title:"Seattle {Team} Game Recaps | {Team} Fan Zone", description:"Read original Seattle {Team} game recaps with final scores, turning points, and season context.", canonicalPath:"/weekly-recap", robots:entries.length ? "index, follow" : "noindex, follow" };
+---
+
+<{Team}Layout {seo} pageTitle="Game Recaps" pageTagline="The final score, the authored story, and the factual context from each completed game." activePath="/weekly-recap" monetizationEligible={entries.length > 0}>
+  {currentEntries.length === 0 && <SeasonState
+    title={`${currentSeason} recaps begin after completed games`}
+    explanation={`No ${currentSeason} completed game currently has an authored recap. Scheduled games are intentionally omitted; available prior-season coverage remains below.`}
+    actionHref="/schedule"
+    actionLabel={`View the ${currentSeason} schedule`}
+    priorHref={priorSeason ? `#season-${priorSeason}` : undefined}
+    priorLabel={priorSeason ? `Browse ${priorSeason} recaps` : undefined}
+    icon="R"
+  />}
+
+  {archiveSeasons.length > 0 && <nav class="season-archive" aria-label="Recap seasons"><strong>Season archive</strong>{archiveSeasons.map((season) => <a href={`#season-${season}`} aria-current={season === Number(featured?.season) ? "page" : undefined}>{season}</a>)}</nav>}
+
+  {featured ? <article id={`season-${featured.season}`} class={`featured result-${outcome(featured.game).toLowerCase()}`}>
+    <div class="feature-copy">
+      <p class="eyebrow">Latest recap · {featured.season} · {phase(featured.game)}</p>
+      <h2>{week(featured.game)}: {Team} {home(featured.game) ? "vs." : "at"} {opponent(featured.game)}</h2>
+      <div class="result-line"><span class="result-badge">{outcome(featured.game)}</span><strong>{seaScore(featured.game)}–{oppScore(featured.game)}</strong><span>Final</span></div>
+      <p class="summary">{excerpt(featured.recap)}</p>
+      <p class="byline">{featured.category} · Updated {displayDate(featured.updatedAt)}{readingTime(featured.recap) && ` · ${readingTime(featured.recap)} min read`}</p>
+      <a class="primary" href={`/games/${encodeURIComponent(featured.id)}`} data-analytics-event="article_open" data-analytics-article-category={featured.category} data-analytics-season={featured.season} data-analytics-opponent={abbr(opponentTeam(featured.game))}>Read the full game center →</a>
+    </div>
+    <div class="feature-mark" aria-hidden="true"><span>SEA</span><b>{outcome(featured.game)}</b><span>{abbr(opponentTeam(featured.game))}</span></div>
+  </article> : <SeasonState title="No authored recaps are available" explanation="Recaps appear only after a completed game has sourced results and authored coverage. Nothing has been generated to fill this archive." actionHref="/schedule" actionLabel="View the schedule" priorHref="/news" priorLabel="Read {Team} coverage" icon="R" />}
+
+  {groups.size > 0 && <section class="archive" aria-labelledby="archive-title">
+    <div class="section-heading"><p>Previous coverage</p><h2 id="archive-title">Recap archive</h2></div>
+    {archiveGroups.map(({ label, rows, anchor }, index) => <details id={anchor} open={index === 0}>
+      <summary><span>{label}</span><small>{rows.length} {rows.length === 1 ? "story" : "stories"}</small></summary>
+      <div class="recap-grid">{rows.map((entry) => <article class="recap-card">
+        <div class="card-meta"><span>{entry.category}</span><time datetime={entry.updatedAt}>{displayDate(entry.updatedAt)}</time></div>
+        <h3><a href={`/games/${encodeURIComponent(entry.id)}`} data-analytics-event="article_open" data-analytics-article-category={entry.category} data-analytics-season={entry.season} data-analytics-opponent={abbr(opponentTeam(entry.game))}>{week(entry.game)}: {home(entry.game) ? "vs." : "at"} {opponent(entry.game)}</a></h3>
+        <p class="score"><b>{outcome(entry.game)}</b> {Team} {seaScore(entry.game)}–{oppScore(entry.game)} · Final</p>
+        <p>{excerpt(entry.recap)}</p>
+        <footer><span>{entry.season} · {phase(entry.game)}</span>{readingTime(entry.recap) && <span>{readingTime(entry.recap)} min read</span>}</footer>
+      </article>)}</div>
+    </details>)}
+  </section>}
+
+  <style>
+    .season-archive{display:flex;align-items:center;gap:.5rem;margin:1rem 0;flex-wrap:wrap}.season-archive strong{margin-right:.25rem;color:var(--slate-700);font-size:.8rem;text-transform:uppercase}.season-archive a{padding:.4rem .65rem;border:var(--border-crisp);background:#fff;color:var(--navy-900);font-weight:900;text-decoration:none}.season-archive a[aria-current]{background:var(--navy-900);color:#fff}.featured{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(180px,.65fr);overflow:hidden;border-top:7px solid var(--action-green);background:var(--navy-950);color:#fff;box-shadow:var(--shadow-lg)}.feature-copy{padding:clamp(1.25rem,5vw,3rem)}.eyebrow,.section-heading p{margin:0 0 .45rem!important;color:var(--action-green);font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.result-line{display:flex;align-items:center;gap:.7rem;margin:.7rem 0}.result-line strong{font:900 clamp(1.7rem,4vw,2.6rem) var(--font-display);font-variant-numeric:tabular-nums}.result-badge{display:grid;width:2rem;height:2rem;place-items:center;background:var(--action-green);color:var(--navy-950);font-weight:950}.summary{max-width:64ch!important;color:var(--slate-100);font-size:1.05rem;line-height:1.65}.byline{color:var(--slate-300);font-size:.8rem}.primary{display:inline-flex;min-height:44px;align-items:center;margin-top:.6rem;padding:.65rem 1rem;background:var(--action-green);color:var(--navy-950);font-weight:950;text-decoration:none}.feature-mark{display:grid;grid-template-rows:1fr auto 1fr;place-items:center;padding:1.5rem;background:linear-gradient(145deg,#69be282b,transparent)}.feature-mark span{font:900 clamp(2rem,6vw,4rem) var(--font-display)}.feature-mark b{display:grid;width:3rem;height:3rem;place-items:center;border:2px solid var(--action-green);border-radius:50%;color:var(--action-green)}.archive{margin-top:2.5rem}.section-heading{margin-bottom:1rem;padding-left:.8rem;border-left:5px solid var(--action-green)}.section-heading p{color:#4b711f}.section-heading h2{margin:0}.archive details{scroll-margin-top:1rem;border:var(--border-crisp);background:#fff}.archive details+details{margin-top:.8rem}.archive summary{display:flex;justify-content:space-between;gap:1rem;padding:1rem;cursor:pointer;background:var(--navy-800);color:#fff;font-weight:900}.archive summary small{color:var(--slate-300)}.recap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--slate-300)}.recap-card{min-width:0;padding:1.15rem;background:#fff}.card-meta,.recap-card footer{display:flex;justify-content:space-between;gap:.75rem;color:var(--slate-700);font-size:.72rem;text-transform:uppercase}.card-meta span{color:#4b711f;font-weight:900}.recap-card h3{margin:.55rem 0}.recap-card h3 a{color:var(--navy-900);text-decoration-thickness:2px;text-decoration-color:var(--action-green)}.recap-card .score{margin:.35rem 0;font-weight:800}.recap-card>p:not(.score){line-height:1.55}.recap-card footer{padding-top:.75rem;border-top:var(--border-crisp)}@media(max-width:680px){.featured{grid-template-columns:1fr}.feature-mark{display:none}.recap-grid{grid-template-columns:1fr}.archive summary{min-height:48px;align-items:center}.recap-card footer{align-items:flex-start;flex-direction:column}}
+    .featured h2{max-width:15ch;margin:.2rem 0 1rem;color:#fff;font:900 clamp(2rem,6vw,4.5rem)/.94 var(--font-display);letter-spacing:-.03em;text-transform:uppercase}
+  </style>
+</{Team}Layout>

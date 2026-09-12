@@ -1,0 +1,149 @@
+---
+import { MARKETPLACE_IDS } from "../../lib/tickets/provider-quotes.mjs";
+import { formatKickoff, formatPacificCalendarDate } from "../../lib/schedule.mjs";
+
+const { routeStyle = "tickets", game = null, pageMetadata = null, observation = null, eligibleGames = [], section = "intro" } = Astro.props;
+const marketplaceLabels = Object.freeze({
+  ticketmaster: "Ticketmaster",
+  stubhub: "StubHub",
+  vividseats: "Vivid Seats",
+  seatgeek: "SeatGeek",
+});
+const marketplaceNames = MARKETPLACE_IDS.map((id) => marketplaceLabels[id]).filter(Boolean);
+const dateValue = game?.game?.startsAt ?? game?.game?.date ?? null;
+const dateLabel = dateValue ? formatPacificCalendarDate(dateValue, { weekday: "long", month: "long", day: "numeric", year: "numeric" }) : null;
+const hasDate = Boolean(dateLabel);
+const kickoffLabel = game?.game?.timeConfirmed && game.game.startsAt ? formatKickoff(game.game, "time") : observation?.event?.localTimeLabel ?? null;
+const venueLabel = game?.venue ?? observation?.event?.venue ?? null;
+const locationLabel = game?.editorial?.location ?? observation?.event?.location ?? null;
+const matchup = pageMetadata?.matchup ?? (game ? `${game.home ? `${game.opponentName} at Seattle {Team}` : `Seattle {Team} at ${game.opponentName}`}` : null);
+const statusLabel = game?.completed ? "Final" : game?.game?.state === "in_progress" ? "In progress" : game?.game?.state === "postponed" ? "Postponed" : game?.game?.state === "tbd" ? "Details not confirmed" : "Scheduled";
+const datedGames = eligibleGames.filter((item) => item && !item.completed);
+---
+
+<div class="ticket-publisher-content" data-ticket-publisher-content>
+  {section === "intro" && (
+  <>
+  <header class="publisher-intro">
+    <h1>{routeStyle === "tickets" ? "Seattle {Team} Ticket Finder" : pageMetadata?.h1 ?? "Seattle {Team} game guide"}</h1>
+    <p>{routeStyle === "games" && pageMetadata ? pageMetadata.summary : "Use the Ticket Finder to compare recent Seattle {Team} ticket price snapshots before visiting a provider. {Team} Fan Zone does not sell tickets, hold ticket inventory, or guarantee that a displayed price is still available. The tool organizes validated event summaries and marketplace observations so fans can see what was reported, when it was checked, and what limitations apply."}</p>
+  </header>
+
+  {routeStyle === "games" && game && (
+    <section class="game-overview" aria-labelledby="game-overview-heading">
+      <h2 id="game-overview-heading">Game facts</h2>
+      <p>Confirmed details for {matchup}. NFL scheduling details can change; this page omits unverified broadcast and game-day information.</p>
+      <dl>
+        <div><dt>Matchup</dt><dd>{matchup}</dd></div>
+        <div><dt>Season and week</dt><dd>{game.game?.season} · {game.weekLabel}</dd></div>
+        {hasDate && <div><dt>Date</dt><dd><time datetime={dateValue}>{dateLabel}</time></dd></div>}
+        {kickoffLabel && <div><dt>Pacific kickoff</dt><dd><time datetime={dateValue}>{kickoffLabel}</time></dd></div>}
+        {venueLabel && <div><dt>Venue</dt><dd>{venueLabel}</dd></div>}
+        {locationLabel && <div><dt>Location</dt><dd>{locationLabel}</dd></div>}
+        <div><dt>Home/away</dt><dd>{game.home ? "Seattle home game" : "Seattle away game"}</dd></div>
+        <div><dt>Game status</dt><dd>{statusLabel}</dd></div>
+        {game.completed && game.seaScore != null && game.opponentScore != null && <div><dt>Final score</dt><dd>Seattle {game.seaScore}, {game.opponentName} {game.opponentScore}</dd></div>}
+      </dl>
+      <p><a href="/schedule">View the full {Team} schedule</a></p>
+    </section>
+  )}
+
+  {routeStyle === "tickets" && (
+    <section class="eligible-games" aria-labelledby="eligible-games-heading">
+      <h2 id="eligible-games-heading">Upcoming games in the Ticket Finder</h2>
+      {datedGames.length ? (
+        <ul>
+          {datedGames.map((item) => {
+            const itemDateValue = item.game?.startsAt ?? item.game?.date ?? null;
+            const itemDateLabel = itemDateValue ? formatPacificCalendarDate(itemDateValue, { month: "short", day: "numeric", year: "numeric" }) : null;
+            return <li><a href={`/games/${encodeURIComponent(item.id)}/`}>{item.home ? `${item.opponentName} at Seattle {Team}` : `Seattle {Team} at ${item.opponentName}`}</a><span>{item.weekLabel}{itemDateLabel ? `, ${itemDateLabel}` : ", date not confirmed"}</span></li>;
+          })}
+        </ul>
+      ) : (
+        <p>No eligible games are currently available in the Ticket Finder. <a href="/schedule">Check the full {Team} schedule</a> for dates, opponents, and game status.</p>
+      )}
+    </section>
+  )}
+  </>
+  )}
+
+  {section === "supporting" && (
+  <section class="publisher-guide" aria-labelledby="ticket-information-heading">
+    <h2 id="ticket-information-heading">Supporting ticket information</h2>
+    <details>
+      <summary><h3>Provider links and disclosure</h3></summary>
+      <div class="faq-answer">
+        <p>Disclosure: {Team} Fan Zone may earn a commission from purchases made through links specifically marked <strong>“Affiliate link”</strong>. This does not affect how prices are ordered. {Team} Fan Zone does not sell tickets. Read the <a href="/disclosure/">full site disclosure</a>.</p>
+        <p>Price snapshots can change at any time and may not include taxes or fees. Confirm availability and the final checkout total with the ticket provider.</p>
+      </div>
+    </details>
+    <details>
+      <summary><h3>Sources and marketplaces covered</h3></summary>
+      <div class="faq-answer">
+      <p>Ticketmaster is currently represented through a verified event-summary source. When a valid marketplace price-history snapshot is available, the comparison may also show observed starting prices for {marketplaceNames.slice(0, -1).join(", ")}, and {marketplaceNames.at(-1)}. Marketplace observations are not the same as direct listing feeds, endorsements, or proof that a particular seat is available.</p>
+      <p>An event summary describes a provider event and may include a reported range. A marketplace observation records a starting-price value seen at a particular time. Neither is an individual ticket listing or a guaranteed ticket offer. The absence of a marketplace value does not establish that the provider has no tickets.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><h3>How prices are compared</h3></summary>
+      <div class="faq-answer">
+      <p>Monetary values are validated and stored as integer cents, and currency and timestamps are validated before display. Marketplace cards use the latest valid observation available for each marketplace and are ordered from lowest to highest. Missing values follow available prices, and equal values are treated as ties.</p>
+      <p>Ranking is based only on price data. Affiliate status, link type, provider compensation, and provider display order do not affect rank or lowest observed price status. Ticketmaster-reported event ranges are displayed separately because their price basis may differ and are not used to determine the lowest observed marketplace. Values with incompatible or unknown fee bases are not combined into a misleading all-in comparison.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><h3>Are fees included?</h3></summary>
+      <div class="faq-answer">
+      <p>Not always. A displayed amount may exclude taxes, service charges, delivery fees, or other checkout costs. A price is described as all-in only when its source explicitly identifies it that way. Confirm the final total for the same number of tickets with the provider before purchasing.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><h3>Data freshness and limitations</h3></summary>
+      <div class="faq-answer">
+      <p>Ticket prices change frequently. Dynamic data shows the exact last-checked timestamp for the accepted snapshot in Pacific time. A failed or delayed refresh can make a snapshot stale, and the absence of a price does not prove tickets are unavailable. An event summary is not an individual listing, and starting prices may apply to limited inventory or a different ticket quantity.</p>
+      <p>Verify the section, row, seat, quantity, transfer method, and final total on the provider site. {Team} Fan Zone cannot guarantee provider availability, accuracy, fulfillment, refunds, or event changes. If dynamic data cannot load, the game details and this guide remain available while the price observation is treated as unavailable.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><h3>Before buying {Team} tickets</h3></summary>
+      <div class="faq-answer">
+      <ul>
+        <li>Confirm the opponent, date, kickoff time, city, and venue.</li>
+        <li>Compare the final checkout total for the same ticket quantity.</li>
+        <li>Check whether the advertised price is for one ticket or requires buying multiple tickets.</li>
+        <li>Verify the section, row, view, and any obstructed-view notice.</li>
+        <li>Review mobile-transfer timing and the delivery method.</li>
+        <li>Read refund, postponement, cancellation, and rescheduling policies.</li>
+        <li>Confirm accessible-seating details directly with the seller or venue when needed.</li>
+        <li>Complete payment only on the provider’s secure site.</li>
+        <li>Keep the order confirmation and transfer instructions.</li>
+      </ul>
+      </div>
+    </details>
+
+    <nav class="publisher-links" aria-label="Ticket Finder editorial information">
+      <a href="/methodology/">Full methodology</a>
+      <a href="/sources/">Sources</a>
+      <a href="/disclosure/">Disclosure</a>
+    </nav>
+  </section>
+  )}
+</div>
+
+<style>
+  .ticket-publisher-content{--navy:#002244;--green:#69be28;--ink:#0b1f35;--muted:#536171;--line:#d7dfe6;width:min(1160px,calc(100% - 3rem));margin:1.5rem auto;color:var(--ink)}
+  .publisher-intro{max-width:52rem}.publisher-intro h1{margin:0 0 .8rem;font-size:clamp(2rem,5vw,3.25rem);line-height:1.08}.publisher-intro p,.publisher-guide p,.game-overview p{max-width:72ch;line-height:1.7}
+  .game-overview,.eligible-games,.outbound-disclosure{margin:1.5rem 0;padding:clamp(1rem,3vw,1.5rem);background:#fff;border:1px solid var(--line);border-radius:.8rem}.game-overview{border-top:5px solid var(--green)}
+  h2{margin:0 0 .75rem;color:var(--navy);font-size:clamp(1.35rem,3vw,1.8rem)}
+  dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:1rem 0;background:var(--line);border:1px solid var(--line)}dl div{min-width:0;padding:.8rem;background:#f7f9fa}dt{color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase}dd{margin:.25rem 0 0;font-weight:800;overflow-wrap:anywhere}
+  .eligible-games ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin:0;padding:0;list-style:none}.eligible-games li{display:flex;flex-direction:column;padding:.85rem;background:#f7f9fa;border-left:4px solid var(--green)}.eligible-games a{font-weight:850}.eligible-games span{margin-top:.25rem;color:var(--muted);font-size:.9rem}
+  .publisher-guide{margin-top:2rem}.publisher-guide>h2{margin-bottom:1rem}.publisher-guide details{background:#fff;border:1px solid var(--line);border-radius:.65rem}.publisher-guide details+details{margin-top:.65rem}.publisher-guide summary{display:flex;align-items:center;min-height:52px;padding:.25rem 1rem;cursor:pointer}.publisher-guide summary h3{margin:0;color:var(--navy);font-size:1.05rem}.faq-answer{padding:0 1rem 1rem;border-top:1px solid var(--line)}.publisher-guide ul{max-width:74ch;padding-left:1.25rem;line-height:1.65}.publisher-guide li+li{margin-top:.35rem}.publisher-links{display:flex;gap:.75rem 1.25rem;flex-wrap:wrap;padding:1rem 0 2rem;font-weight:800}
+  :is(a,summary):focus-visible{outline:3px solid var(--green);outline-offset:3px}
+  @media(max-width:650px){.ticket-publisher-content{width:calc(100% - 1.5rem)}dl,.eligible-games ul{grid-template-columns:1fr}}
+  @media(max-width:380px){.ticket-publisher-content{width:calc(100% - 1rem)}.game-overview,.eligible-games,.outbound-disclosure{padding:.85rem}}
+  @media print{.ticket-publisher-content{width:100%;color:#000}.game-overview,.eligible-games,.outbound-disclosure{break-inside:avoid;box-shadow:none}}
+</style>

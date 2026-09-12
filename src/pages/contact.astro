@@ -1,0 +1,38 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const pageTitle = "Contact and Corrections";
+const pageTagline = "Contact the site owner about feedback, factual errors, rights, or business matters.";
+const email = "laura@caferacerstudios.com";
+---
+
+<{Team}Layout pageTitle={pageTitle} pageTagline={pageTagline} activePath="/contact" monetizationEligible={false}>
+  <section class="sfz-card">
+    <h2>Contact the publication</h2>
+    <p>{Team} Fan Zone is individually operated. Email the site owner at <a href={`mailto:${email}`}>{email}</a>.</p>
+    <p class="sfz-muted">There is no web contact form or automated ticket system. Please send inquiries directly by email.</p>
+  </section>
+
+  <section class="sfz-card" id="corrections">
+    <h2>Corrections</h2>
+    <p>For a possible factual or data error, use the subject “Correction” and include the page URL, the statement or value at issue, and a reliable supporting source. The site owner will review the request and correct confirmed errors. Material article changes receive an updated date.</p>
+  </section>
+
+  <section class="sfz-card" id="rights">
+    <h2>Rights and copyright concerns</h2>
+    <p>Use the subject “Rights request” and identify the specific text, image, logo, or other material, its page URL, and the basis for your request. Include a way to verify that you are the rights holder or are authorized to act for one.</p>
+  </section>
+
+  <section class="sfz-card" id="business">
+    <h2>Advertising and business inquiries</h2>
+    <p>Use the subject “Business inquiry” and describe the organization and proposal. Sending an inquiry does not guarantee placement or coverage. Advertising and affiliate relationships do not determine editorial conclusions.</p>
+  </section>
+
+  <style>
+    .sfz-card{border-radius:16px;border:1px solid rgba(0,34,68,.14);background:#fff;padding:1rem 1.05rem;box-shadow:0 10px 24px rgba(0,0,0,.06);margin-bottom:.95rem;scroll-margin-top:1rem}
+    .sfz-card h2{margin:0 0 .6rem;color:var(--navy);font-weight:900}
+    .sfz-card p{margin:0 0 .75rem;color:rgba(15,23,32,.78);line-height:1.6;font-weight:650}
+    .sfz-card p:last-child{margin-bottom:0}
+    .sfz-muted{color:rgba(15,23,32,.62)!important;font-size:.95rem}
+  </style>
+</{Team}Layout>

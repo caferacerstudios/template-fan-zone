@@ -1,0 +1,29 @@
+[Unit]
+Description={Team} Fan Zone ticket snapshot synchronization (%i)
+Documentation=file:/home/laurawkr/{team}fanzone-dev/source/docs/ticket-sync-deployment.md
+After=docker.service
+Requires=docker.service
+ConditionPathIsDirectory=/var/lib/sfz-ticket-finder/%i
+ConditionPathIsReadWrite=/var/lib/sfz-ticket-finder/%i
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/sfz-ticket-finder/%i.env
+Environment=TICKET_DATA_ROOT=/var/lib/sfz-ticket-finder/%i
+Environment=TICKET_SYNC_ENV_FILE=/etc/sfz-ticket-finder/%i.env
+WorkingDirectory=/home/laurawkr/{team}fanzone-dev
+ExecStart=/usr/bin/flock --nonblock /run/lock/sfz-ticket-sync-%i.lock /usr/bin/docker compose --project-name sfz-%i --file docker-compose.yml --file source/deployment/ticket-sync/eventspy-dev.compose.yml --profile ticket-sync run --rm --no-deps ticket-sync
+TimeoutStartSec=15min
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+# Fail closed and avoid granting the unit host capabilities it does not need.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=/run/lock
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,224 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+import SeasonContextView from "../components/SeasonContext.astro";
+import SeasonState from "../components/SeasonState.astro";
+import ContinueFanZone from "../components/ContinueFanZone.astro";
+import { getSeasonContext } from "../lib/season-context";
+import { buildTeamStats } from "../lib/team-stats.mjs";
+import data from "../data/nfl/{team}.json";
+
+const t = data.team;
+const currentSeasonContext = getSeasonContext(data, "regular season");
+
+const logoRelBase = "/images/nfl/teams";
+const projectRoot = Astro.root ?? process.cwd();
+const logoDiskBase = path.join(projectRoot, "public", "images", "nfl", "teams");
+
+function logoFor(abbr) {
+  const a = String(abbr || "").toUpperCase();
+  for (const ext of [".svg", ".png", ".jpg"]) {
+    const disk = path.join(logoDiskBase, `${a}${ext}`);
+    if (fs.existsSync(disk)) return `${logoRelBase}/${a}${ext}`;
+  }
+  return "";
+}
+const {team}Logo = logoFor(t?.abbreviation || "SEA");
+const stats = buildTeamStats(data);
+const currentSeason = Number(currentSeasonContext.seasonYear);
+const hasMeaningfulStatistics = Boolean(stats?.gamesPlayed || stats?.teamTotals);
+const statisticsContext = {
+  ...currentSeasonContext,
+  sourceSeason: currentSeasonContext.seasonYear,
+  hasData: hasMeaningfulStatistics,
+  hasStatistics: hasMeaningfulStatistics,
+};
+const pageTitle = `Seattle {Team} Team Statistics`;
+const seo = {
+  title: `${currentSeason} Seattle {Team} Team Statistics`,
+  description: `Review verified ${currentSeason} Seattle {Team} record and scoring totals as regular-season games are completed, with unavailable statistics clearly identified.`,
+  canonicalPath: "/team",
+  robots: hasMeaningfulStatistics ? "index, follow" : "noindex, follow",
+};
+---
+
+<{Team}Layout {seo} pageTitle={pageTitle} pageTagline={`Verified ${currentSeason} record and scoring totals, with unavailable statistics identified clearly until regular-season data exists.`} activePath="/team" pageType="team" season={statisticsContext.seasonYear} monetizationEligible={hasMeaningfulStatistics}>
+  <div>
+    <SeasonContextView context={statisticsContext} options={[statisticsContext]} prefix="Data through" />
+  </div>
+  <div class="sfz-team-header">
+    {{team}Logo ? (
+      <img class="sfz-team-logo" src={{team}Logo} alt="SEA logo" width="64" height="64" loading="lazy" decoding="async" />
+    ) : (
+      <div class="sfz-team-logo sfz-team-logo-fallback" aria-hidden="true">SEA</div>
+    )}
+
+    <div class="sfz-team-text">
+      <h2 class="sfz-team-name">{t?.full_name ?? "Seattle {Team}"}</h2>
+      <div class="sfz-team-meta">
+        <span>{t?.conference ?? "NFC"}</span>
+        <span class="sfz-dot">•</span>
+        <span>{t?.division ?? "West"}</span>
+      </div>
+    </div>
+  </div>
+
+  {!hasMeaningfulStatistics ? (
+    <SeasonState
+      title={`${currentSeason} statistics are not available yet`}
+      explanation={`${currentSeason} regular-season statistics will appear once games are played. No unavailable values have been converted to zero.`}
+      actionHref="/schedule"
+      actionLabel="View the schedule"
+      priorHref="/history"
+      priorLabel="Explore {Team} history"
+      icon="ST"
+    />
+  ) : (
+    <div class="sfz-cards">
+      <section class="sfz-card">
+        <div class="sfz-card-title">Overview</div>
+        <div class="sfz-stat-grid">
+          {stats?.record && <div class="sfz-stat">
+            <div class="sfz-k">Team record</div>
+            <div class="sfz-v">{stats.record}</div>
+            <div class="sfz-note">Verified final scores</div>
+          </div>}
+          <div class="sfz-stat">
+            <div class="sfz-k">Games played</div>
+            <div class="sfz-v">{stats?.gamesPlayed ?? "Unavailable"}</div>
+          </div>
+          <div class="sfz-stat">
+            <div class="sfz-k">Total points</div>
+            <div class="sfz-v">{stats?.pointsScored ?? "Unavailable"}</div>
+            <div class="sfz-note">{stats?.pointsPerGame != null ? `${stats.pointsPerGame.toFixed(1)} per game` : "Verified final scores only"}</div>
+          </div>
+          {stats?.pointsAllowed != null && <div class="sfz-stat">
+            <div class="sfz-k">Points allowed</div>
+            <div class="sfz-v">{stats?.pointsAllowed}</div>
+            <div class="sfz-note">Verified final scores</div>
+          </div>}
+          <div class="sfz-stat">
+            <div class="sfz-k">Total offense</div>
+            <div class="sfz-v">{stats?.teamTotals?.totalOffensiveYards ?? "Unavailable"}</div>
+            <div class="sfz-note">Authoritative team-season feed only</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sfz-card">
+        <div class="sfz-card-title">Offense</div>
+        <div class="sfz-stat-grid">
+          <div class="sfz-stat">
+            <div class="sfz-k">Passing yards</div>
+            <div class="sfz-v">{stats?.teamTotals?.passingYards ?? "Unavailable"}</div>
+            <div class="sfz-note">Authoritative team-season feed only</div>
+          </div>
+          <div class="sfz-stat">
+            <div class="sfz-k">Rushing yards</div>
+            <div class="sfz-v">{stats?.teamTotals?.rushingYards ?? "Unavailable"}</div>
+            <div class="sfz-note">Authoritative team-season feed only</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )}
+
+  <section class="team-context" aria-labelledby="team-context-title">
+    <div><p>Interpreting the totals</p><h2 id="team-context-title">A season-level view of {Location}</h2></div>
+    <p>Record, games played, and scoring are calculated only from uniquely identified {currentSeason} regular-season games with direct final scores. Offensive totals appear only when an explicit {Team} team-season record matches that season and game count; player rows are never summed into team totals.</p>
+  </section>
+  <p class="team-source">Data source: existing {Team} Fan Zone season feed · <a href="/methodology">Methodology and update policy</a>.</p>
+  <ContinueFanZone groups={[
+    { title:"Explore the data", links:[{href:"/players",label:"Roster and category leaders"},{href:"/standings",label:"NFC West standings"}] },
+    { title:"Season context", links:[{href:"/schedule",label:`${currentSeason} schedule`},{href:"/history",label:"{Team} history"}] },
+  ]} />
+
+  <style>
+    .sfz-team-header,
+    .sfz-team-text,
+    .sfz-cards,
+    .sfz-card,
+    .sfz-stat-grid,
+    .sfz-stat { min-width:0; max-width:100%; box-sizing:border-box; }
+
+    .sfz-team-name,
+    .sfz-team-meta,
+    .sfz-updated,
+    .sfz-card-title,
+    .sfz-k,
+    .sfz-v,
+    .sfz-note,
+    .sfz-empty,
+    .sfz-empty-sub,
+    .sfz-computed,
+    .sfz-computed-sub { overflow-wrap:anywhere; word-break:break-word; }
+
+    .sfz-team-header{
+      display:flex; gap:1rem; align-items:center;
+      margin-bottom:1.1rem; padding-bottom:1rem;
+      border-bottom:1px solid rgba(0,34,68,0.12);
+    }
+
+    .sfz-team-logo{ width:64px; height:64px; object-fit:contain; flex:0 0 auto; }
+    .sfz-team-logo-fallback{
+      display:grid; place-items:center; border-radius:14px;
+      background:rgba(0,34,68,0.06); border:1px solid rgba(0,34,68,0.10);
+      color:rgba(0,34,68,0.85); font-weight:900; letter-spacing:0.4px;
+      width:64px; height:64px;
+    }
+
+    .sfz-team-name{ margin:0; color:var(--navy); font-size:1.45rem; font-weight:900; line-height:1.2; }
+    .sfz-team-meta{
+      margin-top:.25rem; color:rgba(15,23,32,0.65);
+      font-weight:800; font-size:.95rem; display:flex; gap:.35rem; align-items:center; flex-wrap:wrap;
+    }
+    .sfz-dot{ opacity:.7; }
+    .sfz-updated{ margin-top:.35rem; color:rgba(15,23,32,0.6); font-weight:700; font-size:.92rem; }
+
+    .sfz-cards{ display:grid; grid-template-columns:1fr; gap:.9rem; }
+    .context-after-state{margin-top:.85rem}
+    .team-context{display:grid;grid-template-columns:minmax(180px,.45fr) 1fr;gap:1rem;margin-top:1rem;padding:1rem;border-left:5px solid var(--action-green);background:var(--slate-100)}
+    .team-context h2,.team-context p{margin:.1rem 0}.team-context>div>p{color:#398000;font-size:.7rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}.team-source{color:var(--slate-700);font-size:.72rem}.team-source a{color:#2f660b;font-weight:900}
+
+    .sfz-computed{
+      border-radius:16px; border:1px solid rgba(0,34,68,0.14);
+      background:rgba(165,172,175,0.18);
+      padding:.85rem .95rem; color:rgba(15,23,32,0.85);
+    }
+    .sfz-computed-sub{ margin-top:.35rem; color:rgba(15,23,32,0.7); font-weight:700; font-size:.95rem; }
+
+    .sfz-card{
+      border-radius:16px; border:1px solid rgba(0,34,68,0.14);
+      background:#fff; padding:1rem;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      overflow:hidden;
+    }
+
+    .sfz-card-title{ font-weight:900; color:var(--navy); margin-bottom:.75rem; font-size:1.05rem; }
+
+    .sfz-stat-grid{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:.85rem; }
+    .sfz-stat{
+      border-radius:14px; border:1px solid rgba(0,34,68,0.12);
+      background:rgba(0,34,68,0.03);
+      padding:.75rem .85rem;
+    }
+    .sfz-k{ color:rgba(0,34,68,0.7); font-weight:900; font-size:.9rem; }
+    .sfz-v{ margin-top:.25rem; color:var(--navy); font-weight:900; font-size:1.25rem; letter-spacing:.2px; }
+    .sfz-note{ margin-top:.2rem; color:rgba(15,23,32,0.6); font-weight:700; font-size:.9rem; }
+
+    .sfz-empty{
+      border-radius:16px; border:1px solid rgba(0,34,68,0.14);
+      background:rgba(165,172,175,0.18);
+      padding:.95rem; color:rgba(15,23,32,0.85);
+    }
+    .sfz-empty-sub{ margin-top:.35rem; color:rgba(15,23,32,0.7); font-weight:700; font-size:.95rem; }
+
+    @media (max-width:980px){
+      .sfz-stat-grid{ grid-template-columns:1fr; }
+      .team-context{grid-template-columns:1fr}
+      .sfz-team-logo, .sfz-team-logo-fallback{ width:56px; height:56px; }
+    }
+  </style>
+</{Team}Layout>

@@ -1,0 +1,46 @@
+---
+import type { SeasonContext } from "../lib/season-context";
+import { formatPacificTime } from "../lib/season-context";
+import { scheduleFreshness } from "../lib/schedule.mjs";
+
+interface Props {
+  context: SeasonContext;
+  options?: SeasonContext[];
+  prefix?: "Data through" | "Last updated";
+  freshnessIndicator?: boolean;
+  seasonNavigation?: boolean;
+}
+
+const { context, options = [context], prefix = "Last updated", freshnessIndicator = false, seasonNavigation = false } = Astro.props;
+const freshness = scheduleFreshness(context.updatedAt);
+---
+
+<div class="season-context" aria-label="Season and data context">
+  <label>
+    <span>Season</span>
+    <select aria-label="Season" disabled={options.length < 2} data-season-navigation={seasonNavigation ? "true" : undefined} data-analytics-event="schedule_filter" data-analytics-filter-type="season">
+      {options.map((option) => <option value={option.seasonYear ?? ""} selected={option.seasonYear === context.seasonYear}>{option.label}</option>)}
+    </select>
+  </label>
+  <span class="season-status">{context.seasonStatus}</span>
+  {freshnessIndicator ? <a class="season-updated" href="/methodology">{freshness.label}</a> : <span class="season-updated">{prefix}: {formatPacificTime(context.updatedAt)}</span>}
+  {freshnessIndicator && freshness.stale && <span class="season-freshness">Updates may be delayed; showing the last verified schedule.</span>}
+</div>
+
+{seasonNavigation && <script>
+  document.querySelectorAll<HTMLSelectElement>("select[data-season-navigation]").forEach((select) => select.addEventListener("change", () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("season", select.value);
+    window.location.assign(url);
+  }));
+</script>}
+
+<style>
+  .season-context { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-bottom:1rem; color:rgba(15,23,32,.68); font-size:.9rem; font-weight:700; }
+  label { display:inline-flex; align-items:center; gap:.45rem; }
+  select { border:1px solid rgba(0,34,68,.18); border-radius:9px; background:#fff; color:var(--navy); padding:.4rem .55rem; font:inherit; font-weight:800; }
+  select:disabled { opacity:1; cursor:default; }
+  .season-status { text-transform:capitalize; padding:.2rem .45rem; border-radius:999px; background:rgba(0,34,68,.07); }
+  .season-updated { color:inherit; font-weight:700; }
+  .season-freshness { font-weight:600; }
+</style>

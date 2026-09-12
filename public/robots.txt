@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://{team}fanzone.com/sitemap.xml
+Sitemap: https://{team}fanzone.com/news-sitemap.xml

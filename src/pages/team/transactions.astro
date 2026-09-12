@@ -1,0 +1,34 @@
+---
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import { TRANSACTION_TYPES, formatUpdateDate, playerPath, transactions, transactionsFreshness, transactionsMetadata } from "../../lib/team-updates";
+---
+<{Team}Layout pageTitle="Seattle {Team} Transactions" pageTagline="A sourced, chronological record of signings, releases, waivers, trades, reserve-list changes and contracts. Newest updates appear first." activePath="/team/transactions" monetizationEligible={false} breadcrumbs={[{name:"Home",href:"/"},{name:"Roster",href:"/players"},{name:"Transactions",href:"/team/transactions"}]}>
+  <nav class="utility-nav" aria-label="Team updates"><a aria-current="page" href="/team/transactions">Transactions</a><a href="/team/injuries">Injuries &amp; status</a></nav>
+  <aside class:list={["freshness", { stale: transactionsFreshness.stale }]} aria-label="Transaction data freshness">
+    <strong>{transactionsFreshness.stale ? "Last verified snapshot" : "Current verified snapshot"}</strong>
+    <span>Updated {formatUpdateDate(transactionsMetadata.asOf)} from <a href={transactionsMetadata.sourceUrl} rel="noopener noreferrer">{transactionsMetadata.sourcePublisher}</a>.</span>
+    <span>{transactionsFreshness.stale ? transactionsFreshness.message : transactionsMetadata.sourceNote}</span>
+  </aside>
+  <section class="filters" aria-labelledby="filter-title">
+    <h2 id="filter-title">Filter moves</h2>
+    <div class="filter-row" role="group" aria-label="Transaction type">
+      <button class="selected" type="button" data-type="all" aria-pressed="true">All</button>
+      {TRANSACTION_TYPES.map((type) => <button type="button" data-type={type} aria-pressed="false">{type}</button>)}
+    </div>
+    <p class="result-count" aria-live="polite">{transactions.length} {transactions.length === 1 ? "move" : "moves"}</p>
+  </section>
+  {transactions.length ? <ol class="updates">
+    {transactions.map((move) => <li data-transaction={move.transactionType}>
+      <div class="update-head"><time datetime={move.timestamp}>{formatUpdateDate(move.timestamp)}</time><span class:list={["verification", move.updateStatus.toLowerCase()]}>{move.updateStatus}</span><span class="type">{move.transactionType}</span></div>
+      <h2><a href={playerPath(move.playerId)}>{move.playerName || `Player ${move.playerId}`}</a></h2>
+      <p>{move.description}</p>
+      {(move.previousStatus || move.newStatus) && <p class="status-change"><span>{move.previousStatus || "Not specified"}</span><b aria-hidden="true">→</b><span>{move.newStatus || "Not specified"}</span></p>}
+      <a class="source" href={move.sourceUrl} rel="noopener noreferrer">Source: {move.sourcePublisher} ↗</a>
+    </li>)}
+  </ol> : <div class="empty"><h2>No transactions have been imported yet.</h2><p>This does not indicate that no roster moves have occurred. Sourced updates will appear here when imported.</p></div>}
+  <p class="no-results" hidden>No moves match this transaction type.</p>
+  <script is:inline>(()=>{const buttons=[...document.querySelectorAll('[data-type]')],rows=[...document.querySelectorAll('[data-transaction]')],count=document.querySelector('.result-count'),none=document.querySelector('.no-results');buttons.forEach(button=>button.addEventListener('click',()=>{const type=button.dataset.type;buttons.forEach(item=>{const on=item===button;item.classList.toggle('selected',on);item.setAttribute('aria-pressed',String(on))});let visible=0;rows.forEach(row=>{const show=type==='all'||row.dataset.transaction===type;row.hidden=!show;if(show)visible++});count.textContent=`${visible} ${visible===1?'move':'moves'}`;none.hidden=visible!==0}))})()</script>
+  <style>
+    .utility-nav{display:flex;gap:.5rem;margin-bottom:1rem}.utility-nav a,.filter-row button{min-height:44px;padding:.65rem .85rem;border:2px solid var(--navy-800);background:#fff;color:var(--navy-900);font-weight:900;text-decoration:none}.utility-nav [aria-current],.filter-row .selected{background:var(--navy-900);color:#fff}.freshness{display:grid;gap:.25rem;margin-bottom:1rem;padding:.8rem 1rem;border-left:5px solid var(--action-green);background:#eef3f5}.freshness.stale{border-color:#a14900;background:#fff4e8}.freshness span{color:var(--slate-700)}.freshness a{color:#2f660b;font-weight:800}.filters{padding:1rem;border:1px solid #b8c5cc;background:#eef3f5}.filters h2{margin:0 0 .65rem;font-size:1rem}.filter-row{display:flex;gap:.45rem;overflow-x:auto;padding-bottom:.35rem;-webkit-overflow-scrolling:touch}.filter-row button{flex:0 0 auto;cursor:pointer}.result-count{margin:.35rem 0 0;color:var(--slate-700)}.updates{display:grid;gap:.8rem;padding:0;list-style:none}.updates li,.empty,.no-results{padding:1rem;border:1px solid #b8c5cc;border-left:5px solid var(--action-green);background:#fff}.update-head{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.78rem;font-weight:900;text-transform:uppercase}.verification,.type{padding:.2rem .45rem}.official{background:var(--navy-900);color:#fff}.reported{border:1px solid #526875}.type{background:#dfe8ec}.updates h2{margin:.45rem 0 .2rem;font-size:1.25rem}.updates p{margin:.35rem 0}.status-change{display:flex;gap:.5rem;flex-wrap:wrap;color:var(--slate-700)}.source{display:inline-block;min-height:44px;padding-top:.65rem;color:#2f660b;font-weight:900}.empty h2{margin-top:0}.no-results{margin-top:1rem}@media(max-width:520px){.utility-nav{display:grid;grid-template-columns:1fr 1fr}.utility-nav a{text-align:center}.filters{margin-inline:-.25rem}}
+  </style>
+</{Team}Layout>

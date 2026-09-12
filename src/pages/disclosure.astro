@@ -1,0 +1,55 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const title = "Disclosure | {Team} Fan Zone";
+const description =
+  "Advertising and affiliate disclosure for {Team} Fan Zone.";
+---
+
+<{Team}Layout {title} {description} pageTitle="Disclosure" pageTagline="Independence, advertising, affiliate links, and editorial responsibility." activePath="/disclosure" monetizationEligible={false}>
+
+  <div class="card">
+    <h2>Independent fan site</h2>
+    <p>
+      {Team} Fan Zone is an independent fan site. It is not affiliated with, endorsed by, or sponsored by the Seattle {Team},
+      the National Football League, or their affiliates. Team and league names are used only to identify the subjects covered.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Advertising</h2>
+    <p>
+      This site may display advertising, including Google AdSense ads, to help cover operating costs. Advertising is enabled only
+      after production configuration and any applicable consent. An ad's presence is not an endorsement of its advertiser.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Affiliate links and ticket marketplaces</h2>
+    <p>
+      Some links to products, gear, ticket marketplaces, and ticket providers are affiliate links. If you purchase through some
+      of those links, {Team} Fan Zone may earn a commission. Commission arrangements do not affect organic ticket rankings,
+      and providers cannot buy a higher organic position. Any sponsored placement added in the future will be labeled and visually
+      separated from comparison results.
+    </p>
+    <p>
+      {Team} Fan Zone is not the ticket seller and does not control provider checkout, fulfillment, refunds, guarantees,
+      transfers, availability, or cancellations. Review the provider's current terms, final price, and policies before purchasing.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Editorial independence</h2>
+    <p>
+      Ads and affiliate relationships do not determine coverage, factual conclusions, analysis, or the statistics displayed on
+      the site. The individual site owner retains editorial responsibility.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Contact</h2>
+    <p>
+      For disclosure or business questions, use the <a href="/contact#business">Contact and Corrections page</a>.
+    </p>
+  </div>
+</{Team}Layout>

@@ -1,0 +1,8 @@
+services:
+  ticket-sync:
+    image: ${TICKET_SYNC_IMAGE:?immutable ticket image from the collector source SHA required}
+    build: null
+    environment:
+      EVENTSPY_HISTORY_ROOT: /srv/eventspy
+    volumes:
+      - /var/lib/sfz-eventspy/dev:/srv/eventspy:ro

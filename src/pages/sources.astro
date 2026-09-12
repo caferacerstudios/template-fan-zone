@@ -1,0 +1,83 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const pageTitle = "Sources";
+const pageTagline = "How {Team} Fan Zone selects, attributes, and checks information.";
+---
+
+<{Team}Layout pageTitle={pageTitle} pageTagline={pageTagline} activePath="/sources">
+  <section class="sfz-card">
+    <h2>Source standards</h2>
+    <p>
+      The site favors primary sources for team announcements, schedules, transactions, rules, and direct statements.
+      Established news organizations and specialist data providers may be used when they offer original reporting or context
+      that a primary source does not provide.
+    </p>
+  </section>
+
+  <section class="sfz-card">
+    <h2>Attribution and verification</h2>
+    <ul class="sfz-list">
+      <li>Article-specific references are listed under “Sources and further reading.”</li>
+      <li>Direct quotations and claims originating elsewhere are attributed to their source.</li>
+      <li>Reported information is distinguished from {Team} Fan Zone analysis.</li>
+      <li>Conflicting or incomplete information is described as uncertain until it can be verified.</li>
+    </ul>
+  </section>
+
+  <section class="sfz-card">
+    <h2>Automated data</h2>
+    <p>
+      Schedule, score, standings, roster, and statistics pages use structured data refreshed during site builds. Update timing can
+      differ from live game coverage. The page timestamp and source note should be used to judge how current a data view is.
+    </p>
+  </section>
+
+  <section class="sfz-card">
+    <h2>Ticket provider coverage</h2>
+    <p>The Ticket Finder publishes its connected, listing-level, event-summary, and deep-link-only providers in the on-page Provider coverage section, along with the last successful refresh available in the current snapshot and stale, failed, unmatched-event, or data-granularity limitations. Preview builds use clearly fictional fixture providers and are not evidence of a production connection or commercial relationship.</p>
+    <p>Provider descriptions, reviews, guarantees, and FAQs are not copied. Ticket fields are normalized into SFZ's narrower data contract and provider-supplied text is limited to validated plain-text seat and restriction details.</p>
+  </section>
+
+  <section class="sfz-card">
+    <h2>Questions or corrections</h2>
+    <p>To question a source or report an error, use the <a href="/contact#corrections">Contact and Corrections page</a> and include the page URL and supporting source.</p>
+  </section>
+
+  <style>
+    .sfz-card {
+      border-radius: 16px;
+      border: 1px solid rgba(0, 34, 68, 0.14);
+      background: #ffffff;
+      padding: 1rem 1.05rem;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 0.95rem;
+    }
+
+    .sfz-card h2 {
+      margin: 0 0 0.6rem;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .sfz-card p {
+      margin: 0 0 0.75rem;
+      color: rgba(15, 23, 32, 0.78);
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    .sfz-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: rgba(15, 23, 32, 0.75);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .sfz-list li {
+      margin: 0.3rem 0;
+    }
+
+  </style>
+</{Team}Layout>

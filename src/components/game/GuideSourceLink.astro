@@ -1,0 +1,12 @@
+---
+const { url, label = "Source" } = Astro.props;
+let href = null;
+if (typeof url === "string") {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") href = parsed.toString();
+  } catch {}
+}
+---
+{href && <a class="guide-source" href={href} target="_blank" rel="noopener noreferrer">{label}</a>}
+<style>.guide-source{display:inline-flex;min-height:40px;align-items:center;margin-top:.45rem;color:#174f79;font-size:.85rem;font-weight:800}</style>

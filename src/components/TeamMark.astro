@@ -1,0 +1,37 @@
+---
+interface Props {
+  abbreviation?: string;
+  name?: string;
+  size?: number;
+  decorative?: boolean;
+  loading?: "eager" | "lazy";
+}
+
+import { nflTeamLogoUrl, normalizeNflTeamAbbreviation } from "../lib/team-logos.mjs";
+
+const {
+  abbreviation = "",
+  name = "",
+  size = 44,
+  decorative = false,
+  loading = "eager",
+} = Astro.props;
+const abbr = normalizeNflTeamAbbreviation(abbreviation) || "NFL";
+const src = nflTeamLogoUrl(abbr);
+const label = name ? `${name} logo` : `${abbr} team logo`;
+---
+
+{src
+  ? <img class="team-mark" style={`--team-mark-size:${size}px`} src={src} alt={decorative ? "" : label} width={size} height={size} loading={loading} decoding="async" />
+  : <span
+      class="team-mark team-mark--fallback"
+      style={`--team-mark-size:${size}px`}
+      aria-hidden={decorative ? "true" : undefined}
+      role={decorative ? undefined : "img"}
+      aria-label={decorative ? undefined : label}
+    >{abbr}</span>}
+
+<style>
+  .team-mark{width:var(--team-mark-size,44px);height:var(--team-mark-size,44px);object-fit:contain;flex:0 0 auto}
+  .team-mark--fallback{display:grid;place-items:center;box-sizing:border-box;border:2px solid var(--action-green);border-radius:50%;background:var(--navy-800);color:#fff;font:900 max(.65rem,calc(var(--team-mark-size) * .24))/1 var(--font-display);letter-spacing:-.025em}
+</style>

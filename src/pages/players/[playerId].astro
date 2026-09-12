@@ -1,0 +1,828 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import SeasonContextView from "../../components/SeasonContext.astro";
+import TopicChips from "../../components/TopicChips.astro";
+import ContinueFanZone from "../../components/ContinueFanZone.astro";
+import { getSeasonContext, unavailableMessage } from "../../lib/season-context";
+import rosterData from "../../data/nfl/players.json";
+import currentRosterData from "../../data/team/roster.json";
+import seasonData from "../../data/nfl/{team}.json";
+import careerFactsData from "../../data/team/player-career-facts.json";
+import editorialFactsData from "../../data/team/player-profile-editorial-facts.json";
+import { readPlayerProfiles } from "../../lib/player-profiles.mjs";
+import { formatUpdateDate, injuryStatuses, transactions } from "../../lib/team-updates";
+import { buildPlayerRouteRegistry, latestMaterialDate, pageRobots, playerIndexability, preferredPlayerId } from "../../lib/indexability.mjs";
+import { coverageArticles } from "../../lib/news";
+import gameRecapsData from "../../data/nfl/gameRecaps.json";
+
+/* =======================
+   getStaticPaths (SELF-CONTAINED)
+   ======================= */
+export function getStaticPaths() {
+  const playerProfilesData = readPlayerProfiles().data;
+  function getRosterLocal(playersData) {
+    if (Array.isArray(playersData?.playerSeasonStats)) return playersData.playerSeasonStats;
+    if (Array.isArray(playersData?.data)) return playersData.data;
+    if (Array.isArray(playersData?.players)) return playersData.players;
+    if (Array.isArray(playersData)) return playersData;
+    // if dict/map keyed by id
+    if (playersData && typeof playersData === "object") return Object.values(playersData);
+    return [];
+  }
+
+  function pidLocal(p) {
+    return p?.id ?? p?.player_id ?? p?.player?.id ?? null;
+  }
+
+  function playerNameLocal(obj) {
+    const player = obj?.player ?? obj;
+    if (!player) return "Unknown";
+    const fullName =
+      player?.full_name ||
+      `${player?.first_name || ""} ${player?.last_name || ""}`.trim();
+    return fullName || "Unknown";
+  }
+
+  const roster = getRosterLocal(rosterData);
+  const statRows = Array.isArray(seasonData?.playerSeasonStats) ? seasonData.playerSeasonStats : [];
+  const profileRecords = Object.entries(playerProfilesData?.profiles || {}).map(([id, profile]) => ({ id, name:profile?.name ?? profile?.full_name }));
+  const registry = buildPlayerRouteRegistry([...(currentRosterData?.players || []), ...roster, ...statRows, ...profileRecords]);
+  return [...registry.routes.entries()].map(([routeId, route]) => route.alias
+    ? { params:{ playerId:routeId }, redirect:`/players/${encodeURIComponent(route.canonicalId)}` }
+    : { params:{ playerId:routeId }, props:{ resolvedPlayerIds:route.dataIds, fallbackName:route.name } });
+}
+
+/* =======================
+   Helpers (page render)
+   ======================= */
+const { playerId } = Astro.params;
+const { resolvedPlayerIds = [], fallbackName = null } = Astro.props;
+const dataPlayerIds = [...new Set([String(playerId), ...resolvedPlayerIds.map(String)])];
+const dataPlayerId = dataPlayerIds.find((id) => (currentRosterData?.players || []).some((player) => String(player.id) === id)) ?? dataPlayerIds[0];
+const playerProfilesData = readPlayerProfiles().data;
+
+function getRoster(playersData) {
+  if (Array.isArray(playersData?.playerSeasonStats)) return playersData.playerSeasonStats;
+  if (Array.isArray(playersData?.data)) return playersData.data;
+  if (Array.isArray(playersData?.players)) return playersData.players;
+  if (Array.isArray(playersData)) return playersData;
+  // if dict/map keyed by id
+  if (playersData && typeof playersData === "object") return Object.values(playersData);
+  return [];
+}
+
+function pid(p) {
+  return p?.id ?? p?.player_id ?? p?.player?.id ?? null;
+}
+
+function playerNameFromAny(obj) {
+  const p = obj?.player ?? obj;
+  if (!p) return "Unknown";
+  const full =
+    p?.full_name ||
+    `${p?.first_name || ""} ${p?.last_name || ""}`.trim();
+  return full || "Unknown";
+}
+
+function findRosterPlayer(id) {
+  const current = (currentRosterData?.players || []).find((p) => String(p?.id) === String(id));
+  if (current) return current;
+  const roster = getRoster(rosterData);
+  const key = String(id);
+  return roster.find((p) => String(pid(p)) === key) || null;
+}
+
+function bestStatRowForPlayer(id) {
+  const rows = Array.isArray(seasonData?.playerSeasonStats) ? seasonData.playerSeasonStats : [];
+  const key = String(id);
+
+  function n(v) {
+    return typeof v === "number" ? v : 0;
+  }
+  function totalYards(r) {
+    return n(r.passing_yards) + n(r.rushing_yards) + n(r.receiving_yards);
+  }
+
+  let best = null;
+  const currentName = (currentRosterData?.players || []).find((player) => String(player?.id) === key)?.name?.toLowerCase();
+  for (const r of rows) {
+    const rid = r?.player?.id ?? r?.player_id ?? null;
+    if (rid === null || rid === undefined) continue;
+    if (String(rid) !== key && (!currentName || playerNameFromAny(r).toLowerCase() !== currentName)) continue;
+    if (!best || totalYards(r) > totalYards(best)) best = r;
+  }
+  return best;
+}
+
+function dash(v) {
+  return typeof v === "number" ? v : "—";
+}
+
+/* =======================
+   Profiles: support multiple shapes
+   ======================= */
+// Accept either:
+// A) { updatedAt, profiles: { [id]: { bio, recap } } }
+// B) { updatedAt, byId: { [id]: { bio, recap } } }
+// C) { updatedAt, data: [{ player_id, bio, recap_paragraph, recap_bullets, ... }] }
+// D) { updatedAt, data: { [id]: { bio, recap } } }
+// E) { [id]: { bio, recap } }  (no wrapper)
+function getProfileFor(id) {
+  const key = String(id);
+  const root = playerProfilesData || {};
+
+  // map-style wrappers
+  const map1 = root?.profiles && typeof root.profiles === "object" ? root.profiles : null;
+  const map2 = root?.byId && typeof root.byId === "object" ? root.byId : null;
+  if (map1 && map1[key]) return map1[key];
+  if (map2 && map2[key]) return map2[key];
+
+  // data object keyed by id
+  if (root?.data && typeof root.data === "object" && !Array.isArray(root.data) && root.data[key]) {
+    return root.data[key];
+  }
+
+  // data array
+  if (Array.isArray(root?.data)) {
+    const hit = root.data.find((x) => String(x?.player_id ?? x?.id ?? x?.player?.id ?? "") === key);
+    if (hit) return hit;
+  }
+
+  // bare map at root
+  if (root && typeof root === "object" && root[key]) return root[key];
+
+  return null;
+}
+
+function normalizeProfile(p) {
+  if (!p || typeof p !== "object") return { bio:null, seasonOverview:null, careerHighlights:[], name:null };
+
+  // Current reader-first schema.
+  if (typeof p.bio === "string" && Array.isArray(p.careerHighlights)) return {
+    name:p?.name ?? p?.full_name ?? null,
+    bio:p.bio,
+    careerHighlights:p.careerHighlights.map((x)=>typeof x === "string"?x:x?.text).filter(Boolean),
+    seasonOverview:typeof p.seasonOverview === "string" ? p.seasonOverview : null,
+  };
+
+  // Previous v3 schema retained for existing last-known-good artifacts.
+  if (p?.biography && typeof p.biography === "object") return {
+    name:p?.name ?? p?.full_name ?? null,
+    bio:[p.biography.overview,p.biography.careerContext,p.biography.{team}Context].filter((x)=>typeof x === "string"&&x.trim()).join("\n\n"),
+    careerHighlights:Array.isArray(p.careerHighlights)?p.careerHighlights.map((x)=>typeof x === "string"?x:x?.text).filter(Boolean):[],
+    seasonOverview:p.seasonOverview&&typeof p.seasonOverview === "object"?p.seasonOverview.paragraph:null,
+  };
+
+  // already normalized
+  if (typeof p?.bio === "string" && p?.recap && typeof p.recap === "object") {
+    return {
+      name: p?.name ?? p?.full_name ?? null,
+      bio:p.bio,
+      careerHighlights:[],
+      seasonOverview:typeof p.recap?.paragraph === "string" ? p.recap.paragraph : null,
+    };
+  }
+
+  // flattened recap fields
+  const paragraph =
+    p?.recap_paragraph ??
+    p?.paragraph ??
+    p?.gameplay_paragraph ??
+    null;
+
+  return {
+    name: p?.name ?? p?.full_name ?? null,
+    bio:typeof p?.bio === "string" ? p.bio : null,
+    careerHighlights:[],
+    seasonOverview:paragraph ? String(paragraph) : null,
+  };
+}
+
+/* =======================
+   Team logo + manual headshot (name-based, typo-tolerant)
+   ======================= */
+function teamAbbrFromAny(rosterPlayer, statRow) {
+  const a =
+    rosterPlayer?.team?.abbreviation ||
+    rosterPlayer?.team_abbreviation ||
+    rosterPlayer?.team ||
+    statRow?.player?.team?.abbreviation ||
+    statRow?.team_abbreviation ||
+    "SEA";
+  return String(a || "SEA").toUpperCase();
+}
+
+function teamLogoUrl(abbr) {
+  return `/images/nfl/teams/${String(abbr || "SEA").toUpperCase()}.png`;
+}
+
+// Normalize a name / filename to a "comparable" key:
+// - lowercase
+// - remove diacritics
+// - keep only a-z0-9
+function normKey(s) {
+  return String(s || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "") // strip accents
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+// Small Levenshtein distance for "slight typo"
+function levenshtein(a, b) {
+  a = String(a || "");
+  b = String(b || "");
+  const n = a.length;
+  const m = b.length;
+  if (n === 0) return m;
+  if (m === 0) return n;
+
+  const dp = new Array(m + 1);
+  for (let j = 0; j <= m; j++) dp[j] = j;
+
+  for (let i = 1; i <= n; i++) {
+    let prev = dp[0];
+    dp[0] = i;
+    for (let j = 1; j <= m; j++) {
+      const tmp = dp[j];
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[j] = Math.min(
+        dp[j] + 1,      // deletion
+        dp[j - 1] + 1,  // insertion
+        prev + cost     // substitution
+      );
+      prev = tmp;
+    }
+  }
+  return dp[m];
+}
+
+// Build a directory index ONCE per page module load.
+// Put images here (any extension): public/images/nfl/players/<anything>.jpg|png|webp|avif...
+const projectRoot = Astro.root ?? process.cwd();
+const playersDirDisk = path.join(projectRoot, "public", "images", "nfl", "players");
+const allowedExt = new Set([".avif", ".webp", ".jpg", ".jpeg", ".png"]);
+const extensionPriority = new Map([[".avif", 0], [".webp", 1], [".jpg", 2], [".jpeg", 2], [".png", 3]]);
+
+function listPlayerImageFiles() {
+  try {
+    const files = fs.readdirSync(playersDirDisk);
+    return files
+      .filter((f) => allowedExt.has(path.extname(f).toLowerCase()))
+      .sort((a, b) => (extensionPriority.get(path.extname(a).toLowerCase()) ?? 9) - (extensionPriority.get(path.extname(b).toLowerCase()) ?? 9));
+  } catch {
+    return [];
+  }
+}
+
+const playerImageFiles = listPlayerImageFiles();
+
+// Index by normalized basename for exact-ish lookup
+const imageIndex = new Map(); // normBase -> filename
+for (const f of playerImageFiles) {
+  const base = path.basename(f, path.extname(f));
+  const k = normKey(base);
+  if (!k) continue;
+  if (!imageIndex.has(k)) imageIndex.set(k, f);
+}
+
+/**
+ * Find an image by display name:
+ * - exact match on normalized base
+ * - else prefix contains check
+ * - else best Levenshtein match within small threshold (typo tolerance)
+ *
+ * Your manual workflow:
+ *   Save files in: public/images/nfl/players/
+ *   Name them like: "DK Metcalf.jpg" or "dk_metcalf.png" etc.
+ */
+function findHeadshotForName(displayName) {
+  const target = normKey(displayName);
+  if (!target) return null;
+
+  // exact normalized match
+  const exact = imageIndex.get(target);
+  if (exact) return `/images/nfl/players/${encodeURIComponent(exact)}`;
+
+  // prefix contains check (handles extra middle initials, etc.)
+  for (const [k, f] of imageIndex.entries()) {
+    if (k.startsWith(target) || target.startsWith(k)) {
+      return `/images/nfl/players/${encodeURIComponent(f)}`;
+    }
+  }
+
+  // typo-tolerant match
+  let bestFile = null;
+  let bestDist = Infinity;
+
+  for (const [k, f] of imageIndex.entries()) {
+    if (Math.abs(k.length - target.length) > 3) continue;
+
+    const d = levenshtein(target, k);
+    if (d < bestDist) {
+      bestDist = d;
+      bestFile = f;
+      if (bestDist === 1) break;
+    }
+  }
+
+  // allow only "slight typo"
+  if (bestFile && bestDist <= 2) {
+    return `/images/nfl/players/${encodeURIComponent(bestFile)}`;
+  }
+
+  return null;
+}
+
+/* =======================
+   Page data
+   ======================= */
+const rosterPlayer = dataPlayerIds.map(findRosterPlayer).find(Boolean) || null;
+const careerFacts=dataPlayerIds.map((id)=>careerFactsData?.players?.[id]).find(Boolean)||null;
+const recentCareerSeason=careerFacts?.recentSeasons?.[0]||null;
+const liveStatRow = dataPlayerIds.map(bestStatRowForPlayer).find(Boolean) || null;
+const statRow = liveStatRow || (recentCareerSeason ? {
+  games_played:recentCareerSeason.games,games_started:recentCareerSeason.starts,completions:recentCareerSeason.completions,passing_attempts:recentCareerSeason.attempts,completion_percentage:recentCareerSeason.completionPercentage,passing_yards:recentCareerSeason.passingYards,yards_per_attempt:recentCareerSeason.yardsPerAttempt,passing_touchdowns:recentCareerSeason.passingTouchdowns,interceptions:recentCareerSeason.interceptions,passer_rating:recentCareerSeason.passerRating,sacks:recentCareerSeason.sacks,rushing_attempts:recentCareerSeason.rushingAttempts,rushing_yards:recentCareerSeason.rushingYards,rushing_touchdowns:recentCareerSeason.rushingTouchdowns
+} : null);
+
+const rawProfile = dataPlayerIds.map(getProfileFor).find(Boolean) || null;
+const profile = normalizeProfile(rawProfile);
+
+const injuryMatches = injuryStatuses.filter((row) => dataPlayerIds.includes(String(row.playerId)));
+const rosterMoves = transactions.filter((row) => dataPlayerIds.includes(String(row.playerId)));
+
+// display fields (safe across shapes)
+const displayName =
+  playerNameFromAny(rosterPlayer) !== "Unknown"
+    ? playerNameFromAny(rosterPlayer)
+    : (playerNameFromAny(statRow?.player) !== "Unknown"
+        ? playerNameFromAny(statRow?.player)
+        : (profile?.name || fallbackName || "Player"));
+const canonicalPlayerId = preferredPlayerId(playerId, displayName);
+
+const position =
+  (rosterPlayer?.position_abbreviation ||
+    rosterPlayer?.position ||
+    rosterPlayer?.player?.position_abbreviation ||
+    rosterPlayer?.player?.position ||
+    statRow?.player?.position_abbreviation ||
+    "—");
+
+const college = rosterPlayer?.college ?? rosterPlayer?.player?.college ?? statRow?.player?.college ?? null;
+
+// ✅ FIXED: fallback to statRow.player for the "missing info" fields
+const jersey =
+  rosterPlayer?.jersey_number ??
+  rosterPlayer?.jersey ??
+  rosterPlayer?.number ??
+  rosterPlayer?.player?.jersey_number ??
+  rosterPlayer?.player?.jersey ??
+  rosterPlayer?.player?.number ??
+  statRow?.player?.jersey_number ??
+  statRow?.player?.jersey ??
+  statRow?.player?.number ??
+  "—";
+
+const height =
+  rosterPlayer?.height ??
+  rosterPlayer?.height_feet_inches ??
+  rosterPlayer?.player?.height ??
+  statRow?.player?.height ??
+  "—";
+
+const weight =
+  rosterPlayer?.weight ??
+  rosterPlayer?.weight_lbs ??
+  rosterPlayer?.player?.weight ??
+  statRow?.player?.weight ??
+  "—";
+
+const experience =
+  rosterPlayer?.experience ??
+  rosterPlayer?.years_pro ??
+  rosterPlayer?.player?.experience ??
+  rosterPlayer?.player?.years_pro ??
+  statRow?.player?.experience ??
+  "—";
+
+const allStatDefinitions = [
+  ["Passing", [["Games",["games_played"]],["Starts",["games_started","starts"]],["Completions",["completions"]],["Attempts",["passing_attempts","attempts"]],["Completion %",["completion_percentage"]],["Passing yards",["passing_yards"]],["Yards / attempt",["yards_per_attempt"]],["Passing TD",["passing_touchdowns"]],["Interceptions",["interceptions"]],["Passer rating",["passer_rating"]],["Sacks",["sacks"]]]],
+  ["Rushing", [["Carries",["rushing_attempts","carries"]],["Rushing yards",["rushing_yards"]],["Rushing TD",["rushing_touchdowns"]]]],
+  ["Receiving", [["Receptions",["receptions"]],["Receiving yards",["receiving_yards"]],["Receiving TD",["receiving_touchdowns"]]]],
+  ["Defense", [["Total tackles",["total_tackles","tackles"]],["Sacks",["sacks"]],["Defensive INT",["defensive_interceptions","interceptions"]],["Passes defended",["passes_defended","passes_defensed"]],["Forced fumbles",["forced_fumbles"]]]],
+  ["Kicking", [["Field goals made",["field_goals_made"]],["Field goals attempted",["field_goals_attempted"]],["Extra points made",["extra_points_made"]],["Punts",["punts"]],["Punt average",["punt_average","punting_average"]]]],
+];
+const positionGroups = {QB:["Passing","Rushing"],RB:["Rushing","Receiving"],FB:["Rushing","Receiving"],WR:["Receiving","Rushing"],TE:["Receiving"],K:["Kicking"],P:["Kicking"],OL:[],C:[],G:[],T:[],OT:[]};
+const allowedStatGroups=positionGroups[String(position).toUpperCase()]||["Defense"];
+const statDefinitions=allStatDefinitions.filter(([label])=>allowedStatGroups.includes(label));
+function firstNumber(row, keys) {
+  for (const key of keys) if (typeof row?.[key] === "number" && Number.isFinite(row[key])) return row[key];
+  return null;
+}
+const statGroups = statDefinitions.map(([label, definitions]) => ({ label, items:definitions.map(([itemLabel,keys]) => ({ label:itemLabel, value:firstNumber(statRow,keys) })).filter((item) => item.value !== null && item.value !== 0) })).filter((group) => group.items.length);
+
+const rosterForNavigation = getRoster(rosterData)
+  .filter((item) => String(item?.position_abbreviation ?? item?.player?.position_abbreviation ?? "").toUpperCase() === String(position).toUpperCase())
+  .sort((a, b) => playerNameFromAny(a).localeCompare(playerNameFromAny(b)));
+const navigationIndex = rosterForNavigation.findIndex((item) => String(pid(item)) === String(playerId));
+const previousPlayer = navigationIndex > 0 ? rosterForNavigation[navigationIndex - 1] : null;
+const nextPlayer = navigationIndex >= 0 && navigationIndex < rosterForNavigation.length - 1 ? rosterForNavigation[navigationIndex + 1] : null;
+
+const materialUpdatedAt = latestMaterialDate([
+  rawProfile?.materialUpdatedAt, rawProfile?.generation?.generatedAt,
+  (careerFacts?.sourceFacts || []).map((fact)=>fact.reviewedAt),
+  injuryMatches.map((row)=>row.date), rosterMoves.map((row)=>row.timestamp),
+]);
+const updatedAtForPage = materialUpdatedAt ?? null;
+const seasonContext = getSeasonContext(seasonData, "regular season");
+const statisticsSeason = Number(liveStatRow ? (seasonData?.playerStatsSeason ?? seasonContext.sourceSeason ?? seasonContext.seasonYear) : (recentCareerSeason?.season ?? seasonData?.playerStatsSeason ?? seasonContext.sourceSeason ?? seasonContext.seasonYear));
+const playerStatisticsContext = {
+  ...seasonContext,
+  seasonYear: statisticsSeason,
+  sourceSeason: statisticsSeason,
+  seasonStatus: statisticsSeason < Number(currentRosterData?.season) ? "complete" : seasonContext.seasonStatus,
+  label: `${statisticsSeason} Regular Season`,
+  hasData: Boolean(statRow),
+  hasStatistics: Boolean(statRow),
+};
+const currentRosterRecord = (currentRosterData?.players || []).find((p) => String(p?.id) === String(canonicalPlayerId) || String(p?.id) === String(playerId));
+const profileSources=[...(careerFacts?.sourceFacts||[]),...(editorialFactsData?.facts||[]).filter((fact)=>fact.canonicalPlayerId===String(playerId)).map((fact)=>({title:fact.source?.title,publisher:fact.source?.publisher,url:fact.source?.url}))].filter((source,index,all)=>source?.url&&all.findIndex((x)=>x.url===source.url)===index);
+
+const pageTitle = `${displayName} Seattle {Team} Profile`;
+const pageH1 = `${displayName} Seattle {Team} Profile`;
+
+// image URLs
+const abbr = teamAbbrFromAny(rosterPlayer, statRow);
+const fallbackImg = teamLogoUrl(abbr);
+const headshotImg = findHeadshotForName(displayName);
+const canonicalPath = `/players/${encodeURIComponent(String(canonicalPlayerId))}`;
+const pageDescription = `${displayName} ${String(position).toUpperCase()} profile, current roster information, and ${playerStatisticsContext.label} statistics for {Location}.`;
+const playerDecision = playerIndexability({
+  routeId: playerId, canonicalId: canonicalPlayerId, identity: displayName,
+  profileIdentity:profile?.name,
+  biography: profile?.bio, rosterStatus: currentRosterRecord?.status,
+  historicallyLabeled: Boolean(statRow || careerFacts?.recentSeasons?.length),
+  usefulSections: [profile?.careerHighlights?.length, profile?.seasonOverview, careerFacts?.careerTimeline?.length, statGroups.length, injuryMatches.length, rosterMoves.length],
+  generatorError: rawProfile?.error ?? rawProfile?.generation?.error,
+  title:pageTitle, h1:pageH1, canonicalPath, materialUpdatedAt,
+  roleContext:Boolean(profile?.careerHighlights?.length || profile?.seasonOverview || careerFacts?.careerTimeline?.length || statGroups.length),
+  statisticsLabelValid:Boolean(!statRow || Number.isFinite(statisticsSeason)), verifiedResolved:Boolean(rosterPlayer || statRow || rawProfile),
+});
+const robots = pageRobots(playerDecision);
+const relatedArticles = coverageArticles.filter((article)=>JSON.stringify(article).toLowerCase().includes(displayName.toLowerCase())).slice(0,4);
+const relatedGames = Object.entries(gameRecapsData?.recaps || {}).filter(([,recap])=>JSON.stringify(recap).toLowerCase().includes(displayName.toLowerCase())).slice(0,4);
+const personStructuredData = playerDecision.indexable ? { "@context":"https://schema.org", "@type":"Person", name:displayName, jobTitle:String(position).toUpperCase(), affiliation:{ "@type":"SportsTeam", name:"Seattle {Team}" }, url:new URL(canonicalPath, Astro.site ?? Astro.url).toString() } : undefined;
+---
+
+<{Team}Layout title={pageTitle} pageTitle={pageH1} description={pageDescription} seo={{title:`${pageTitle} | {Team} Fan Zone`,description:pageDescription,canonicalPath,robots}} structuredData={personStructuredData} activePath="/players" pageType="player" season={seasonContext.seasonYear} monetizationEligible={playerDecision.indexable} breadcrumbs={[{ name: "Home", href: "/" }, { name: "Roster", href: "/players" }, { name: displayName, href: canonicalPath }]}>
+  <div class="profile-contexts">
+    <div><span>Current roster</span><strong>{currentRosterData?.season}</strong><small>{currentRosterRecord?.status || "Not listed on current roster"}</small></div>
+    <div><span>Performance shown</span><strong>{playerStatisticsContext.label}</strong><small>{playerStatisticsContext.seasonStatus === "active" ? "Current season totals" : "Historical season totals"}</small></div>
+  </div>
+  <SeasonContextView context={{ ...playerStatisticsContext, updatedAt: updatedAtForPage }} options={[playerStatisticsContext]} prefix="Data through" />
+  <TopicChips topics={["Roster", "Position Groups", ...(injuryMatches.length ? ["Injuries"] : [])]} />
+  <div class="meta-line">
+    <span><strong>Back:</strong> <a href="/players">Roster</a></span>
+    <span class="dot">•</span>
+    <span><strong>Also:</strong> <a href="/schedule">Schedule</a></span>
+  </div>
+
+  <article class="card">
+    <div class="card-top">
+      <div class:list={["avatar-wrap", !headshotImg && "number-avatar"]}>
+        {headshotImg ? (
+        <img
+          class="avatar"
+          src={headshotImg}
+          alt={`${displayName} headshot`}
+          width="104"
+          height="104"
+          loading="lazy"
+          decoding="async"
+          onerror="this.hidden=true;this.nextElementSibling.hidden=false;"
+        />
+        ) : null}
+        <span class="avatar-number" hidden={Boolean(headshotImg)} aria-label={`Jersey number ${jersey}`}>{jersey !== "—" ? jersey : String(position).toUpperCase()}</span>
+      </div>
+
+      <div class="top-text">
+        <div class="name">{displayName}</div>
+        <div class="jersey-line"><span aria-hidden="true">#</span>{String(jersey)}</div>
+        <div class="sub">
+          <span><strong>{String(position).toUpperCase()}</strong></span>
+          <span class="dot">•</span>
+          {experience !== "—" && <><span class="dot">•</span><span>{String(experience)} experience</span></>}
+          {college && <><span class="dot">•</span><span>{String(college)}</span></>}
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel overview-panel biography-panel">
+        <div class="panel-title">Biography</div>
+        {profile?.bio ? (
+          <div class="biography">{profile.bio.split(/\n\s*\n/).filter(Boolean).map((paragraph)=><p class="body">{paragraph}</p>)}</div>
+        ) : (
+          <div class="empty">No verified biography is available in the current player data.</div>
+        )}
+      </div>
+      {profile?.careerHighlights?.length > 0 && <div class="panel"><div class="panel-title">Career Highlights</div><ul class="bullets">{profile.careerHighlights.map((text)=><li>{text}</li>)}</ul></div>}
+      {careerFacts?.careerTimeline?.length > 0 && <div class="panel"><div class="panel-title">Career at a Glance</div><ol class="timeline">{careerFacts.careerTimeline.map((item)=><li><strong>{item.from}{item.to&&item.to!==item.from?`–${item.to}`:item.to===null?"–present":""}</strong><span>{item.team}</span></li>)}</ol></div>}
+      <div class="panel">
+        <div class="panel-title">{playerStatisticsContext.label} snapshot</div>
+
+        {!statRow ? (
+          <div class="empty">{unavailableMessage(playerStatisticsContext)}</div>
+        ) : (
+          <div class="stat-groups">{statGroups.map((group) => <section class="stat-group"><h3>{group.label}</h3><div class="stats">{group.items.map((item) => <div class="stat"><span class="k">{item.label}</span><span class="v">{item.value}</span></div>)}</div></section>)}</div>
+        )}
+
+        <div class="mini">
+          <div class="mini-row"><span class="k">Height</span><span class="v">{String(height)}</span></div>
+          <div class="mini-row"><span class="k">Weight</span><span class="v">{String(weight)}</span></div>
+          <div class="mini-row"><span class="k">Experience</span><span class="v">{String(experience)}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:.85rem;">
+      <div class="panel-title">{playerStatisticsContext.label} Overview</div>
+      {(statRow || careerFacts?.recentSeasons?.length) && profile?.seasonOverview ? (
+        <p class="body">{profile.seasonOverview}</p>
+      ) : (
+        <div class="empty">No verified season overview is available for this player.</div>
+      )}
+    </div>
+
+    {profileSources.length > 0 && <div class="panel" style="margin-top:.85rem;"><div class="panel-title">Profile Sources</div><ul class="sources">{profileSources.map((source)=><li><a href={source.url} rel="noopener noreferrer">{source.title}</a><span>{source.publisher}</span></li>)}</ul></div>}
+
+    <div class="panel" style="margin-top:.85rem;">
+      <div class="panel-title">Injury &amp; status history</div>
+      {injuryMatches.length === 0 ? (
+        <div class="empty">No current injury-status entries have been imported for this period. This does not indicate the player is healthy.</div>
+      ) : (
+        <div class="inj-list">
+          {injuryMatches.slice(0, 25).map((it) => (
+            <div class="inj">
+              <div class="inj-top">
+                <div class="inj-status">{it.status} · {it.updateStatus}</div>
+                <time class="inj-date" datetime={it.date}>{formatUpdateDate(it.date)}</time>
+              </div>
+              <div class="inj-desc">{it.description}</div>
+              <a class="record-source" href={it.sourceUrl} rel="noopener noreferrer">Source: {it.sourcePublisher} ↗</a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="panel" style="margin-top:.85rem;">
+      <div class="panel-title">Recent Roster Movement</div>
+      {rosterMoves.length === 0 ? <div class="empty">No sourced roster moves have been imported for this player.</div> : <div class="inj-list">
+        {rosterMoves.slice(0, 10).map((move) => <div class="inj">
+          <div class="inj-top"><div class="inj-status">{move.transactionType} · {move.updateStatus}</div><time class="inj-date" datetime={move.timestamp}>{formatUpdateDate(move.timestamp)}</time></div>
+          <div class="inj-desc">{move.description}</div><a class="record-source" href={move.sourceUrl} rel="noopener noreferrer">Source: {move.sourcePublisher} ↗</a>
+        </div>)}
+      </div>}
+      <a class="all-moves" href="/team/transactions">View all {Team} transactions →</a>
+    </div>
+  </article>
+
+  {(previousPlayer || nextPlayer) && <nav class="player-nav" aria-label={`${position} player navigation`}>
+    {previousPlayer ? <a rel="prev" href={`/players/${encodeURIComponent(String(pid(previousPlayer)))}`}><small>Previous {position}</small><strong>← {playerNameFromAny(previousPlayer)}</strong></a> : <span></span>}
+    {nextPlayer ? <a rel="next" href={`/players/${encodeURIComponent(String(pid(nextPlayer)))}`}><small>Next {position}</small><strong>{playerNameFromAny(nextPlayer)} →</strong></a> : <span></span>}
+  </nav>}
+  <ContinueFanZone groups={[
+    { title: displayName, links: [{ href: "/players", label: "Roster and historical player stats" }, ...relatedArticles.map((article)=>({href:`/news/${article.slug}`,label:article.headline})), ...relatedGames.map(([id])=>({href:`/games/${id}`,label:`Game discussion featuring ${displayName}`})), ...(rosterMoves.length ? [{href:"/team/transactions",label:"Transactions"}] : []), ...(injuryMatches.length ? [{ href: "/team/injuries", label: "Injury status" }] : [])] },
+    { title: `${String(position).toUpperCase()} position group`, links: [{ href: "/topics/position-groups", label: "Explore position groups" }, { href: "/team", label: "Team statistical context" }] },
+    { title: "Game week", links: [{ href: "/schedule", label: "Schedule and game centers" }, { href: "/weekly-recap", label: "Editorial recap archive" }] },
+  ]} />
+
+  <style>
+    .profile-contexts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-bottom:.75rem}.profile-contexts>div{display:grid;padding:.7rem .8rem;border-left:4px solid #69be28;background:rgba(0,34,68,.05)}.profile-contexts span,.profile-contexts small{color:rgba(15,23,32,.68);font-size:.72rem;font-weight:800}.profile-contexts strong{color:var(--navy);font-size:1rem}
+    .meta-line,
+    .card,
+    .card-top,
+    .grid,
+    .panel,
+    .stats,
+    .mini,
+    .inj-list {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .meta-line,
+    .name,
+    .sub,
+    .body,
+    .bullets,
+    .inj-desc {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .record-source,.all-moves { display:inline-block; min-height:44px; padding-top:.55rem; color:#2f660b; font-weight:900; }
+
+    .meta-line {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: rgba(15,23,32,.65);
+      margin: .35rem 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .dot { opacity: .5; }
+
+    .card {
+      border-radius: 14px;
+      border: 1px solid rgba(0,34,68,0.16);
+      background: #fff;
+      padding: .95rem 1rem;
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    .card-top {
+      padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(0,34,68,.10);
+      margin-bottom: .85rem;
+
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+    }
+
+    .avatar-wrap {
+      flex: 0 0 auto;
+      width: 104px;
+      height: 104px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(0,34,68,0.14);
+      background: rgba(0,34,68,0.03);
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar {
+      width: 104px;
+      height: 104px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .number-avatar { background: linear-gradient(145deg, #002244, #16456e); }
+    .avatar-number { color: #fff; font-size: 2rem; font-weight: 1000; }
+    .jersey-line { color: #69be28; font-size: 1.15rem; font-weight: 1000; margin-bottom: .15rem; }
+
+    .top-text {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .name {
+      font-size: 1.35rem;
+      font-weight: 1000;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .sub {
+      margin-top: .35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      color: rgba(15,23,32,.65);
+      font-weight: 800;
+      font-size: .95rem;
+      align-items: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .85rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .profile-contexts { grid-template-columns:1fr; }
+      .card-top { align-items: flex-start; }
+      .avatar-wrap { width: 88px; height: 88px; }
+      .avatar { width: 88px; height: 88px; }
+    }
+
+    .panel {
+      border-radius: 14px;
+      border: 1px solid rgba(0,34,68,0.14);
+      background: rgba(0,34,68,0.03);
+      padding: .75rem .85rem;
+    }
+    .overview-panel{grid-column:1/-1}
+
+    .panel-title {
+      font-weight: 1000;
+      color: rgba(0,34,68,.92);
+      margin: 0 0 .45rem;
+    }
+
+    .body {
+      margin: 0;
+      line-height: 1.55;
+      font-weight: 750;
+      color: rgba(0,34,68,.92);
+    }
+    .dek{font-size:1.08rem;line-height:1.5;font-weight:850;color:rgba(0,34,68,.88);margin:.2rem 0 .85rem}.timeline,.sources{list-style:none;padding:0;margin:.3rem 0 0;display:grid;gap:.45rem}.timeline li,.sources li{display:flex;gap:.75rem;justify-content:space-between;border-bottom:1px solid rgba(0,34,68,.1);padding:.35rem 0}.timeline span,.sources span{color:rgba(15,23,32,.68);font-weight:750}.sources a{font-weight:850;color:#2f660b}
+
+    .empty {
+      padding: .7rem .8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0,34,68,0.14);
+      background: rgba(165,172,175,0.18);
+      color: rgba(15,23,32,0.85);
+      font-weight: 850;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .5rem .75rem;
+      margin-top: .2rem;
+    }
+    .stat-groups { display:grid; gap:.65rem; }
+    .stat-group h3 { margin:0 0 .35rem; color:rgba(0,34,68,.72); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; }
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .4rem .5rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(0,34,68,.10);
+    }
+
+    .k { font-weight: 900; color: rgba(0,34,68,.70); }
+    .v { font-weight: 950; color: rgba(0,34,68,.92); font-variant-numeric: tabular-nums; }
+
+    .mini {
+      margin-top: .65rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      color: rgba(0,34,68,.85);
+      font-weight: 850;
+    }
+
+    .bullets { margin: .6rem 0 0; padding-left: 1.1rem; }
+    .bullets li { margin: .35rem 0; font-weight: 750; color: rgba(0,34,68,.92); }
+
+    .inj-list { display: grid; gap: .55rem; margin-top: .35rem; }
+    .inj {
+      border-radius: 12px;
+      border: 1px solid rgba(0,34,68,.12);
+      background: rgba(255,255,255,.72);
+      padding: .6rem .65rem;
+    }
+    .inj-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: .75rem;
+    }
+    .inj-status {
+      font-weight: 1000;
+      color: rgba(0,34,68,.92);
+    }
+    .inj-date {
+      color: rgba(15,23,32,.60);
+      font-weight: 800;
+      font-size: .92rem;
+      text-align: right;
+    }
+    .inj-desc {
+      margin-top: .35rem;
+      color: rgba(0,34,68,.88);
+      font-weight: 750;
+      line-height: 1.45;
+    }
+    .player-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .9rem; }
+    .player-nav a { display: grid; gap: .15rem; padding: .75rem; border: 1px solid rgba(0,34,68,.14); border-radius: 12px; color: #002244; text-decoration: none; background: #fff; }
+    .player-nav a:last-child { text-align: right; }
+    .player-nav small { color: rgba(15,23,32,.62); font-weight: 800; }
+  </style>
+</{Team}Layout>

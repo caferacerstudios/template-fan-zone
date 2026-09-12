@@ -1,0 +1,1483 @@
+{
+  "schemaVersion": 1,
+  "games": {
+    "1392216": {
+      "schemaVersion": 1,
+      "gameId": "1392216",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "New England Patriots",
+        "date": "2026-09-09",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Seattle opens the 2026 NFL regular season Wednesday night at Lumen Field in a Super Bowl LX rematch. This is an unusually busy SODO game day: the Mariners host Texas at 1:10 p.m., the {Team}' official Ticketmaster Tailgate opens at 2:00 p.m., all stadium gates open at 3:30 p.m., and fans are asked to be seated by 5:00 p.m. for the Super Bowl LX championship banner unveiling before the 5:20 p.m. kickoff. The Mariners game makes the Lumen Field North Lot and Mariners Garage unavailable for {Team} parking, so transit is strongly preferred.",
+      "alerts": [
+        {
+          "title": "Mariners game removes major parking inventory",
+          "text": "The Mariners host the Texas Rangers at 1:10 p.m. The {Team} state that the Lumen Field North Lot and Mariners Garage are unavailable for {Team} parking, and affected parking-pass holders were sent relocation details.",
+          "severity": "critical",
+          "sourceUrl": "https://www.{team}.com/game-day/"
+        },
+        {
+          "title": "Be seated by 5:00 p.m. for banner ceremony",
+          "text": "The {Team} are asking fans to be in their seats by 5:00 p.m. for the unveiling of the Super Bowl LX championship banner.",
+          "severity": "info",
+          "sourceUrl": "https://www.{team}.com/game-day/"
+        },
+        {
+          "title": "No special {Team} Sounder train listed",
+          "text": "Sound Transit's current {Team} event-service calendar does not list September 9. Do not rely on a special {Team} Sounder train for this game.",
+          "severity": "warning",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "Link light rail",
+          "recommendation": "Best overall option for most fans because parking is unusually constrained by the simultaneous Mariners game.",
+          "details": "The 1 Line serves Stadium and International District/Chinatown stations near Lumen Field. Allow extra time because the 5:20 p.m. kickoff overlaps the weekday commute.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "King County Metro",
+          "recommendation": "Useful for Seattle-area trips, especially when paired with walking into the stadium district.",
+          "details": "More than 15 regular Metro routes serve stops within roughly three blocks of Lumen Field. Dedicated {Team} park-and-ride game buses are not offered.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Washington State Ferries",
+          "recommendation": "Useful for Bainbridge Island and Bremerton fans if the return sailing works with the expected postgame time.",
+          "details": "Seattle ferry arrivals at Colman Dock are within walking distance of Lumen Field. Check the current sailing schedule before leaving.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Sounder",
+          "recommendation": "Do not plan around a special {Team} event train.",
+          "details": "Sound Transit lists special {Team} Sounder service for October 4, October 11, November 8 and December 13, but not September 9. Riders should verify ordinary weekday service and a viable postgame return before using Sounder.",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field North Lot",
+          "details": "Unavailable for {Team} parking for this game because of the 1:10 p.m. Mariners game.",
+          "sourceUrl": "https://www.{team}.com/game-day/"
+        },
+        {
+          "name": "Mariners Garage",
+          "details": "Unavailable for {Team} parking for this game because of the Mariners afternoon game.",
+          "sourceUrl": "https://www.{team}.com/game-day/"
+        },
+        {
+          "name": "Off-site reserved parking",
+          "details": "The {Team} direct single-game drivers to reserve nearby parking through SpotHero. The Lumen Field North Lot and Lumen Field Garage are sold on a season basis and do not offer normal single-game parking.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "1:10 PM",
+          "event": "Mariners vs. Rangers",
+          "details": "The nearby Mariners game creates a direct parking and SODO traffic conflict."
+        },
+        {
+          "time": "1:30 PM",
+          "event": "Kickoff Concert Gate 3 opens",
+          "details": "Entry opens for holders of the separate, sold-out USAA Salute 250 Kickoff Concert ticket who also have an active September 9 game ticket. A game ticket alone does not provide concert access."
+        },
+        {
+          "time": "2:00 PM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event inside the Lumen Field Event Center."
+        },
+        {
+          "time": "2:30 PM",
+          "event": "Luke Bryan Kickoff Concert begins",
+          "details": "The official USAA Salute 250 Kickoff Concert begins in the Lumen Field North Lot and is scheduled to end at 3:45 p.m. It is distinct from the Ticketmaster Tailgate."
+        },
+        {
+          "time": "2:30 PM",
+          "event": "Suites and Delta Sky360 Club open",
+          "details": "Premium areas begin admitting guests."
+        },
+        {
+          "time": "3:30 PM",
+          "event": "All stadium gates open",
+          "details": "Fans can enter Lumen Field."
+        },
+        {
+          "time": "5:00 PM",
+          "event": "Recommended seated time",
+          "details": "The {Team} ask fans to be in their seats for the Super Bowl LX banner unveiling."
+        },
+        {
+          "time": "5:00 PM",
+          "event": "Recommended seated time",
+          "details": "Be in your seat for pregame entertainment and the Super Bowl LX championship-banner unveiling."
+        },
+        {
+          "time": "5:20 PM",
+          "event": "Kickoff",
+          "details": "Seattle {Team} vs. New England Patriots."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "USAA Salute 250 Kickoff Concert featuring Luke Bryan",
+          "location": "Lumen Field North Lot; concert entry at Gate 3",
+          "startTime": "Gate 3 opens 1:30 PM; concert 2:30-3:45 PM",
+          "description": "Official {Team} pregame concert. The event is sold out and required separate concert registration plus an active September 9 game ticket; ordinary game-ticket holders should not assume they have concert access. Concert guests can enter Lumen Field from the North Lot through Gate 2 after the show. This is separate from the general Ticketmaster Tailgate in the Event Center.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/countdown-to-kickoff/kickoff-concert/"
+        },
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "2:00 PM",
+          "description": "The official {Team} pregame event is open to game-ticket holders and includes a Sports Bar for guests 21+, Gaming Zone, kid-friendly activities, concessions, Pro Shop merchandise and live entertainment. Game tickets are scanned when entering the tailgate.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [
+        {
+          "name": "{Team} vs. Patriots NFL Kickoff Party",
+          "location": "The Dock Sports Bar & Grill, Fremont, Seattle",
+          "startTime": "3:00 PM",
+          "description": "The Dock is explicitly advertising a {Team}-Patriots kickoff party from 3:00 p.m. to 9:00 p.m. with a live DJ, outdoor beer garden and wall-to-wall game coverage.",
+          "specials": [
+            "Beer bucket specials"
+          ],
+          "ageRestriction": null,
+          "sourceUrl": "https://fremontdock.com/seattle-fremont-the-dock-events"
+        },
+        {
+          "name": "{Team} Watch Party",
+          "location": "Tractor Tavern, 5213 Ballard Ave NW, Seattle",
+          "startTime": "5:00 PM",
+          "description": "Tractor Tavern's current event calendar lists a {Team} Watch Party beginning at 5:00 p.m.",
+          "specials": [],
+          "ageRestriction": "21+",
+          "sourceUrl": "https://tractortavern.com/calendar/"
+        },
+        {
+          "name": "Synne Indoor Tailgate: {Team} vs. Patriots",
+          "location": "SYNNE Cellars at Hollywood Schoolhouse, 14810 NE 145th Street Suite B, Woodinville",
+          "startTime": "5:20 PM",
+          "description": "SYNNE is explicitly hosting an indoor {Team}-Patriots watch party with the game on all three televisions and sound on.",
+          "specials": [],
+          "ageRestriction": null,
+          "sourceUrl": "https://www.synnecellars.com/events/"
+        },
+        {
+          "name": "Patriots vs. {Team} Watch Party",
+          "location": "Airport Tavern, 5406 S Tacoma Way, Tacoma",
+          "startTime": "4:00 PM",
+          "description": "Airport Tavern opens at 4:00 p.m. for its explicitly advertised {Team}-Patriots Banner Night watch party. Game sound will be on, and {Team} gear earns a raffle ticket for halftime prizes.",
+          "specials": [
+            "$5 domestic drafts",
+            "$7 Blue Wave cocktails",
+            "$7 Green Tea shots",
+            "$20 buckets of five domestic beers",
+            "$12 three-touchdown sliders",
+            "$11 loaded 12s nachos"
+          ],
+          "ageRestriction": "21+",
+          "sourceUrl": "https://www.eventim.com/event/patriots-vs-{team}-watch-party-airport-tavern-22080133/"
+        },
+        {
+          "name": "Seattle {Team} vs. New England Patriots Watch Party",
+          "location": "Lucky Strike Bellevue",
+          "startTime": "",
+          "description": "Lucky Strike Bellevue's official current event calendar lists a {Team}-Patriots watch party for September 9 hosted by @IamDhayes. The calendar does not provide a verified start time in the surfaced listing, so none is stated here.",
+          "specials": [],
+          "ageRestriction": null,
+          "sourceUrl": "https://luckystrikeent.uvtix.com/"
+        }
+      ],
+      "stadiumTips": [
+        {
+          "title": "Clear-bag policy",
+          "details": "Clear plastic, vinyl or PVC bags may not exceed 12 x 6 x 12 inches. One-gallon clear freezer bags are allowed, as are small clutch bags no larger than 4.5 x 6.5 inches.",
+          "sourceUrl": "https://www.{team}.com/game-day/gameday-policies/prohibited-items/"
+        },
+        {
+          "title": "All {Team} tickets are mobile",
+          "details": "Download or update the {Team} mobile app and save tickets before approaching the stadium.",
+          "sourceUrl": "https://www.{team}.com/game-day/"
+        },
+        {
+          "title": "No tailgating on Lumen Field property",
+          "details": "Traditional tailgating is not permitted in Lumen Field-owned parking areas. The {Team} recommend the indoor Ticketmaster Tailgate for ticketed guests.",
+          "sourceUrl": "https://www.{team}.com/game-day/gameday-policies/tailgating/"
+        },
+        {
+          "title": "Super Bowl LX banner celebration",
+          "details": "Week 1 is officially themed NFL Kickoff and Super Bowl LX Banner Celebration.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": {
+        "summary": "Mostly sunny during the day and partly cloudy Wednesday night. Dry conditions are expected.",
+        "temperature": "High near 75°F; temperatures around kickoff should be near the low 70s before cooling through the evening.",
+        "precipitationChance": "5% or less",
+        "wind": "Light northerly winds",
+        "sourceUrl": "https://beta.weather.gov/place/WA/Seattle/"
+      },
+      "sources": [
+        {
+          "name": "{Team} USAA Salute 250 Kickoff Concert",
+          "url": "https://www.{team}.com/game-day/countdown-to-kickoff/kickoff-concert/"
+        },
+        {
+          "name": "{Team} Week 1 Anthem and Halftime Announcement",
+          "url": "https://www.{team}.com/news/performing-anthem-playing-with-soundgarden-at-halftime-incredibly-special-incredibly-poignant-for-pearl-jam-s-mike-mccready"
+        },
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Seattle {Team} Week 1 Gameday Guide",
+          "url": "https://www.{team}.com/game-day/"
+        },
+        {
+          "name": "{Team} Transportation Guide",
+          "url": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Ticketmaster Tailgate",
+          "url": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "National Weather Service Seattle",
+          "url": "https://beta.weather.gov/place/WA/Seattle/"
+        },
+        {
+          "name": "The Dock Events",
+          "url": "https://fremontdock.com/seattle-fremont-the-dock-events"
+        },
+        {
+          "name": "Tractor Tavern Calendar",
+          "url": "https://tractortavern.com/calendar/"
+        },
+        {
+          "name": "SYNNE Cellars Events",
+          "url": "https://www.synnecellars.com/events/"
+        },
+        {
+          "name": "Airport Tavern {Team} Watch Party",
+          "url": "https://www.eventim.com/event/patriots-vs-{team}-watch-party-airport-tavern-22080133/"
+        },
+        {
+          "name": "Lucky Strike Bellevue Events",
+          "url": "https://luckystrikeent.uvtix.com/"
+        }
+      ]
+    },
+    "1392244": {
+      "schemaVersion": 1,
+      "gameId": "1392244",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Arizona Cardinals",
+        "date": "2026-09-20",
+        "homeAway": "away",
+        "venue": "State Farm Stadium"
+      },
+      "summary": "Seattle's first road game is a 1:25 p.m. Pacific kickoff at State Farm Stadium in Glendale. Game-specific {Team} fan events in Arizona remain limited this far out, but one Puget Sound venue, Lucky Strike Bellevue, is already explicitly listing Seattle {Team} vs. Arizona Cardinals on September 20.",
+      "alerts": [],
+      "transportation": [],
+      "parking": [],
+      "timeline": [
+        {
+          "time": "1:25 PM PT / 1:25 PM MST",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Arizona Cardinals."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [
+        {
+          "name": "Seattle {Team} vs. Arizona Cardinals",
+          "location": "Lucky Strike Bellevue",
+          "startTime": "",
+          "description": "Lucky Strike Bellevue's current official event calendar explicitly lists Seattle {Team} vs. Arizona Cardinals on September 20. No verified start time or game-specific specials are stated in the surfaced listing.",
+          "specials": [],
+          "ageRestriction": null,
+          "sourceUrl": "https://luckystrikeent.uvtix.com/"
+        }
+      ],
+      "stadiumTips": [
+        {
+          "title": "Use the NFL clear-bag format",
+          "details": "State Farm Stadium directs fans to the NFL clear-bag policy. Travel with a compliant clear bag and recheck the Cardinals' game-specific stadium guide before departure.",
+          "sourceUrl": "https://www.azcardinals.com/stadium/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Arizona Cardinals 2026 Schedule",
+          "url": "https://www.azcardinals.com/schedule/"
+        },
+        {
+          "name": "State Farm Stadium",
+          "url": "https://www.azcardinals.com/stadium/"
+        },
+        {
+          "name": "Lucky Strike Bellevue Events",
+          "url": "https://luckystrikeent.uvtix.com/"
+        }
+      ]
+    },
+    "1392256": {
+      "schemaVersion": 1,
+      "gameId": "1392256",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Washington Commanders",
+        "date": "2026-09-27",
+        "homeAway": "away",
+        "venue": "Northwest Stadium"
+      },
+      "summary": "Seattle visits Washington for the Commanders' home opener at 1:00 p.m. Eastern. Washington has already announced a new stadium-wide pregame production called The Show debuting specifically at this {Team} game, and fans attending are advised to be seated 30 minutes before kickoff.",
+      "alerts": [
+        {
+          "title": "Commanders recommend being seated 30 minutes early",
+          "text": "Washington's new pregame production, The Show, debuts against Seattle and includes live performances, special effects, a full-field American flag, flyover and special game-ball delivery. The team recommends being seated 30 minutes before kickoff.",
+          "severity": "info",
+          "sourceUrl": "https://www.commanders.com/news/commanders-to-debut-the-show-at-home-opener-on-september-27"
+        }
+      ],
+      "transportation": [],
+      "parking": [
+        {
+          "name": "Northwest Stadium official parking",
+          "details": "A pre-purchased parking pass is required for official stadium lots. Lots open three hours before the game, except the Redzone Lot, which opens four hours before the game.",
+          "sourceUrl": "https://www.commanders.com/tickets/matchups/{team}"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "9:00 AM PT / 12:00 PM ET",
+          "event": "Recommended latest arrival inside stadium",
+          "details": "Washington recommends fans be seated 30 minutes before the 1:00 p.m. Eastern kickoff for The Show."
+        },
+        {
+          "time": "10:00 AM PT / 1:00 PM ET",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Washington Commanders."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Mobile tickets only",
+          "details": "Northwest Stadium tickets are 100% mobile. Printed PDFs and screenshots are not accepted.",
+          "sourceUrl": "https://www.commanders.com/tickets/matchups/{team}"
+        },
+        {
+          "title": "Clear-bag policy",
+          "details": "Clear bags may not exceed 12 x 6 x 12 inches; one-gallon clear freezer bags and small clutch bags are also permitted.",
+          "sourceUrl": "https://www.commanders.com/stadium/clear-bag-policy"
+        },
+        {
+          "title": "Several common items are prohibited",
+          "details": "Northwest Stadium prohibits items including umbrellas, outside food and beverages, computers, tablets, large bags and many camera accessories.",
+          "sourceUrl": "https://www.commanders.com/stadium/prohibited-items"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Commanders {Team} Matchup Guide",
+          "url": "https://www.commanders.com/tickets/matchups/{team}"
+        },
+        {
+          "name": "Commanders The Show Announcement",
+          "url": "https://www.commanders.com/news/commanders-to-debut-the-show-at-home-opener-on-september-27"
+        },
+        {
+          "name": "Northwest Stadium Clear Bag Policy",
+          "url": "https://www.commanders.com/stadium/clear-bag-policy"
+        },
+        {
+          "name": "Northwest Stadium Prohibited Items",
+          "url": "https://www.commanders.com/stadium/prohibited-items"
+        }
+      ]
+    },
+    "1392277": {
+      "schemaVersion": 1,
+      "gameId": "1392277",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Los Angeles Chargers",
+        "date": "2026-10-04",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "The Chargers visit Lumen Field at 1:25 p.m. The {Team} have designated this game for La Gente, Hispanic/Latino Heritage Month and Legends Weekend, with {Team} Legends scheduled for meet-and-greet opportunities at Ticketmaster Tailgate. The Corgi Cup is also scheduled for halftime. Sound Transit has specifically confirmed {Team} Sounder event service for October 4.",
+      "alerts": [],
+      "transportation": [
+        {
+          "name": "Sounder event service",
+          "recommendation": "A verified game-day option for this specific game.",
+          "details": "Sound Transit explicitly lists {Team} event service for October 4. Check the event-service page closer to the date for exact train times.",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "Link light rail",
+          "recommendation": "Recommended for fans along the 1 Line.",
+          "details": "Stadium and International District/Chinatown stations are both near Lumen Field.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field on-site parking",
+          "details": "The North Lot and Lumen Field Garage are sold on a season basis. Single-game fans should reserve off-site parking in advance.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:25 AM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} tailgate opens three hours before kickoff."
+        },
+        {
+          "time": "1:25 PM",
+          "event": "Kickoff",
+          "details": "Los Angeles Chargers at Seattle {Team}."
+        },
+        {
+          "time": "Halftime",
+          "event": "Corgi Cup",
+          "details": "The {Team} have announced the Corgi Cup as the Week 4 halftime entertainment."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "10:25 AM",
+          "description": "Official {Team} tailgate for game-ticket holders. The {Team} specifically say Legends Weekend will include {Team} Legends meet-and-greet opportunities at Ticketmaster Tailgate.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "La Gente and Legends Weekend",
+          "details": "The game celebrates Hispanic/Latino Heritage Month with food, family, music and dancing while also welcoming {Team} Legends back to Lumen Field.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "No tailgating on Lumen Field property",
+          "details": "Traditional vehicle tailgating is prohibited on Lumen Field property.",
+          "sourceUrl": "https://www.{team}.com/game-day/gameday-policies/tailgating/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} 2026 Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "{Team} Transportation Guide",
+          "url": "https://www.{team}.com/game-day/transportation/"
+        }
+      ]
+    },
+    "1392292": {
+      "schemaVersion": 1,
+      "gameId": "1392292",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "San Francisco 49ers",
+        "date": "2026-10-11",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Seattle hosts San Francisco at 1:25 p.m. for the {Team}' Crucial Catch game. Sound Transit has specifically confirmed {Team} Sounder event service for October 11, and Ticketmaster Tailgate opens three hours before kickoff.",
+      "alerts": [],
+      "transportation": [
+        {
+          "name": "Sounder event service",
+          "recommendation": "Verified for this specific {Team} home game.",
+          "details": "Sound Transit explicitly lists {Team} vs. San Francisco event service on October 11. Confirm exact train times closer to game day.",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "Link light rail",
+          "recommendation": "Recommended for fans along the 1 Line.",
+          "details": "Stadium and International District/Chinatown stations serve the stadium district.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "The Lumen Field North Lot and garage are season-presold. Reserve off-site parking before game day.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:25 AM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "1:25 PM",
+          "event": "Kickoff",
+          "details": "San Francisco 49ers at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "10:25 AM",
+          "description": "Official {Team} ticket-holder tailgate, opening three hours before kickoff.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Crucial Catch game",
+          "details": "The {Team} have designated the 49ers game as Crucial Catch, recognizing cancer survivors and emphasizing early screening and detection.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "Ticketmaster Tailgate",
+          "url": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ]
+    },
+    "1392295": {
+      "schemaVersion": 1,
+      "gameId": "1392295",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Denver Broncos",
+        "date": "2026-10-15",
+        "homeAway": "away",
+        "venue": "Empower Field at Mile High"
+      },
+      "summary": "Seattle visits Denver for Thursday Night Football at 6:15 p.m. Mountain Time. Denver's official gameday program normally includes the free, family-friendly Mane Street pregame area outside Empower Field beginning three hours before kickoff; game-specific programming should be reconfirmed when Denver publishes the {Team} matchup guide.",
+      "alerts": [],
+      "transportation": [],
+      "parking": [],
+      "timeline": [
+        {
+          "time": "5:15 PM PT / 6:15 PM MT",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Denver Broncos."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Clear-bag policy",
+          "details": "Empower Field allows clear bags up to 12 x 6 x 12 inches and small bags up to 4.5 x 6.5 inches.",
+          "sourceUrl": "https://www.denverbroncos.com/game-day/kbyg"
+        },
+        {
+          "title": "No re-entry",
+          "details": "Empower Field operates a no-re-entry policy once a ticket has been scanned.",
+          "sourceUrl": "https://www.denverbroncos.com/game-day/kbyg"
+        },
+        {
+          "title": "Mane Street pregame area",
+          "details": "Broncos gameday guides describe Mane Street between Gates 9 and 10 as a free pregame area opening three hours before kickoff with family activities, entertainment and food. Recheck the {Team}-specific guide before publishing detailed entertainment or specials.",
+          "sourceUrl": "https://www.denverbroncos.com/game-day/kbyg"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Denver Broncos Know Before You Go",
+          "url": "https://www.denverbroncos.com/game-day/kbyg"
+        }
+      ]
+    },
+    "1392321": {
+      "schemaVersion": 1,
+      "gameId": "1392321",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Kansas City Chiefs",
+        "date": "2026-10-25",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Kansas City visits Seattle for Sunday Night Football at 5:20 p.m. This is also one of Seattle's two announced Throwback games, with the {Team} wearing their royal-blue throwback uniforms. No special Sounder {Team} event service is currently listed for October 25.",
+      "alerts": [
+        {
+          "title": "No special Sounder service currently listed",
+          "text": "Sound Transit's {Team} event calendar currently lists October 4, October 11, November 8 and December 13 only. Do not assume a special Sounder game train will operate October 25.",
+          "severity": "info",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "Link light rail",
+          "recommendation": "Preferred transit option for the Sunday-night game.",
+          "details": "Use Stadium or International District/Chinatown station and check late-evening service before game day.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "On-site parking is season-presold. Reserve off-site parking in advance for this high-demand primetime game.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "2:20 PM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "5:20 PM",
+          "event": "Kickoff",
+          "details": "Kansas City Chiefs at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "2:20 PM",
+          "description": "Official {Team} pregame event for game-ticket holders.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Throwback uniform game",
+          "details": "Seattle will wear its royal-blue throwback uniform against Kansas City.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "Sunday Night Football theme",
+          "details": "The {Team} have designated the Chiefs matchup as a Sunday Night Football primetime gameday theme.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Ticketmaster Tailgate",
+          "url": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ]
+    },
+    "1392336": {
+      "schemaVersion": 1,
+      "gameId": "1392336",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Chicago Bears",
+        "date": "2026-11-02",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Chicago visits Lumen Field for Monday Night Football at 5:15 p.m. Pacific. Because this is a weekday rush-hour game and Sound Transit currently does not list special {Team} Sounder event service for November 2, Link light rail and regular Metro service are the most dependable currently published transit options.",
+      "alerts": [
+        {
+          "title": "No special Sounder service currently listed",
+          "text": "November 2 is not on Sound Transit's current {Team} event-service calendar.",
+          "severity": "info",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "Link light rail",
+          "recommendation": "Best current transit option for many fans because kickoff overlaps weekday rush hour.",
+          "details": "Use Stadium or International District/Chinatown station.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "King County Metro",
+          "recommendation": "Useful for local trips into the stadium district.",
+          "details": "Regular Metro routes serve the area; dedicated {Team} park-and-ride game buses are not offered.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "The primary stadium lots are season-presold. Reserve off-site parking rather than expecting drive-up inventory.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "2:15 PM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "5:15 PM",
+          "event": "Kickoff",
+          "details": "Chicago Bears at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "2:15 PM",
+          "description": "Official {Team} pregame tailgate for ticket holders.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Monday Night Football theme",
+          "details": "The {Team} have formally designated this game as a Monday Night Football primetime event.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "{Team} Transportation Guide",
+          "url": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ]
+    },
+    "1392349": {
+      "schemaVersion": 1,
+      "gameId": "1392349",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Arizona Cardinals",
+        "date": "2026-11-08",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Arizona visits Seattle at 1:25 p.m. for the {Team}' annual Salute to Service game. Sound Transit has specifically confirmed {Team} Sounder event service for November 8.",
+      "alerts": [],
+      "transportation": [
+        {
+          "name": "Sounder event service",
+          "recommendation": "Verified for this game.",
+          "details": "Sound Transit explicitly lists {Team} vs. Arizona event service on November 8. Confirm exact departure times closer to the game.",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "Link light rail",
+          "recommendation": "Reliable alternative for fans along the 1 Line.",
+          "details": "Use Stadium or International District/Chinatown station.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "Reserve off-site parking in advance because the main stadium lots are season-presold.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:25 AM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "1:25 PM",
+          "event": "Kickoff",
+          "details": "Arizona Cardinals at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "10:25 AM",
+          "description": "Official {Team} pregame event for game-ticket holders.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Salute to Service",
+          "details": "The {Team} will honor local military members and veterans during their annual Salute to Service game.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ]
+    },
+    "1392361": {
+      "schemaVersion": 1,
+      "gameId": "1392361",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Las Vegas Raiders",
+        "date": "2026-11-15",
+        "homeAway": "away",
+        "venue": "Allegiant Stadium"
+      },
+      "summary": "Seattle visits the Raiders at Allegiant Stadium for a 1:05 p.m. Pacific kickoff. No sufficiently current {Team}-specific traveling tailgate has been verified yet. Fans driving should plan to purchase official parking before game day and recheck Raiders gameday policies closer to November.",
+      "alerts": [],
+      "transportation": [],
+      "parking": [],
+      "timeline": [
+        {
+          "time": "1:05 PM PT",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Las Vegas Raiders."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Las Vegas Raiders 2026 Schedule",
+          "url": "https://www.raiders.com/schedule/2026/"
+        }
+      ]
+    },
+    "1392392": {
+      "schemaVersion": 1,
+      "gameId": "1392392",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "San Francisco 49ers",
+        "date": "2026-11-29",
+        "homeAway": "away",
+        "venue": "Levi's Stadium"
+      },
+      "summary": "Seattle returns from its Week 11 bye to play San Francisco at Levi's Stadium at 1:25 p.m. Pacific. No current {Team}-specific traveling fan tailgate has been verified yet, so only stable stadium guidance is included.",
+      "alerts": [],
+      "transportation": [],
+      "parking": [],
+      "timeline": [
+        {
+          "time": "1:25 PM PT",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at San Francisco 49ers."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Tailgating only in designated areas",
+          "details": "Levi's Stadium permits tailgating in specified parking areas only, and tailgating must cease after kickoff.",
+          "sourceUrl": "https://www.49ers.com/game-day/tailgating-policy"
+        },
+        {
+          "title": "No stadium bag-check service",
+          "details": "Non-compliant bags must be returned to a vehicle; Levi's Stadium does not provide bag check.",
+          "sourceUrl": "https://www.49ers.com/game-day/tailgating-policy"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "49ers Single Game Tickets and Schedule",
+          "url": "https://www.49ers.com/tickets/single-game"
+        },
+        {
+          "name": "49ers Tailgating Policy",
+          "url": "https://www.49ers.com/game-day/tailgating-policy"
+        }
+      ]
+    },
+    "1392408": {
+      "schemaVersion": 1,
+      "gameId": "1392408",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Dallas Cowboys",
+        "date": "2026-12-07",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Dallas visits Seattle for Monday Night Football at 5:15 p.m. Pacific. This game carries three confirmed {Team} themes: Monday Night Football, My Cause My Cleats and a royal-blue Throwback uniform game. No special {Team} Sounder event service is currently listed for December 7.",
+      "alerts": [
+        {
+          "title": "No special Sounder service currently listed",
+          "text": "December 7 does not appear on Sound Transit's current {Team} event-service calendar.",
+          "severity": "info",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "Link light rail",
+          "recommendation": "Preferred transit option because kickoff falls during Monday rush hour.",
+          "details": "Use Stadium or International District/Chinatown station.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "Reserve off-site parking well ahead of this high-demand Monday-night game. Stadium-owned primary lots are season-presold.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "2:15 PM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "5:15 PM",
+          "event": "Kickoff",
+          "details": "Dallas Cowboys at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "2:15 PM",
+          "description": "Official {Team} ticket-holder pregame event.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "My Cause My Cleats",
+          "details": "Players will wear custom cleats highlighting causes important to them.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "Throwback uniforms",
+          "details": "Seattle will wear its royal-blue throwback uniform against Dallas.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "{Team} Transportation Guide",
+          "url": "https://www.{team}.com/game-day/transportation/"
+        }
+      ]
+    },
+    "1392421": {
+      "schemaVersion": 1,
+      "gameId": "1392421",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "New York Giants",
+        "date": "2026-12-13",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "The Giants visit Lumen Field at 1:25 p.m. This game combines Inspire Change, 12s Appreciation and 12 North programming. The {Team} have announced Canadian-national-anthem special guests in recognition of Canadian 12s, and Sound Transit has confirmed {Team} Sounder event service for December 13.",
+      "alerts": [],
+      "transportation": [
+        {
+          "name": "Sounder event service",
+          "recommendation": "Verified for this specific game.",
+          "details": "Sound Transit explicitly lists {Team} vs. New York event service for December 13. Confirm exact train times nearer game day.",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        },
+        {
+          "name": "Link light rail",
+          "recommendation": "Strong alternative for Seattle-region fans.",
+          "details": "Stadium and International District/Chinatown stations serve Lumen Field.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "Reserve off-site parking ahead of time because primary stadium lots are season-presold.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:25 AM",
+          "event": "Ticketmaster Tailgate opens",
+          "details": "Official {Team} pregame event."
+        },
+        {
+          "time": "1:25 PM",
+          "event": "Kickoff",
+          "details": "New York Giants at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "10:25 AM",
+          "description": "Official {Team} ticket-holder pregame event.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "12s Appreciation",
+          "details": "The {Team} will use this game to recognize and thank the 12s.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "12 North",
+          "details": "The {Team} have announced the Canadian national anthem and other special guests in honor of fans from Canada.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "Inspire Change",
+          "details": "The game will also recognize community leaders working to inspire change and uplift historically underrepresented communities.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "Sound Transit {Team} Event Service",
+          "url": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ]
+    },
+    "1392425": {
+      "schemaVersion": 1,
+      "gameId": "1392425",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Philadelphia Eagles",
+        "date": "2026-12-19",
+        "homeAway": "away",
+        "venue": "Lincoln Financial Field"
+      },
+      "summary": "Seattle plays Philadelphia on Saturday, December 19, at 2:00 p.m. Pacific. {Team}-specific Philadelphia tailgates and Puget Sound watch parties have not yet been announced or reliably verified this far in advance, so speculative events are excluded.",
+      "alerts": [],
+      "transportation": [],
+      "parking": [],
+      "timeline": [
+        {
+          "time": "2:00 PM PT / 5:00 PM ET",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Philadelphia Eagles."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Seattle {Team} 2026 Schedule Announcement",
+          "url": "https://www.{team}.com/news/seattle-{team}-2026-schedule-release-features-six-primetime-games-including-christmas-at-lumen-field"
+        }
+      ]
+    },
+    "1392443": {
+      "schemaVersion": 1,
+      "gameId": "1392443",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Los Angeles Rams",
+        "date": "2026-12-25",
+        "homeAway": "home",
+        "venue": "Lumen Field"
+      },
+      "summary": "Seattle hosts the Rams at 5:15 p.m. Pacific on Christmas Day in the first Christmas game at Lumen Field. The {Team} have designated it both their Christmas Day celebration and a Rivalries uniform game. Holiday transit, ferry schedules, parking operations and surrounding-business hours should be rechecked when agencies publish Christmas service.",
+      "alerts": [
+        {
+          "title": "Christmas Day transportation requires a fresh check",
+          "text": "Do not assume ordinary Friday Link, Metro, Sounder or ferry schedules. Holiday-specific service should be verified closer to December 25.",
+          "severity": "warning",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "title": "No special Sounder {Team} service currently listed",
+          "text": "Sound Transit's current {Team} event-service calendar does not list December 25.",
+          "severity": "info",
+          "sourceUrl": "https://www.soundtransit.org/get-to-know-us/news-events/calendar?category=event_service&subcategory=442"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "Link light rail",
+          "recommendation": "Likely useful, but Christmas Day operating hours and frequency must be verified before travel.",
+          "details": "The 1 Line normally serves Stadium and International District/Chinatown stations near Lumen Field.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Washington State Ferries",
+          "recommendation": "Check the Christmas Day sailing schedule before relying on Bainbridge or Bremerton service.",
+          "details": "Colman Dock is within walking distance of the stadium, but holiday schedules can differ from ordinary Friday service.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Lumen Field-area parking",
+          "details": "Primary stadium lots are season-presold. Reserve off-site parking once Christmas Day inventory and operating hours are published.",
+          "sourceUrl": "https://www.{team}.com/game-day/transportation/"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "2:15 PM",
+          "event": "Ticketmaster Tailgate scheduled opening",
+          "details": "The official tailgate opens three hours before every {Team} home game."
+        },
+        {
+          "time": "5:15 PM",
+          "event": "Kickoff",
+          "details": "Los Angeles Rams at Seattle {Team}."
+        }
+      ],
+      "tailgates": [
+        {
+          "name": "Ticketmaster Tailgate",
+          "location": "Lumen Field Event Center",
+          "startTime": "2:15 PM",
+          "description": "Official {Team} pregame event. Christmas-specific programming has not yet been published.",
+          "price": null,
+          "ageRestriction": null,
+          "official": true,
+          "sourceUrl": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "First Christmas Day game at Lumen Field",
+          "details": "The {Team} have officially designated the Rams matchup as their Christmas Day gameday celebration.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "title": "Rivalries uniform",
+          "details": "Seattle will wear its Rivalries uniform against the Rams.",
+          "sourceUrl": "https://www.{team}.com/tickets/game-themes/"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "{Team} Gameday Themes",
+          "url": "https://www.{team}.com/tickets/game-themes/"
+        },
+        {
+          "name": "{Team} Transportation Guide",
+          "url": "https://www.{team}.com/game-day/transportation/"
+        },
+        {
+          "name": "Ticketmaster Tailgate",
+          "url": "https://www.{team}.com/game-day/ticketmaster-tailgate/"
+        }
+      ]
+    },
+    "1392467": {
+      "schemaVersion": 1,
+      "gameId": "1392467",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Carolina Panthers",
+        "date": "2027-01-03",
+        "homeAway": "away",
+        "venue": "Bank of America Stadium"
+      },
+      "summary": "Seattle visits Carolina for a 10:00 a.m. Pacific kickoff in Week 17. {Team}-specific Charlotte tailgates and Puget Sound watch parties have not yet been reliably announced. Fans traveling should plan to verify January parking and transit information closer to game day.",
+      "alerts": [],
+      "transportation": [
+        {
+          "name": "Charlotte public transit",
+          "recommendation": "Consider transit rather than driving into Uptown Charlotte.",
+          "details": "The Panthers identify local transit as an alternative to stadium-area driving. Recheck January service before travel.",
+          "sourceUrl": "https://www.panthers.com/schedule/traffic-parking"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Uptown Charlotte parking",
+          "details": "The Panthers state that more than 30,000 parking spaces are available within roughly a 10-15 minute walk of Bank of America Stadium, primarily through independent operators. Advance reservation is recommended.",
+          "sourceUrl": "https://www.panthers.com/schedule/traffic-parking"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:00 AM PT / 1:00 PM ET",
+          "event": "Kickoff",
+          "details": "Seattle {Team} at Carolina Panthers."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "Panthers Traffic and Parking",
+          "url": "https://www.panthers.com/schedule/traffic-parking"
+        }
+      ]
+    },
+    "1392478": {
+      "schemaVersion": 1,
+      "gameId": "1392478",
+      "lastUpdated": "2026-09-08T19:12:00-07:00",
+      "game": {
+        "opponent": "Los Angeles Rams",
+        "date": "",
+        "homeAway": "away",
+        "venue": "SoFi Stadium"
+      },
+      "summary": "Seattle closes the regular season on the road against the Rams at SoFi Stadium. As of September 8, the NFL still lists the Week 18 date, kickoff time and television assignment as TBD, so no exact calendar date is inserted here. The NFL states that Week 18 games will be assigned to Saturday or Sunday after Week 17.",
+      "alerts": [
+        {
+          "title": "Week 18 date and kickoff time are not finalized",
+          "text": "The NFL and {Team} currently list {Team} at Rams as TBD. Do not publish a January 9 or January 10 date as final until the league announces Week 18 scheduling after Week 17.",
+          "severity": "critical",
+          "sourceUrl": "https://www.nfl.com/schedules/2026/by-week/week-18"
+        }
+      ],
+      "transportation": [
+        {
+          "name": "SoFi Stadium public transportation",
+          "recommendation": "Consider transit once the Week 18 kickoff is finalized.",
+          "details": "The Rams' 2026 transportation guide directs fans to current Metro and stadium-shuttle options. Recheck operating hours after the NFL announces the date and time.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        },
+        {
+          "name": "Rideshare",
+          "recommendation": "Use the designated stadium rideshare zone rather than arranging curbside pickup.",
+          "details": "The Rams designate the rideshare area north of SoFi Stadium on Kareem Court via Pincay Drive and recommend 3178 Pincay Dr., Inglewood, for pickup and drop-off requests.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        }
+      ],
+      "parking": [
+        {
+          "name": "SoFi Stadium on-site parking",
+          "details": "Parking must be purchased in advance. The Rams state there is no event-day on-site parking sale at SoFi Stadium, and current season parking inventory is sold out, with single-game passes available through resale.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        },
+        {
+          "name": "City of Inglewood Park & Go",
+          "details": "The Rams identify Inglewood Park & Go as an official off-site alternative.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "TBD",
+          "event": "Kickoff",
+          "details": "The NFL will assign the Week 18 date and kickoff time after Week 17."
+        }
+      ],
+      "tailgates": [],
+      "watchParties": [],
+      "stadiumTips": [
+        {
+          "title": "Tailgating only in the Pink Zone",
+          "details": "NFL tailgating at SoFi Stadium is permitted only in the Pink Zone. The Pink Zone opens five hours before kickoff.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        },
+        {
+          "title": "Other parking zones open four hours before kickoff",
+          "details": "The Rams state that regular parking zones open four hours before kickoff.",
+          "sourceUrl": "https://www.therams.com/tickets/parking"
+        },
+        {
+          "title": "Mobile tickets only",
+          "details": "SoFi Stadium does not accept print-at-home tickets or screenshots because mobile ticket barcodes rotate.",
+          "sourceUrl": "https://www.therams.com/stadium/sofi-stadium"
+        },
+        {
+          "title": "NFL clear-bag policy",
+          "details": "Clear bags up to 12 x 6 x 12 inches and small bags not exceeding 4.5 x 6.5 inches are permitted.",
+          "sourceUrl": "https://www.therams.com/stadium/sofi-stadium"
+        }
+      ],
+      "weather": null,
+      "sources": [
+        {
+          "name": "Seattle {Team} 2026 Schedule",
+          "url": "https://www.{team}.com/schedule/"
+        },
+        {
+          "name": "NFL {Team} 2026 Schedule",
+          "url": "https://www.nfl.com/schedules/2026/by-team/seattle-{team}"
+        },
+        {
+          "name": "NFL Week 18 Schedule",
+          "url": "https://www.nfl.com/schedules/2026/by-week/week-18"
+        },
+        {
+          "name": "Rams SoFi Stadium Parking and Transportation",
+          "url": "https://www.therams.com/tickets/parking"
+        },
+        {
+          "name": "Rams SoFi Stadium Guide",
+          "url": "https://www.therams.com/stadium/sofi-stadium"
+        }
+      ]
+    }
+  }
+}

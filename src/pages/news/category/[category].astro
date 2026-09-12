@@ -1,0 +1,17 @@
+---
+import {Team}Layout from "../../../layouts/{Team}Layout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import AdSlot from "../../../components/AdSlot.astro";
+import { categorySlug, coverageArticles, populatedNewsCategories, type NewsArticle, type NewsCategory } from "../../../lib/news";
+
+export function getStaticPaths() { return populatedNewsCategories.map((category) => ({ params: { category: categorySlug(category) }, props: { category, articles: coverageArticles.filter((article) => article.category === category) } })); }
+interface Props { category: NewsCategory; articles: NewsArticle[]; }
+const { category, articles } = Astro.props;
+const hasArticles = articles.length > 0;
+const seo = { title: `${category} | {Team} Fan Zone Newsroom`, description: `Original Seattle {Team} ${category.toLowerCase()} coverage and context from {Team} Fan Zone.`, canonicalPath: `/news/category/${categorySlug(category)}`, robots: hasArticles ? "index, follow" : "noindex, follow" };
+---
+<{Team}Layout {seo} activePath="/news" pageTitle={category} pageTagline={`{Team} ${category.toLowerCase()} from the Fan Zone newsroom.`} pageType="news-category" articleCategory={category} monetizationEligible={hasArticles} quickLinks={[{href:"/news",label:"All news"},{href:"/news/rss.xml",label:"RSS feed"}]}>
+  <nav class="category-nav" aria-label="Other news categories">{populatedNewsCategories.filter((item) => item !== category).map((item) => <a href={`/news/category/${categorySlug(item)}/`}>{item}</a>)}</nav>
+  {hasArticles ? <><div class="category-grid">{articles.slice(0, 4).map((article) => <ArticleCard article={article} />)}</div>{articles.length > 4 && <AdSlot pageType="news-archive" placement="feed-break" contentUnits={articles.length} />}{articles.length > 4 && <div class="category-grid">{articles.slice(4).map((article) => <ArticleCard article={article} />)}</div>}</> : <section class="category-empty"><p>Category archive</p><h2>No published {category.toLowerCase()} stories</h2><span>This category currently contains no published coverage and is excluded from search indexing. Browse the newsroom for available reporting and analysis.</span><a href="/news">Return to the newsroom →</a></section>}
+  <style>.category-nav{display:flex;gap:.4rem;overflow:auto;margin-bottom:1.5rem}.category-nav a{white-space:nowrap;padding:.45rem .65rem;background:var(--slate-100);color:var(--navy-900);font-size:.75rem;font-weight:850;text-decoration:none}.category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.category-empty{padding:clamp(1.3rem,5vw,2.5rem);border:1px dashed var(--slate-500);background:linear-gradient(135deg,#edf2f4,#fff)}.category-empty p{color:#386f13;font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.category-empty h2{margin:.3rem 0}.category-empty span{display:block;max-width:620px;color:var(--slate-700)}.category-empty a{display:inline-block;margin-top:1rem;font-weight:900}@media(max-width:600px){.category-grid{grid-template-columns:1fr}}</style>
+</{Team}Layout>

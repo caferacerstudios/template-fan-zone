@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "players": {
+    "sam-darnold": {
+      "tier": "featured",
+      "reason": "Starting quarterback and primary featured player",
+      "reviewedAt": "2026-09-02"
+    },
+    "jaxon-smith-njigba": {
+      "tier": "featured",
+      "reason": "All-Pro, AP Offensive Player of the Year, franchise record-holder, and current featured receiver",
+      "reviewedAt": "2026-09-11"
+    }
+  }
+}

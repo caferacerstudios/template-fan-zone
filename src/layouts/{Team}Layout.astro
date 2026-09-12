@@ -1,0 +1,216 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { absoluteUrl, pageMetadata, SITE_NAME } from "../lib/seo";
+
+const {
+  title = "{Team} Fan Zone",
+  description = "Schedule, team stats, and player stats.",
+  pageTitle = title,
+  pageTagline = description,
+  activePath = "",
+  quickLinks = [],
+  rightLinks = [],
+  showPageHeader = true,
+  canonical,
+  article,
+  structuredData,
+  monetizationEligible = true,
+  pageType,
+  season,
+  opponent,
+  articleCategory,
+  seo,
+  breadcrumbs,
+} = Astro.props;
+const nonMonetizedPaths = new Set(["/about", "/contact", "/privacy-policy", "/disclosure", "/methodology", "/sources", "/404"]);
+const pageCanBeMonetized = monetizationEligible && !nonMonetizedPaths.has(Astro.url.pathname.replace(/\/$/, "") || "/");
+
+const resolvedSeo = seo ?? pageMetadata(Astro.url.pathname) ?? { title, description, canonicalPath: canonical ?? Astro.url.pathname, article };
+const fallbackCrumbs = Astro.url.pathname === "/" ? [] : [{ name: "Home", href: "/" }, { name: resolvedSeo.title.replace(/\s*\|.*$/, ""), href: resolvedSeo.canonicalPath }];
+const visualCrumbs = (breadcrumbs?.length ? breadcrumbs : fallbackCrumbs).filter((crumb) => crumb?.name && crumb?.href);
+const crumbs = visualCrumbs.map((crumb, index) => ({ "@type": "ListItem", position: index + 1, name: crumb.name, item: absoluteUrl(crumb.href) }));
+const baseStructuredData = [
+  ...(Astro.url.pathname === "/" ? [{ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") }] : []),
+  ...(crumbs.length ? [{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: crumbs }] : []),
+  ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+];
+
+let latestRecapHref = "/weekly-recap";
+try {
+  const schedule = (await import("../data/nfl/{team}.json")).default;
+  const recaps = (await import("../data/nfl/gameRecaps.json")).default?.recaps ?? {};
+  const games = Array.isArray(schedule?.games) ? schedule.games : [...(schedule?.gamesPreseason ?? []), ...(schedule?.gamesRegular ?? []), ...(schedule?.gamesPostseason ?? [])];
+  const latest = games.filter((game) => /final|finished|complete/i.test(String(game?.status ?? "")) && recaps[String(game?.id ?? game?.game_id)]).sort((a, b) => new Date(b?.date ?? 0).getTime() - new Date(a?.date ?? 0).getTime())[0];
+  if (latest) latestRecapHref = `/games/${encodeURIComponent(String(latest?.id ?? latest?.game_id))}`;
+} catch {}
+
+const navPages = [
+  { href: "/", label: "Home" },
+  { href: "/news", label: "News" },
+  { href: "/schedule", label: "Schedule" },
+  { href: "/players", label: "Roster" },
+  { href: "/tickets", label: "Tickets" },
+  { href: "/history", label: "History" },
+];
+const morePages: Array<{ href: string; label: string; match?: string[] }> = [
+  { href: "/team", label: "Team Stats" },
+  { href: "/standings", label: "Standings" },
+  { href: latestRecapHref, label: "Latest Recap", match: ["/games"] },
+  { href: "/weekly-recap", label: "Recap Archive" },
+  { href: "/news/around-the-web", label: "Around the Web" },
+  { href: "/team/transactions", label: "Transactions" },
+  { href: "/team/injuries", label: "Injuries" },
+  { href: "/about", label: "About" },
+  { href: "/methodology", label: "Methodology" },
+  { href: "/contact", label: "Contact" },
+];
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
+const moreIsActive = morePages.some((page) => page.match?.some((path) => isActive(path)) ?? isActive(page.href));
+---
+
+<BaseLayout
+  seo={resolvedSeo}
+  article={resolvedSeo.article ?? article}
+  structuredData={baseStructuredData}
+  monetizationEligible={pageCanBeMonetized}
+  {pageType}
+  {season}
+  {opponent}
+  {articleCategory}
+>
+  <header class="lr-header {team}-header">
+    <div class="lr-header-bg {team}-header-bg" aria-hidden="true"></div>
+
+    <div class="lr-header-inner">
+      <a class="sfz-brand" href="/" aria-label="{Team} Fan Zone home">
+        <span class="sfz-mark" aria-hidden="true"><span>{BrandMark}</span></span>
+        <span class="sfz-brand-copy"><span class="lr-site-title">{Team} Fan Zone</span><span class="lr-site-tagline">Independent coverage · {Location}</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open primary navigation">
+        <span class="nav-toggle-label">Menu</span><span class="nav-toggle-icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="top-nav" id="primary-nav" aria-label="Primary">
+        {navPages.map((p) => (
+          <a
+            class="top-nav-link"
+            href={p.href}
+            aria-current={isActive(p.href) && !moreIsActive ? "page" : undefined}
+          >
+            {p.label}
+          </a>
+        ))}
+        <div class="nav-more">
+          <button class="top-nav-link more-toggle" type="button" aria-expanded="false" aria-controls="more-menu" aria-current={moreIsActive ? "page" : undefined}>More <span aria-hidden="true">▾</span></button>
+          <div class="more-menu" id="more-menu">
+            {morePages.map((page) => <a href={page.href} aria-current={(page.match?.some((path) => isActive(path)) ?? isActive(page.href)) ? "page" : undefined}>{page.label}</a>)}
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lr-middle">
+    <main class="lr-main" id="main-content" tabindex="-1">
+      <article class="lr-paper {team}-paper">
+        {visualCrumbs.length > 0 && <nav aria-label="Breadcrumb"><ol class="seo-breadcrumbs">{visualCrumbs.map((crumb, index) => <li aria-current={index === visualCrumbs.length - 1 ? "page" : undefined}>{index === visualCrumbs.length - 1 ? crumb.name : <a href={crumb.href}>{crumb.name}</a>}</li>)}</ol></nav>}
+        {showPageHeader && <header class="lr-post-header">
+          <p class="page-eyebrow">{Team} Fan Zone</p>
+          <h1 class="lr-post-title">{pageTitle}</h1>
+          {pageTagline && <p class="page-deck">{pageTagline}</p>}
+        </header>}
+
+        <div class="lr-post-content">
+          <slot />
+        </div>
+      </article>
+
+    </main>
+
+  </div>
+
+  <footer class="lr-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark">{BrandMark}</span><span>{FanTagline}</span></div>
+      <nav class="footer-links" aria-label="Publication information">
+        <a href="/about">About</a><a href="/contact">Contact</a><a href="/contact#corrections">Corrections</a><a href="/methodology">Methodology</a><a href="/sources">Sources</a><a href="/disclosure">Disclosure</a><a href="/privacy-policy">Privacy</a><a href="#" data-manage-privacy>Privacy Choices</a>
+      </nav>
+      <p class="lr-footer-note">{Team} Fan Zone is an independently operated fan publication. It is not affiliated with, endorsed by, or sponsored by the Seattle {Team}, the NFL, or their affiliates.</p>
+      <div class="lr-copyright">&copy; {new Date().getFullYear()} {Team} Fan Zone</div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    (() => {
+      const button = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      const moreButton = nav?.querySelector('.more-toggle');
+      const moreMenu = nav?.querySelector('.more-menu');
+      if (!button || !nav) return;
+      const closeMore = (focus = false) => {
+        moreButton?.setAttribute('aria-expanded', 'false');
+        moreMenu?.classList.remove('is-open');
+        if (focus) moreButton?.focus();
+      };
+      button.addEventListener('click', () => {
+        const open = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!open));
+        button.setAttribute('aria-label', `${open ? 'Open' : 'Close'} primary navigation`);
+        nav.classList.toggle('is-open', !open);
+      });
+      moreButton?.addEventListener('click', () => {
+        const open = moreButton.getAttribute('aria-expanded') === 'true';
+        moreButton.setAttribute('aria-expanded', String(!open));
+        moreMenu?.classList.toggle('is-open', !open);
+      });
+      moreButton?.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          moreButton.setAttribute('aria-expanded', 'true');
+          moreMenu?.classList.add('is-open');
+          moreMenu?.querySelector('a')?.focus();
+        }
+      });
+      moreMenu?.addEventListener('keydown', (event) => {
+        const links = [...moreMenu.querySelectorAll('a')];
+        const index = links.indexOf(document.activeElement);
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          links[(index + (event.key === 'ArrowDown' ? 1 : -1) + links.length) % links.length]?.focus();
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          if (moreButton?.getAttribute('aria-expanded') === 'true') return closeMore(true);
+          if (button.getAttribute('aria-expanded') !== 'true') return;
+          button.setAttribute('aria-expanded', 'false');
+          button.setAttribute('aria-label', 'Open primary navigation');
+          nav.classList.remove('is-open');
+          closeMore();
+          button.focus();
+        }
+      });
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.nav-more')) closeMore();
+      });
+      nav.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+          button.setAttribute('aria-expanded', 'false');
+          button.setAttribute('aria-label', 'Open primary navigation');
+          nav.classList.remove('is-open');
+        }
+      });
+    })();
+  </script>
+  <script is:inline>
+    document.querySelectorAll('[data-manage-privacy]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const opened = window.sfzPrivacy?.manage?.();
+        if (!opened) window.location.assign('/privacy-policy#privacy-choices');
+      });
+    });
+  </script>
+</BaseLayout>

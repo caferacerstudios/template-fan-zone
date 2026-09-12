@@ -1,0 +1,4 @@
+---
+const { label, values = [] } = Astro.props;
+---
+<div class="form-row"><strong>{label}</strong>{values.length ? values.map((value) => <span class={`result-${value.toLowerCase()}`} aria-label={value === "W" ? "Win" : value === "L" ? "Loss" : value === "T" ? "Tie" : value}>{value}</span>) : <small>No reliable results</small>}</div>

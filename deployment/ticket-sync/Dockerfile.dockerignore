@@ -1,0 +1,14 @@
+**
+!scripts/
+!scripts/tickets/
+!scripts/tickets/**
+!src/
+!src/lib/
+!src/lib/schedule.mjs
+!src/lib/tickets/
+!src/lib/tickets/**
+!src/data/
+!src/data/nfl/
+!src/data/nfl/{team}.json
+!src/data/tickets/
+!src/data/tickets/match-overrides.json

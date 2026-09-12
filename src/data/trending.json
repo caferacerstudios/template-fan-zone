@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "title": "The latest {Team} game recap",
+      "href": "/weekly-recap",
+      "category": "Game recaps",
+      "publishedAt": "2026-08-28T09:00:00-07:00",
+      "pinnedAt": "2026-08-28T09:00:00-07:00",
+      "pinExpiresAt": "2026-09-11T09:00:00-07:00"
+    },
+    {
+      "title": "The current {Team} schedule",
+      "href": "/schedule",
+      "category": "Schedule",
+      "publishedAt": "2026-08-28T09:00:00-07:00",
+      "pinnedAt": "2026-08-28T09:00:00-07:00",
+      "pinExpiresAt": "2026-09-11T09:00:00-07:00"
+    },
+    {
+      "title": "Seattle's place in the NFC West",
+      "href": "/standings",
+      "category": "Standings",
+      "publishedAt": "2026-08-28T09:00:00-07:00",
+      "pinnedAt": "2026-08-28T09:00:00-07:00",
+      "pinExpiresAt": "2026-09-11T09:00:00-07:00"
+    },
+    {
+      "title": "{Team} roster and season leaders",
+      "href": "/players",
+      "category": "Roster",
+      "publishedAt": "2026-08-28T09:00:00-07:00",
+      "pinnedAt": "2026-08-28T09:00:00-07:00",
+      "pinExpiresAt": "2026-09-11T09:00:00-07:00"
+    }
+  ]
+}

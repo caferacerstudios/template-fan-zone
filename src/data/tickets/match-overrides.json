@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "overrides": [
+    {
+      "action": "map",
+      "sfzEventKey": "sea:fixture-game-override",
+      "provider": "fictional-provider",
+      "providerEventId": "PROVIDER-MANUAL-1",
+      "note": "Fixture-only example: operator confirmed the provider's renamed event.",
+      "addedAt": "2026-08-29T12:00:00Z",
+      "reason": "Provider title omitted the opponent during a feed correction."
+    },
+    {
+      "action": "block",
+      "sfzEventKey": "sea:fixture-game-home",
+      "provider": "fictional-provider",
+      "providerEventId": "PROVIDER-BAD-SHELL",
+      "note": "Fixture-only example: duplicate speculative shell.",
+      "addedAt": "2026-08-29T12:00:00Z",
+      "reason": "Provider confirmed this event ID is not an admission event."
+    }
+  ]
+}

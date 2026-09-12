@@ -1,0 +1,45 @@
+[
+  {
+    "id": "provider-dallas",
+    "season": 2026,
+    "week": 2,
+    "season_type": "preseason",
+    "date": "2026-08-16T00:00:00Z",
+    "localDate": "2026-08-15",
+    "status": "Final",
+    "home_team": { "abbreviation": "SEA", "full_name": "Seattle {Team}" },
+    "visitor_team": { "abbreviation": "DAL", "full_name": "Dallas Cowboys" },
+    "home_team_score": 7,
+    "visitor_team_score": 17,
+    "venue": "Lumen Field"
+  },
+  {
+    "id": "provider-tennessee",
+    "season": 2026,
+    "week": 3,
+    "season_type": "preseason",
+    "date": "2026-08-24T00:00:00Z",
+    "localDate": "2026-08-23",
+    "status": "Final",
+    "home_team": { "abbreviation": "TEN", "full_name": "Tennessee Titans" },
+    "visitor_team": { "abbreviation": "SEA", "full_name": "Seattle {Team}" },
+    "home_team_score": 19,
+    "visitor_team_score": 16,
+    "venue": "Nissan Stadium"
+  },
+  {
+    "id": "provider-kansas-city",
+    "season": 2026,
+    "week": 4,
+    "season_type": "preseason",
+    "date": "2026-08-29T00:00:00Z",
+    "localDate": "2026-08-28",
+    "status": "Final",
+    "time_confirmed": false,
+    "home_team": { "abbreviation": "KC", "full_name": "Kansas City Chiefs" },
+    "visitor_team": { "abbreviation": "SEA", "full_name": "Seattle {Team}" },
+    "home_team_score": 9,
+    "visitor_team_score": 9,
+    "venue": "GEHA Field at Arrowhead Stadium"
+  }
+]

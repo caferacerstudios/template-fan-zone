@@ -1,0 +1,346 @@
+{
+  "season": 2026,
+  "timezone": "America/Los_Angeles",
+  "updatedAt": "2026-09-02",
+  "games": [
+    {
+      "phase": "regular",
+      "week": 1,
+      "dateLabel": "Wed., Sept. 9, 2026",
+      "kickoffLabel": "5:20 p.m. PDT",
+      "matchup": "New England Patriots at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week1/{team}-vs-patriots/",
+      "localTv": [
+        { "name": "KING 5", "url": "https://www.king5.com/" }
+      ],
+      "national": "NBC nationally",
+      "streams": [
+        { "name": "Peacock", "url": "https://www.peacocktv.com/sports/nfl" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 2,
+      "dateLabel": "Sun., Sept. 20",
+      "kickoffLabel": "1:25 p.m. PDT",
+      "matchup": "Seattle {Team} at Arizona Cardinals",
+      "venue": "State Farm Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week2/{team}-at-cardinals/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 3,
+      "dateLabel": "Sun., Sept. 27",
+      "kickoffLabel": "10:00 a.m. PDT",
+      "matchup": "Seattle {Team} at Washington Commanders",
+      "venue": "Northwest Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week3/{team}-at-commanders/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 4,
+      "dateLabel": "Sun., Oct. 4",
+      "kickoffLabel": "1:25 p.m. PDT",
+      "matchup": "Los Angeles Chargers at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week4/{team}-vs-chargers/",
+      "localTv": [
+        { "name": "KIRO 7", "url": "https://www.kiro7.com/" }
+      ],
+      "national": "CBS, regional coverage",
+      "streams": [
+        { "name": "Paramount+", "url": "https://www.paramountplus.com/shows/nfl-on-cbs/" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 5,
+      "dateLabel": "Sun., Oct. 11",
+      "kickoffLabel": "1:25 p.m. PDT",
+      "matchup": "San Francisco 49ers at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week5/{team}-vs-49ers/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 6,
+      "dateLabel": "Thu., Oct. 15",
+      "kickoffLabel": "5:15 p.m. PDT",
+      "matchup": "Seattle {Team} at Denver Broncos",
+      "venue": "Empower Field at Mile High",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week6/{team}-at-broncos/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/", "note": "Special local simulcast" }
+      ],
+      "national": "Thursday Night Football on Prime Video",
+      "streams": [
+        { "name": "Prime Video", "url": "https://www.primevideo.com/detail/0FGHAFOD3S5T3D6O1Z6TD6NFF3" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 7,
+      "dateLabel": "Sun., Oct. 25",
+      "kickoffLabel": "5:20 p.m. PDT",
+      "matchup": "Kansas City Chiefs at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week7/{team}-vs-chiefs/",
+      "localTv": [
+        { "name": "KING 5", "url": "https://www.king5.com/" }
+      ],
+      "national": "NBC Sunday Night Football nationally",
+      "streams": [
+        { "name": "Peacock", "url": "https://www.peacocktv.com/sports/nfl" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 8,
+      "dateLabel": "Mon., Nov. 2",
+      "kickoffLabel": "5:15 p.m. PST",
+      "matchup": "Chicago Bears at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week8/{team}-vs-bears/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/", "note": "Special local simulcast" }
+      ],
+      "national": "Monday Night Football on ESPN",
+      "streams": [
+        { "name": "ESPN", "url": "https://www.espn.com/watch/" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 9,
+      "dateLabel": "Sun., Nov. 8",
+      "kickoffLabel": "1:25 p.m. PST",
+      "matchup": "Arizona Cardinals at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week9/{team}-vs-cardinals/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 10,
+      "dateLabel": "Sun., Nov. 15",
+      "kickoffLabel": "1:05 p.m. PST",
+      "matchup": "Seattle {Team} at Las Vegas Raiders",
+      "venue": "Allegiant Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week10/{team}-at-raiders/",
+      "localTv": [
+        { "name": "KIRO 7", "url": "https://www.kiro7.com/" }
+      ],
+      "national": "CBS, regional coverage",
+      "streams": [
+        { "name": "Paramount+", "url": "https://www.paramountplus.com/shows/nfl-on-cbs/" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 11,
+      "dateLabel": "Sun., Nov. 22",
+      "status": "bye",
+      "matchup": "Bye week"
+    },
+    {
+      "phase": "regular",
+      "week": 12,
+      "dateLabel": "Sun., Nov. 29",
+      "kickoffLabel": "1:25 p.m. PST",
+      "matchup": "Seattle {Team} at San Francisco 49ers",
+      "venue": "Levi's Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week12/{team}-at-49ers/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 13,
+      "dateLabel": "Mon., Dec. 7",
+      "kickoffLabel": "5:15 p.m. PST",
+      "matchup": "Dallas Cowboys at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week13/{team}-vs-cowboys/",
+      "localTv": [
+        { "name": "KOMO 4", "url": "https://komonews.com/" }
+      ],
+      "national": "ABC and ESPN nationally",
+      "streams": [
+        { "name": "ABC", "url": "https://abc.com/watch-live" },
+        { "name": "ESPN", "url": "https://www.espn.com/watch/" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 14,
+      "dateLabel": "Sun., Dec. 13",
+      "kickoffLabel": "1:25 p.m. PST",
+      "matchup": "New York Giants at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week14/{team}-vs-giants/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 15,
+      "dateLabel": "Sat., Dec. 19",
+      "kickoffLabel": "2:00 p.m. PST",
+      "matchup": "Seattle {Team} at Philadelphia Eagles",
+      "venue": "Lincoln Financial Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week15/{team}-at-eagles/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 16,
+      "dateLabel": "Fri., Dec. 25",
+      "kickoffLabel": "5:15 p.m. PST",
+      "matchup": "Los Angeles Rams at Seattle {Team}",
+      "venue": "Lumen Field",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week16/{team}-vs-rams/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX Christmas broadcast",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 17,
+      "dateLabel": "Sun., Jan. 3, 2027",
+      "kickoffLabel": "10:00 a.m. PST",
+      "matchup": "Seattle {Team} at Carolina Panthers",
+      "venue": "Bank of America Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week17/{team}-at-panthers/",
+      "localTv": [
+        { "name": "FOX 13 Seattle", "url": "https://www.fox13seattle.com/" }
+      ],
+      "national": "FOX, regional coverage",
+      "streams": [
+        { "name": "FOX One", "url": "https://www.fox.com/sports/football/nfl" },
+        { "name": "NFL Sunday Ticket", "url": "https://tv.youtube.com/learn/nflsundayticket/", "note": "Outside the broadcast market" }
+      ]
+    },
+    {
+      "phase": "regular",
+      "week": 18,
+      "dateLabel": "Jan. 9 or 10, 2027",
+      "kickoffLabel": "Time TBD",
+      "matchup": "Seattle {Team} at Los Angeles Rams",
+      "venue": "SoFi Stadium",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/reg-week18/{team}-at-rams/",
+      "status": "tbd",
+      "localTv": [],
+      "national": "Kickoff time, network, and stream TBD",
+      "streams": [
+        { "name": "NFL {Team} ways to watch", "url": "https://www.nfl.com/ways-to-watch/team-schedule/seattle-{team}" }
+      ]
+    },
+    {
+      "phase": "preseason",
+      "week": 1,
+      "dateLabel": "Aug. 15, 2026",
+      "kickoffLabel": "5:00 p.m. PDT",
+      "matchup": "Dallas Cowboys at Seattle {Team}",
+      "venue": "Lumen Field",
+      "result": "Cowboys 17, {Team} 7",
+      "status": "completed",
+      "originalBroadcast": "KING 5 and {Team} Mobile App",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/pre/{team}-vs-cowboys/",
+      "replay": [
+        { "name": "NFL+", "url": "https://www.nfl.com/plus/" }
+      ]
+    },
+    {
+      "phase": "preseason",
+      "week": 2,
+      "dateLabel": "Aug. 23, 2026",
+      "kickoffLabel": "5:00 p.m. PDT",
+      "matchup": "Seattle {Team} at Tennessee Titans",
+      "venue": "Nissan Stadium",
+      "result": "Titans 19, {Team} 16",
+      "status": "completed",
+      "originalBroadcast": "FOX",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/pre/{team}-at-titans/",
+      "replay": [
+        { "name": "NFL+", "url": "https://www.nfl.com/plus/" }
+      ]
+    },
+    {
+      "phase": "preseason",
+      "week": 3,
+      "dateLabel": "Aug. 28, 2026",
+      "kickoffLabel": "5:00 p.m. PDT",
+      "matchup": "Seattle {Team} at Kansas City Chiefs",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "result": "{Team} 9, Chiefs 9",
+      "status": "completed",
+      "originalBroadcast": "KING 5 and {Team} Mobile App",
+      "officialGameUrl": "https://www.{team}.com/game-day/2026/pre/{team}-at-chiefs/",
+      "replay": [
+        { "name": "NFL+", "url": "https://www.nfl.com/plus/" }
+      ]
+    }
+  ],
+  "notes": {
+    "regionalCoverage": "FOX One and Paramount+ availability follows the viewer's local broadcast market.",
+    "sundayTicket": "NFL Sunday Ticket is for out-of-market Sunday afternoon games.",
+    "nflPlus": "NFL+ live local and primetime viewing is intended for supported phones and tablets; NFL+ Premium also provides replays on supported devices.",
+    "localStationLinks": "Local station links identify the broadcaster and do not guarantee that the station's ordinary website livestream carries the NFL game."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "fixture": false,
+  "season": 2026,
+  "sourceSeason": 2026,
+  "updatedAt": "2026-09-08T12:00:00Z",
+  "refreshedDuringBuild": false,
+  "sourcePublisher": "NFL",
+  "sourceUrl": "https://www.nfl.com/standings/division/2026/PRE",
+  "phases": {
+    "preseason": {
+      "phase": "preseason",
+      "officialRank": false,
+      "recordAuthority": "official",
+      "rows": [
+        {"rank":null,"abbreviation":"LAR","name":"Los Angeles Rams","wins":3,"losses":0,"ties":0,"gamesPlayed":3,"percentage":"1.000","pointsFor":74,"pointsAgainst":30,"differential":44,"division":"0-0","conference":"1-0","streak":"W3"},
+        {"rank":null,"abbreviation":"SF","name":"San Francisco 49ers","wins":2,"losses":1,"ties":0,"gamesPlayed":3,"percentage":".667","pointsFor":72,"pointsAgainst":48,"differential":24,"division":"0-0","conference":"0-0","streak":"W2"},
+        {"rank":null,"abbreviation":"ARI","name":"Arizona Cardinals","wins":1,"losses":3,"ties":0,"gamesPlayed":4,"percentage":".250","pointsFor":108,"pointsAgainst":123,"differential":-15,"division":"0-0","conference":"0-3","streak":"L2"},
+        {"rank":null,"abbreviation":"SEA","name":"Seattle {Team}","wins":0,"losses":2,"ties":1,"gamesPlayed":3,"percentage":".167","pointsFor":32,"pointsAgainst":45,"differential":-13,"division":"0-0","conference":"0-1","streak":"T1"}
+      ]
+    },
+    "regular": {"phase":"regular","officialRank":false,"recordAuthority":"official","rows":[]},
+    "postseason": {"phase":"postseason","officialRank":false,"recordAuthority":"official","rows":[]}
+  }
+}

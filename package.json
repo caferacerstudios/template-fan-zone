@@ -1,0 +1,36 @@
+{
+  "name": "templatefanzone",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node template-tools/run.mjs dev",
+    "test": "node template-tools/run.mjs test",
+    "fetch-nfl": "node template-tools/run.mjs fetch-nfl",
+    "generate-game-recaps": "node template-tools/run.mjs generate-game-recaps",
+    "generate-player-profiles": "node template-tools/run.mjs generate-player-profiles",
+    "refresh-player-career-facts": "node template-tools/run.mjs refresh-player-career-facts",
+    "refresh-team-roster": "node template-tools/run.mjs refresh-team-roster",
+    "build": "node template-tools/run.mjs build:offline",
+    "test:tickets": "node template-tools/run.mjs test:tickets",
+    "test:tickets:sync": "node template-tools/run.mjs test:tickets:sync",
+    "tickets:sync": "node template-tools/run.mjs tickets:sync",
+    "tickets:eventspy": "node template-tools/run.mjs tickets:eventspy",
+    "tickets:eventspy-mirror": "node template-tools/run.mjs tickets:eventspy-mirror",
+    "tickets:match-report": "node template-tools/run.mjs tickets:match-report",
+    "validate:tickets": "node template-tools/run.mjs validate:tickets",
+    "build:offline": "node template-tools/run.mjs build:offline",
+    "build:production-offline": "node template-tools/run.mjs build:production-offline",
+    "test:player-profiles": "node template-tools/run.mjs test:player-profiles",
+    "test:player-profile-generator": "node template-tools/run.mjs test:player-profile-generator",
+    "preview": "node template-tools/run.mjs preview",
+    "astro": "node template-tools/run.mjs astro",
+    "fetch-ebay": "node template-tools/run.mjs fetch-ebay",
+    "build:refresh": "node template-tools/run.mjs build",
+    "render": "node template-tools/run.mjs --render-only",
+    "test:template": "node --test template-tools/template.test.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.16.6",
+    "playwright-core": "1.62.0"
+  }
+}

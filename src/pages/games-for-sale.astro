@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ebayData from "../data/ebay.json";
+
+const title = "Games For Sale";
+const description = "Here is a running list of my eBay listings for 90’s and early 2000’s games. I will Updated as I add new stuff.";
+
+const ebayListings = ebayData?.items ?? [];
+---
+
+<BaseLayout {title} {description} monetizationEligible={false}>
+  <header class="lr-header">
+    <div class="lr-header-bg" aria-hidden="true"></div>
+
+    <div class="lr-header-inner">
+      <h1 class="lr-site-title">Retro Game Fixes</h1>
+      <p class="lr-site-tagline">Games For Sale</p>
+    </div>
+  </header>
+
+  <div class="lr-middle">
+    <aside class="lr-sidebar lr-sidebar-left">
+      <section class="lr-panel">
+        <h3 class="lr-panel-title">Pages</h3>
+        <ul class="lr-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </section>
+
+      <section class="lr-panel">
+        <h3 class="lr-panel-title">Guides</h3>
+        <ul class="lr-nav lr-subnav">
+          <li><a href="/guides/harry-potter-sorcerers-stone">Harry Potter and the Sorcerer's Stone (PC)</a></li>
+          <li><a href="/guides/harry-potter-chamber-of-secrets">Harry Potter and the Chamber of Secrets (PC)</a></li>
+          <li><a href="/guides/sid-meiers-sim-golf">Sid Meier's Sim Golf (PC)</a></li>
+        </ul>
+      </section>
+
+      <section class="lr-panel">
+        <h3 class="lr-panel-title">Games For Sale</h3>
+        <ul class="lr-nav lr-subnav">
+          <li><a href="/games-for-sale" aria-current="page">All listings</a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="lr-main" id="main-content" tabindex="-1">
+      <article class="lr-paper">
+        <header class="lr-post-header">
+          <h2 class="lr-post-title">Games For Sale</h2>
+        </header>
+
+        <div class="lr-post-content">
+          <p>These are my current listings. If something sells, I’ll pull it from here.</p>
+
+          {ebayListings.length === 0 ? (
+            <p><em>No listings found right now.</em></p>
+          ) : (
+            <div class="lr-sale-grid lr-sale-grid--full">
+              {ebayListings.map((item) => (
+                <a
+                  class="lr-sale-card"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.img ? (
+                    <img
+                      class="lr-sale-img"
+                      src={item.img}
+                      alt={item.title}
+                      width="640"
+                      height="480"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div
+                      class="lr-sale-img lr-sale-img--placeholder"
+                      aria-hidden="true"
+                    ></div>
+                  )}
+
+                  <div class="lr-sale-meta">
+                    <div class="lr-sale-title">{item.title}</div>
+                    {item.price ? (
+                      <div class="lr-sale-price">{item.price}</div>
+                    ) : null}
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+
+          <p class="lr-cta">
+            <a
+              class="lr-btn"
+              href="https://www.ebay.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on eBay →
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <footer class="lr-footer">
+        <a href="/">Home</a> · <a href="/about">About</a> ·{" "}
+        <a href="/privacy-policy">Privacy Policy</a>
+        <div class="lr-copyright">
+          &copy; {new Date().getFullYear()} retrogamefixes.com
+        </div>
+      </footer>
+    </main>
+  </div>
+</BaseLayout>

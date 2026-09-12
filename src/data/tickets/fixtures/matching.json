@@ -1,0 +1,14 @@
+{
+  "games": [
+    { "id": "fixture-game-home", "phase": "regular", "week": 1, "homeTeam": { "abbreviation": "SEA" }, "awayTeam": { "abbreviation": "SF" }, "startsAt": "2026-09-13T20:25:00Z", "date": "2026-09-13", "timeConfirmed": true, "venue": "Lumen Field" },
+    { "id": "fixture-game-tbd", "phase": "regular", "week": 18, "homeTeam": { "abbreviation": "LAR" }, "awayTeam": { "abbreviation": "SEA" }, "startsAt": null, "date": "2027-01-10", "timeConfirmed": false, "venue": "SoFi Stadium" },
+    { "id": "fixture-game-override", "phase": "regular", "week": 8, "homeTeam": { "abbreviation": "SEA" }, "awayTeam": { "abbreviation": "BUF" }, "startsAt": "2026-11-01T21:05:00Z", "date": "2026-11-01", "timeConfirmed": true, "venue": "Lumen Field" }
+  ],
+  "providerEvents": [
+    { "provider": "fictional-provider", "id": "PROVIDER-GAME-1", "title": "Seattle {Team} vs San Francisco 49ers", "eventType": "NFL game admission", "homeTeam": "Seattle {Team}", "awayTeam": "SFO", "localStart": "2026-09-13T13:25:00", "timeZone": "America/Los_Angeles", "localDate": "2026-09-13", "venueName": "Lumen Field" },
+    { "provider": "fictional-provider", "id": "PROVIDER-PARKING-1", "title": "{Team} vs 49ers Parking Only", "eventType": "parking", "homeTeam": "SEA", "awayTeam": "SF", "startTimeUtc": "2026-09-13T20:25:00Z", "localDate": "2026-09-13", "venueName": "Lumen Field" },
+    { "provider": "fictional-provider", "id": "PROVIDER-RAMS-TBD", "title": "Los Angeles Rams vs Seattle {Team}", "eventType": "NFL game", "homeTeam": "LA Rams", "awayTeam": "Seattle {Team}", "localDate": "2027-01-10", "venueName": "SoFi Stadium" },
+    { "provider": "fictional-provider", "id": "PROVIDER-MANUAL-1", "title": "Football Event", "eventType": "sports", "localDate": "2026-11-01", "venueName": "Venue pending" },
+    { "provider": "fictional-provider", "id": "PROVIDER-BAD-SHELL", "title": "Seattle {Team} placeholder", "eventType": "NFL game", "placeholder": true, "homeTeam": "SEA", "awayTeam": "SF", "localDate": "2026-09-13", "venueName": "Lumen Field" }
+  ]
+}

@@ -1,0 +1,139 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const pageTitle = "Privacy Policy";
+const pageTagline = "How data is handled on this site";
+
+const updated = "September 11, 2026";
+const adsEnabled = import.meta.env.ADS_ENABLED === "true";
+const publisherId = String(import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID ?? "").trim();
+const cmpScriptUrl = String(import.meta.env.PUBLIC_CMP_SCRIPT_URL ?? "").trim();
+const advertisingConfigured = adsEnabled && /^ca-pub-\d+$/.test(publisherId) && /^https:\/\/(fundingchoicesmessages\.google\.com|[^/]+\.google\.com)\//.test(cmpScriptUrl);
+const analyticsConfigured = Boolean(String(import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN ?? "").trim());
+---
+
+<{Team}Layout pageTitle={pageTitle} pageTagline={pageTagline} activePath="/privacy-policy" monetizationEligible={false}>
+  <section class="sfz-card">
+    <p class="sfz-updated"><strong>Last updated:</strong> {updated}</p>
+
+    <h2>Overview</h2>
+    <p>
+      {Team} Fan Zone is an independent fan publication. We aim to collect as little personal information as possible.
+      This policy describes the services visitors may encounter, including hosting and security services and any optional
+      analytics or advertising services the site owner enables.
+    </p>
+
+    <h2>Information we may collect</h2>
+    <ul class="sfz-list">
+      <li>
+        <strong>Basic request data:</strong> the hosting provider may record requested pages, browser or device information, and timestamps in server logs.
+      </li>
+      <li>
+        <strong>IP address:</strong> may appear in server logs for security, abuse prevention, and basic diagnostics.
+      </li>
+      <li>
+        <strong>Cookies and similar technologies:</strong> the site itself does not set an account or login cookie. Configured advertising, consent, or analytics services may use browser storage as described below.
+      </li>
+    </ul>
+
+    <h2>Advertising</h2>
+    {advertisingConfigured ? <>
+      <p>This build is configured to show Google AdSense advertising after the site’s consent controls report that advertising is permitted. Google and its advertising vendors may use cookies, local storage, device identifiers, or similar technologies to deliver and measure ads, limit repetition, prevent fraud, and, where permitted, personalize advertising.</p>
+      <p>Rejecting optional consent does not prevent access to site content.</p>
+    </> : <p>Google AdSense advertising is not enabled on this site. Before it is enabled, the site owner must configure a valid publisher account, ads.txt record, and consent platform.</p>}
+    <p>If Google advertising is enabled later, Google and participating vendors may use cookies or similar technologies to serve and measure ads. Depending on your region and consent choice, ads may be personalized using prior visits to this and other sites. You can review or change ad-personalization choices at <a href="https://adssettings.google.com/">Google Ads Settings</a> and learn about participating-vendor opt-outs at <a href="https://www.aboutads.info/choices/">YourAdChoices</a>.</p>
+
+    <h2>Analytics</h2>
+    <p>Cloudflare operates the site’s delivery and security layer and may process request information for delivery, security, abuse prevention, and diagnostics. {analyticsConfigured ? "Cloudflare Web Analytics is also configured; its browser script loads only when the consent state permits analytics." : "The application does not supply a Cloudflare Web Analytics token. Cloudflare dashboard settings can separately inject browser analytics, so the site owner verifies that setting during each privacy review."}</p>
+    <p>When analytics consent permits it, the Ticket Finder may measure an outbound provider click using only the selected game, provider, source kind, link placement, sort mode, a quantity bucket, and click timestamp. SFZ does not include seller information, exact seat searches, ticket-account details, payment data, or email addresses in that event. If analytics consent is not ready or is declined, the event is not recorded.</p>
+
+    <h2>Ticket providers and affiliate platforms</h2>
+    <p>Ticket links send you to an external provider and may pass a public affiliate or campaign identifier in the approved link format. The provider or affiliate platform may receive ordinary request information when you follow the link and will handle later activity under its own privacy policy. SFZ does not collect payment-card information, ticket-account credentials, or other ticket-account data.</p>
+
+    <h2>Cookies</h2>
+    <p>
+      Cookies and local storage allow a browser to retain information on a device. When configured, Google and its vendors may use
+      these technologies for consent choices, ad delivery, frequency limits, fraud prevention, measurement, and personalization.
+      The site does not create an account, login, or separate custom consent cookie.
+    </p>
+
+    <h3 id="privacy-choices">Your privacy choices</h3>
+    <p>
+      The footer’s Privacy Choices link opens the configured consent controls when they are available. If none are configured, it
+      returns to this section instead of pretending to save a preference. You may also clear or restrict cookies and local storage
+      through your browser.
+    </p>
+
+    <h3>Sharing and third-party vendors</h3>
+    <p>
+      The site owner does not sell personal information. Request data may be processed by the hosting provider to operate and secure
+      the site. Cloudflare processes browser analytics only when that service is configured and permitted; Google and its advertising
+      vendors process advertising data only when advertising is configured and permitted.
+    </p>
+
+    <h2>External links</h2>
+    <p>
+      This site may link to external sites, including official ticket sites and resale marketplaces. Their privacy policies and
+      consent choices apply after you leave SFZ; SFZ is not responsible for their privacy practices.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      This site is not intended for children under 13. If you believe a child has provided personal information, contact us and we will address it.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For privacy questions, contact the site owner through the <a href="/contact">Contact page</a>.
+    </p>
+  </section>
+
+  <style>
+    .sfz-card {
+      border-radius: 16px;
+      border: 1px solid rgba(0, 34, 68, 0.14);
+      background: #ffffff;
+      padding: 1rem 1.05rem;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 0.95rem;
+    }
+
+    .sfz-updated {
+      margin: 0 0 0.9rem;
+      color: rgba(15, 23, 32, 0.65);
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .sfz-card h2 {
+      margin: 0.9rem 0 0.55rem;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .sfz-card p {
+      margin: 0 0 0.75rem;
+      color: rgba(15, 23, 32, 0.78);
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    .sfz-list {
+      margin: 0 0 0.75rem;
+      padding-left: 1.2rem;
+      color: rgba(15, 23, 32, 0.75);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .sfz-list li {
+      margin: 0.3rem 0;
+    }
+
+    .sfz-muted {
+      color: rgba(15, 23, 32, 0.6);
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+  </style>
+</{Team}Layout>

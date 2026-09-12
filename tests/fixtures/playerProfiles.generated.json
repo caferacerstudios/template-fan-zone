@@ -1,0 +1,42 @@
+{
+  "fixture": true,
+  "season": 2026,
+  "updatedAt": "2026-08-29T12:00:00Z",
+  "profiles": {
+    "sam-darnold": {
+      "playerId": "sam-darnold",
+      "name": "Sam Darnold",
+      "position": "QB",
+      "bio": "The New York Jets selected Darnold third overall in the 2018 NFL Draft after his career at USC, where he led a Rose Bowl victory and earned the game's Offensive MVP award with five touchdown passes and 473 total yards. He spent three seasons with the Jets before moving through Carolina and San Francisco. His year with the 49ers in 2023 included one start, setting up a move to Minnesota that changed the course of his professional career.\n\nDarnold started all 17 games for the Vikings in 2024 and established career highs with 4,319 passing yards and 35 touchdown passes. Minnesota finished 14-3, and Darnold earned his first Pro Bowl selection. That performance led to Seattle signing him as an unrestricted free agent on March 13, 2025. Through the end of that season, his career totals stood at 20,431 passing yards and 123 touchdown passes across 100 games.\n\nHis first season with the {Team} extended that progression. Darnold again started every regular-season game, completed a career-best 67.7 percent of his passes and threw for 4,048 yards as Seattle won the NFC West, secured the NFC's top seed and set a franchise record with 14 regular-season victories. He passed for 346 yards and three touchdowns without an interception in a 31-27 NFC Championship Game victory over the Los Angeles Rams, then helped Seattle defeat New England 29-13 in Super Bowl LX. The championship completed a second consecutive Pro Bowl season and established Darnold as the starting quarterback of the defending champions entering 2026.",
+      "careerHighlights": [
+        "Selected to the Pro Bowl after both the 2024 Minnesota season and the 2025 Seattle season.",
+        "Won Super Bowl LX as Seattle's quarterback in his first season with the franchise.",
+        "Helped the 2025 {Team} claim the NFC's top seed and a franchise-record 14 regular-season wins.",
+        "Threw three touchdown passes without an interception in Seattle's 2025 NFC Championship Game victory.",
+        "Set his career high with 4,319 passing yards during his 2024 season in Minnesota."
+      ],
+      "seasonOverview": "Darnold's 2025 regular season sustained his Minnesota breakthrough with a different statistical shape. He completed a career-best 67.7 percent of his passes and averaged 8.5 yards per attempt while starting all 17 games. His 4,048 passing yards and 25 touchdowns helped Seattle earn the conference's top playoff seed, and his 99.1 passer rating marked a second consecutive full season above 99.",
+      "generation": {"model":"fixture","promptVersion":"reader-first-player-profile-v4","inputHash":"representative-offline-fixture","providerPlayerId":null,"generatedAt":"2026-09-02T00:00:00Z","usage":{"inputTokens":0,"outputTokens":0,"estimatedCostUsd":0}}
+    },
+    "12345": {
+      "playerId": "12345",
+      "name": "Numeric Route Test Player",
+      "bio": "SFZ PLAYER BIO ACCEPTANCE SENTINEL numeric route.",
+      "recap": { "paragraph": "Fixture recap.", "bullets": [] }
+    },
+    "jaxon-smith-njigba": {
+      "playerId": "jaxon-smith-njigba",
+      "name": "Jaxon Smith-Njigba",
+      "bio": "SFZ PLAYER BIO ACCEPTANCE SENTINEL alias route.",
+      "recap": { "paragraph": "Fixture recap.", "bullets": [] },
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "professional-player-profile-v2",
+        "inputHash": "fixture",
+        "providerPlayerId": null,
+        "generatedAt": "2026-08-29T12:00:00Z",
+        "usage": { "inputTokens": 1, "outputTokens": 1, "estimatedCostUsd": 0.00000525 }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+---
+interface Props {
+  client: string;
+  slot: string;
+  width?: number;
+  height?: number;
+  label?: string;
+}
+
+const { client, slot, width = 300, height = 250, label = "Advertisement" } = Astro.props;
+---
+
+<aside class="ad-slot" style={`--ad-width:${width}px;--ad-height:${height}px`} aria-label={label} data-ad-slot={slot} data-ad-client={client}>
+  <span>{label}</span>
+  <ins class="adsbygoogle" data-ad-client={client} data-ad-slot={slot}></ins>
+</aside>
+
+<script is:inline>
+  (() => {
+    const slots = document.querySelectorAll('.ad-slot[data-ad-slot]:not([data-ad-ready])');
+    if (!slots.length) return;
+    const load = (slot) => {
+      slot.dataset.adReady = 'true';
+      if (!document.querySelector('script[data-sfz-ads]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.dataset.sfzAds = 'true';
+        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(slot.dataset.adClient)}`;
+        document.head.append(script);
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    };
+    if (!('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        load(entry.target);
+      }
+    }, { rootMargin: '200px' });
+    slots.forEach((slot) => observer.observe(slot));
+  })();
+</script>
+
+<style>
+  .ad-slot { width:min(100%,var(--ad-width)); min-height:var(--ad-height); contain:layout paint; display:grid; place-items:center; overflow:hidden; background:var(--slate-100); color:var(--slate-700); }
+  .ad-slot > span { font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; }
+  .adsbygoogle { display:block; width:100%; height:var(--ad-height); }
+</style>

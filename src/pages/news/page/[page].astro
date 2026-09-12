@@ -1,0 +1,27 @@
+---
+import {Team}Layout from "../../../layouts/{Team}Layout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import AdSlot from "../../../components/AdSlot.astro";
+import { coverageArticles, NEWS_PAGE_SIZE, leadArticle, type NewsArticle } from "../../../lib/news";
+
+export function getStaticPaths() {
+  const lead = leadArticle;
+  const archiveArticles = coverageArticles.filter((article) => article !== lead);
+  const pageCount = Math.ceil(archiveArticles.length / NEWS_PAGE_SIZE);
+  return Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) => {
+    const page = index + 2;
+    const start = (page - 1) * NEWS_PAGE_SIZE;
+    return { params: { page: String(page) }, props: { page, pageCount, articles: archiveArticles.slice(start, start + NEWS_PAGE_SIZE) } };
+  });
+}
+interface Props { page: number; pageCount: number; articles: NewsArticle[]; }
+const { page, pageCount, articles } = Astro.props;
+const seo = { title:`Seattle {Team} News Archive — Page ${page} | {Team} Fan Zone`, description:"Browse older original Seattle {Team} reporting and analysis from {Team} Fan Zone.", canonicalPath:`/news/page/${page}` };
+---
+<{Team}Layout {seo} activePath="/news" pageTitle="News archive" pageTagline={`Page ${page} of ${pageCount}`} pageType="news-index" quickLinks={[{href:"/news",label:"Latest news"},{href:"/news/rss.xml",label:"RSS feed"}]}>
+  <div class="archive-grid">{articles.slice(0, 4).map((article) => <ArticleCard article={article} />)}</div>
+  {articles.length > 4 && <AdSlot pageType="news-archive" placement="feed-break" contentUnits={articles.length} />}
+  {articles.length > 4 && <div class="archive-grid">{articles.slice(4).map((article) => <ArticleCard article={article} />)}</div>}
+  <nav class="pagination" aria-label="News archive pages"><a href={page === 2 ? "/news/" : `/news/page/${page - 1}/`}>← Newer stories</a>{page < pageCount && <a href={`/news/page/${page + 1}/`}>Older stories →</a>}</nav>
+  <style>.archive-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.pagination{display:flex;justify-content:space-between;gap:1rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #c7d1d6}.pagination a{font-weight:900}@media(max-width:600px){.archive-grid{grid-template-columns:1fr}}</style>
+</{Team}Layout>

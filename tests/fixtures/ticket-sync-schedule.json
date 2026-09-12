@@ -1,0 +1,25 @@
+{
+  "fixture": true,
+  "season": 2026,
+  "sourceSeason": 2026,
+  "updatedAt": "2026-08-29T12:00:00Z",
+  "team": { "id": 1, "abbreviation": "SEA", "full_name": "Seattle {Team}", "conference": "NFC", "division": "NFC West" },
+  "games": [
+    {
+      "id": "fictional-game-home-001",
+      "season": 2026,
+      "week": 1,
+      "season_type": "regular",
+      "date": "2026-09-13T20:25:00Z",
+      "status": "Scheduled",
+      "home_team": { "id": 1, "abbreviation": "SEA", "full_name": "Seattle {Team}", "conference": "NFC" },
+      "visitor_team": { "id": 2, "abbreviation": "SFO", "full_name": "Fictional San Francisco Football Club", "conference": "NFC" },
+      "venue": "Lumen Field"
+    }
+  ],
+  "gamesPreseason": [],
+  "gamesRegular": [],
+  "gamesPostseason": [],
+  "playerSeasonStats": [],
+  "currentRoster": []
+}

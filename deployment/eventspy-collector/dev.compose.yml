@@ -1,0 +1,7 @@
+services:
+  eventspy-collector:
+    image: ${EVENTSPY_COLLECTOR_IMAGE:?immutable promoted collector image required}
+    build: null
+    volumes:
+      - /var/lib/sfz-eventspy-mirror/dev:/srv/eventspy-mirror
+    command: ["--output-root", "/srv/eventspy-mirror"]

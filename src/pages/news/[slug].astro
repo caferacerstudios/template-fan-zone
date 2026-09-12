@@ -1,0 +1,65 @@
+---
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { absoluteUrl, SITE_NAME } from "../../lib/seo";
+import { articleReadingMinutes, categorySlug, coverageArticles, formatArticleDate, materiallyUpdated, publishedArticles, type NewsArticle } from "../../lib/news";
+
+export function getStaticPaths() { return publishedArticles.map((article) => ({ params: { slug: article.slug }, props: { article } })); }
+interface Props { article: NewsArticle; }
+const { article } = Astro.props;
+const related = coverageArticles.filter((candidate) => candidate.slug !== article.slug && (candidate.category === article.category || candidate.tags.some((tag) => article.tags.includes(tag)))).slice(0, 2);
+const canonicalPath = `/news/${article.slug}`;
+const readingMinutes = articleReadingMinutes(article);
+const showUpdatedDate = materiallyUpdated(article);
+const authorUrl = "/about#editorial-responsibility";
+const seo = { title: `${article.headline} | {Team} Fan Zone`, description: article.dek, canonicalPath, openGraphTitle: article.headline, openGraphDescription: article.dek, openGraphImage: article.hero.src, openGraphImageAlt: article.hero.alt, article: { headline: article.headline, author: article.author, publishedTime: article.publishedAt, modifiedTime: article.updatedAt, image: article.hero.src, section: article.category } };
+const structuredData = { "@context":"https://schema.org", "@type":"NewsArticle", headline:article.headline, description:article.dek, datePublished:article.publishedAt, dateModified:article.updatedAt, mainEntityOfPage:{"@type":"WebPage","@id":absoluteUrl(canonicalPath)}, articleSection:article.category, keywords:article.tags.join(", "), author:{"@type":"Organization",name:article.author,url:absoluteUrl(authorUrl)}, publisher:{"@type":"Organization",name:SITE_NAME,url:absoluteUrl("/"),logo:{"@type":"ImageObject",url:absoluteUrl("/favicon.svg")}}, image:[absoluteUrl(article.hero.src)], isAccessibleForFree:true };
+---
+<{Team}Layout {seo} {structuredData} article={seo.article} showPageHeader={false} pageType="article" season={article.season} opponent={article.opponent} articleCategory={article.category} activePath="/news" quickLinks={[{href:"/news",label:"All news"},{href:`/news/category/${categorySlug(article.category)}/`,label:article.category},{href:"/news/rss.xml",label:"RSS feed"}]}>
+  <header class="article-header">
+    <a class="article-category" href={`/news/category/${categorySlug(article.category)}/`}>{article.category}</a>
+    <h1>{article.headline}</h1><p class="article-dek">{article.dek}</p>
+    <div class="article-meta"><span>By <a rel="author" href={authorUrl}>{article.author}</a></span><span>Published <time datetime={article.publishedAt}>{formatArticleDate(article.publishedAt)}</time></span>{showUpdatedDate && <span>Last updated <time datetime={article.updatedAt}>{formatArticleDate(article.updatedAt)}</time></span>}<span>{readingMinutes} min read</span><span>Category: <a href={`/news/category/${categorySlug(article.category)}/`}>{article.category}</a></span></div>
+  </header>
+  <figure class="article-hero"><img src={article.hero.src} alt={article.hero.alt} width={article.hero.width} height={article.hero.height} fetchpriority="high" decoding="async" /><figcaption>{article.hero.caption ?? "Original {Team} Fan Zone illustration."}</figcaption></figure>
+  <div class="article-body">{article.body.map((block, index) => <>
+    {(() => {
+    if (typeof block === "string") return <p>{block}</p>;
+    if (block.type === "heading") return <h2>{block.heading}</h2>;
+    if (block.type === "paragraph") return <p set:html={block.html} />;
+    if (block.type === "table") return <figure class="article-table"><div role="region" aria-label={block.caption} tabindex="0"><table><caption>{block.caption}</caption><thead><tr>{block.columns.map((column) => <th scope="col">{column}</th>)}</tr></thead><tbody>{block.rows.map((row) => <tr>{row.cells.map((cell, index) => index === 0 ? <th scope="row" set:html={cell} /> : <td set:html={cell} />)}</tr>)}</tbody></table></div><figcaption>{block.note}</figcaption></figure>;
+    if (block.type === "timeline") return <ol class="article-timeline">{block.items?.map((item) => <li><strong>{item.label}</strong><div set:html={item.html} /></li>)}</ol>;
+    if (block.type === "watchlist") return <ol class="article-watchlist">{block.items?.map((item) => <li><strong>{item.label}</strong><div set:html={item.html} /></li>)}</ol>;
+    if (block.type === "factbox") return <aside class="article-factbox" aria-label={block.heading}><h2>{block.heading}</h2><div><section><h3>What we know</h3><ul>{block.known?.map((item) => <li>{item}</li>)}</ul></section><section><h3>What we do not know</h3><ul>{block.unknown?.map((item) => <li>{item}</li>)}</ul></section></div><p><strong>Next milestone:</strong> {block.milestone}</p></aside>;
+    return null;
+    })()}
+    {index === 2 && <AdSlot pageType="news-article" placement="article-inline" ordinal={1} contentUnits={article.body.length} />}
+  </>)}</div>
+  <aside class="article-attribution" aria-label="About this article">
+    <p class="article-attribution__label">About the byline</p>
+    <h2>{article.author}</h2>
+    <p>{article.generation?.kind === "ai" ? "This article was reviewed and edited by the site owner before publication. {Team} Fan Zone is an independent fan publication and is not affiliated with the Seattle {Team} or NFL. Use the corrections link below to report an error." : "This house byline identifies work prepared and reviewed by the site’s individual owner and editor. {Team} Fan Zone is an independent fan publication and is not affiliated with the Seattle {Team} or NFL."}</p>
+    <p><a href="/about">Editorial responsibility</a> · <a href="/methodology">Methodology</a> · <a href="/contact#corrections">Request a correction</a></p>
+  </aside>
+  {article.sources.length > 0 && <section class="article-sources" aria-labelledby="sources-heading"><h2 id="sources-heading">Sources and further reading</h2><p>Reporting and context used for this article:</p><ul>{article.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul></section>}
+  <footer class="article-tags" aria-label="Article tags">{article.tags.map((tag) => <span>{tag}</span>)}</footer>
+  {related.length > 0 && <section class="related"><h2>Related stories</h2><div>{related.map((item) => <ArticleCard article={item} />)}</div></section>}
+  <AdSlot pageType="news-article" placement="article-end" ordinal={2} contentUnits={article.body.length} />
+  <style>
+    .article-meta a{color:inherit;font-weight:800}.article-attribution{max-width:720px;margin:2rem auto;padding:1.15rem;border-top:6px solid var(--action-green);background:var(--navy-950);color:#fff}.article-attribution__label{margin:0!important;color:var(--action-green);font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.article-attribution h2{margin:.25rem 0 .5rem;color:#fff;font-size:1.25rem}.article-attribution p{max-width:none!important;margin:.45rem 0;color:var(--slate-100);line-height:1.55}.article-attribution a{color:#fff;font-weight:900}
+    .article-roster-table{max-width:960px;margin:1.5rem auto;overflow:auto}.article-roster-table table{width:100%;min-width:680px;border-collapse:collapse;background:#fff}.article-roster-table caption{padding:.8rem;background:var(--navy-900);color:#fff;font-weight:900;text-align:left}.article-roster-table th,.article-roster-table td{padding:.65rem;border:1px solid #c3cdd2;text-align:left;vertical-align:top}.article-roster-table thead th{background:#edf2f4}
+    .article-header{padding-bottom:1.4rem;border-bottom:1px solid #c3cdd2}.article-category{color:#386f13;font:900 .75rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.article-header h1{max-width:950px;margin:.5rem 0;font:900 clamp(2.45rem,7vw,4.8rem)/.94 var(--font-display);letter-spacing:-.025em;color:var(--navy-950)}.article-dek{max-width:760px!important;color:var(--slate-700);font-size:clamp(1.05rem,2.5vw,1.35rem);line-height:1.45}.article-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;color:var(--slate-700);font-size:.8rem}.article-hero{margin:1.4rem 0}.article-hero img{display:block;width:100%;height:auto}.article-hero figcaption{margin-top:.35rem;color:var(--slate-700);font-size:.7rem}.article-body{max-width:720px;margin:2rem auto}.article-body p{max-width:none!important;font:1.08rem/1.75 Georgia,serif;color:#172b39}.article-body>p:first-child::first-letter{float:left;margin:.08em .1em 0 0;color:var(--navy-900);font:900 3.5rem/.8 var(--font-display)}.article-body h2{margin:2.4rem 0 .8rem;padding-left:.75rem;border-left:5px solid var(--action-green);font-size:clamp(1.65rem,4vw,2.25rem);line-height:1.05}.article-body a{color:#285d08;font-weight:700}.article-timeline,.article-watchlist{margin:1.2rem 0 2rem;padding:0;list-style:none}.article-timeline li,.article-watchlist li{display:grid;grid-template-columns:135px minmax(0,1fr);gap:1rem;padding:1rem 0;border-top:1px solid #c3cdd2}.article-timeline li>strong,.article-watchlist li>strong{color:var(--navy-900);font:900 .95rem var(--font-display)}.article-timeline li div,.article-watchlist li div{font:1rem/1.65 Georgia,serif;color:#172b39}.article-factbox{margin:2.5rem 0;padding:1.25rem;border:2px solid var(--navy-800);border-top:8px solid var(--action-green);background:#edf2f4}.article-factbox h2{margin:0 0 1rem;padding:0;border:0}.article-factbox>div{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.article-factbox h3{margin:.2rem 0;font-size:1.05rem}.article-factbox ul{padding-left:1.2rem}.article-factbox li{margin:.45rem 0;line-height:1.45}.article-factbox>p{margin:1rem 0 0!important;padding-top:1rem;border-top:1px solid #aebdc6;font:1rem/1.55 var(--font-body)}.article-sources{max-width:720px;margin:2rem auto;padding:1rem;border-left:5px solid var(--action-green);background:var(--slate-100)}.article-sources h2{margin-top:0}.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;padding-top:1rem;border-top:1px solid #c3cdd2}.article-tags span{padding:.35rem .55rem;background:var(--navy-800);color:#fff;font-size:.7rem}.related{margin-top:2.5rem}.related>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}@media(max-width:560px){.article-header h1{overflow-wrap:anywhere}.article-meta{display:grid}.article-timeline li,.article-watchlist li{grid-template-columns:1fr;gap:.35rem}.article-factbox>div,.related>div{grid-template-columns:1fr}}
+  </style>
+  <style>
+    .article-table{width:min(1120px,calc(100vw - 2rem));margin:2rem 50%;transform:translateX(-50%)}
+    .article-table>div{max-width:100%;overflow-x:auto;border:1px solid #aebdc6;background:#fff;-webkit-overflow-scrolling:touch}
+    .article-table>div:focus-visible{outline:3px solid var(--action-green);outline-offset:2px}
+    .article-table table{width:100%;min-width:1180px;border-collapse:collapse;font:.78rem/1.4 var(--font-body);font-variant-numeric:tabular-nums}
+    .article-table caption{padding:.75rem;background:var(--navy-950);color:#fff;font-weight:900;text-align:left}
+    .article-table th,.article-table td{padding:.65rem;border-right:1px solid #d5dde1;border-bottom:1px solid #c3cdd2;vertical-align:top;text-align:left}
+    .article-table thead th{background:var(--navy-800);color:#fff;font-size:.67rem;letter-spacing:.04em;text-transform:uppercase}
+    .article-table tbody th{position:sticky;left:0;min-width:145px;background:#edf2f4;box-shadow:3px 0 0 #c3cdd2}
+    .article-table figcaption{margin-top:.45rem;color:var(--slate-700);font-size:.74rem;line-height:1.5}
+  </style>
+</{Team}Layout>

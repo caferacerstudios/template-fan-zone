@@ -1,0 +1,38 @@
+---
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { absoluteUrl } from "../../lib/seo";
+import { NEWS_PAGE_SIZE, categorySlug, coverageArticles, leadArticle, populatedNewsCategories } from "../../lib/news";
+
+const lead = leadArticle;
+const latestArticles = coverageArticles.filter((article) => article !== lead);
+const latest = latestArticles.slice(0, NEWS_PAGE_SIZE);
+const hasMore = latestArticles.length > NEWS_PAGE_SIZE;
+const counts = new Map(populatedNewsCategories.map((category) => [category, coverageArticles.filter((article) => article.category === category).length]));
+const structuredDataArticles = [lead, ...latestArticles].filter(Boolean).slice(0, NEWS_PAGE_SIZE + 1);
+const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:"Seattle {Team} News and Analysis", description:"Original Seattle {Team} reporting, analysis, roster context and game-week coverage from {Team} Fan Zone.", url:absoluteUrl("/news"), mainEntity:{ "@type":"ItemList", itemListElement:structuredDataArticles.map((article, index) => ({ "@type":"ListItem", position:index + 1, url:absoluteUrl(`/news/${article.slug}`), name:article.headline })) } };
+---
+<{Team}Layout {structuredData} activePath="/news" showPageHeader={false} pageType="news-index">
+  <header class="newsroom-header"><p>Independent · Original · Accountable</p><h1>Seattle {Team} News and Analysis</h1><span>Original reporting and analysis on Seattle's roster, injuries, games and place in the NFC West.</span></header>
+
+  <nav class="category-rail" aria-label="News categories">
+    {populatedNewsCategories.map((category) => <a href={`/news/category/${categorySlug(category)}/`}>{category}<span>{counts.get(category)}</span></a>)}
+  </nav>
+
+  {lead && <section aria-labelledby="lead-story"><h2 class="section-title" id="lead-story">Lead story</h2><ArticleCard article={lead} prominent /></section>}
+
+  <section class="latest" aria-labelledby="latest-stories">
+    <div class="latest-heading"><div><p>From the newsroom</p><h2 class="section-title" id="latest-stories">Latest stories</h2></div><a href="/news/rss.xml">Follow via RSS →</a></div>
+    <div class="latest-grid">{latest.slice(0, 4).map((article) => <ArticleCard article={article} />)}</div>
+    {latest.length > 4 && <AdSlot pageType="news-archive" placement="feed-break" ordinal={1} contentUnits={latest.length} />}
+    {latest.length > 4 && <div class="latest-grid">{latest.slice(4).map((article) => <ArticleCard article={article} />)}</div>}
+    {hasMore && <nav class="pagination" aria-label="News archive pages"><span>Page 1</span><a href="/news/page/2/">Older stories →</a></nav>}
+  </section>
+
+  <aside class="explore" aria-labelledby="explore-title"><div class="explore-heading"><p>Beyond the newsroom</p><h2 id="explore-title">Explore {Team} Fan Zone</h2></div><div class="explore-links"><a href="/schedule"><strong>Schedule</strong><span>Kickoff times and results</span></a><a href="/standings"><strong>Standings</strong><span>The NFC West race</span></a><a href="/players"><strong>Roster</strong><span>Roster and player stats</span></a><a href="/weekly-recap"><strong>Game recaps</strong><span>Every game in context</span></a></div></aside>
+  <style>
+    .newsroom-header{padding:clamp(1.4rem,5vw,3rem);border-left:8px solid var(--action-green);background:var(--navy-950);color:#fff}.newsroom-header p,.latest-heading p,.explore-heading p{margin:0;color:#4d861e;font:900 .72rem var(--font-display);letter-spacing:.12em;text-transform:uppercase}.newsroom-header p{color:var(--action-green)}.newsroom-header h1{margin:.2rem 0;color:#fff;font:900 clamp(3rem,10vw,6rem)/.85 var(--font-display);text-transform:uppercase}.newsroom-header span{color:var(--slate-100)}.category-rail{display:flex;overflow:auto;margin:1rem 0 2rem;border-block:1px solid #c7d1d6;background:#fff}.category-rail a{display:flex;gap:.5rem;align-items:center;white-space:nowrap;padding:.75rem;color:var(--navy-900);font-weight:850;text-decoration:none}.category-rail a+a{border-left:1px solid #d8dfe3}.category-rail span{display:grid;place-items:center;min-width:1.4rem;height:1.4rem;border-radius:50%;background:var(--slate-100);font-size:.7rem}.section-title{padding-left:.65rem;border-left:5px solid var(--action-green);color:var(--navy-900)}.latest{margin-top:3rem}.latest-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1rem}.latest-heading h2{margin:.25rem 0 0}.latest-heading>a{font-size:.8rem;font-weight:900}.latest-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}.pagination{display:flex;justify-content:space-between;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #c7d1d6}.pagination span{color:var(--slate-700)}.pagination a{font-weight:900}.explore{margin-top:3rem;padding-top:1.5rem;border-top:6px solid var(--navy-900)}.explore h2{margin:.25rem 0 1rem}.explore-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#c7d1d6;border:1px solid #c7d1d6}.explore-links a{display:grid;gap:.25rem;padding:1rem;background:#fff;color:var(--navy-900);text-decoration:none}.explore-links a:hover strong{text-decoration:underline}.explore-links span{color:var(--slate-700);font-size:.78rem}@media(max-width:760px){.explore-links{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.latest-heading{align-items:flex-start;flex-direction:column}.latest-grid{grid-template-columns:1fr}}@media(max-width:420px){.explore-links{grid-template-columns:1fr}}
+    .latest-grid{align-items:start}
+  </style>
+</{Team}Layout>

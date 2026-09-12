@@ -1,0 +1,33 @@
+---
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import { TOPICS, TOPIC_LANDINGS, type TopicSlug } from "../../lib/fan-zone-taxonomy";
+
+export function getStaticPaths() {
+  return Object.entries(TOPIC_LANDINGS)
+    .filter(([, landing]) => landing && landing.links.length >= 2)
+    .map(([topic]) => ({ params: { topic } }));
+}
+
+const slug = Astro.params.topic as TopicSlug;
+const landing = TOPIC_LANDINGS[slug];
+const topic = TOPICS[slug];
+const links = landing?.links ?? [];
+// These routes currently summarize navigation destinations instead of aggregating
+// distinct editorial coverage, so they remain available but are not indexable.
+const substantive = false;
+const seo = {
+  title: `${topic?.name ?? "Topic"} | {Team} Fan Zone`,
+  description: landing?.description ?? "{Team} Fan Zone topic index.",
+  canonicalPath: `/topics/${slug}`,
+  robots: substantive ? "index, follow" : "noindex, follow",
+};
+---
+
+<{Team}Layout seo={seo} pageTitle={topic?.name ?? "Topic"} pageTagline={landing?.description} monetizationEligible={false} breadcrumbs={[{ name: "Home", href: "/" }, { name: "Topics", href: "/topics/players" }, { name: topic?.name ?? "Topic", href: `/topics/${slug}` }]}>
+  {links.length ? <div class="topic-resources">
+    {links.map((link) => <article><h2><a href={link.href}>{link.label}</a></h2><p>{link.detail}</p></article>)}
+  </div> : <p>Use the primary site navigation to find current {Team} coverage and reference pages.</p>}
+  <style>
+    .topic-resources{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}.topic-resources article{padding:1rem;border:var(--border-crisp);border-left:5px solid var(--action-green);background:#fff}.topic-resources h2{margin:0 0 .4rem;font-size:1rem}.topic-resources p{margin:0;color:var(--slate-700)}
+  </style>
+</{Team}Layout>

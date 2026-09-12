@@ -1,0 +1,19 @@
+---
+const { groups = [] } = Astro.props;
+const visibleGroups = groups.filter((group) => group?.title && Array.isArray(group?.links) && group.links.some((link) => link?.href && link?.label));
+---
+
+{visibleGroups.length > 0 && <aside class="continue-zone" aria-labelledby="continue-zone-title">
+  <p class="eyebrow">Explore related coverage</p>
+  <h2 id="continue-zone-title">Continue in the Fan Zone</h2>
+  <div class="continue-grid">
+    {visibleGroups.map((group) => <section>
+      <h3>{group.title}</h3>
+      <ul>{group.links.filter((link) => link?.href && link?.label).map((link) => <li><a href={link.href}>{link.label}<span aria-hidden="true"> →</span></a></li>)}</ul>
+    </section>)}
+  </div>
+</aside>}
+
+<style>
+  .continue-zone{clear:both;margin-top:2rem;padding:clamp(1rem,3vw,1.5rem);border-top:7px solid var(--action-green);background:var(--navy-950);color:#fff}.continue-zone .eyebrow{margin:0;color:var(--action-green);font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.continue-zone h2{margin:.25rem 0 1rem;color:#fff}.continue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}.continue-grid section{padding:1rem;background:#ffffff0d;border:1px solid #ffffff2b}.continue-grid h3{margin:0 0 .55rem;color:var(--action-green);font-size:.85rem}.continue-grid ul{display:grid;gap:.45rem;margin:0;padding:0;list-style:none}.continue-grid a{color:#fff;font-weight:800;text-decoration-color:#69be28;text-underline-offset:3px}
+</style>

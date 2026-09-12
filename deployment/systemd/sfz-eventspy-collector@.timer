@@ -1,0 +1,12 @@
+[Unit]
+Description=Schedule twice-daily season-wide {Team} EventSpy API collection (%i)
+
+[Timer]
+OnCalendar=*-*-* 08,20:00:00 America/Los_Angeles
+RandomizedDelaySec=10min
+Persistent=true
+AccuracySec=1min
+Unit=sfz-eventspy-collector@%i.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "id": "FIXTURE-EVENT-HOME-001",
+      "title": "Seattle {Team} vs San Francisco 49ers",
+      "eventType": "NFL game admission",
+      "homeTeam": "Seattle {Team}",
+      "awayTeam": "SFO",
+      "startTimeUtc": "2026-09-13T20:25:00Z",
+      "localDate": "2026-09-13",
+      "venueName": "Lumen Field",
+      "canonicalUrl": "https://fixture-market.example.invalid/events/home-001",
+      "listings": [
+        { "id": "FIXTURE-ADMISSION-1", "productType": "admission", "section": "133", "row": "J", "allowedQuantities": [2], "currency": "USD", "priceCents": 17500, "feeStatus": "all-in", "notes": ["Mobile entry."], "canonicalUrl": "https://fixture-market.example.invalid/listings/admission-1" },
+        { "id": "FIXTURE-PARKING-1", "productType": "parking", "section": "North Lot", "row": null, "allowedQuantities": [1], "currency": "USD", "priceCents": 5000, "feeStatus": "all-in", "notes": ["Parking only; admission not included."], "canonicalUrl": "https://fixture-market.example.invalid/listings/parking-1" }
+      ]
+    },
+    {
+      "id": "FIXTURE-UNMATCHED",
+      "title": "Other Football Event",
+      "eventType": "NFL game admission",
+      "homeTeam": "Buffalo Bills",
+      "awayTeam": "Miami Dolphins",
+      "startTimeUtc": "2026-09-13T20:25:00Z",
+      "localDate": "2026-09-13",
+      "venueName": "Other Stadium",
+      "canonicalUrl": "https://fixture-market.example.invalid/events/unmatched",
+      "listings": []
+    }
+  ]
+}

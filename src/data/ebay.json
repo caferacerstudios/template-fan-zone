@@ -1,0 +1,26 @@
+{
+  "seller": "lawhi-46",
+  "marketplace": "EBAY_US",
+  "fetchedAt": "2026-01-19T00:12:06.975Z",
+  "query": "video game",
+  "items": [
+    {
+      "title": "RollerCoaster Tycoon: Corkscrew Follies (PC, 1999)",
+      "href": "https://www.ebay.com/itm/227177732382?_skw=video+game&hash=item34e4d9191e:g:6~cAAeSwIURpazkB",
+      "img": "https://i.ebayimg.com/images/g/6~cAAeSwIURpazkB/s-l225.jpg",
+      "price": "10.00 USD"
+    },
+    {
+      "title": "Mall Tycoon (PC, 2002)",
+      "href": "https://www.ebay.com/itm/227177725709?_skw=video+game&hash=item34e4d8ff0d:g:h2EAAeSwu3NpazbR",
+      "img": "https://i.ebayimg.com/images/g/h2EAAeSwu3NpazbR/s-l225.jpg",
+      "price": "10.00 USD"
+    },
+    {
+      "title": "Casper Animated Activity Center (Windows/Mac, 1998)",
+      "href": "https://www.ebay.com/itm/227177685813?_skw=video+game&hash=item34e4d86335:g:QGMAAeSwncVpayv4",
+      "img": "https://i.ebayimg.com/images/g/QGMAAeSwncVpayv4/s-l225.jpg",
+      "price": "10.00 USD"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+---
+import { formatPacificTime } from "../lib/season-context";
+
+const { model } = Astro.props;
+const date = (value) => value ? new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric" }).format(new Date(value)) : null;
+---
+
+{model && <section class="at-a-glance" aria-labelledby="glance-title">
+  <header>
+    <div><p class="eyebrow">{model.season} season</p><h2 id="glance-title">{Team} at a Glance</h2></div>
+    <p class="freshness">{model.dataThrough ? <>Data through <time datetime={model.dataThrough}>{formatPacificTime(model.dataThrough)}</time></> : <>Data-through time unavailable</>}</p>
+  </header>
+
+  <div class="glance-grid">
+    <a class="glance-card season" href={model.seasonStatus.href}>
+      <span class="label">Season status</span>
+      {model.seasonStatus.record && <strong class="dominant">{model.seasonStatus.record}</strong>}
+      <b>{model.seasonStatus.label}</b>
+      {model.seasonStatus.rank && <p>{model.seasonStatus.rank} in NFC West</p>}
+      {model.seasonStatus.detail && <p class="qualifier">{model.seasonStatus.detail}</p>}
+      {!model.seasonStatus.record && !model.seasonStatus.detail && <p class="qualifier">No completed {model.seasonStatus.label.toLowerCase()} games yet.</p>}
+      {(model.seasonStatus.streak || model.seasonStatus.pointDifferential !== null) && <p class="supporting">{model.seasonStatus.streak && <>Streak {model.seasonStatus.streak}</>}{model.seasonStatus.streak && model.seasonStatus.pointDifferential !== null && <> · </>}{model.seasonStatus.pointDifferential !== null && <>Point diff. {model.seasonStatus.pointDifferential > 0 ? "+" : ""}{model.seasonStatus.pointDifferential}</>}</p>}
+      <span class="card-link">{model.seasonStatus.rank ? "Full standings" : "Full schedule"} →</span>
+    </a>
+
+    {model.lastResult && <a class="glance-card result" href={model.lastResult.href}>
+      <span class="label">Last result · {model.lastResult.phase}</span>
+      <strong class="dominant">{model.lastResult.outcome} {model.lastResult.{team}Score}–{model.lastResult.opponentScore}</strong>
+      <b>{model.lastResult.location} {model.lastResult.opponent}</b>
+      <p>{model.lastResult.date}</p>
+      <span class="card-link">Game recap →</span>
+    </a>}
+
+    {model.leaders && <a class="glance-card leaders" href="/players">
+      <span class="label">Team leaders</span>
+      <strong class="card-heading">{model.leaders.label}</strong>
+      <ul>{model.leaders.items.map((leader) => <li><span>{leader.label}</span><b>{leader.name}</b><strong>{leader.value.toLocaleString()} <small>{leader.unit}</small></strong></li>)}</ul>
+      <span class="card-link">Roster and historical stats →</span>
+    </a>}
+
+    {model.rosterPulse && <article class="glance-card roster">
+      <span class="label">Roster pulse</span>
+      {model.rosterPulse.count !== null && <><strong class="dominant">{model.rosterPulse.count}</strong><b>Current players</b></>}
+      {model.rosterPulse.latestTransaction && <p><span>Latest move · {date(model.rosterPulse.latestTransaction.date)}</span><strong>{model.rosterPulse.latestTransaction.action}{model.rosterPulse.latestTransaction.playerName && ` · ${model.rosterPulse.latestTransaction.playerName}`}</strong></p>}
+      {model.rosterPulse.injuryCount !== null && <p><span>Sourced status entries</span><strong>{model.rosterPulse.injuryCount}</strong></p>}
+      <nav aria-label="Roster pulse details"><a href="/players">Roster</a><a href="/team/transactions">Transactions</a><a href="/team/injuries">Injuries</a></nav>
+    </article>}
+  </div>
+
+  {model.nextGames.length > 0 && <div class="next-strip"><strong>Next three</strong><ol>{model.nextGames.map((game) => <li><a href={game.href}><b>{game.location} {game.opponent}</b><span>{game.date}</span></a></li>)}</ol><a href="/schedule">Schedule →</a></div>}
+</section>}
+
+<style>
+  .at-a-glance{margin-top:2rem}.at-a-glance>header{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:.75rem;padding-left:.75rem;border-left:5px solid var(--action-green)}.at-a-glance h2{margin:0;color:var(--navy-900)}.eyebrow,.label{margin:0;color:#315f12;font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}.freshness{margin:0;color:var(--slate-700);font-size:.8rem;font-weight:750}.glance-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;align-items:stretch}.glance-card{position:relative;display:flex;min-width:0;min-height:225px;box-sizing:border-box;flex-direction:column;padding:1rem;border:1px solid #b7c4cb;border-top:4px solid var(--navy-800);background:#fff;color:var(--navy-900);text-decoration:none;box-shadow:var(--shadow-sm)}a.glance-card:hover{border-top-color:var(--action-green);background:#f7fafb}.glance-card b{overflow-wrap:anywhere}.dominant{display:block;margin:.35rem 0 0;font:900 clamp(2rem,4vw,3rem)/1 var(--font-display);font-variant-numeric:tabular-nums}.glance-card>p{margin:.4rem 0;color:var(--slate-700);font-size:.84rem}.glance-card .qualifier{color:var(--navy-900);font-weight:850}.supporting{margin-top:auto!important}.card-link{margin-top:auto;padding-top:.7rem;color:#2f660b;font-size:.82rem;font-weight:900;text-decoration:underline}.card-heading{margin:.45rem 0;font:900 1.15rem var(--font-display)}.leaders ul{display:grid;gap:.25rem;margin:.25rem 0 0;padding:0;list-style:none}.leaders li{display:grid;grid-template-columns:1fr auto;gap:0 .4rem;padding:.3rem 0;border-top:1px solid #dce3e7}.leaders li>span{grid-column:1/-1;color:var(--slate-700);font-size:.65rem;text-transform:uppercase}.leaders li>b{font-size:.76rem}.leaders li>strong{font-size:.85rem}.leaders small{font-size:.6rem;text-transform:uppercase}.roster>p{display:grid;gap:.15rem;padding-top:.45rem;border-top:1px solid #dce3e7}.roster>p span{color:var(--slate-700);font-size:.7rem;text-transform:uppercase}.roster nav{display:flex;gap:.45rem .7rem;flex-wrap:wrap;margin-top:auto;padding-top:.7rem}.roster nav a{min-height:32px;color:#2f660b;font-size:.8rem;font-weight:900}.next-strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:center;padding:.75rem 1rem;border:1px solid #b7c4cb;border-top:0;background:#edf2f4}.next-strip>strong{font:900 .78rem var(--font-display);text-transform:uppercase}.next-strip ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:0;padding:0;list-style:none}.next-strip li+li{border-left:1px solid #b7c4cb;padding-left:.5rem}.next-strip li a{display:grid;color:var(--navy-900);text-decoration:none}.next-strip li b{overflow-wrap:anywhere;font-size:.8rem}.next-strip li span{color:var(--slate-700);font-size:.7rem}.next-strip>a{color:#2f660b;font-weight:900;white-space:nowrap}
+  @media(max-width:900px){.glance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.next-strip{grid-template-columns:1fr}.next-strip ol{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:560px){.at-a-glance>header{align-items:start;flex-direction:column}.glance-grid{grid-template-columns:minmax(0,1fr)}.glance-card{min-height:0}.next-strip ol{grid-template-columns:minmax(0,1fr)}.next-strip li+li{padding:.45rem 0 0;border-top:1px solid #b7c4cb;border-left:0}}
+</style>
+<style>
+  .at-a-glance>header{margin-bottom:1.1rem;padding-left:0;border-left:0;border-bottom:1px solid var(--color-border);padding-bottom:.85rem}.at-a-glance h2{font-size:clamp(2rem,4vw,3rem)}.glance-grid{gap:.9rem}.glance-card{min-height:220px;border-color:var(--color-border);border-top:1px solid var(--color-border);border-radius:var(--card-radius);background:var(--color-surface-elevated);box-shadow:none;transition:border-color .18s ease,background-color .18s ease}.glance-card::before{content:"";width:42px;height:4px;margin-bottom:.6rem;background:var(--navy-800);transform:skewX(-24deg)}a.glance-card:hover{border-color:var(--navy-800);background:#f1f5f6}a.glance-card:hover::before{background:var(--action-green)}.next-strip{margin-top:.9rem;border:1px solid var(--color-border);border-radius:var(--card-radius);background:#e8eef1}.dominant{letter-spacing:-.035em}.card-link,.next-strip>a,.roster nav a{color:var(--color-action)}
+</style>

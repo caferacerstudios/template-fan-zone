@@ -1,0 +1,19 @@
+---
+import GameDayPage from "../../components/GameDayPage.astro";
+import { gameCollection } from "../../lib/game-details.mjs";
+import { EVENTSPY_COVERAGE } from "../../lib/tickets/eventspy-coverage.mjs";
+import scheduleData from "../../data/nfl/{team}.json";
+import watchGuide from "../../data/nfl/watch-guide-2026.json";
+import { reconcileOfficialSchedule } from "../../lib/schedule-guide.mjs";
+
+export function getStaticPaths() {
+  const rawGames = Array.isArray(scheduleData?.games) ? scheduleData.games : [...(scheduleData?.gamesPreseason ?? []),...(scheduleData?.gamesRegular ?? []),...(scheduleData?.gamesPostseason ?? [])];
+  const completeSchedule = { ...scheduleData, games:reconcileOfficialSchedule(rawGames,watchGuide) };
+  return gameCollection(completeSchedule, EVENTSPY_COVERAGE).map((game, index) => ({
+    params: { gameId: String(game?.id ?? game?.game_id ?? index) },
+  }));
+}
+
+const { gameId } = Astro.params;
+---
+<GameDayPage {gameId} routeStyle="games" />

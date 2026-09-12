@@ -1,0 +1,73 @@
+import { readFile, writeFile, mkdir, copyFile, chmod, readdir, symlink } from 'node:fs/promises';
+import path from 'node:path';
+import { TEAM_LOCATIONS } from './locations.mjs';
+import { themeSettings, renderThemeStyles } from './themes.mjs';
+
+export function teamSettings(value) {
+  const slug = String(value ?? '').trim().toLowerCase();
+  // These tokens can occur inside identifiers as well as names and URLs.
+  if (!/^[a-z]{2,30}$/.test(slug)) {
+    throw new Error('Supply TEAM as one lowercase team word, for example TEAM=broncos or TEAM=patriots (2–30 letters).');
+  }
+  if (!Object.hasOwn(TEAM_LOCATIONS, slug)) {
+    throw new Error(`No location configured for TEAM=${slug}. Add it to template-tools/locations.mjs.`);
+  }
+  return { slug, name: slug[0].toUpperCase() + slug.slice(1), upper: slug.toUpperCase(), location: TEAM_LOCATIONS[slug], theme: themeSettings(slug) };
+}
+
+export function renderText(text, team) {
+  // Keep existing full-name templates working, including line-wrapped names.
+  // Standalone Seattle facts, code identifiers, and seattle-... URLs are retained.
+  const withLocation = text.replace(/\b(?:Seattle|SEATTLE|seattle)(?=\s+\{(?:Team|TEAM|team)\})/g,
+    (word) => word === 'SEATTLE' ? team.location.toUpperCase() : word === 'seattle' ? team.location.toLowerCase() : team.location);
+  return withLocation.replace(/\{(?:team|Team|TEAM|Location|LOCATION|ThemeKey|ThemeStylesheet|ThemeFavicon|BrandMark|HeroMark|FanTagline)\}/g, (token) => ({
+    '{team}': team.slug, '{Team}': team.name, '{TEAM}': team.upper,
+    '{Location}': team.location, '{LOCATION}': team.location.toUpperCase(),
+    '{ThemeKey}': team.theme.key, '{ThemeStylesheet}': team.theme.stylesheet,
+    '{ThemeFavicon}': team.theme.favicon, '{BrandMark}': team.theme.brandMark,
+    '{HeroMark}': team.theme.heroMark, '{FanTagline}': team.theme.fanTagline,
+  })[token]);
+}
+
+async function walk(root, directory = '') {
+  const files = [];
+  for (const entry of await readdir(path.join(root, directory), { withFileTypes: true })) {
+    if (!directory && ['.git', 'node_modules', 'dist', '.astro', '.team-build', '.sites-runtime', 'template-tools'].includes(entry.name)) continue;
+    if (!directory && ['package.json', 'package-lock.json', 'README.md', '.gitignore'].includes(entry.name)) continue;
+    if (entry.name === '.env' || entry.name.startsWith('.env.') || entry.name.endsWith('.log')) continue;
+    const relative = path.join(directory, entry.name);
+    if (entry.isSymbolicLink()) throw new Error(`Template source must not contain symlinks: ${relative}`);
+    if (entry.isDirectory()) files.push(...await walk(root, relative));
+    else if (entry.isFile()) files.push(relative);
+  }
+  return files;
+}
+
+export async function renderProject(root, destination, team, { linkDependencies = true } = {}) {
+  const decoder = new TextDecoder('utf-8', { fatal: true });
+  const sources = await walk(root);
+  const outputs = new Set();
+  for (const relative of sources) {
+    const renderedPath = renderText(relative, team);
+    if (outputs.has(renderedPath)) throw new Error(`Two template files render to ${renderedPath}`);
+    outputs.add(renderedPath);
+    const target = path.join(destination, renderedPath);
+    await mkdir(path.dirname(target), { recursive: true });
+    const source = path.join(root, relative);
+    const buffer = await readFile(source);
+    let content;
+    try { content = decoder.decode(buffer); } catch { content = null; }
+    if (content === null || buffer.includes(0)) await copyFile(source, target);
+    else await writeFile(target, renderThemeStyles(renderText(content, team), relative, team.theme));
+  }
+  const manifest = JSON.parse(await readFile(path.join(root, 'template-tools/files.json'), 'utf8'));
+  for (const entry of manifest) {
+    // Preserve executable scripts; new source files can be run with node/python/bash.
+    if (outputs.has(renderText(entry.path, team))) await chmod(path.join(destination, renderText(entry.path, team)), Number(entry.mode));
+  }
+  const pkg = JSON.parse(renderText(await readFile(path.join(root, 'template-tools/upstream-package.json'), 'utf8'), team));
+  await writeFile(path.join(destination, 'package.json'), JSON.stringify(pkg, null, 2) + '\n');
+  if (linkDependencies) await symlink(path.join(root, 'node_modules'), path.join(destination, 'node_modules'), 'dir');
+  await writeFile(path.join(destination, '.template-team.json'), JSON.stringify({ team: team.slug, theme: team.theme.key, kind: 'word-substitution-template' }, null, 2) + '\n');
+  return sources.length;
+}

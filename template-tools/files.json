@@ -1,0 +1,1567 @@
+[
+  {
+    "path": ".vscode/extensions.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": ".vscode/launch.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "ANALYTICS.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "PERFORMANCE.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/upstream-README.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "astro.config.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/deploy-ticket-page-production.sh",
+    "text": true,
+    "mode": "0o755"
+  },
+  {
+    "path": "deployment/eventspy-collector/Dockerfile",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/eventspy-collector/dev.compose.yml",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/eventspy-collector/example.env",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/eventspy-mirror/Dockerfile",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/systemd/sfz-eventspy-collector@.service",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/systemd/sfz-eventspy-collector@.timer",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/systemd/sfz-ticket-sync@.service",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/systemd/sfz-ticket-sync@.timer",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/Dockerfile",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/Dockerfile.dockerignore",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/dev.compose.env",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/eventspy-dev.compose.yml",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/example.env",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "deployment/ticket-sync/prod.compose.env",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docker-compose.yml",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/adsense-readiness-2026-09-11.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/daily-news-airflow.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/game-page-live-updates.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/nfl-airflow-migration.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/recap-airflow-migration.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/redirect-deployment.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/search-console.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/README.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/architecture.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/data-contract.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/event-matching.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/implementation-plan.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/live-inventory-audit.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/match-review.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/provider-matrix.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/provider-rights/EventSpy.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/provider-rights/StubHub.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/provider-rights/Ticketmaster.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/risk-register.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-finder/ticketmaster-live-dev.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-sync-deployment.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/ticket-sync.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "docs/trending-now.md",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "nginx/default.conf",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/ads.txt",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/data/tickets/.gitkeep",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/favicon.svg",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/news/2025-championship-analysis.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/news/newsroom-field.svg",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/news/ownership-transition.svg",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/Jaxon-Smith-Njigba.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/charles-cross.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/cooper-kupp.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/drew-lock.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/rashid-shaheed.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/players/sam-darnold.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/ARI.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/ATL.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/BAL.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/BUF.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/CAR.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/CHI.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/CIN.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/CLE.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/DAL.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/DEN.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/DET.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/GB.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/HOU.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/IND.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/JAC.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/JAX.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/KC.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/LA.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/LAC.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/LAR.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/LV.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/LVR.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/MIA.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/MIN.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/NE.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/NO.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/NYG.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/NYJ.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/PHI.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/PIT.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/SEA.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/SF.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/TB.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/TEN.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/WAS.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/images/nfl/teams/WSH.png",
+    "text": false,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/robots.txt",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "public/styles/main.css",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/check-redirect-chains.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/export-news-catalog.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/fetch-ebay.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/fetch-nfl-logos.py",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/fetch-nfl.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/gen-carousel.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/generate-game-recaps.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/generate-player-profiles.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/import-news-snapshot.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/import-nfl-snapshot.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/import-recap-snapshot.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/nfl-api-client.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/performance-budget.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/refresh-player-career-facts.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/refresh-team-roster.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/config.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/eventspy-history.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/eventspy-image-smoke.mjs",
+    "text": true,
+    "mode": "0o755"
+  },
+  {
+    "path": "scripts/tickets/eventspy-ledger.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/eventspy-mirror.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/fixtures/eventspy-tooltip.txt",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/fixtures/provider.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/generate-match-report.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/http.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/listing-adapter.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/pipeline.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/providers.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/snapshot.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/sync.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/tickets/validate-fixtures.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/validate-adsense-readiness.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/validate-nfl-logos.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/validate-player-profiles.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "scripts/validate-production-schedule.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/AdSlot.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/ArticleCard.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/AutoCarousel.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/ContinueFanZone.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/DeferredAdSlot.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/GameCenter.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/GameDayPage.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/HomepageGlance.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/HomepageStories.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/NfcWestTable.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/ResponsiveImage.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/ScheduleList.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/ScheduleScoreboard.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/SeasonContext.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/SeasonState.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/TeamMark.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/TopicChips.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/TrendingNow.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/UpNext.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/EmptyState.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/FormRow.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/GameDayGuide.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/GameEditorial.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/GameStateSection.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/GuideSourceLink.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/LeaderList.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/game/ServerTicketSummary.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/components/tickets/TicketPublisherContent.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/around-the-web.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/carousels/harry-potter-chamber-of-secrets.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/carousels/harry-potter-sorcerers-stone.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/carousels/sid-meiers-sim-golf.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/ebay.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/history-timeline.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/news/generated-articles.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/news/generated-corrections.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/game-day-guides.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/game-status.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/gameEditorial.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/gameRecaps.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/playerProfiles.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/players.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/{team}.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/standings.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/nfl/watch-guide-2026.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/injuries.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/player-career-facts.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/player-profile-editorial-facts.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/player-profile-tiers.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/roster.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/team/transactions.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/tickets/fixtures/development.snapshot.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/tickets/fixtures/matching.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/tickets/match-overrides.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/data/trending.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/layouts/BaseLayout.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/layouts/{Team}Layout.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/advertising.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/analytics.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/fan-zone-taxonomy.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/game-day.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/game-details.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/game-page.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/game-state.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/homepage-feed.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/homepage-glance.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/indexability.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/injury-refresh.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/news-artifacts.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/news.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/player-career-facts.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/player-profile-generation.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/player-profiles.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/production-schedule-validation.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/recap-artifacts.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/recap-player-links.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/roster-refresh.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/roster.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/schedule-display.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/schedule-guide.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/schedule.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/season-context.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/seo.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/standings.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/team-logos.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/team-stats.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/team-updates-core.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/team-updates.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/analytics.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/chart-path.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/config.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/eventspy-coverage.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/eventspy-mirror-schema.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/feature-state.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/market-observation.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/match.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/outbound-links.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/provider-event-price.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/provider-quotes.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/runtime-view.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/types.d.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/tickets/validate.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/transaction-refresh.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/trending.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/lib/watch-guide.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/404.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/about.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/contact.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/data/news-front-page.json.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/disclosure.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/games-for-sale.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/games/[gameId].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/guides/harry-potter-chamber-of-secrets.mdx",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/guides/harry-potter-sorcerers-stone.mdx",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/guides/sid-meiers-sim-golf.mdx",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/history.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/index.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/methodology.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news-sitemap.xml.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/[slug].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/around-the-web/index.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/category/[category].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/index.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/page/[page].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/news/rss.xml.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/players.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/players/[playerId].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/privacy-policy.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/schedule.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/schedule/[season].ics.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/sitemap.xml.ts",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/sources.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/standings.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/team.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/team/injuries.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/team/transactions.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/tickets.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/topics/[topic].astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "src/pages/weekly-recap.astro",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/eventspy-market-observation.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/eventspy-mirror.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/eventspy-full-season.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/eventspy-mirror-page.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/eventspy-sanitized.html",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/eventspy-tooltip.txt",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/playerProfiles.generated.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/shifted-preseason-provider.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/ticket-sync-schedule.json",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/fixtures/ticketmaster-discovery.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/game-day-page.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/game-details.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/game-page-seo.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/game-state.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/homepage-glance.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/indexability.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/news-route.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/news-snapshot.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/nfl-pipeline.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/player-career-facts.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/player-profile-generator.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/player-profiles-static.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/production-schedule-validation.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/recap-pipeline.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/recap-player-links.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/redirect-chain.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/roster-data.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/roster-refresh.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/schedule.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/seo-built-metadata.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/standings.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/team-stats.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-chart-path.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-compliance.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-feature-state.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-http.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-matching.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-runtime-view.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-static-html.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/ticket-sync.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/tickets-eventspy-mirror-season.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/tickets.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tests/watch-guide.test.mjs",
+    "text": true,
+    "mode": "0o644"
+  },
+  {
+    "path": "tsconfig.json",
+    "text": true,
+    "mode": "0o644"
+  }
+]

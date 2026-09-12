@@ -1,0 +1,18 @@
+---
+import {Team}Layout from "../../layouts/{Team}Layout.astro";
+import { formatUpdateDate, injuryStatuses, playerPath } from "../../lib/team-updates";
+---
+<{Team}Layout pageTitle="Seattle {Team} Injuries & Status" pageTagline="Sourced injury, reserve-list and participation-status updates, kept separate from roster transactions and medical speculation." activePath="/team/injuries" monetizationEligible={false} breadcrumbs={[{name:"Home",href:"/"},{name:"Roster",href:"/players"},{name:"Injuries & status",href:"/team/injuries"}]}>
+  <nav class="utility-nav" aria-label="Team updates"><a href="/team/transactions">Transactions</a><a aria-current="page" href="/team/injuries">Injuries &amp; status</a></nav>
+  <p class="notice"><strong>About this tracker:</strong> An absent entry does not mean a player is healthy. Diagnoses, severity, and recovery timelines are included only when a cited source explicitly supports them.</p>
+  {injuryStatuses.length ? <ol class="updates">
+    {injuryStatuses.map((entry) => <li>
+      <div class="update-head"><time datetime={entry.date}>{formatUpdateDate(entry.date)}</time><span class:list={["verification", entry.updateStatus.toLowerCase()]}>{entry.updateStatus}</span>{entry.reportType && <span class="report-type">{entry.reportType}</span>}<span class="status">{entry.status}</span></div>
+      <h2><a href={playerPath(entry.playerId)}>{entry.playerName || `Player ${entry.playerId}`}</a></h2>
+      <p>{entry.description}</p><a class="source" href={entry.sourceUrl} rel="noopener noreferrer">Source: {entry.sourcePublisher} ↗</a>
+    </li>)}
+  </ol> : <div class="empty"><h2>No current injury-status entries have been imported for this period.</h2><p>This is a no-data state, not a statement that every player is healthy.</p></div>}
+  <style>
+    .utility-nav{display:flex;gap:.5rem;margin-bottom:1rem}.utility-nav a{min-height:44px;padding:.65rem .85rem;border:2px solid var(--navy-800);color:var(--navy-900);font-weight:900;text-decoration:none}.utility-nav [aria-current]{background:var(--navy-900);color:#fff}.notice{padding:1rem;border-left:5px solid #526875;background:#e8eef1}.updates{display:grid;gap:.8rem;padding:0;list-style:none}.updates li,.empty{padding:1rem;border:1px solid #b8c5cc;border-left:5px solid var(--action-green);background:#fff}.update-head{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.78rem;font-weight:900;text-transform:uppercase}.verification,.report-type,.status{padding:.2rem .45rem}.official{background:var(--navy-900);color:#fff}.reported{border:1px solid #526875}.report-type{border:1px solid #80919a}.status{background:#dfe8ec}.updates h2{margin:.45rem 0 .2rem;font-size:1.25rem}.updates p{margin:.35rem 0}.source{display:inline-block;min-height:44px;padding-top:.65rem;color:#2f660b;font-weight:900}.empty h2{margin-top:0}@media(max-width:520px){.utility-nav{display:grid;grid-template-columns:1fr 1fr}.utility-nav a{text-align:center}}
+  </style>
+</{Team}Layout>

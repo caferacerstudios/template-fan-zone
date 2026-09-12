@@ -1,0 +1,40 @@
+---
+const { game, matchup } = Astro.props;
+const editorial = game?.editorial ?? {};
+const modules = [
+  ["Matchup overview", editorial.matchupOverview],
+  ["Three things to watch", editorial.thingsToWatch],
+  ["Injury and status summary", editorial.injurySummary],
+  ["Recent form and season context", editorial.recentForm],
+  ["Series history", editorial.seriesHistory],
+  ["Standings implications", editorial.standingsImplications],
+];
+const hasContent = (value) => typeof value === "string" ? Boolean(value.trim()) : Array.isArray(value) ? value.length > 0 : Boolean(value?.text || value?.items?.length);
+---
+
+<div class="editorial-modules">
+  {modules.filter(([, value]) => hasContent(value)).map(([heading, value]) => (
+    <section class="detail-panel editorial-panel">
+      <h2>{heading}</h2>
+      {typeof value === "string" ? <p>{value}</p> : value?.text ? <p>{value.text}</p> : null}
+      {(Array.isArray(value) ? value : value?.items)?.length ? <ol>{(Array.isArray(value) ? value : value.items).map((item) => <li>{typeof item === "string" ? item : item.text}</li>)}</ol> : null}
+      {value?.source?.url && value?.source?.label && <p class="module-source"><a href={value.source.url}>{value.source.label}</a></p>}
+    </section>
+  ))}
+
+  <nav class="context-links" aria-label={`${matchup} related coverage`}>
+    <h2>Related {Team} coverage</h2>
+    <a href="/schedule">Full schedule</a>
+    <a href="/team/injuries">Injury updates</a>
+    <a href="/players">{Team} roster</a>
+    <a href="/standings">NFC standings</a>
+    {!game.completed && <a href="/tickets">Seattle ticket guide</a>}
+    {editorial.preview?.url && editorial.preview?.label && <a href={editorial.preview.url}>{editorial.preview.label}</a>}
+    {editorial.players?.filter((player) => player?.url && player?.name).map((player) => <a href={player.url}>{player.name}</a>)}
+    {game.completed && game?.recap?.url && <a href={game.recap.url}>Associated recap</a>}
+  </nav>
+</div>
+
+<style>
+  .editorial-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.25rem 0}.editorial-panel{margin:0}.editorial-panel p,.editorial-panel li{line-height:1.65}.editorial-panel ol,.editorial-panel ul{padding-left:1.25rem}.module-source{font-size:.9rem}.final-score{font-size:1.08rem}.context-links{grid-column:1/-1;display:flex;gap:.65rem 1rem;align-items:center;flex-wrap:wrap;padding:1.1rem;background:#fff;border:1px solid var(--line);border-radius:.7rem}.context-links h2{width:100%;margin:0;font-size:1.1rem}.context-links a{font-weight:800}@media(max-width:650px){.editorial-modules{grid-template-columns:1fr}}
+</style>

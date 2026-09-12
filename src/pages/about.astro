@@ -1,0 +1,52 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+
+const title = "About | {Team} Fan Zone";
+const description =
+  "About the ownership, editorial approach, and independent status of {Team} Fan Zone.";
+---
+
+<{Team}Layout {title} {description} pageTitle="About {Team} Fan Zone" pageTagline="Independent stats, recaps, and context for {Location} football fans." activePath="/about">
+  <div class="card">
+    <h2>What this site is</h2>
+    <p>
+      {Team} Fan Zone is an independently operated fan publication covering {Location} football with original analysis,
+      game recaps, schedules, statistics, roster context, and historical reference material. The goal is straightforward:
+      give {Team} fans useful information, show where it came from, and distinguish reported facts from analysis.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="editorial-responsibility">Ownership and editorial responsibility</h2>
+    <p>
+      The site is owned and edited by an individual operator, not a staffed newsroom. “{Team} Fan Zone Editorial Team”
+      is the publication’s house byline for articles prepared and reviewed by the site owner; it does not represent
+      invented staff members or an affiliation with the team or league. The site owner is responsible for editorial
+      decisions, updates, and corrections.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Editorial standards</h2>
+    <p>
+      Articles identify their sources where practical, use original wording, and note uncertainty when information is
+      incomplete. Material changes are reflected in an updated date. Factual errors are reviewed through the
+      <a href="/contact#corrections"> corrections process</a>. Read more about the site’s
+      <a href="/methodology"> methodology</a> and <a href="/sources">source practices</a>.
+      The original <a href="/news/welcome-to-the-{team}-fan-zone-newsroom">newsroom introduction</a> records the publication’s coverage intent but is not promoted as current news.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Independent fan-site status</h2>
+    <p>
+      {Team} Fan Zone is an independent fan site. It is not affiliated with, endorsed by, or sponsored by the {Location}
+      {Team}, the National Football League, or their affiliates. Team and league names are used to identify the subjects covered.
+    </p>
+  </div>
+
+  <div class="card" id="contact">
+    <h2>Contact</h2>
+    <p>Questions, corrections, and rights concerns are welcome. See the <a href="/contact">Contact and Corrections page</a> for the appropriate details.</p>
+  </div>
+</{Team}Layout>

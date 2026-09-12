@@ -1,0 +1,103 @@
+---
+import {Team}Layout from "../layouts/{Team}Layout.astro";
+import ScheduleList from "../components/ScheduleList.astro";
+import UpNext from "../components/UpNext.astro";
+import { getAvailableSeasonContexts, getSeasonContext } from "../lib/season-context";
+import { scheduleFreshness, selectFeaturedGame, selectScheduleSeason } from "../lib/schedule.mjs";
+import { normalizeScheduleFilters, scheduleGameMatches } from "../lib/schedule-display.mjs";
+import { reconcileOfficialSchedule } from "../lib/schedule-guide.mjs";
+import rawScheduleData from "../data/nfl/{team}.json";
+import watchGuide from "../data/nfl/watch-guide-2026.json";
+
+const rawGames = Array.isArray(rawScheduleData?.games) ? rawScheduleData.games : [...(rawScheduleData?.gamesPreseason ?? []),...(rawScheduleData?.gamesRegular ?? []),...(rawScheduleData?.gamesPostseason ?? [])];
+const scheduleRoot: any = { ...rawScheduleData, games:reconcileOfficialSchedule(rawGames, watchGuide) };
+const requestedSeason = Astro.url.searchParams.get("season") ?? scheduleRoot?.season;
+const scheduleData = selectScheduleSeason(scheduleRoot, requestedSeason);
+const context = getSeasonContext(scheduleData, "regular season");
+const options = Array.isArray(scheduleRoot?.seasons)
+  ? scheduleRoot.seasons.map((record) => getSeasonContext(selectScheduleSeason(scheduleRoot, record.season), "regular season"))
+  : getAvailableSeasonContexts(scheduleData, "regular season");
+const season = context.seasonYear ?? "";
+const typeOf = (game) => game?.phase ?? "regular";
+const games = scheduleData.games;
+const sections = [
+  { id:"preseason", label:"Preseason", games:games.filter((game) => typeOf(game) === "preseason") },
+  { id:"regular", label:"Regular Season", games:games.filter((game) => typeOf(game) === "regular") },
+  { id:"postseason", label:"Postseason", games:games.filter((game) => typeOf(game) === "postseason") },
+];
+const featuredSelection = selectFeaturedGame(games, { now: new Date(), offseason: scheduleData?.offseasonMilestone });
+const featuredGame = featuredSelection.game;
+const nextGame = ["upcoming", "live"].includes(featuredSelection.state) ? featuredGame : null;
+const requestedStatus = Astro.url.searchParams.get("status") ?? "all";
+const status = ["all", "upcoming", "completed"].includes(requestedStatus) ? requestedStatus : "all";
+const filters = normalizeScheduleFilters(Astro.url.searchParams.getAll("filter"));
+const initialCount = games.filter((game) => game.state !== "bye" && scheduleGameMatches(game, { status, filters })).length;
+const freshness = scheduleFreshness(context.updatedAt);
+const clearHref = scheduleRoot?.seasons?.length ? `/schedule?season=${season}` : "/schedule";
+---
+
+<{Team}Layout seo={{ title: `${season} Seattle {Team} Schedule, Times and Results`, description: `See the ${season} Seattle {Team} schedule with opponents, dates, Pacific kickoff times, venues, game status and final scores as games are completed.`, canonicalPath: "/schedule" }} pageTitle={`${season} Seattle {Team} Schedule`} pageTagline="Dates, opponents, Pacific kickoff times, venues, game status and results for every scheduled {Team} game." activePath="/schedule" pageType="schedule" season={season}>
+  <form class="schedule-toolbar" id="schedule-filters" method="get" aria-labelledby="toolbar-title">
+    <h2 id="toolbar-title">Find games</h2>
+    <div class="toolbar-selects">
+      <label>Season<select name="season" disabled={options.length < 2}>{options.map((option) => <option value={option.seasonYear ?? ""} selected={option.seasonYear === context.seasonYear}>{option.label}</option>)}</select></label>
+      <label>Status<select name="status"><option value="all" selected={status === "all"}>All games</option><option value="upcoming" selected={status === "upcoming"}>Upcoming</option><option value="completed" selected={status === "completed"}>Completed</option></select></label>
+    </div>
+    <fieldset><legend>Filter schedule</legend><div class="filter-chips">
+      {[{value:"home",label:"Home"},{value:"away",label:"Away"},{value:"division",label:"Division"},{value:"prime-time",label:"Prime time"},{value:"preseason",label:"Preseason"},{value:"regular",label:"Regular season"},{value:"postseason",label:"Postseason"}].map((item) => <label><input type="checkbox" name="filter" value={item.value} checked={filters.includes(item.value)} /><span>{item.label}</span></label>)}
+    </div></fieldset>
+    <div class="toolbar-actions"><button type="submit">Apply filters</button><a href={clearHref} data-clear-filters>Clear filters</a><a href={`/schedule/${season}.ics`} download={`{team}-${season}-schedule.ics`}>Full-season calendar</a></div>
+    <p class="filter-help">Home/Away and season phases are combined as “either”; other selected filters are combined as “and.”</p>
+  </form>
+  <div class="schedule-status"><p id="schedule-count" role="status" aria-live="polite" aria-atomic="true"><strong>{initialCount}</strong> {initialCount === 1 ? "game" : "games"} shown</p><p><a href="/methodology">{freshness.label}</a>{freshness.stale && <> · Updates may be delayed; showing the last verified schedule.</>}</p></div>
+  <UpNext game={featuredGame} canonicalBase={Astro.site ?? Astro.url} isNextGame={Boolean(nextGame)} />
+  <ScheduleList sections={sections} nextGameId={nextGame?.id} canonicalBase={Astro.site ?? Astro.url} filterState={{ status, filters }} />
+</{Team}Layout>
+
+<style>
+  .schedule-toolbar{display:grid;gap:.8rem;margin-bottom:.35rem;padding:1rem;border:var(--border-crisp);border-top:5px solid var(--action-green);background:var(--slate-100)}.schedule-toolbar h2{margin:0;font-size:1.1rem}.toolbar-selects,.toolbar-actions,.filter-chips{display:flex;gap:.55rem;flex-wrap:wrap}.toolbar-selects label{display:grid;gap:.25rem;min-width:150px;color:var(--slate-700);font-size:.72rem;font-weight:900;text-transform:uppercase}.toolbar-selects select{min-height:44px;padding:.45rem .6rem;border:2px solid var(--slate-500);background:#fff;color:var(--navy-950);font:800 .85rem inherit}fieldset{min-width:0;margin:0;padding:0;border:0}legend{margin-bottom:.35rem;color:var(--slate-700);font-size:.72rem;font-weight:900;text-transform:uppercase}.filter-chips label{position:relative}.filter-chips input{position:absolute;width:1px;height:1px;opacity:0}.filter-chips span,.toolbar-actions :is(a,button){display:inline-flex;min-height:44px;box-sizing:border-box;align-items:center;justify-content:center;padding:.55rem .75rem;border:2px solid var(--navy-800);background:#fff;color:var(--navy-900);font:900 .76rem inherit;text-decoration:none;cursor:pointer}.filter-chips input:checked+span{background:var(--navy-800);color:#fff;box-shadow:inset 0 -4px var(--action-green)}.filter-chips input:focus-visible+span{outline:3px solid var(--action-green);outline-offset:2px}.toolbar-actions button{background:var(--navy-800);color:#fff}.toolbar-actions [data-clear-filters]{border-color:var(--slate-500)}.filter-help{margin:0;color:var(--slate-700);font-size:.7rem}.schedule-status{display:flex;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap;margin:0 0 .8rem;color:var(--slate-700);font-size:.75rem}.schedule-status p{margin:.2rem 0}.schedule-status a{color:inherit}.is-filtered #next-game{display:none}@media(max-width:480px){.toolbar-selects{display:grid;grid-template-columns:1fr 1fr}.toolbar-selects label{min-width:0}.filter-chips span{padding:.5rem .65rem}.toolbar-actions{display:grid;grid-template-columns:1fr}.toolbar-actions :is(a,button){width:100%}}
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#schedule-filters");
+  const count = document.querySelector<HTMLElement>("#schedule-count");
+  const clear = form?.querySelector<HTMLAnchorElement>("[data-clear-filters]");
+  const rows = [...document.querySelectorAll<HTMLElement>("[data-schedule-game]")];
+  const update = (announce = true) => {
+    if (!form || !count) return;
+    const data = new FormData(form);
+    const status = String(data.get("status") || "all");
+    const filters = data.getAll("filter").map(String);
+    const locationFilters = filters.filter((item) => item === "home" || item === "away");
+    const phases = filters.filter((item) => ["preseason", "regular", "postseason"].includes(item));
+    let shown = 0;
+    rows.forEach((row) => {
+      const matchesStatus = status === "all" || (status === "completed" ? row.dataset.state === "completed" : !["completed", "bye", "canceled"].includes(row.dataset.state || ""));
+      const matchesLocation = !locationFilters.length || locationFilters.includes(row.dataset.location || "");
+      const matchesPhase = !phases.length || phases.includes(row.dataset.phase || "");
+      const matchesTraits = (!filters.includes("division") || row.dataset.division === "true") && (!filters.includes("prime-time") || row.dataset.primeTime === "true");
+      row.hidden = !(matchesStatus && matchesLocation && matchesPhase && matchesTraits);
+      if (!row.hidden && row.dataset.state !== "bye") shown++;
+    });
+    document.querySelectorAll<HTMLElement>("[data-month-group]").forEach((group) => group.hidden = !group.querySelector("[data-schedule-game]:not([hidden])"));
+    document.querySelectorAll<HTMLElement>("[data-schedule-phase]").forEach((phase) => phase.hidden = !phase.querySelector("[data-schedule-game]:not([hidden])"));
+    let empty = document.querySelector<HTMLElement>("#schedule-filter-empty");
+    if (!empty) { empty = document.createElement("p"); empty.id = "schedule-filter-empty"; empty.className = "empty-state"; empty.textContent = "No games match these filters. Clear filters to show the complete schedule."; document.querySelector(".phase-jumps")?.insertAdjacentElement("afterend", empty); }
+    empty.hidden = shown > 0;
+    count.textContent = `${shown} ${shown === 1 ? "game" : "games"} shown`;
+    document.documentElement.classList.toggle("is-filtered", status !== "all" || filters.length > 0);
+    if (announce) {
+      const url = new URL(location.href);
+      url.search = new URLSearchParams(data as any).toString();
+      history.pushState(null, "", url);
+    }
+  };
+  form?.addEventListener("submit", (event) => { event.preventDefault(); update(); });
+  form?.addEventListener("change", (event) => {
+    if ((event.target as HTMLInputElement).name === "season") { location.assign(`${location.pathname}?${new URLSearchParams(new FormData(form) as any)}`); return; }
+    update();
+  });
+  clear?.addEventListener("click", (event) => { event.preventDefault(); form?.querySelectorAll<HTMLInputElement>('input[name="filter"]').forEach((input) => input.checked = false); const status = form?.elements.namedItem("status") as HTMLSelectElement; if (status) status.value = "all"; update(); });
+  addEventListener("popstate", () => { if (!form) return; const params = new URLSearchParams(location.search); const status = form.elements.namedItem("status") as HTMLSelectElement; status.value = params.get("status") || "all"; form.querySelectorAll<HTMLInputElement>('input[name="filter"]').forEach((input) => input.checked = params.getAll("filter").includes(input.value)); update(false); });
+  update(false);
+</script>

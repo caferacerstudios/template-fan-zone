@@ -1,0 +1,18 @@
+---
+interface Row { rank: string; abbreviation: string; name: string; wins: string; losses: string; ties: string; percentage: string; pointsFor: string; pointsAgainst: string; differential: string; division: string; conference: string; streak: string; marker?: string | null; }
+const { rows, label = "NFC West standings", showSplits = true, rankLabel = "Rank" } = Astro.props as { rows: Row[]; label?: string; showSplits?: boolean; rankLabel?: string };
+---
+<div class="table-scroll" tabindex="0" role="region" aria-label={`${label}; scroll horizontally for more statistics`}>
+  <table>
+    <caption class="sr-only">{label}, with Seattle highlighted</caption>
+    <thead><tr><th scope="col">{rankLabel}</th><th scope="col">Team</th><th scope="col">W</th><th scope="col">L</th><th scope="col">T</th><th scope="col">Pct</th><th scope="col">PF</th><th scope="col">PA</th><th scope="col">Diff</th>{showSplits && <th scope="col">Division</th>}{showSplits && <th scope="col">Conference</th>}<th scope="col">Streak</th></tr></thead>
+    <tbody>{rows.map((row) => <tr class:list={{ seattle: row.abbreviation === "SEA" }}>
+      <td>{row.rank ?? "—"}</td>
+      <th scope="row"><span class="team"><img src={`/images/nfl/teams/${row.abbreviation}.png`} alt="" loading="lazy" /><span>{row.name} {row.abbreviation === "SEA" && <span class="indicator">Seattle</span>}{row.marker && <small>{row.marker}</small>}</span></span></th>
+      <td>{row.wins}</td><td>{row.losses}</td><td>{row.ties}</td><td>{row.percentage}</td><td>{row.pointsFor}</td><td>{row.pointsAgainst}</td><td>{row.differential}</td>{showSplits && <td>{row.division}</td>}{showSplits && <td>{row.conference}</td>}<td>{row.streak}</td>
+    </tr>)}</tbody>
+  </table>
+</div>
+<style>
+  .table-scroll{max-width:100%;overflow-x:auto;border:var(--border-crisp);background:#fff;-webkit-overflow-scrolling:touch}table{width:100%;min-width:790px;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}th,td{padding:.65rem .55rem;border-bottom:var(--border-crisp);text-align:center;white-space:nowrap}thead th{background:var(--navy-900);color:#fff;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}th:nth-child(2),td:nth-child(2){position:sticky;left:0;text-align:left}thead th:nth-child(2){z-index:2}tbody th:nth-child(2){background:#fff}.seattle td,.seattle th{background:#edf6e8;font-weight:800}.seattle th:nth-child(2){background:#dfeeda;box-shadow:inset 5px 0 var(--action-green)}.team{display:flex;align-items:center;gap:.45rem}.team img{width:25px;height:25px;object-fit:contain}.indicator{padding:.15rem .3rem;background:var(--navy-900);color:#fff;font-size:.6rem;text-transform:uppercase}.team small{display:block;color:var(--slate-700);font-size:.65rem}
+</style>

@@ -1,0 +1,13 @@
+---
+import { formatScheduleDate } from "../lib/schedule.mjs";
+import TeamMark from "./TeamMark.astro";
+const { game, href, opponentName, opponentAbbr, home, venue, network, live = false } = Astro.props;
+---
+<section class:list={["scoreboard", live && "scoreboard--live"]} aria-labelledby="next-game-title">
+  <div class="topline"><span>Up next</span><span>{game?.week ? `Week ${game.week}` : "Upcoming game"}</span></div>
+  <div class="body"><div><p class="eyebrow">{home ? "Home" : "Away"}</p><h1 id="next-game-title">{home ? "vs" : "at"} {opponentName}</h1><p class="kickoff">{formatScheduleDate(game)}</p></div><div class="marks" aria-hidden="true"><TeamMark abbreviation="SEA" name="Seattle {Team}" size={84} decorative /><span>{home ? "vs" : "at"}</span><TeamMark abbreviation={opponentAbbr} name={opponentName} size={84} decorative /></div></div>
+  <div class="details">{venue && <span>{venue}</span>}{network && <span>TV: {network}</span>}<a href={href}>{live ? "Game Center" : "Preview"} →</a></div>
+</section>
+<style>
+  .scoreboard{overflow:hidden;margin-bottom:1.25rem;border-top:7px solid var(--action-green);background:var(--navy-950);color:#fff;box-shadow:var(--shadow-lg)}.topline,.details{display:flex;align-items:center;justify-content:space-between;gap:.75rem 1.5rem;flex-wrap:wrap;padding:.75rem clamp(1rem,4vw,2rem);background:#ffffff0d;color:var(--slate-300);font:800 .75rem var(--font-display);letter-spacing:.08em;text-transform:uppercase}.body{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1.5rem;padding:clamp(1.4rem,5vw,3rem) clamp(1rem,4vw,2rem);background:linear-gradient(120deg,#70c9341a,transparent 45%)}.eyebrow{margin:0 0 .35rem;color:var(--action-green);font:900 .72rem var(--font-display);letter-spacing:.1em;text-transform:uppercase}h1{margin:0;color:#fff;font:900 clamp(2rem,6vw,4.8rem)/.92 var(--font-display);letter-spacing:-.035em;text-transform:uppercase;overflow-wrap:anywhere}.kickoff{margin:.8rem 0 0;color:var(--slate-300);font-weight:800}.marks{display:flex;align-items:center;gap:.7rem;color:var(--action-green);font-weight:900;text-transform:uppercase}.details{justify-content:flex-start;background:var(--navy-800);letter-spacing:0;text-transform:none}.details a{margin-left:auto;padding:.5rem .8rem;border:2px solid var(--action-green);background:var(--action-green);color:var(--navy-950);text-decoration:none;font-weight:900}@media(max-width:600px){.body{grid-template-columns:1fr}.marks{display:none}.details a{width:100%;margin-left:0;text-align:center}}
+</style>

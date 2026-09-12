@@ -1,0 +1,2 @@
+# Advertising is disabled until a real publisher record is configured at build time.
+# See README.md for ADS_TXT_RECORD and AdSense production setup.

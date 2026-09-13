@@ -11,6 +11,10 @@ import { buildHomepageGlance } from "../lib/homepage-glance.mjs";
 import rosterStore from "../data/team/roster.json";
 import watchGuide from "../data/nfl/watch-guide-2026.json";
 import { currentRosterPlayers } from "../lib/roster.mjs";
+import history from "../data/history/{team}.json";
+
+// Only the selected team's history is included in the rendered project.
+if (history.team !== "{team}") throw new Error("History does not match the selected build team");
 
 let nfl: any = null;
 let standings: any = null;
@@ -123,11 +127,11 @@ const glanceModel = scheduleSource ? buildHomepageGlance({ nfl: { ...scheduleSou
   />
 
   <aside class="history-teaser" aria-labelledby="history-teaser-title">
-    <div class="teaser-number" aria-hidden="true">12</div>
+    <div class="teaser-number" aria-hidden="true">{HeroMark}</div>
     <div>
       <p class="label">Beyond the current season</p>
-      <h2 id="history-teaser-title">History &amp; The 12s</h2>
-      <p>From the Kingdome roar to championship parades: explore the eras, players and fan traditions that made Seattle football feel like Seattle.</p>
+      <h2 id="history-teaser-title">History {history.heroSubtitle}</h2>
+      <p>{history.heroDescription}</p>
       <a href="/history">Enter the history hub →</a>
     </div>
   </aside>

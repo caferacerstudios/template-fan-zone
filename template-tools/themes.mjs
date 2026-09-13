@@ -42,7 +42,7 @@ const chiefsPalette = fanPalette({
 
 export const TEAM_THEMES = {
   seahawks: {
-    key: 'seahawks', stylesheet: '', favicon: '', palette: {},
+    key: 'seahawks', stylesheet: '', favicon: '/favicons/seahawks.svg', palette: {},
     brandMark: 'SFZ', heroMark: '12',
     fanTagline: 'Independent football coverage for the 12s.',
   },

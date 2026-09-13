@@ -1,6 +1,135 @@
 {
-  "fixture": true,
   "season": 2026,
-  "updatedAt": "2026-08-29T12:00:00Z",
-  "recaps": {}
+  "updatedAt": "2026-09-13T00:40:16.897598+00:00",
+  "recaps": {
+    "1392216": {
+      "gameId": "1392216",
+      "season": 2026,
+      "week": 1,
+      "phase": "Regular season",
+      "category": "Recap",
+      "publishedAt": "2026-09-10T15:52:05.441Z",
+      "updatedAt": "2026-09-13T00:40:16.897598+00:00",
+      "createdAt": "2026-09-10T15:52:05.441Z",
+      "game": {
+        "id": "1392216",
+        "visitor_team": {
+          "id": 1,
+          "conference": "AFC",
+          "division": "EAST",
+          "location": "New England",
+          "name": "Patriots",
+          "full_name": "New England Patriots",
+          "abbreviation": "NE"
+        },
+        "home_team": {
+          "id": 31,
+          "conference": "NFC",
+          "division": "WEST",
+          "location": "Seattle",
+          "name": "Seahawks",
+          "full_name": "Seattle Seahawks",
+          "abbreviation": "SEA"
+        },
+        "summary": null,
+        "venue": "Lumen Field",
+        "week": 1,
+        "date": "2026-09-09",
+        "season": 2026,
+        "postseason": false,
+        "status": "Final",
+        "status_state": "final",
+        "home_team_score": 13,
+        "home_team_q1": 0,
+        "home_team_q2": 0,
+        "home_team_q3": 3,
+        "home_team_q4": 10,
+        "home_team_ot": null,
+        "visitor_team_score": 10,
+        "visitor_team_q1": 0,
+        "visitor_team_q2": 7,
+        "visitor_team_q3": 3,
+        "visitor_team_q4": 0,
+        "visitor_team_ot": null,
+        "schedule_authority": "official-team-guide",
+        "phase": "regular",
+        "state": "completed",
+        "bye": false,
+        "homeTeam": {
+          "id": 31,
+          "conference": "NFC",
+          "division": "WEST",
+          "location": "Seattle",
+          "name": "Seahawks",
+          "full_name": "Seattle Seahawks",
+          "abbreviation": "SEA"
+        },
+        "awayTeam": {
+          "id": 1,
+          "conference": "AFC",
+          "division": "EAST",
+          "location": "New England",
+          "name": "Patriots",
+          "full_name": "New England Patriots",
+          "abbreviation": "NE"
+        },
+        "opponent": {
+          "id": 1,
+          "conference": "AFC",
+          "division": "EAST",
+          "location": "New England",
+          "name": "Patriots",
+          "full_name": "New England Patriots",
+          "abbreviation": "NE"
+        },
+        "isHome": true,
+        "startsAt": "2026-09-10T00:20:00.000Z",
+        "dateConfirmed": true,
+        "timeConfirmed": true,
+        "network": null,
+        "radio": null,
+        "venueUrl": null,
+        "watchUrl": null,
+        "canonicalUrl": null,
+        "previewAvailable": false,
+        "opponentConfirmed": true,
+        "seahawksRecordAfter": "1-0"
+      },
+      "segments": [
+        {
+          "t": "text",
+          "v": "Seattle opened its 2026 season with a 13–10 victory over the New England Patriots at Lumen Field on September 9, turning a difficult start into a fourth-quarter comeback. The Seahawks lost starting quarterback Sam Darnold on their opening possession and trailed by 10 points in the third quarter. They recovered through Drew Lock's work in relief, a touchdown from ",
+          "id": null,
+          "name": null
+        },
+        {
+          "t": "player",
+          "v": "Jaxon Smith-Njigba",
+          "id": 869,
+          "name": "Jaxon Smith-Njigba"
+        },
+        {
+          "t": "text",
+          "v": " and three defensive interceptions. Seattle scored the game's final 13 points to begin its title defense at 1–0.\n\nNew England had the early advantage. Drake Maye finished a 10-play, 77-yard drive with a 2-yard touchdown pass to Eli Raridon in the second quarter, and Andres Borregales extended the lead with a 50-yard field goal in the third. Seattle's first points came on Jason Myers' 30-yard field goal later in that quarter. That kick reduced the deficit to 10–3 and left the Seahawks needing one touchdown to draw level, despite an offense that had spent much of the game adjusting to an unexpected quarterback change.\n\nDarnold completed one of his two passes for 13 yards before leaving with a hip injury after the opening drive. Lock went on to complete 16 of 22 attempts for 187 yards, one touchdown and no interceptions, adding 13 rushing yards on two carries. His contribution gave Seattle enough passing production to recover without an interception. Taking over that early meant handling nearly an entire game, and Lock ultimately directed both the tying touchdown drive and the possession that produced the winning field goal.\n\nThe comeback gained momentum through cornerback Nehemiah Pritchett. In the fourth quarter, safety Rodney Thomas II broke up a deep pass, and Pritchett kept the ball alive before securing the interception and returning it 30 yards. Seattle then put together a five-play, 67-yard touchdown drive. Lock found Smith-Njigba for a 45-yard score, and Myers' extra point tied the game at 10–10. The sequence turned a defensive takeaway into the offensive breakthrough Seattle had been searching for.\n\nSmith-Njigba finished with eight catches for 122 yards and Seattle's only touchdown. His 45-yard scoring reception was the team's longest catch of the game, and his production continued despite the change at quarterback. He accounted for more than half of Seattle's 200 gross passing yards, making him the central figure in the receiving game. Cooper Kupp added two catches for 35 yards, while Brady Russell and AJ Barner each caught two passes. His production with both quarterbacks gave Seattle a consistent receiving threat during a disrupted opener.\n\nSafety Julian Love helped create the next scoring opportunity. His interception set up an eight-play, 39-yard possession that ended with Myers converting from 26 yards for a 13–10 lead. Love also recorded six tackles, including two tackles for loss, contributing beyond the turnover itself. Seattle had chances to make more of its red-zone opportunities, but Myers provided seven of its 13 points through two field goals and the extra point. In a game decided by three points, those kicks completed the comeback.\n\nNew England still had an opportunity to answer before cornerback Josh Jobe intercepted Maye in the end zone to secure the win. That gave Seattle three interceptions, with Pritchett, Love and Jobe each making one. Maye finished 23 of 33 for 178 passing yards, one touchdown and three interceptions, along with 47 rushing yards. The Patriots moved the ball, but the turnovers ended possessions at crucial stages: one preceded Seattle's tying touchdown, another set up its go-ahead field goal, and the last closed the game.\n\nThe Seahawks also received a useful contribution from rookie running back Jadarian Price, who gained 52 yards on 10 carries and caught two passes for six yards in his NFL debut. His opening carry went for 13 yards, providing an early indication of what he could contribute. George Holani added 29 yards on eight carries. Seattle finished with 285 net yards to New England's 277, while the Patriots held the ball for 34:17 compared with the Seahawks' 25:43. The narrow yardage difference put the value of Seattle's takeaways into perspective.\n\nPenalties made the result harder to achieve. Seattle was flagged 10 times for 98 yards, compared with New England's seven penalties for 50 yards. An illegal shift erased what would have been a touchdown pass from Lock to Kupp, and that possession ended with a field goal. Other penalties extended Patriots possessions or disrupted Seattle's opportunities to keep drives moving. The comeback deserves credit, but the lost yardage and erased touchdown give the Seahawks specific problems to address after the opener.\n\nSeattle's first win therefore offered both encouragement and work to do. Lock provided a productive response to Darnold's early exit, Smith-Njigba delivered the touchdown that brought the Seahawks back, and three different defenders supplied the interceptions that changed the finish. The offense did not score until the third quarter, and penalties remained costly. Even with those difficulties, Seattle converted its late opportunities and protected a three-point lead, leaving Lumen Field with a 1–0 record.",
+          "id": null,
+          "name": null
+        }
+      ],
+      "bullets": [
+        "Drew Lock replaced the injured Sam Darnold and completed 16 of 22 passes for 187 yards, one touchdown and no interceptions.",
+        "Jaxon Smith-Njigba caught eight passes for 122 yards, including the 45-yard fourth-quarter touchdown that helped tie the game.",
+        "Nehemiah Pritchett, Julian Love and Josh Jobe each intercepted Drake Maye; Jobe's end-zone pick secured Seattle's 13–10 victory."
+      ],
+      "team": "seahawks",
+      "title": "Seahawks rally behind Lock, Smith-Njigba and three interceptions to beat Patriots 13–10",
+      "text": null,
+      "summary": null,
+      "excerpt": null,
+      "editorialSources": [
+        "https://www.seahawks.com/game-day/2026/reg-week1/seahawks-vs-patriots/box-score",
+        "https://www.seahawks.com/news/rapid-reactions-seahawks-make-thrilling-comeback-win-over-new-england-to-open-the-season"
+      ]
+    }
+  },
+  "team": "seahawks"
 }

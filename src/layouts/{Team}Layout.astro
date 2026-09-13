@@ -135,7 +135,7 @@ const moreIsActive = morePages.some((page) => page.match?.some((path) => isActiv
     <div class="footer-inner">
       <div class="footer-brand"><span class="footer-mark">{BrandMark}</span><span>{FanTagline}</span></div>
       <nav class="footer-links" aria-label="Publication information">
-        <a href="/about">About</a><a href="/contact">Contact</a><a href="/contact#corrections">Corrections</a><a href="/methodology">Methodology</a><a href="/sources">Sources</a><a href="/disclosure">Disclosure</a><a href="/privacy-policy">Privacy</a><a href="#" data-manage-privacy>Privacy Choices</a>
+        <a href="/about">About</a><a href="/contact">Contact</a><a href="/contact#corrections">Corrections</a><a href="/methodology">Methodology</a><a href="/sources">Sources</a><a href="/disclosure">Disclosure</a><a href="/privacy-policy">Privacy</a><a href="/privacy-policy#privacy-choices" data-manage-privacy>Privacy Choices / Do Not Sell or Share</a>
       </nav>
       <p class="lr-footer-note">{Team} Fan Zone is an independently operated fan publication. It is not affiliated with, endorsed by, or sponsored by the Seattle {Team}, the NFL, or their affiliates.</p>
       <div class="lr-copyright">&copy; {new Date().getFullYear()} {Team} Fan Zone</div>
@@ -214,3 +214,4 @@ const moreIsActive = morePages.some((page) => page.match?.some((path) => isActiv
     });
   </script>
 </BaseLayout>
+

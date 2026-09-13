@@ -11,6 +11,7 @@ import { loadNewsSite, retainNews, restoreNews, prepareNews } from './news.mjs';
 import { prepareRoster } from './roster.mjs';
 import { prepareGuides } from './guides.mjs';
 import { loadBuildSettings } from './build-settings.mjs';
+import { applyMonetizationSettings, writeMonetizationAdsTxt } from './monetization.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const args = process.argv.slice(2);
@@ -22,6 +23,7 @@ const workRoot = path.join(root, '.team-build');
 try {
   await loadBuildSettings(root);
   const team = teamSettings(process.env.TEAM);
+  const monetization = await applyMonetizationSettings(root, team.slug);
   const newsSite = loadNewsSite(root, team.slug);
   const ticketSite = loadEventSpySite(root, team.slug);
   const nflSite = loadNflSite(root, team.slug);
@@ -58,6 +60,7 @@ try {
     await prepareGuides(target, nflSite);
   }
   if (isBuild || command === 'dev') prepareNews(target, newsSite);
+  if (isBuild || renderOnly || command === 'dev') await writeMonetizationAdsTxt(target, monetization);
   console.log(`Theme: ${team.theme.key}. News, NFL data, recaps and tickets are selected by team.`);
 
   if (!renderOnly) {

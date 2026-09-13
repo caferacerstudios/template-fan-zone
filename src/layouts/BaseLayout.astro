@@ -1,5 +1,6 @@
 ---
 import { absoluteUrl } from "../lib/seo";
+import { AD_CLIENT_ID, AD_PHASE, AD_PRODUCTION_HOSTS, AD_VERIFICATION_CONFIGURED, ADVERTISING_CONFIGURED, CMP_SCRIPT_URL } from "../lib/advertising";
 
 const {
   title = "{Team} Fan Zone",
@@ -17,13 +18,9 @@ const {
 const resolvedArticle = seo.article ?? article;
 const canonicalUrl = seo.canonicalPath ? absoluteUrl(seo.canonicalPath) : null;
 const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
-const adsEnabled = import.meta.env.ADS_ENABLED === "true";
-const publisherId = String(import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID ?? "").trim();
-const validPublisherId = /^ca-pub-\d+$/.test(publisherId) ? publisherId : "";
-const cmpScriptUrl = String(import.meta.env.PUBLIC_CMP_SCRIPT_URL ?? "").trim();
-const validCmpScriptUrl = /^https:\/\/(fundingchoicesmessages\.google\.com|[^/]+\.google\.com)\//.test(cmpScriptUrl) ? cmpScriptUrl : "";
-const cloudflareToken = String(import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN ?? "").trim();
-const advertisingConfigured = adsEnabled && monetizationEligible && Boolean(validPublisherId && validCmpScriptUrl);
+const advertisingConfigured = ADVERTISING_CONFIGURED && monetizationEligible;
+const privacyConfig = { phase: AD_PHASE, publisherId: AD_CLIENT_ID, productionHosts: AD_PRODUCTION_HOSTS,
+  cmpScriptUrl: CMP_SCRIPT_URL, monetizationEligible: advertisingConfigured };
 ---
 
 <!DOCTYPE html>
@@ -32,6 +29,8 @@ const advertisingConfigured = adsEnabled && monetizationEligible && Boolean(vali
     <meta charset="UTF-8" />
     <title>{seo.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {AD_VERIFICATION_CONFIGURED && <meta name="google-adsense-account" content={AD_CLIENT_ID} />}
     <meta name="description" content={seo.description} />
     <meta name="robots" content={seo.robots ?? "index, follow"} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -63,74 +62,10 @@ const advertisingConfigured = adsEnabled && monetizationEligible && Boolean(vali
     {"{ThemeStylesheet}" && <link rel="stylesheet" href="{ThemeStylesheet}" />}
     {"{ThemeFavicon}" && <link rel="icon" type="image/svg+xml" href="{ThemeFavicon}" />}
 
-    {validCmpScriptUrl && <script async src={validCmpScriptUrl}></script>}
-    <script is:inline define:vars={{ advertisingConfigured, validPublisherId, cloudflareToken }}>
-      (() => {
-        const listeners = new Set();
-        const state = { ready: false, advertising: false, analytics: false };
-        let adsLoaded = false;
-        let analyticsLoaded = false;
-
-        const loadScript = (src, attributes = {}) => {
-          if (!src || document.querySelector(`script[src="${CSS.escape(src)}"]`)) return;
-          const script = document.createElement('script');
-          script.src = src;
-          script.async = true;
-          Object.entries(attributes).forEach(([name, value]) => script.setAttribute(name, value));
-          document.head.append(script);
-        };
-        const loadServices = () => {
-          if (!state.ready) return;
-          if (!adsLoaded && advertisingConfigured && state.advertising) {
-            adsLoaded = true;
-            loadScript(`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(validPublisherId)}`, { crossorigin: 'anonymous' });
-          }
-          if (!analyticsLoaded && cloudflareToken && state.analytics) {
-            analyticsLoaded = true;
-            loadScript('https://static.cloudflareinsights.com/beacon.min.js', {
-              'data-cf-beacon': JSON.stringify({ token: cloudflareToken }),
-              crossorigin: 'anonymous',
-            });
-          }
-        };
-        const update = (next) => {
-          Object.assign(state, next);
-          listeners.forEach((listener) => listener({ ...state }));
-          window.dispatchEvent(new CustomEvent('sfz:privacy-consent', { detail: { ...state } }));
-          loadServices();
-        };
-
-        window.sfzPrivacy = {
-          getState: () => ({ ...state }),
-          subscribe(listener) { listeners.add(listener); listener({ ...state }); return () => listeners.delete(listener); },
-          manage() {
-            if (!window.googlefc) return false;
-            window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
-            window.googlefc.callbackQueue.push({ CONSENT_API_READY: () => window.googlefc.showRevocationMessage?.() });
-            return true;
-          },
-        };
-
-        const listenForCmp = () => {
-          if (typeof window.__tcfapi !== 'function') return false;
-          window.__tcfapi('addEventListener', 2, (tcData, success) => {
-            if (!success || !tcData || !['tcloaded', 'useractioncomplete', 'cmpuishown'].includes(tcData.eventStatus)) return;
-            const outsideTcfRegion = tcData.gdprApplies === false;
-            const storageConsent = tcData.purpose?.consents?.[1] === true;
-            const googleConsent = tcData.vendor?.consents?.[755] === true;
-            update({ ready: true, advertising: outsideTcfRegion || (storageConsent && googleConsent), analytics: outsideTcfRegion || storageConsent });
-          });
-          return true;
-        };
-        if (!listenForCmp()) {
-          let attempts = 0;
-          const timer = window.setInterval(() => {
-            attempts += 1;
-            if (listenForCmp() || attempts >= 40) window.clearInterval(timer);
-          }, 250);
-        }
-      })();
-    </script>
+    {ADVERTISING_CONFIGURED && <>
+      <script is:inline id="sfz-privacy-config" type="application/json" set:html={JSON.stringify(privacyConfig).replaceAll("<", "\\u003c")} />
+      <script is:inline defer src="/privacy-runtime.js"></script>
+    </>}
   </head>
 
   <body data-team="{team}" data-theme="{ThemeKey}" data-page-type={pageType} data-season={season} data-opponent={opponent} data-article-category={articleCategory} data-indexable={!/\bnoindex\b/i.test(seo.robots ?? "index, follow") ? "true" : "false"} data-monetization-eligible={advertisingConfigured ? "true" : "false"}>

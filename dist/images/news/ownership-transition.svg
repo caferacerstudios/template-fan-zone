@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Ownership transition</title>
+  <desc id="desc">An abstract football passes between two open hands above a Seattle skyline and stadium arches.</desc>
+  <rect width="1200" height="675" fill="#031525"/>
+  <path d="M0 470C205 388 380 520 595 440s390-23 605-104v339H0z" fill="#0d3859"/>
+  <g fill="none" stroke="#70c934" stroke-width="8" opacity=".8">
+    <path d="M82 560q160-180 320 0M798 560q160-180 320 0"/>
+    <path d="M270 560h660"/>
+  </g>
+  <g fill="#b8c2c8" opacity=".5">
+    <path d="M450 560V432h42v128m24 0V385h50v175m32 0V420h40v140m28 0V360h58v200"/>
+    <path d="M684 360h18v-54h8v54"/>
+  </g>
+  <path d="M455 215c55-72 184-89 279-29 39 25 58 60 45 83-26 47-157 76-266 39-74-25-91-62-58-93z" fill="#70c934" transform="rotate(-8 610 247)"/>
+  <path d="M530 244c53-5 106 1 158 18M609 226l7 52m-31-47 7 52m48-60 7 51" fill="none" stroke="#031525" stroke-width="9" stroke-linecap="round"/>
+  <path d="M73 261c88-37 169-35 246 11l94 56-43 63-101-37c-54-20-104-14-150 18" fill="none" stroke="#f7f9fa" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1127 207c-88-37-169-35-246 11l-94 56 43 63 101-37c54-20 104-14 150 18" fill="none" stroke="#f7f9fa" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="60" y="90" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="5">OWNERSHIP • APPROVED</text>
+  <text x="60" y="130" fill="#70c934" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">CLOSING STILL PENDING</text>
+</svg>

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "teams": {
+    "seahawks": {
+      "phase": "review",
+      "publisherId": "ca-pub-6319637311271773",
+      "productionHosts": [
+        "seahawksfanzone.com",
+        "www.seahawksfanzone.com"
+      ],
+      "cmpScriptUrl": "",
+      "slots": {
+        "article-inline": "",
+        "article-end": "",
+        "feed-break": "",
+        "desktop-rail": "",
+        "stats-break": ""
+      }
+    },
+    "broncos": {
+      "phase": "off"
+    },
+    "packers": {
+      "phase": "off"
+    },
+    "vikings": {
+      "phase": "off"
+    },
+    "chiefs": {
+      "phase": "off"
+    },
+    "patriots": {
+      "phase": "off"
+    }
+  }
+}

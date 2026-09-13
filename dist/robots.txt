@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seahawksfanzone.com/sitemap.xml
+Sitemap: https://seahawksfanzone.com/news-sitemap.xml

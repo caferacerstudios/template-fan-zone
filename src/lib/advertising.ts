@@ -1,10 +1,24 @@
 const configuredClientId = String(import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID ?? "").trim();
 const configuredCmpUrl = String(import.meta.env.PUBLIC_CMP_SCRIPT_URL ?? "").trim();
 
-export const AD_CLIENT_ID = /^ca-pub-\d+$/.test(configuredClientId) ? configuredClientId : "";
-export const ADVERTISING_CONFIGURED = import.meta.env.ADS_ENABLED === "true"
-  && Boolean(AD_CLIENT_ID)
-  && /^https:\/\/(fundingchoicesmessages\.google\.com|[^/]+\.google\.com)\//.test(configuredCmpUrl);
+export const AD_CLIENT_ID = /^ca-pub-\d{16}$/.test(configuredClientId) ? configuredClientId : "";
+export const AD_PHASE = String(import.meta.env.PUBLIC_ADSENSE_PHASE ?? "off");
+export const AD_VERIFICATION_CONFIGURED = ["review", "live"].includes(AD_PHASE) && Boolean(AD_CLIENT_ID);
+export const CMP_SCRIPT_URL = (() => {
+  try {
+    const url = new URL(configuredCmpUrl);
+    return url.protocol === "https:" && url.hostname === "fundingchoicesmessages.google.com"
+      && !url.username && !url.password && !url.port ? url.href : "";
+  } catch { return ""; }
+})();
+export const AD_PRODUCTION_HOSTS: string[] = (() => {
+  try {
+    const hosts = JSON.parse(String(import.meta.env.PUBLIC_ADSENSE_PRODUCTION_HOSTS ?? "[]"));
+    return Array.isArray(hosts) && hosts.every((host) => typeof host === "string" && /^[a-z0-9.-]+$/.test(host)) ? hosts : [];
+  } catch { return []; }
+})();
+export const ADVERTISING_CONFIGURED = AD_PHASE === "live" && import.meta.env.ADS_ENABLED === "true"
+  && Boolean(AD_CLIENT_ID && CMP_SCRIPT_URL && AD_PRODUCTION_HOSTS.length);
 
 export const AD_PLACEMENTS = ["article-inline", "article-end", "feed-break", "desktop-rail", "stats-break"] as const;
 export type AdPlacement = (typeof AD_PLACEMENTS)[number];

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img">
+  <title>Abstract football field lines in Seahawks Fan Zone colors</title>
+  <rect width="1200" height="675" fill="#031525"/>
+  <path d="M0 570L1200 120V675H0Z" fill="#0b2d49"/>
+  <g fill="none" stroke="#b8c2c8" stroke-width="4" opacity=".45"><path d="M110 675L690 0M350 675L930 0M590 675L1170 0"/><path d="M0 520L1200 70M0 650L1200 200"/></g>
+  <path d="M-30 610L1230 137" stroke="#70c934" stroke-width="24"/>
+  <circle cx="938" cy="172" r="105" fill="none" stroke="#70c934" stroke-width="10" opacity=".75"/>
+</svg>

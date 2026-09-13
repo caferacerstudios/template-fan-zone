@@ -1,91 +1,45 @@
 ---
 import {Team}Layout from "../layouts/{Team}Layout.astro";
-
 const pageTitle = "Privacy Policy";
-const pageTagline = "How data is handled on this site";
-
-const updated = "September 11, 2026";
-const adsEnabled = import.meta.env.ADS_ENABLED === "true";
-const publisherId = String(import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID ?? "").trim();
-const cmpScriptUrl = String(import.meta.env.PUBLIC_CMP_SCRIPT_URL ?? "").trim();
-const advertisingConfigured = adsEnabled && /^ca-pub-\d+$/.test(publisherId) && /^https:\/\/(fundingchoicesmessages\.google\.com|[^/]+\.google\.com)\//.test(cmpScriptUrl);
-const analyticsConfigured = Boolean(String(import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN ?? "").trim());
+const pageTagline = "Privacy, cookies, and advertising choices";
+const updated = "September 13, 2026";
+const advertisingConfigured = import.meta.env.PUBLIC_ADSENSE_PHASE === "live" && import.meta.env.ADS_ENABLED === "true";
 ---
 
 <{Team}Layout pageTitle={pageTitle} pageTagline={pageTagline} activePath="/privacy-policy" monetizationEligible={false}>
   <section class="sfz-card">
     <p class="sfz-updated"><strong>Last updated:</strong> {updated}</p>
-
-    <h2>Overview</h2>
-    <p>
-      {Team} Fan Zone is an independent fan publication. We aim to collect as little personal information as possible.
-      This policy describes the services visitors may encounter, including hosting and security services and any optional
-      analytics or advertising services the site owner enables.
-    </p>
-
-    <h2>Information we may collect</h2>
-    <ul class="sfz-list">
-      <li>
-        <strong>Basic request data:</strong> the hosting provider may record requested pages, browser or device information, and timestamps in server logs.
-      </li>
-      <li>
-        <strong>IP address:</strong> may appear in server logs for security, abuse prevention, and basic diagnostics.
-      </li>
-      <li>
-        <strong>Cookies and similar technologies:</strong> the site itself does not set an account or login cookie. Configured advertising, consent, or analytics services may use browser storage as described below.
-      </li>
-    </ul>
-
-    <h2>Advertising</h2>
+    <h2>Who operates this site</h2>
+    <p>{Team} Fan Zone is an independent fan publication operated by an individual site owner. For privacy questions or requests, use the <a href="/contact">Contact page</a>.</p>
+    <h2>Information we use</h2>
+    <p>You can read the site without creating an account. We do not maintain a visitor profile database or collect payment details, ticket-account credentials, or precise location. The website does not record custom browsing or ticket-click analytics or save marketing attribution in your browser.</p>
+    <p>Delivering a website still involves processing information. Our server and providers can receive your IP address, requested page, browser information, request time, and referring page. Hosting and security systems may keep diagnostic logs. We do not use those logs to build advertising profiles.</p>
+    <h2>Google advertising</h2>
     {advertisingConfigured ? <>
-      <p>This build is configured to show Google AdSense advertising after the site’s consent controls report that advertising is permitted. Google and its advertising vendors may use cookies, local storage, device identifiers, or similar technologies to deliver and measure ads, limit repetition, prevent fraud, and, where permitted, personalize advertising.</p>
-      <p>Rejecting optional consent does not prevent access to site content.</p>
-    </> : <p>Google AdSense advertising is not enabled on this site. Before it is enabled, the site owner must configure a valid publisher account, ads.txt record, and consent platform.</p>}
-    <p>If Google advertising is enabled later, Google and participating vendors may use cookies or similar technologies to serve and measure ads. Depending on your region and consent choice, ads may be personalized using prior visits to this and other sites. You can review or change ad-personalization choices at <a href="https://adssettings.google.com/">Google Ads Settings</a> and learn about participating-vendor opt-outs at <a href="https://www.aboutads.info/choices/">YourAdChoices</a>.</p>
-
-    <h2>Analytics</h2>
-    <p>Cloudflare operates the site’s delivery and security layer and may process request information for delivery, security, abuse prevention, and diagnostics. {analyticsConfigured ? "Cloudflare Web Analytics is also configured; its browser script loads only when the consent state permits analytics." : "The application does not supply a Cloudflare Web Analytics token. Cloudflare dashboard settings can separately inject browser analytics, so the site owner verifies that setting during each privacy review."}</p>
-    <p>When analytics consent permits it, the Ticket Finder may measure an outbound provider click using only the selected game, provider, source kind, link placement, sort mode, a quantity bucket, and click timestamp. SFZ does not include seller information, exact seat searches, ticket-account details, payment data, or email addresses in that event. If analytics consent is not ready or is declined, the event is not recorded.</p>
-
-    <h2>Ticket providers and affiliate platforms</h2>
-    <p>Ticket links send you to an external provider and may pass a public affiliate or campaign identifier in the approved link format. The provider or affiliate platform may receive ordinary request information when you follow the link and will handle later activity under its own privacy policy. SFZ does not collect payment-card information, ticket-account credentials, or other ticket-account data.</p>
-
-    <h2>Cookies</h2>
-    <p>
-      Cookies and local storage allow a browser to retain information on a device. When configured, Google and its vendors may use
-      these technologies for consent choices, ad delivery, frequency limits, fraud prevention, measurement, and personalization.
-      The site does not create an account, login, or separate custom consent cookie.
-    </p>
-
-    <h3 id="privacy-choices">Your privacy choices</h3>
-    <p>
-      The footer’s Privacy Choices link opens the configured consent controls when they are available. If none are configured, it
-      returns to this section instead of pretending to save a preference. You may also clear or restrict cookies and local storage
-      through your browser.
-    </p>
-
-    <h3>Sharing and third-party vendors</h3>
-    <p>
-      The site owner does not sell personal information. Request data may be processed by the hosting provider to operate and secure
-      the site. Cloudflare processes browser analytics only when that service is configured and permitted; Google and its advertising
-      vendors process advertising data only when advertising is configured and permitted.
-    </p>
-
-    <h2>External links</h2>
-    <p>
-      This site may link to external sites, including official ticket sites and resale marketplaces. Their privacy policies and
-      consent choices apply after you leave SFZ; SFZ is not responsible for their privacy practices.
-    </p>
-
+      <p>This site is configured for Google AdSense advertising. We request nonpersonalized ads, using page context and broad location rather than your past browsing activity to select ads. Availability depends on Google's approval, your region and privacy choices, and eligible advertisers.</p>
+      <p>Google and participating advertising providers may process IP addresses, browser and device information, page context, and ad interactions to deliver and measure ads, limit repetition, and detect fraud. Nonpersonalized advertising can still use cookies and similar technologies.</p>
+      <p>Google manages the advertising consent messages and stores the associated choices. Where consent is required, our ad requests wait for the consent service to report permission. If that service is unavailable, the ad loader remains off. Rejecting advertising consent does not restrict access to our content.</p>
+    </> : <p>Google AdSense ads are not currently enabled on this site. We may use a public publisher verification tag and ads.txt record while applying; those records do not themselves load advertising or set cookies. The advertising practices below describe the nonpersonalized service we plan to use when advertising is enabled.</p>}
+    <p>Google's advertising services generally allow Google and other vendors to use cookies for ads based on prior visits to this or other websites. Our advertising setup requests that personalization be disabled. See <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from partner sites</a>, <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>, <a href="https://www.google.com/settings/ads">Google Ads Settings</a>, and <a href="https://www.aboutads.info/choices/">YourAdChoices</a>. When advertising is enabled, Google's consent controls identify participating vendors and link to their information.</p>
+    <h2>Cloudflare delivery, security, and aggregate statistics</h2>
+    <p>Cloudflare helps deliver and protect this site and may process request information and security cookies to prevent abuse. Cloudflare may also provide aggregate traffic and performance statistics through Web Analytics. That browser beacon does not use cookies, local storage, or persistent visitor identifiers. Cloudflare states that it discards the network IP address received by that analytics service at the receiving data center. Cloudflare's separate delivery and security services and our server may still process or log IP addresses.</p>
+    <p>See <a href="https://developers.cloudflare.com/speed/observatory/rum-beacon/">Cloudflare's Web Analytics data description</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's Privacy Policy</a>, and <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/">Cloudflare's cookie information</a>.</p>
+    <h2 id="cookies">Cookies and browser storage</h2>
+    <ul class="sfz-list">
+      <li><strong>Security:</strong> Cloudflare may use cookies for security, challenges, and abuse prevention.</li>
+      <li><strong>Privacy choices:</strong> When advertising is enabled, Google's consent service may store your choices on your device. We do not maintain a separate consent database or custom consent cookie.</li>
+      <li><strong>Advertising:</strong> When permitted, Google and participating providers may use cookies or similar storage for delivery, frequency limits, measurement, and fraud prevention, including for nonpersonalized ads.</li>
+      <li><strong>Display preferences:</strong> Any preferences retained by site features stay in your browser and are not sent to us as visitor profiles.</li>
+    </ul>
+    <h2 id="privacy-choices">Your privacy choices</h2>
+    <p><a href="/privacy-policy#privacy-choices" data-manage-privacy>Privacy Choices</a> opens Google's privacy controls when advertising and the consent service are available. You can review vendors, decline optional consent, or change a previous decision. Applicable US choices include opting out of sale or sharing of personal information and targeted advertising through Google's controls. Our ad loader also treats a browser Global Privacy Control signal as a request not to load ads.</p>
+    <p>If advertising is disabled or the consent service cannot load, the link returns to this section and does not save a preference. You can also clear or block cookies using your browser. Blocking advertising does not block site access. Stopping future requests cannot undo processing that already occurred; provider privacy pages explain further access and deletion options.</p>
+    <h2>External links and affiliate relationships</h2>
+    <p>Ticket and other external links take you to independent providers. Links may contain public campaign or affiliate identifiers. Those providers receive ordinary web request information and manage purchases and later activity under their own privacy policies. We do not collect ticket-account or payment information. See our <a href="/disclosure">advertising and affiliate disclosure</a>.</p>
+    <h2>Contact messages and retention</h2>
+    <p>If you email us, your address and message are processed by our email provider and available to the site owner for responding. Do not include payment details or other sensitive information. Provider retention and deletion practices are described in their privacy policies. The site owner remains responsible for information under our control. Contact us about access, correction, or deletion of information you have sent us.</p>
     <h2>Children</h2>
-    <p>
-      This site is not intended for children under 13. If you believe a child has provided personal information, contact us and we will address it.
-    </p>
-
-    <h2>Contact</h2>
-    <p>
-      For privacy questions, contact the site owner through the <a href="/contact">Contact page</a>.
-    </p>
+    <p>This publication is intended for a general football audience and is not directed to children under 13. If you believe a child has sent us personal information, contact us so we can address it.</p>
   </section>
 
   <style>

@@ -1,0 +1,1256 @@
+{
+  "generatedAt": "2026-09-11T18:56:55.483Z",
+  "profileArtifact": "runtime/player-profiles/playerProfiles.json",
+  "indexableProfiles": [
+    {
+      "playerId": "aj-barner",
+      "name": "AJ Barner",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:51:35.635Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "sam-darnold",
+      "name": "Sam Darnold",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:51:35.635Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "michael-dickson",
+      "name": "Michael Dickson",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "montorie-foster-jr",
+      "name": "Montorie Foster Jr",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "derick-hall",
+      "name": "Derick Hall",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "christian-haynes",
+      "name": "Christian Haynes",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "george-holani",
+      "name": "George Holani",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "josh-jobe",
+      "name": "Josh Jobe",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "ernest-jones-iv",
+      "name": "Ernest Jones IV",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "nick-kallerup",
+      "name": "Nick Kallerup",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "cooper-kupp",
+      "name": "Cooper Kupp",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "demarcus-lawrence",
+      "name": "DeMarcus Lawrence",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "drew-lock",
+      "name": "Drew Lock",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "julian-love",
+      "name": "Julian Love",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "rylie-mills",
+      "name": "Rylie Mills",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "mike-morris",
+      "name": "Mike Morris",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "byron-murphy-ii",
+      "name": "Byron Murphy II",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jason-myers",
+      "name": "Jason Myers",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "uchenna-nwosu",
+      "name": "Uchenna Nwosu",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "patrick-oconnell",
+      "name": "Patrick O'Connell",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "connor-otoole",
+      "name": "Connor O'Toole",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "ty-okada",
+      "name": "Ty Okada",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jadarian-price",
+      "name": "Jadarian Price",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "nehemiah-pritchett",
+      "name": "Nehemiah Pritchett",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jarran-reed",
+      "name": "Jarran Reed",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "brady-russell",
+      "name": "Brady Russell",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "rashid-shaheed",
+      "name": "Rashid Shaheed",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jaxon-smith-njigba",
+      "name": "Jaxon Smith-Njigba",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-11T03:54:38.653Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jalen-sundell",
+      "name": "Jalen Sundell",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "chazz-surratt",
+      "name": "Chazz Surratt",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "drake-thomas",
+      "name": "Drake Thomas",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "leonard-williams",
+      "name": "Leonard Williams",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "emanuel-wilson",
+      "name": "Emanuel Wilson",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "devon-witherspoon",
+      "name": "Devon Witherspoon",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "aaron-smith",
+      "name": "Aaron Smith",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "rodney-thomas-ii",
+      "name": "Rodney Thomas II",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jacardia-wright",
+      "name": "Jacardia Wright",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jamie-sheriff",
+      "name": "Jamie Sheriff",
+      "state": "indexable",
+      "indexable": true,
+      "reasons": [],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    }
+  ],
+  "noindexProfiles": [
+    {
+      "playerId": "elijah-arroyo",
+      "name": "Elijah Arroyo",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "anthony-bradford",
+      "name": "Anthony Bradford",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "charles-cross",
+      "name": "Charles Cross",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "nick-emmanwori",
+      "name": "Nick Emmanwori",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "aj-finley",
+      "name": "AJ Finley",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "dante-fowler-jr",
+      "name": "Dante Fowler Jr.",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "tory-horton",
+      "name": "Tory Horton",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "josh-jones",
+      "name": "Josh Jones",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "tyrice-knight",
+      "name": "Tyrice Knight",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "abraham-lucas",
+      "name": "Abraham Lucas",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jalen-milroe",
+      "name": "Jalen Milroe",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "julian-neal",
+      "name": "Julian Neal",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "olu-oluwatimi",
+      "name": "Olu Oluwatimi",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "brandon-pili",
+      "name": "Brandon Pili",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "eric-saubert",
+      "name": "Eric Saubert",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "avery-smith",
+      "name": "Avery Smith",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "beau-stephens",
+      "name": "Beau Stephens",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "chris-stoll",
+      "name": "Chris Stoll",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "grey-zabel",
+      "name": "Grey Zabel",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jake-bobo",
+      "name": "Jake Bobo",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "irv-charles",
+      "name": "Irv Charles",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "bud-clark",
+      "name": "Bud Clark",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "power-echols",
+      "name": "Power Echols",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "amari-kight",
+      "name": "Amari Kight",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "brock-lampe",
+      "name": "Brock Lampe",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "robbie-ouzts",
+      "name": "Robbie Ouzts",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "mason-richman",
+      "name": "Mason Richman",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "zach-charbonnet",
+      "name": "Zach Charbonnet",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "danthony-bell",
+      "name": "D'Anthony Bell",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "logan-brown",
+      "name": "Logan Brown",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "michael-dansby",
+      "name": "Michael Dansby",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "trevon-diggs",
+      "name": "Trevon Diggs",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "deven-eastern",
+      "name": "Deven Eastern",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "andre-fuller",
+      "name": "Andre Fuller",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "bobby-hart",
+      "name": "Bobby Hart",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "emmanuel-henderson-jr",
+      "name": "Emmanuel Henderson Jr.",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "julian-hicks",
+      "name": "Julian Hicks",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T22:36:28.600Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "maxen-hook",
+      "name": "Maxen Hook",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "aidan-hubbard",
+      "name": "Aidan Hubbard",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "velus-jones-jr",
+      "name": "Velus Jones Jr.",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "federico-maranges",
+      "name": "Federico Maranges",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "ricky-white-iii",
+      "name": "Ricky White III",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "terrion-arnold",
+      "name": "Terrion Arnold",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "bryce-cabeldue",
+      "name": "Bryce Cabeldue",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-09T03:48:03.013Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jalan-gaines",
+      "name": "Jalan Gaines",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "derrick-graham",
+      "name": "Derrick Graham",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "noah-igbinoghene",
+      "name": "Noah Igbinoghene",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jared-ivey",
+      "name": "Jared Ivey",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "tysheem-johnson",
+      "name": "Tysheem Johnson",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "justin-jones",
+      "name": "Justin Jones",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "marvin-jones-jr",
+      "name": "Marvin Jones Jr.",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "chris-paul-jr",
+      "name": "Chris Paul Jr.",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "rashad-rochelle",
+      "name": "Rashad Rochelle",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "uso-seumalo",
+      "name": "Uso Seumalo",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jr-singleton",
+      "name": "J.R. Singleton",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "bubba-thomas",
+      "name": "Bubba Thomas",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "nick-vannett",
+      "name": "Nick Vannett",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "jordan-washington",
+      "name": "Jordan Washington",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "cody-white",
+      "name": "Cody White",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing player-specific career or role context",
+        "missing player-specific data section"
+      ],
+      "materialUpdatedAt": "2026-09-02T20:30:09.660Z",
+      "declaredIndexable": false
+    },
+    {
+      "playerId": "kellen-diesch",
+      "name": "Kellen Diesch",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing meaningful biography or career context",
+        "missing player-specific career or role context",
+        "missing player-specific data section",
+        "missing per-player materialUpdatedAt"
+      ],
+      "materialUpdatedAt": null,
+      "declaredIndexable": false
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "278448",
+      "target": "/players/aj-barner",
+      "name": "AJ Barner"
+    },
+    {
+      "alias": "70",
+      "target": "/players/sam-darnold",
+      "name": "Sam Darnold"
+    },
+    {
+      "alias": "7713",
+      "target": "/players/michael-dickson",
+      "name": "Michael Dickson"
+    },
+    {
+      "alias": "13874061",
+      "target": "/players/montorie-foster-jr",
+      "name": "Montorie Foster Jr"
+    },
+    {
+      "alias": "2690",
+      "target": "/players/derick-hall",
+      "name": "Derick Hall"
+    },
+    {
+      "alias": "278427",
+      "target": "/players/george-holani",
+      "name": "George Holani"
+    },
+    {
+      "alias": "2577",
+      "target": "/players/josh-jobe",
+      "name": "Josh Jobe"
+    },
+    {
+      "alias": "1403",
+      "target": "/players/ernest-jones-iv",
+      "name": "Ernest Jones IV"
+    },
+    {
+      "alias": "794",
+      "target": "/players/cooper-kupp",
+      "name": "Cooper Kupp"
+    },
+    {
+      "alias": "1407",
+      "target": "/players/demarcus-lawrence",
+      "name": "DeMarcus Lawrence"
+    },
+    {
+      "alias": "60",
+      "target": "/players/drew-lock",
+      "name": "Drew Lock"
+    },
+    {
+      "alias": "2269",
+      "target": "/players/julian-love",
+      "name": "Julian Love"
+    },
+    {
+      "alias": "13875265",
+      "target": "/players/rylie-mills",
+      "name": "Rylie Mills"
+    },
+    {
+      "alias": "277740",
+      "target": "/players/byron-murphy-ii",
+      "name": "Byron Murphy II"
+    },
+    {
+      "alias": "7509",
+      "target": "/players/jason-myers",
+      "name": "Jason Myers"
+    },
+    {
+      "alias": "1500",
+      "target": "/players/uchenna-nwosu",
+      "name": "Uchenna Nwosu"
+    },
+    {
+      "alias": "2563",
+      "target": "/players/patrick-oconnell",
+      "name": "Patrick O'Connell"
+    },
+    {
+      "alias": "patrick-o-x27-connell",
+      "target": "/players/patrick-oconnell",
+      "name": "Patrick O'Connell"
+    },
+    {
+      "alias": "13878497",
+      "target": "/players/connor-otoole",
+      "name": "Connor O'Toole"
+    },
+    {
+      "alias": "connor-o-x27-toole",
+      "target": "/players/connor-otoole",
+      "name": "Connor O'Toole"
+    },
+    {
+      "alias": "33934144",
+      "target": "/players/jadarian-price",
+      "name": "Jadarian Price"
+    },
+    {
+      "alias": "278481",
+      "target": "/players/nehemiah-pritchett",
+      "name": "Nehemiah Pritchett"
+    },
+    {
+      "alias": "1343",
+      "target": "/players/jarran-reed",
+      "name": "Jarran Reed"
+    },
+    {
+      "alias": "2389",
+      "target": "/players/brady-russell",
+      "name": "Brady Russell"
+    },
+    {
+      "alias": "640",
+      "target": "/players/rashid-shaheed",
+      "name": "Rashid Shaheed"
+    },
+    {
+      "alias": "869",
+      "target": "/players/jaxon-smith-njigba",
+      "name": "Jaxon Smith-Njigba"
+    },
+    {
+      "alias": "2221",
+      "target": "/players/chazz-surratt",
+      "name": "Chazz Surratt"
+    },
+    {
+      "alias": "2656",
+      "target": "/players/drake-thomas",
+      "name": "Drake Thomas"
+    },
+    {
+      "alias": "1366",
+      "target": "/players/leonard-williams",
+      "name": "Leonard Williams"
+    },
+    {
+      "alias": "593",
+      "target": "/players/emanuel-wilson",
+      "name": "Emanuel Wilson"
+    },
+    {
+      "alias": "1467",
+      "target": "/players/devon-witherspoon",
+      "name": "Devon Witherspoon"
+    },
+    {
+      "alias": "d-x27-anthony-bell",
+      "target": "/players/danthony-bell",
+      "name": "D'Anthony Bell"
+    },
+    {
+      "alias": "2416",
+      "target": "/players/rodney-thomas-ii",
+      "name": "Rodney Thomas II"
+    }
+  ],
+  "emptyOrRejectedProfiles": [
+    {
+      "playerId": "kellen-diesch",
+      "name": "Kellen Diesch",
+      "state": "noindex_incomplete",
+      "indexable": false,
+      "reasons": [
+        "missing meaningful biography or career context",
+        "missing player-specific career or role context",
+        "missing player-specific data section",
+        "missing per-player materialUpdatedAt"
+      ],
+      "materialUpdatedAt": null,
+      "declaredIndexable": false
+    }
+  ],
+  "duplicateCanonicalFailures": []
+}

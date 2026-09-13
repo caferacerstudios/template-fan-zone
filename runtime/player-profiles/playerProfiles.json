@@ -1,0 +1,2208 @@
+{
+  "season": 2026,
+  "updatedAt": "2026-09-11T03:54:38.653Z",
+  "profiles": {
+    "elijah-arroyo": {
+      "playerId": "elijah-arroyo",
+      "name": "Elijah Arroyo",
+      "position": "TE",
+      "bio": "Elijah Arroyo is a tight end with the Seattle Seahawks and is entering his second season. He played his college football at Miami before beginning his professional career. With limited public career details supplied, his biography is defined by that progression from the Hurricanes to Seattle and his early place in the Seahawks organization.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "6aee0c6d7ae5b77f4f7bc5d368c9f22cd135922733e0e6ca3364f529ed3ca7f1",
+        "providerPlayerId": "13874289",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 145,
+          "estimatedCostUsd": 0.001038
+        }
+      }
+    },
+    "aj-barner": {
+      "playerId": "aj-barner",
+      "name": "AJ Barner",
+      "position": "TE",
+      "bio": "AJ Barner is a tight end for the Seattle Seahawks in his third season. He arrived in Seattle after a college career at Michigan, where he developed into a pro prospect before entering the league. With limited public career detail available in the supplied record, Barner’s biography is best defined by his progression from Michigan to the Seahawks and his continuing role in the organization. In 2026, he appeared in one game and finished with two receptions for 13 yards, a small but clear snapshot of his latest season.",
+      "careerHighlights": [
+        "Played collegiately at Michigan.",
+        "Logged 2 receptions for 13 yards in 2026.",
+        "Entered his third professional season with Seattle."
+      ],
+      "seasonOverview": "Barner’s 2026 season was brief, with action in one game and two catches for 13 yards. The small sample limits broader conclusions, but it does show him contributing in the Seahawks’ passing game when available. With no additional statistics supplied for earlier seasons, his latest year is best read as a short, modest data point rather than a defining campaign.",
+      "materialUpdatedAt": "2026-09-10T15:51:35.635Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "16c232e49c09b1e9a10182f764f31e2e6b341465f808eaf762911271aa640a24",
+        "providerPlayerId": "278448",
+        "generatedAt": "2026-09-10T15:51:35.635Z",
+        "usage": {
+          "inputTokens": 552,
+          "outputTokens": 308,
+          "estimatedCostUsd": 0.0018
+        }
+      }
+    },
+    "danthony-bell": {
+      "playerId": "danthony-bell",
+      "name": "D'Anthony Bell",
+      "position": "S",
+      "bio": "D'Anthony Bell is a fifth-year safety with the Seattle Seahawks after playing his college football at West Florida. His path to the NFL has brought him to Seattle for the 2026 season, where he is listed on the roster as a defensive back. With no additional career totals, honors, or season detail supplied here, his profile is defined by his experience level and his current place with the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9842336bc77198cdc6663b8e35b18c1b245587159ebb29788ebdbc6515e2a98f",
+        "providerPlayerId": "2714",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 261,
+          "estimatedCostUsd": 0.00156075
+        }
+      }
+    },
+    "anthony-bradford": {
+      "playerId": "anthony-bradford",
+      "name": "Anthony Bradford",
+      "position": "G",
+      "bio": "Anthony Bradford is a guard for the Seattle Seahawks in his fourth NFL season. A product of LSU, he has developed into a veteran presence on Seattle’s roster after beginning his professional career in the league and continuing his progress through multiple seasons. With experience now built across four years, Bradford enters this stage of his career as an established interior lineman for the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "23e18fac49ec1e6a2729cadd6a2fa53d06a08cd17cb17af50f80c9517ad59f38",
+        "providerPlayerId": "278454",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 200,
+          "estimatedCostUsd": 0.00128475
+        }
+      }
+    },
+    "logan-brown": {
+      "playerId": "logan-brown",
+      "name": "Logan Brown",
+      "position": "T",
+      "bio": "Logan Brown is a tackle with the Seattle Seahawks. His available professional record is limited in the provided information, with no draft details, college background, or prior team history listed here. As a result, his current significance is tied to his place on Seattle’s roster and the opportunity that comes with it.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "ad61a107249500b36ad876e525884225e587562ed367fab7d8c12fc695fc6b68",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 277,
+          "estimatedCostUsd": 0.0015765
+        }
+      }
+    },
+    "bryce-cabeldue": {
+      "playerId": "bryce-cabeldue",
+      "name": "Bryce Cabeldue",
+      "position": "G",
+      "bio": "Bryce Cabeldue is a guard with the Seattle Seahawks. The available record does not include details on his college background, draft status, previous teams, or professional statistics, so his biography in Seattle begins with his arrival on the roster. With limited verified career information publicly listed here, his profile is centered on his current role as a Seahawks offensive lineman.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-09T03:48:03.013Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "f9d746a212ab44f70fcdf9a7274af0f20070a165a8a6f16f6519a481952f04f3",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-09T03:48:03.013Z",
+        "usage": {
+          "inputTokens": 512,
+          "outputTokens": 169,
+          "estimatedCostUsd": 0.0011445
+        }
+      }
+    },
+    "zach-charbonnet": {
+      "playerId": "zach-charbonnet",
+      "name": "Zach Charbonnet",
+      "position": "RB",
+      "bio": "Zach Charbonnet is a running back for the Seattle Seahawks in his fourth NFL season. A UCLA product, he entered the league after his college career and has continued his professional progression in Seattle. With four seasons of experience, Charbonnet remains part of the Seahawks’ backfield as the team evaluates its rotation going forward.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "06c887e036de7b49bde1bb12edcb33c61eea5897230e7f369b84d279c2d59b17",
+        "providerPlayerId": "504",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 184,
+          "estimatedCostUsd": 0.001215
+        }
+      }
+    },
+    "irv-charles": {
+      "playerId": "irv-charles",
+      "name": "Irv Charles",
+      "position": "WR",
+      "bio": "Irv Charles is a wide receiver in his fourth professional season and is listed with the Seattle Seahawks in the supplied information. He played his college football at IU Pennsylvania before beginning his pro career. With limited verified career detail provided, his background is best framed by that progression from college to the NFL and into his current Seattle context.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "040154a33acfe59e37b5342f3c75f3675146ed38f002df4c6f370a169b2f49b7",
+        "providerPlayerId": "1272",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 193,
+          "estimatedCostUsd": 0.001254
+        }
+      }
+    },
+    "charles-cross": {
+      "playerId": "charles-cross",
+      "name": "Charles Cross",
+      "position": "T",
+      "bio": "Charles Cross is a tackle for the Seattle Seahawks. His profile centers on his role in Seattle, where he remains part of the team’s offensive line group. With no additional career details provided here, his biography is best understood through his ongoing presence on the Seahawks roster and his work at a position built around protecting the quarterback and anchoring the run game.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8ab0fed1894e84730991e90b6151fca6fdc3399704ef2f5dbafaf9ff30f17e3a",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 439,
+          "outputTokens": 154,
+          "estimatedCostUsd": 0.00102225
+        }
+      }
+    },
+    "michael-dansby": {
+      "playerId": "michael-dansby",
+      "name": "Michael Dansby",
+      "position": "CB",
+      "bio": "Michael Dansby is a rookie cornerback with the Seattle Seahawks after playing collegiately at Arizona. His route to the NFL runs through the Wildcats program, where he established himself before reaching Seattle as a first-year pro. With no professional statistics or honors supplied, his biography to this point is centered on the transition from college football to the Seahawks organization.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "18d425738c91ccc59208d81f65630a64ddc80f7f3a13d093ad8bb119a6128109",
+        "providerPlayerId": "33936220",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 512,
+          "outputTokens": 254,
+          "estimatedCostUsd": 0.001527
+        }
+      }
+    },
+    "sam-darnold": {
+      "playerId": "sam-darnold",
+      "name": "Sam Darnold",
+      "position": "QB",
+      "bio": "Sam Darnold entered the NFL as the No. 3 overall pick in the 2018 draft by the New York Jets after a decorated run at USC, where he helped lead the Trojans to a Rose Bowl victory and earned Offensive MVP honors in the 2017 game with five touchdown passes and 473 total yards. He spent his first three professional seasons with the Jets before moving to the Carolina Panthers in 2021 and 2022, then had one-season stops with the San Francisco 49ers in 2023 and the Minnesota Vikings in 2024. Over that stretch, he settled into a long career marked by regular starting opportunities and steady volume, entering Seattle with 100 games played and 90 starts.\n\nDarnold’s one season in Minnesota became a turning point. In 2024, he started all 17 games and produced career-best totals in passing yards, touchdowns, and passer rating, completing 361 of 545 passes for 4,319 yards, 35 touchdowns, and 12 interceptions. That performance earned him Pro Bowl recognition and led into his move to Seattle, where he signed as an unrestricted free agent on March 13, 2025.\n\nHis first season with the Seahawks was his most productive yet. Darnold started every game in 2025, throwing for 4,048 yards and 25 touchdowns while completing 67.7 percent of his passes and posting a 99.1 passer rating. Seattle went 14-3, won the NFC West, secured the NFC’s No. 1 seed, and set a franchise record for regular-season wins. In the postseason, he directed the Seahawks past the Rams in the NFC Championship with 346 passing yards and three touchdowns, then helped Seattle defeat New England in Super Bowl LX. He entered 2026 as Seattle’s starting quarterback.",
+      "careerHighlights": [
+        "No. 3 overall pick in the 2018 NFL draft",
+        "2017 Rose Bowl Offensive MVP at USC",
+        "Career-best 4,319 passing yards and 35 touchdowns in 2024",
+        "Pro Bowl selection in 2024 and 2025",
+        "Signed with the Seattle Seahawks as an unrestricted free agent in 2025",
+        "Started every game in Seattle’s 14-3 NFC West championship season",
+        "Threw for 346 yards and three touchdowns in the 2025 NFC Championship"
+      ],
+      "seasonOverview": "Darnold’s latest listed season has been a brief start to 2026, with only one game and two passing attempts recorded. The small sample offers little to measure beyond his continued presence on Seattle’s roster after an accomplished first year with the Seahawks in 2025, when he anchored a 14-3 team that reached and won Super Bowl LX.",
+      "materialUpdatedAt": "2026-09-10T15:51:35.635Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "151728cb3c61dc264d3832fa87ed9efb01648ee9236673c2d8173227ea13a319",
+        "providerPlayerId": "70",
+        "generatedAt": "2026-09-10T15:51:35.635Z",
+        "usage": {
+          "inputTokens": 1163,
+          "outputTokens": 638,
+          "estimatedCostUsd": 0.00374325
+        }
+      }
+    },
+    "michael-dickson": {
+      "playerId": "michael-dickson",
+      "name": "Michael Dickson",
+      "position": "P",
+      "bio": "Michael Dickson is in his ninth NFL season with the Seattle Seahawks after his college career at Texas. Over that span, he has remained part of Seattle’s special-teams operation as a punter, with his career defined more by steady year-to-year work than by a long list of listed honors or milestones in the available record. The facts provided point to continuity rather than a series of team changes or headline transactions, and his current place in Seattle reflects that continuity. With limited career detail supplied here, his biography is best understood through his longevity and ongoing presence in the Seahawks’ punt game.",
+      "careerHighlights": [
+        "Ninth NFL season",
+        "Played collegiately at Texas",
+        "Part of the Seattle Seahawks organization"
+      ],
+      "seasonOverview": "In 2026, Dickson appeared in one game and punted five times. The limited usage leaves little room for broader interpretation, but it does show him working in Seattle’s kicking game early in the season. No additional statistics were provided, so the season line remains concise and narrowly defined by that single appearance.",
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "dde16dd74a9715b20fa29e17645c4bfad68cead580bbe2bca588d25342e75f40",
+        "providerPlayerId": "7713",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 545,
+          "outputTokens": 547,
+          "estimatedCostUsd": 0.00287025
+        }
+      }
+    },
+    "trevon-diggs": {
+      "playerId": "trevon-diggs",
+      "name": "Trevon Diggs",
+      "position": "CB",
+      "bio": "Trevon Diggs is a sixth-season cornerback listed with the Seattle Seahawks after playing at Alabama. With no additional career details supplied here, his profile centers on that current Seattle listing and his continued progression into his sixth NFL season.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "c905cb6fa8a33a099a6aebc964dc1b49dce3c0294c29717a37b9f0cf126bbb94",
+        "providerPlayerId": "2257",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 232,
+          "estimatedCostUsd": 0.001431
+        }
+      }
+    },
+    "deven-eastern": {
+      "playerId": "deven-eastern",
+      "name": "Deven Eastern",
+      "position": "NT",
+      "bio": "Deven Eastern is a nose tackle with the Seattle Seahawks. The available record does not provide details on his college career, professional entry, or prior teams, so his profile is currently defined by his place on Seattle’s roster. Without further career information, his biography remains centered on that present role rather than on a longer documented path.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "2aff20e39f3cf5b9593c7a8b0a50532b0ff2971fdc53a6109f10d7a67698e75b",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 262,
+          "estimatedCostUsd": 0.001509
+        }
+      }
+    },
+    "power-echols": {
+      "playerId": "power-echols",
+      "name": "Power Echols",
+      "position": "LB",
+      "bio": "Power Echols is a linebacker out of North Carolina who is in his first season with the Seattle Seahawks. His career path to the NFL begins there, after which he has arrived in Seattle as a rookie. With no further professional or college accomplishments supplied here, his profile is defined by that transition into the league and his early place on the Seahawks’ roster.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "5fffd9fc90460582bb68090bd150d0b220804dd0f1d197db47c17b596910f52f",
+        "providerPlayerId": "13878399",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 188,
+          "estimatedCostUsd": 0.0012315
+        }
+      }
+    },
+    "nick-emmanwori": {
+      "playerId": "nick-emmanwori",
+      "name": "Nick Emmanwori",
+      "position": "S",
+      "bio": "Nick Emmanwori is a safety for the Seattle Seahawks in his second NFL season. He played his college football at South Carolina before reaching Seattle, and his professional career is still in its early stages. With limited statistical context available here, his biography is defined primarily by that path from South Carolina to the Seahawks and his current place in the organization.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "16fce899354f1d07ccc42afdcc7b17d5b8e72bccf46b9d1ebe8687c90fbadcbc",
+        "providerPlayerId": "13880574",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 316,
+          "estimatedCostUsd": 0.001809
+        }
+      }
+    },
+    "aj-finley": {
+      "playerId": "aj-finley",
+      "name": "AJ Finley",
+      "position": "S",
+      "bio": "AJ Finley is a fourth-year safety with the Seattle Seahawks. After his time at Ole Miss, he entered the NFL and has continued his career into his fourth season. With limited publicly supplied details on his pro path and production, his biography is defined by that progression from college football in Oxford to his place on Seattle’s roster.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "765023d53649dd24e5e44181a89e238b1b709c3e202e2acdcc8863f528953501",
+        "providerPlayerId": "2646",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 206,
+          "estimatedCostUsd": 0.0013125
+        }
+      }
+    },
+    "montorie-foster-jr": {
+      "playerId": "montorie-foster-jr",
+      "name": "Montorie Foster Jr",
+      "position": "WR",
+      "bio": "Montorie Foster Jr. is a wide receiver with the Seattle Seahawks in his first professional season after playing at Michigan State. His early NFL résumé is still limited, and his first recorded season shows only a single game played in 2026. Even so, his path to Seattle reflects the start of a new stage after his college career. With no other professional stops, postseason appearances, or honors listed in the supplied record, his biography remains brief as he begins his Seahawks tenure.",
+      "careerHighlights": [
+        "Appeared in one game in 2026",
+        "Began his professional career with the Seattle Seahawks",
+        "Played college football at Michigan State"
+      ],
+      "seasonOverview": "Foster’s 2026 season was defined by a very small sample size, with one game played on the record. That limited usage leaves little statistical context for evaluating his first year, but it does establish his entry into the professional ranks. The season also serves as the opening chapter of his time with Seattle after his Michigan State career, with no additional honors or postseason details supplied.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "e3caf59204cd8b073df3fc0253d065668cd7209b7e7473c1d414dbc4ca914f10",
+        "providerPlayerId": "13874061",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 542,
+          "outputTokens": 497,
+          "estimatedCostUsd": 0.002643
+        }
+      }
+    },
+    "dante-fowler-jr": {
+      "playerId": "dante-fowler-jr",
+      "name": "Dante Fowler Jr.",
+      "position": "LB",
+      "bio": "Dante Fowler Jr. is a 12th-year linebacker with the Seattle Seahawks, bringing a veteran résumé that began at Florida before he reached the professional level. With no additional career milestones supplied here, his profile is defined by longevity rather than a detailed statistical record in this setting. He enters Seattle as an experienced defender whose career has spanned more than a decade.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8b7b6919813e042d63cef31fa4baca7082802bdd1878185e2d0a38ecc44a8437",
+        "providerPlayerId": "1409",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 266,
+          "estimatedCostUsd": 0.0015825
+        }
+      }
+    },
+    "andre-fuller": {
+      "playerId": "andre-fuller",
+      "name": "Andre Fuller",
+      "position": "CB",
+      "bio": "Andre Fuller is a rookie cornerback out of Toledo who is now with the Seattle Seahawks. His path to Seattle is still in its earliest stage, and the available record does not include draft status, college production, or prior professional stops. With no additional career milestones supplied, his biography is defined primarily by his transition from Toledo to the NFL and the start of his Seahawks tenure.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "5e3074fab15f6cb9415c0ce2dbcbf491aec14ba5441e8177d6fc7fb068e04d8c",
+        "providerPlayerId": "33936246",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 512,
+          "outputTokens": 164,
+          "estimatedCostUsd": 0.001122
+        }
+      }
+    },
+    "jalan-gaines": {
+      "playerId": "jalan-gaines",
+      "name": "Jalan Gaines",
+      "position": "LB",
+      "bio": "Jalan Gaines is a linebacker entering his first season with the Seattle Seahawks after playing collegiately at Illinois State. With no further professional or statistical history provided, his profile currently centers on the start of his NFL career in Seattle and the early stage of his progression from the college level to the league.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d40066350ff8bd8b08a7dff48bbb7ad25d6812e5df3a5ec6aa5b8f39688bb7e9",
+        "providerPlayerId": "13880642",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 444,
+          "outputTokens": 120,
+          "estimatedCostUsd": 0.000873
+        }
+      }
+    },
+    "derrick-graham": {
+      "playerId": "derrick-graham",
+      "name": "Derrick Graham",
+      "position": "T",
+      "bio": "Derrick Graham is a tackle with the Seattle Seahawks. Available information on his career is limited, with no additional details provided about his college background, draft status, previous teams, or statistical production. In Seattle, his current significance is tied to his place on the roster at a position that often demands versatility and depth.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "f216f64a63fa7c18e82650d095fbacdc1dc6709bf82e334dd08af08eef220a07",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 243,
+          "estimatedCostUsd": 0.00142425
+        }
+      }
+    },
+    "derick-hall": {
+      "playerId": "derick-hall",
+      "name": "Derick Hall",
+      "position": "LB",
+      "bio": "Derick Hall is a linebacker for the Seattle Seahawks entering his fourth season in the league. After his college career at Auburn, he moved into the NFL and has continued his development in Seattle. His latest season was limited to one game, in which he recorded two tackles. With four seasons of experience, Hall’s career has been shaped by that steady progression from Auburn to the professional level and into his role with the Seahawks.",
+      "careerHighlights": [
+        "Auburn product entering his fourth NFL season",
+        "Recorded two tackles in one game in the 2026 season"
+      ],
+      "seasonOverview": "Hall’s 2026 season was brief, with only one appearance and two tackles. The limited workload leaves little statistical context for the year, but it does reflect a season in which his on-field production was minimal. As a fourth-year player, the year stands as a narrow snapshot rather than a full measure of his NFL career.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "597e17fd5cdae82735c4dd2026f79745cfdd007b6ad275bf6afd47c2f7b721c9",
+        "providerPlayerId": "2690",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 260,
+          "estimatedCostUsd": 0.00158175
+        }
+      }
+    },
+    "bobby-hart": {
+      "playerId": "bobby-hart",
+      "name": "Bobby Hart",
+      "position": "T",
+      "bio": "Bobby Hart is a tackle with the Seattle Seahawks. His current role places him on the Seahawks roster as part of the team’s offensive line depth. With no additional career detail supplied here, his profile is defined by his position and present status in Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d4b6207144e49a84cb20b7b9c4289e5eecc082f104252ed9cf6b2c7902f31b49",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 185,
+          "estimatedCostUsd": 0.0011625
+        }
+      }
+    },
+    "christian-haynes": {
+      "playerId": "christian-haynes",
+      "name": "Christian Haynes",
+      "position": "G",
+      "bio": "Christian Haynes is a guard for the Seattle Seahawks in his third NFL season. He played his college football at UConn before beginning his professional career in Seattle. With no other career details supplied here, his profile is defined by his transition from the Huskies to the Seahawks and his continued place in the organization through a third season.",
+      "careerHighlights": [
+        "Reached his third NFL season with the Seattle Seahawks",
+        "Played college football at UConn"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "743ba67900f05c15f8b564ae7f3cf5c9094ece082de5874a75816b1acc981bef",
+        "providerPlayerId": "278455",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 343,
+          "estimatedCostUsd": 0.001929
+        }
+      }
+    },
+    "emmanuel-henderson-jr": {
+      "playerId": "emmanuel-henderson-jr",
+      "name": "Emmanuel Henderson Jr.",
+      "position": "WR",
+      "bio": "Emmanuel Henderson Jr. is a rookie wide receiver for the Seattle Seahawks after playing collegiately at Kansas. The available record offers few additional milestones, so his biography in Seattle begins with his entry into the league and his transition from the Jayhawks to the professional level. As a first-year player, he represents a developmental addition to the Seahawks’ receiver group, with his early career still taking shape.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "07be7d0d330263ba770ce0e79b0eafabe5985023bea2de0d875abfba4ce1a00d",
+        "providerPlayerId": "33934373",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 152,
+          "estimatedCostUsd": 0.00106875
+        }
+      }
+    },
+    "julian-hicks": {
+      "playerId": "julian-hicks",
+      "name": "Julian Hicks",
+      "position": "WR",
+      "bio": "Julian Hicks is a wide receiver with the Seattle Seahawks. The available record provides no additional detail on his path to Seattle, previous teams, college career, or statistical résumé. With so little confirmed background available, his biography is limited to his current listed role in Seattle and the fact that further career context is not supplied in the source material.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9549d44cc1dfc06464b16cadf1ff9e36ed0434aac1d885e36a6bcbc2580ac2c8",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T22:36:28.600Z",
+        "usage": {
+          "inputTokens": 510,
+          "outputTokens": 199,
+          "estimatedCostUsd": 0.001278
+        }
+      }
+    },
+    "george-holani": {
+      "playerId": "george-holani",
+      "name": "George Holani",
+      "position": "RB",
+      "bio": "George Holani is in his third season and with the Seattle Seahawks after his college career at Boise State. With limited public career details available in the supplied facts, his professional résumé is defined by his current Seattle tenure rather than a long list of prior stops or accomplishments. In 2026, he appeared in one game and logged eight rushing attempts for 29 yards, a small sample that reflects a brief role in the offense. Holani’s biography at this stage is still being written, but his path from Boise State to Seattle marks the key progression in his football career to date.",
+      "careerHighlights": [
+        "Joined the Seattle Seahawks in his third season",
+        "Played at Boise State",
+        "Appeared in one game in 2026 with 8 carries for 29 yards"
+      ],
+      "seasonOverview": "Holani’s 2026 season was brief, with action in one game and eight rushing attempts for 29 yards. The small workload offers limited context beyond a short contribution on the ground, but it does confirm his place in Seattle’s backfield picture during the season. With no additional statistics or milestones supplied, the year reads as a modest entry point rather than a defining chapter.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "93f6ddb5155ae8c9425859cfc49d68eedc83ee1a23b97265aa72da1388133a6a",
+        "providerPlayerId": "278427",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 555,
+          "outputTokens": 330,
+          "estimatedCostUsd": 0.00190125
+        }
+      }
+    },
+    "maxen-hook": {
+      "playerId": "maxen-hook",
+      "name": "Maxen Hook",
+      "position": "S",
+      "bio": "Maxen Hook is a safety entering his first season with the Seattle Seahawks after playing collegiately at Toledo. With no additional career details supplied, his professional biography is currently defined by that transition from the Rockets to Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "668a45891c211cc22920083ff6b2fd7918c0f4120e4be8d583fc1a55567a7325",
+        "providerPlayerId": "13879085",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 160,
+          "estimatedCostUsd": 0.0011055
+        }
+      }
+    },
+    "tory-horton": {
+      "playerId": "tory-horton",
+      "name": "Tory Horton",
+      "position": "WR",
+      "bio": "Tory Horton is a wide receiver in his second season and is listed with the Seattle Seahawks. He played his college football at Colorado State before beginning his professional career. With no additional career totals, honors, or Seattle milestones provided, his background is defined by that college-to-pro transition and his early place on the Seahawks’ roster.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8d762cdf8d8b9e2a8e2e249a4e859710bdb3f67420a0396b998a358377c81e14",
+        "providerPlayerId": "13874098",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 185,
+          "estimatedCostUsd": 0.001218
+        }
+      }
+    },
+    "aidan-hubbard": {
+      "playerId": "aidan-hubbard",
+      "name": "Aidan Hubbard",
+      "position": "LB",
+      "bio": "Aidan Hubbard is a rookie linebacker with the Seattle Seahawks after his college career at Northwestern. With no draft slot, professional statistics, or other verified career milestones supplied here, his football background is currently defined by his transition from the Wildcats to Seattle as he begins his NFL career.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "b422cec26ed8e0e0602f25eed29516c0c172fcdf2e938c05fc8779477d865a0b",
+        "providerPlayerId": "33935363",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 148,
+          "estimatedCostUsd": 0.00105075
+        }
+      }
+    },
+    "noah-igbinoghene": {
+      "playerId": "noah-igbinoghene",
+      "name": "Noah Igbinoghene",
+      "position": "CB",
+      "bio": "Noah Igbinoghene is a cornerback for the Seattle Seahawks. His profile in Seattle currently begins with his place on the roster as part of the team’s secondary. With no additional career details supplied here, his biography is centered on that Seahawks affiliation.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "3008c60bc159673885ee8892fbb50bac2dda715432cd2ba3443069f363028232",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 444,
+          "outputTokens": 387,
+          "estimatedCostUsd": 0.0020745
+        }
+      }
+    },
+    "jared-ivey": {
+      "playerId": "jared-ivey",
+      "name": "Jared Ivey",
+      "position": "LB",
+      "bio": "Jared Ivey is a linebacker with the Seattle Seahawks. With no additional career details supplied here, his biography is limited to his current role on the Seahawks roster, where he is listed at linebacker for Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "78e917a1561326032fa4164c87f570d8bb3632c1e176048631e9f7315f2277f8",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 125,
+          "estimatedCostUsd": 0.00089325
+        }
+      }
+    },
+    "josh-jobe": {
+      "playerId": "josh-jobe",
+      "name": "Josh Jobe",
+      "position": "CB",
+      "bio": "Josh Jobe is a fifth-year cornerback with the Seattle Seahawks and an Alabama product. His professional background has been defined more by persistence than by a long list of milestones, and his current place in Seattle reflects that steady progression. In 2026, he appeared in one game and recorded six tackles and an interception, a brief statistical line that still captured his ability to contribute when called upon. With limited verified career detail available, Jobe’s biography centers on his path from Alabama to his fifth NFL season and his role within Seattle’s secondary.",
+      "careerHighlights": [
+        "Recorded six tackles and an interception in one game during the 2026 season.",
+        "Entered his fifth NFL season with Seattle.",
+        "Played collegiately at Alabama."
+      ],
+      "seasonOverview": "Jobe’s 2026 season was brief, but it included one notable defensive play: an interception. In his lone game, he added six tackles, showing activity around the ball despite the limited sample. The season did not provide a full body of work, but the numbers indicate a productive outing in his only appearance.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "797b814d562bcd13396ff8fd3c06ce20a8b1b56338d5f8a1019555db274e8b41",
+        "providerPlayerId": "2577",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 555,
+          "outputTokens": 390,
+          "estimatedCostUsd": 0.00217125
+        }
+      }
+    },
+    "tysheem-johnson": {
+      "playerId": "tysheem-johnson",
+      "name": "Tysheem Johnson",
+      "position": "S",
+      "bio": "Tysheem Johnson is a safety entering his first season with the Seattle Seahawks after playing at Oregon. His path to Seattle reflects a straightforward transition from the college game to the professional level, with his current role centered on establishing himself early in his NFL career. As a first-year player, he brings a fresh start for Seattle and a developing résumé that begins with his time in Eugene.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d4687949c04619993faf4e34f9003b5651d254f9a4421f832cddf8009c37940d",
+        "providerPlayerId": "13880630",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 445,
+          "outputTokens": 146,
+          "estimatedCostUsd": 0.00099075
+        }
+      }
+    },
+    "ernest-jones-iv": {
+      "playerId": "ernest-jones-iv",
+      "name": "Ernest Jones IV",
+      "position": "LB",
+      "bio": "Ernest Jones IV is a sixth-year linebacker with the Seattle Seahawks whose football path includes a career at South Carolina before reaching the NFL. The available record offers only a limited snapshot of his professional tenure, but his 2026 season opened with a productive showing in his lone appearance, when he recorded 13 total tackles. That performance stands as the clearest recent marker of his value on defense.",
+      "careerHighlights": [
+        "2026: 13 total tackles in one game",
+        "Sixth-season linebacker",
+        "Played at South Carolina"
+      ],
+      "seasonOverview": "Jones’ 2026 season began with a single-game sample, but it was an active one. In his lone appearance, he finished with 13 total tackles, a strong tackle volume that suggests he was heavily involved when on the field. With only one game logged, the season line remains brief, yet the production was immediate and notable.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9513812d2c7b124bf88e198cae6990eb9d3d62352fb5f588a55c790aea3d7492",
+        "providerPlayerId": "1403",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 353,
+          "estimatedCostUsd": 0.00200025
+        }
+      }
+    },
+    "josh-jones": {
+      "playerId": "josh-jones",
+      "name": "Josh Jones",
+      "position": "G/T",
+      "bio": "Josh Jones is a seventh-year lineman who has the flexibility to play guard or tackle for the Seattle Seahawks. A Houston alumnus, he entered the league with positional versatility as a defining trait and has continued his career into his seventh season. His background as a multi-position offensive lineman has given Seattle an experienced option along the front, though the available record here does not include the details of his arrival, prior stops, or season-by-season production.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "104c887f71749df065dbea3bca55193572588d6e867131b72fc1fbf9a7676137",
+        "providerPlayerId": "278533",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 181,
+          "estimatedCostUsd": 0.00119925
+        }
+      }
+    },
+    "justin-jones": {
+      "playerId": "justin-jones",
+      "name": "Justin Jones",
+      "position": "RB",
+      "bio": "Justin Jones is a rookie running back with the Seattle Seahawks, beginning his NFL career after playing at Auburn. With no prior professional resume supplied, his biography is still at the earliest stage, centered on his entry into the league and his first opportunity in Seattle. His background reflects the transition from college football to the professional level, where his development now continues with the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "ad3f9ae8289912dbed52b242b681a8393ecaf652f47791197ddc27e4b59a84c5",
+        "providerPlayerId": "34241885",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 443,
+          "outputTokens": 134,
+          "estimatedCostUsd": 0.00093525
+        }
+      }
+    },
+    "marvin-jones-jr": {
+      "playerId": "marvin-jones-jr",
+      "name": "Marvin Jones Jr.",
+      "position": "LB",
+      "bio": "Marvin Jones Jr. enters the Seattle Seahawks as a rookie linebacker out of Oklahoma, beginning his professional career in Seattle. With no prior NFL stops listed, his path to the league starts with his college development and continues as he takes his first steps in the Seahawks program. His immediate significance lies in establishing himself at the next level and settling into the team’s linebacker group.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "30585ab28a0c13d74d45bfe8a6a52f21d71d7aa7c2ebe439b65a83ce10cccb8b",
+        "providerPlayerId": "33935385",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 444,
+          "outputTokens": 238,
+          "estimatedCostUsd": 0.001404
+        }
+      }
+    },
+    "velus-jones-jr": {
+      "playerId": "velus-jones-jr",
+      "name": "Velus Jones Jr.",
+      "position": "RB",
+      "bio": "Velus Jones Jr. is a running back with the Seattle Seahawks. The available record places him in Seattle, where he is part of the team’s backfield group. With no further career details supplied, his professional biography is currently defined by his role with the Seahawks and his presence on the roster.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "ae9abdb05dc45a1d2b7c866e1532c6970f1b43b838d187747cf7520a95ff8ec9",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 280,
+          "estimatedCostUsd": 0.00159075
+        }
+      }
+    },
+    "nick-kallerup": {
+      "playerId": "nick-kallerup",
+      "name": "Nick Kallerup",
+      "position": "TE",
+      "bio": "Nick Kallerup is a second-year tight end with the Seattle Seahawks after playing his college football at Minnesota. With no additional professional production, honors, or postseason context supplied, his background is defined by his move from the college level to the early stages of his NFL career in Seattle.",
+      "careerHighlights": [
+        "Second-season tight end with the Seattle Seahawks",
+        "Played collegiately at Minnesota"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "a6fa073674922eb2c5ffefb49f67d964f0c0e9c78e88a0b41ce6898c7618bb48",
+        "providerPlayerId": "13874386",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 283,
+          "estimatedCostUsd": 0.00165975
+        }
+      }
+    },
+    "amari-kight": {
+      "playerId": "amari-kight",
+      "name": "Amari Kight",
+      "position": "T",
+      "bio": "Amari Kight is a tackle with the Seattle Seahawks. He is listed on Seattle’s roster, where he provides depth at the position. No additional career background, college history, or professional milestones are provided in the available facts.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "29b7c701dba85096f274795e00892eb2545ebbe0ef0fbf8b70c5446cb9f74576",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 243,
+          "estimatedCostUsd": 0.00142425
+        }
+      }
+    },
+    "tyrice-knight": {
+      "playerId": "tyrice-knight",
+      "name": "Tyrice Knight",
+      "position": "LB",
+      "bio": "Tyrice Knight is a linebacker for the Seattle Seahawks entering his third NFL season. He played college football at UTEP before beginning his professional career, and his path has since taken him to Seattle, where he is part of the team’s linebacker group. With his experience now in its third season, Knight’s career has been shaped by that move from UTEP to the Seahawks and his continued progression at the next level.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "07e4a32e965c9875ae3a043016070d443bc1a485ee4212574b8a5d698356e7bc",
+        "providerPlayerId": "278475",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 163,
+          "estimatedCostUsd": 0.00111975
+        }
+      }
+    },
+    "cooper-kupp": {
+      "playerId": "cooper-kupp",
+      "name": "Cooper Kupp",
+      "position": "WR",
+      "bio": "Cooper Kupp is in his 10th season and is listed with the Seattle Seahawks after a career that began at Eastern Washington. The available record does not include his draft history or prior professional stops, so his biography in Seattle is best framed by his experience and ongoing role as a veteran receiver on the roster. In 2026, he appeared in one game and caught two passes for 35 yards, a limited early-season sample that reflects the current stage of his Seahawks tenure.",
+      "careerHighlights": [
+        "Eastern Washington alum",
+        "10th NFL season",
+        "Listed with the Seattle Seahawks"
+      ],
+      "seasonOverview": "Kupp’s 2026 season opened with a small sample, as he played in one game and produced two receptions for 35 yards. The limited usage leaves little to measure beyond availability and a brief statistical line, but it does confirm his presence on Seattle’s roster as an experienced receiver entering his 10th season. With only one appearance on record, the season narrative remains unfinished.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8479bf3e57e5a16da3894611926b189038ca01b9351a095dc6e4d207c4c6350c",
+        "providerPlayerId": "794",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 554,
+          "outputTokens": 309,
+          "estimatedCostUsd": 0.001806
+        }
+      }
+    },
+    "brock-lampe": {
+      "playerId": "brock-lampe",
+      "name": "Brock Lampe",
+      "position": "FB",
+      "bio": "Brock Lampe is a fullback out of Northern Illinois who is entering his first season with the Seattle Seahawks. His professional background in the available record is limited, with no draft information, career statistics, or prior team history listed. Lampe’s path to Seattle is therefore defined by his college experience and his arrival as a first-year player in the organization.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d59bf45ac554dcdd53fcf67523bc3870490fe9ea8ae35571eddcc55001140256",
+        "providerPlayerId": "13874105",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 240,
+          "estimatedCostUsd": 0.00146625
+        }
+      }
+    },
+    "demarcus-lawrence": {
+      "playerId": "demarcus-lawrence",
+      "name": "DeMarcus Lawrence",
+      "position": "LB",
+      "bio": "DeMarcus Lawrence is a veteran linebacker in his 13th season and is listed with the Seattle Seahawks. A Boise State alum, he enters the later stage of his career with only limited recent statistical detail available in the provided record. His latest season line shows one game played in 2026, with three total tackles.",
+      "careerHighlights": [
+        "13th NFL season",
+        "Boise State product",
+        "Appeared in one game in 2026 and recorded three tackles"
+      ],
+      "seasonOverview": "Lawrence’s latest season profile is brief, with the available record showing a single appearance in 2026 and three total tackles. That limited workload leaves little statistical context for the year, but it does confirm that he remained part of the Seahawks’ defensive mix during the season. The record does not provide additional detail on snaps, starts, or postseason usage.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "953e8729f7fb1f22d270690712cf64b415010561c65f2ee4db02fd2eae295fd2",
+        "providerPlayerId": "1407",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 259,
+          "estimatedCostUsd": 0.00157725
+        }
+      }
+    },
+    "drew-lock": {
+      "playerId": "drew-lock",
+      "name": "Drew Lock",
+      "position": "QB",
+      "bio": "Drew Lock is a veteran quarterback in his eighth season with the Seattle Seahawks after a college career at Missouri. With limited career details supplied here, his profile is best framed by his experience level and his recent work in Seattle. In 2026, he appeared in one game and completed 22 passes for 187 yards and a touchdown, while also adding 13 rushing yards on two carries. That brief sample reflected his continued presence in Seattle’s quarterback room and his ability to produce in limited action.",
+      "careerHighlights": [
+        "8th NFL season",
+        "Appeared in 1 game in 2026 for Seattle"
+      ],
+      "seasonOverview": "Lock’s 2026 season was a limited one, with only a single appearance for Seattle. In that game, he threw for 187 yards and a touchdown on 22 attempts and added 13 rushing yards. The stat line was small, but it provided a snapshot of a veteran quarterback capable of stepping in and contributing when called upon.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "bc78ae5128eae4447a2ea6a2fe8881c04b0ead7b0cc9f88b5eda6d5c3eea50af",
+        "providerPlayerId": "60",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 571,
+          "outputTokens": 288,
+          "estimatedCostUsd": 0.00172425
+        }
+      }
+    },
+    "julian-love": {
+      "playerId": "julian-love",
+      "name": "Julian Love",
+      "position": "S",
+      "bio": "Julian Love is an eighth-year safety with the Seattle Seahawks. A Notre Dame product, he has built his career through steady progression to an established NFL veteran. His available recent production includes a 2026 appearance in which he recorded six tackles and one interception. With Seattle, Love’s résumé is defined by experience and continued involvement in the secondary rather than a long list of publicly supplied milestones.",
+      "careerHighlights": [
+        "Eighth NFL season",
+        "Recorded 6 tackles and 1 interception in 2026 in one game"
+      ],
+      "seasonOverview": "Love’s 2026 season opened with a small sample, but the early line still reflected his ability to make an impact in limited action. In one game, he produced six tackles and an interception, offering a concise snapshot of his value as a veteran defensive back. The season data available does not provide further context, so his year is best read through that brief but productive start.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "3f8b77e6bf234c12956d1fcd84582aa7f99ceb6e264a6fe350d461ca914d5a23",
+        "providerPlayerId": "2269",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 555,
+          "outputTokens": 266,
+          "estimatedCostUsd": 0.00161325
+        }
+      }
+    },
+    "abraham-lucas": {
+      "playerId": "abraham-lucas",
+      "name": "Abraham Lucas",
+      "position": "T",
+      "bio": "Abraham Lucas is a tackle for the Seattle Seahawks. He is part of the team’s current offensive line group, and his role remains centered on providing the blocking and protection expected at the position. With limited public career detail provided here, his Seahawks tenure is best defined by his place on the roster rather than by a longer documented professional timeline.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "3fa72fc578d089371d9b6929c024a79bae154b10f1818b3e37275f80cefab7fd",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 178,
+          "estimatedCostUsd": 0.001131
+        }
+      }
+    },
+    "federico-maranges": {
+      "playerId": "federico-maranges",
+      "name": "Federico Maranges",
+      "position": "C",
+      "bio": "Federico Maranges is a center with the Seattle Seahawks in his first season after playing college football at Florida Atlantic. The available record does not include additional professional stops, awards, or statistical milestones, so his biography is currently defined by his transition from FAU to Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8166a5c1d8c0821a31ba926c727156d651491bd709af040af9d96e174a363476",
+        "providerPlayerId": "13874466",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 249,
+          "estimatedCostUsd": 0.00150675
+        }
+      }
+    },
+    "rylie-mills": {
+      "playerId": "rylie-mills",
+      "name": "Rylie Mills",
+      "position": "DE",
+      "bio": "Rylie Mills is a defensive end with the Seattle Seahawks. With no additional professional history or collegiate background supplied here, his Seahawks listing serves as the current reference point for his career profile. He enters Seattle as part of the club’s defensive front, and his biography remains centered on his present role with the team.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "c3478ecc4c7599bdb4087e32d2bcf7a777ebb11ff40c365d0effc90391c27dc2",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 198,
+          "estimatedCostUsd": 0.001221
+        }
+      }
+    },
+    "jalen-milroe": {
+      "playerId": "jalen-milroe",
+      "name": "Jalen Milroe",
+      "position": "QB",
+      "bio": "Jalen Milroe, a quarterback from Alabama, is in his second NFL season with the Seattle Seahawks. His football résumé in the provided record is brief, with no draft details, college honors, or professional statistics listed. Even so, his profile reflects a recent transition from the college game to Seattle, where he is now part of the Seahawks’ quarterback group as he continues his early professional career.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d413e9136bc4a86ac8826abd52b68548f9a77ef9fe74792a9bc9172b7cca9789",
+        "providerPlayerId": "13873804",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 315,
+          "estimatedCostUsd": 0.00180375
+        }
+      }
+    },
+    "mike-morris": {
+      "playerId": "mike-morris",
+      "name": "Mike Morris",
+      "position": "DE",
+      "bio": "Mike Morris is a fourth-year defensive end for the Seattle Seahawks after playing college football at Michigan. The available record does not include draft details, career totals, or season-specific production, leaving his professional profile defined mainly by his current place in Seattle and his background in Ann Arbor.",
+      "careerHighlights": [
+        "Fourth-year defensive end with the Seattle Seahawks",
+        "Played collegiately at Michigan"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "676dc5780e983a82df441f1cb510b5754d90afaa0e54a5f1e90822844344b4de",
+        "providerPlayerId": "2708",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 512,
+          "outputTokens": 319,
+          "estimatedCostUsd": 0.0018195
+        }
+      }
+    },
+    "byron-murphy-ii": {
+      "playerId": "byron-murphy-ii",
+      "name": "Byron Murphy II",
+      "position": "DT",
+      "bio": "Byron Murphy II entered the NFL after his time at Texas and is now in his third season with the Seattle Seahawks. His early professional resume has been brief, but he has already begun to carve out a place on Seattle’s defensive front.\n\nIn 2026, Murphy appeared in one game and recorded two tackles. That season line followed his progression from college football at Texas into the league and into Seattle’s rotation, where his career remains in its early stages.",
+      "careerHighlights": [
+        "Third-season defensive tackle with the Seattle Seahawks",
+        "Appeared in one game in 2026 and made two tackles",
+        "Played college football at Texas"
+      ],
+      "seasonOverview": "Murphy’s 2026 season was limited to a single appearance, but he still registered two tackles in that game. With only one game played, the year offered a small sample rather than a full body of work, and it kept his professional experience in an early phase. For Seattle, the season marked another step in his development, even as his overall résumé remained compact.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8374dea8d883b47b41ac460eeceab6dc78b04534b9199a23199aaa45d1f8f201",
+        "providerPlayerId": "277740",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 548,
+          "outputTokens": 401,
+          "estimatedCostUsd": 0.0022155
+        }
+      }
+    },
+    "jason-myers": {
+      "playerId": "jason-myers",
+      "name": "Jason Myers",
+      "position": "K",
+      "bio": "Jason Myers is the Seattle Seahawks’ kicker, providing the club with its current option at the position. His profile in Seattle is defined by that role, with no additional career details supplied here beyond his standing on the Seahawks roster. As a specialist, his value lies in the scoring opportunities he handles for the team.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "63ab7cc2915d61c181876ed89aa367ec51092651e45ca3726a6a9283a6688dd8",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 439,
+          "outputTokens": 164,
+          "estimatedCostUsd": 0.00106725
+        }
+      }
+    },
+    "julian-neal": {
+      "playerId": "julian-neal",
+      "name": "Julian Neal",
+      "position": "CB",
+      "bio": "Rookie cornerback Julian Neal arrived in Seattle after his college career at Arkansas. Listed with the Seahawks as a rookie, he is at the earliest stage of his professional career, with his path to the league still defined by his time in the SEC rather than any established NFL production. With no draft or professional résumé supplied, his background is currently centered on that transition from Arkansas to Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "cfa26306a75a44215b1ebb398f211f86ce3a45c151fd5ea129be042dd88f0c5a",
+        "providerPlayerId": "33936385",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 171,
+          "estimatedCostUsd": 0.00115425
+        }
+      }
+    },
+    "uchenna-nwosu": {
+      "playerId": "uchenna-nwosu",
+      "name": "Uchenna Nwosu",
+      "position": "LB",
+      "bio": "Uchenna Nwosu is a linebacker for the Seattle Seahawks in his ninth season. A USC product, he has built his NFL career into a long-running role in Seattle. In 2026, he appeared in one game and recorded five tackles, a brief statistical line that reflects a season with limited early availability.",
+      "careerHighlights": [
+        "USC product",
+        "Ninth NFL season with Seattle",
+        "Recorded five tackles in one game during the 2026 season"
+      ],
+      "seasonOverview": "Nwosu’s 2026 season has been brief so far, with one game played and five tackles logged. The small sample size makes it difficult to draw larger conclusions, but it does show he was on the field and contributing in limited action. His season line remains centered on that single appearance, leaving the rest of his year to be defined by what follows after that opening snapshot.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "3cc38b050f4157019da58de7bc683a032e795fbff75d6b0085ce3f1df4725567",
+        "providerPlayerId": "1500",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 551,
+          "outputTokens": 402,
+          "estimatedCostUsd": 0.00222225
+        }
+      }
+    },
+    "patrick-oconnell": {
+      "playerId": "patrick-oconnell",
+      "name": "Patrick O'Connell",
+      "position": "LB",
+      "bio": "Patrick O'Connell is a linebacker in his third season with the Seattle Seahawks after playing collegiately at Montana. His NFL career has been defined by patience and limited opportunities, and his 2026 season reflected that pattern. O'Connell appeared in one game and finished with one tackle. With a relatively small professional sample, his Seattle tenure has been measured more by availability than by volume, but he has remained part of the roster through his third season.",
+      "careerHighlights": [
+        "Seahawks linebacker in his third NFL season",
+        "Played college football at Montana",
+        "Recorded one tackle in one game in 2026"
+      ],
+      "seasonOverview": "O'Connell’s 2026 season was brief, with action in one game and one tackle on the ledger. The limited usage suggests a depth role rather than a consistent weekly presence, and it leaves his professional profile built on a small sample. Even so, the season added another year to his Seattle tenure and kept him within the organization’s linebacker group entering his third campaign.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "5bc697843738155b7335bc6aba26524216d3d74ade760a30e558c9418ab00899",
+        "providerPlayerId": "2563",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 412,
+          "estimatedCostUsd": 0.00226575
+        }
+      }
+    },
+    "connor-otoole": {
+      "playerId": "connor-otoole",
+      "name": "Connor O'Toole",
+      "position": "LB",
+      "bio": "Connor O'Toole is a linebacker for the Seattle Seahawks and is in his second NFL season after playing at Utah. His professional record remains limited, but he has begun to establish a place in Seattle’s linebacker group through game action. In 2026, O'Toole appeared in one game and recorded one tackle, a modest showing that reflects a brief but documented role on the field.",
+      "careerHighlights": [
+        "Second NFL season with the Seattle Seahawks",
+        "Appeared in one game in 2026",
+        "Recorded one tackle in 2026"
+      ],
+      "seasonOverview": "O'Toole’s 2026 season was brief, with one game played and one tackle recorded. The small sample leaves little to separate beyond availability and limited usage, but it does confirm an active role in Seattle during the season. For a second-year player, the year was more notable for gaining game experience than for volume production.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "5250410619536a1d57065584dfd8f73963317829607b027aee3e327110dcf3ce",
+        "providerPlayerId": "13878497",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 550,
+          "outputTokens": 467,
+          "estimatedCostUsd": 0.002514
+        }
+      }
+    },
+    "ty-okada": {
+      "playerId": "ty-okada",
+      "name": "Ty Okada",
+      "position": "S",
+      "bio": "Ty Okada is in his second NFL season with the Seattle Seahawks after playing college football at Montana State. A safety, he entered the league with a background that led him to Seattle, where he is part of the Seahawks’ current defensive mix. With limited verified career detail available, his biography is defined by that progression from Montana State to the NFL and into his second year in Seattle.",
+      "careerHighlights": [
+        "Second NFL season with the Seattle Seahawks",
+        "Played college football at Montana State"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "84f2e58c708d771254d7568591f33ef3d652f799556aebe9067fb91c37d40219",
+        "providerPlayerId": "2414",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 215,
+          "estimatedCostUsd": 0.00135375
+        }
+      }
+    },
+    "olu-oluwatimi": {
+      "playerId": "olu-oluwatimi",
+      "name": "Olu Oluwatimi",
+      "position": "C",
+      "bio": "Olu Oluwatimi is a center in his fourth season with the Seattle Seahawks. He played collegiately at Michigan before beginning his NFL career, and his path has taken him from the college ranks to Seattle’s roster. With limited verified career detail available here, his biography is defined primarily by that progression: Michigan to the professional level, and now into his fourth season with Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "eb2a27e4b047807b0ff9e399efb9a9d08629944e224564a06f1c9a4a84dd963f",
+        "providerPlayerId": "278452",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 176,
+          "estimatedCostUsd": 0.00117825
+        }
+      }
+    },
+    "chris-paul-jr": {
+      "playerId": "chris-paul-jr",
+      "name": "Chris Paul Jr.",
+      "position": "LB",
+      "bio": "Chris Paul Jr. enters his first season with the Seattle Seahawks after playing linebacker at Ole Miss. With no additional professional history provided, his biography begins in Seattle, where he arrives as a first-year NFL player looking to establish his place on the roster after his college career in the SEC.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "7ef3e45fcbbf67e2ff3e5ef629d60923b5b495023608bdfefeebe7ee1b2cd9b7",
+        "providerPlayerId": "13878298",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 444,
+          "outputTokens": 164,
+          "estimatedCostUsd": 0.001071
+        }
+      }
+    },
+    "brandon-pili": {
+      "playerId": "brandon-pili",
+      "name": "Brandon Pili",
+      "position": "NT",
+      "bio": "Brandon Pili is a nose tackle for the Seattle Seahawks. His background in the league is limited in the supplied record, so his Seattle biography is best framed by his current role rather than a long professional timeline. As listed on the roster, he provides depth at a demanding interior position and remains part of the Seahawks’ present defensive personnel.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "4c6456cef1c2648ec1fe6c4e957bab86f1945df05ed3576253f4ddbdee74265c",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 113,
+          "estimatedCostUsd": 0.0008385
+        }
+      }
+    },
+    "jadarian-price": {
+      "playerId": "jadarian-price",
+      "name": "Jadarian Price",
+      "position": "RB",
+      "bio": "Jadarian Price entered the league as a rookie running back with the Seattle Seahawks after a college career at Notre Dame. His professional record is still brief, but his latest season provided an early glimpse of his role: he appeared in one game and logged 10 rushing attempts for 52 yards, along with two receptions for 6 yards. With limited pro history available, his biography is defined so far by his transition from college football to Seattle and the small sample of work in his first season.",
+      "careerHighlights": [
+        "Rookie running back with the Seattle Seahawks",
+        "Played at Notre Dame",
+        "In 2026, appeared in one game with 52 rushing yards on 10 carries and two catches for 6 yards"
+      ],
+      "seasonOverview": "Price’s latest season was limited to a single appearance, giving him a small but concrete statistical line to open his pro career. He handled 10 rushing attempts and added two receptions, finishing with 58 scrimmage yards. The sample is too small to define a larger trend, but it does show that Seattle used him in both the run and pass game during his rookie year.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "27407fff7b46b6ed28f32173fae51648e709c9b8b2fdc5753cf8ee248b3add25",
+        "providerPlayerId": "33934144",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 566,
+          "outputTokens": 294,
+          "estimatedCostUsd": 0.0017475
+        }
+      }
+    },
+    "nehemiah-pritchett": {
+      "playerId": "nehemiah-pritchett",
+      "name": "Nehemiah Pritchett",
+      "position": "CB",
+      "bio": "Nehemiah Pritchett is in his third NFL season with the Seattle Seahawks after his college career at Auburn. His professional résumé remains brief, but his latest season included a notable one-game sample in 2026, when he recorded six tackles and an interception. That production stands as the clearest snapshot of his Seattle tenure so far, reflecting a player who has begun to leave a mark in limited action. With only a small body of pro work to date, Pritchett’s biography is still being written in Seattle.",
+      "careerHighlights": [
+        "Auburn alumnus now in his third NFL season with Seattle",
+        "Recorded six tackles and one interception in 2026",
+        "Saw action in one game during the 2026 season"
+      ],
+      "seasonOverview": "Pritchett’s 2026 season was defined by a very small sample, but he made it count. In one game for Seattle, he finished with six tackles and an interception, giving him one of the few measurable pro highlights of his career to date. The line reflects both his limited usage and his ability to make an impact when on the field, even in a condensed season.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "4c31aad1d15cef7687dbc4c48e93d67c58da67d8737f45a1671710589038a7ee",
+        "providerPlayerId": "278481",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 560,
+          "outputTokens": 557,
+          "estimatedCostUsd": 0.0029265
+        }
+      }
+    },
+    "jarran-reed": {
+      "playerId": "jarran-reed",
+      "name": "Jarran Reed",
+      "position": "NT",
+      "bio": "Jarran Reed is a nose tackle for the Seattle Seahawks. His listed position keeps him in the middle of Seattle’s defensive front, where interior play is central to the job. The available facts provide only his current team and role, so his biography here remains focused on his place with the Seahawks rather than a fuller career timeline.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "e6dc23dae53e87a8c8335b2ca0c2429876f9aba7ab5596b294bd5ad29d1acd16",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 461,
+          "estimatedCostUsd": 0.00240525
+        }
+      }
+    },
+    "rashad-rochelle": {
+      "playerId": "rashad-rochelle",
+      "name": "Rashad Rochelle",
+      "position": "WR",
+      "bio": "Rashad Rochelle is a rookie wide receiver with the Seattle Seahawks after finishing his college career at Indiana State. Entering the NFL as a first-year player, he arrives in Seattle at the start of his professional journey, bringing his college experience into a new setting. His Seahawks tenure is just beginning, and his current role reflects his early-stage development at the next level.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "5a55e65b764549545dcace36213a985da0710d711e016fc6dbd162f821765a7d",
+        "providerPlayerId": "33938075",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 444,
+          "outputTokens": 197,
+          "estimatedCostUsd": 0.0012195
+        }
+      }
+    },
+    "brady-russell": {
+      "playerId": "brady-russell",
+      "name": "Brady Russell",
+      "position": "FB",
+      "bio": "Brady Russell is in his fourth NFL season with the Seattle Seahawks after a collegiate career at Colorado. Listed as a fullback, he has remained part of Seattle’s roster picture as he has continued into his professional career. His most recent season came in 2026, when he appeared in one game and recorded two receptions for 20 yards. That small sample offered limited production, but it added to his ongoing tenure with the Seahawks and reflected his continued place in the organization through his fourth season.",
+      "careerHighlights": [
+        "Colorado alumnus who entered the NFL with Seattle",
+        "Reached his fourth NFL season with the Seahawks",
+        "In 2026, played one game with two catches for 20 yards"
+      ],
+      "seasonOverview": "Russell’s 2026 season was brief, with action in only one game. Even in that limited role, he contributed as a receiver, finishing with two catches for 20 yards. The small workload makes the season more a snapshot than a full evaluation, but it shows he remained available to contribute in Seattle’s offensive mix during his fourth professional year.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "a3c97d5d01ed9023d73ebcea7136b192001979e3027190e6f749a11e0728f76a",
+        "providerPlayerId": "2389",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 552,
+          "outputTokens": 300,
+          "estimatedCostUsd": 0.001764
+        }
+      }
+    },
+    "eric-saubert": {
+      "playerId": "eric-saubert",
+      "name": "Eric Saubert",
+      "position": "TE",
+      "bio": "Eric Saubert is a ninth-year tight end who is listed with the Seattle Seahawks. A Drake product, he has built a long professional career that has carried him into his ninth season. With limited verified details available, his career profile is defined primarily by that longevity and his current place in Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "acec1863c6ee01f1e29270590823fc32401588e55276d111a4491afe11d971d5",
+        "providerPlayerId": "1219",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 251,
+          "estimatedCostUsd": 0.001515
+        }
+      }
+    },
+    "uso-seumalo": {
+      "playerId": "uso-seumalo",
+      "name": "Uso Seumalo",
+      "position": "NT",
+      "bio": "Uso Seumalo is a nose tackle with the Seattle Seahawks. The available record provides no additional background on his college career, route to the NFL, or prior teams, so his profile is presently defined by his presence on Seattle’s roster and his role at a position built around interior line depth and physical play.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "1ba72153e72d8418d5749229a9842f3fb4b732034ce6496f4addd5a0b1442ad3",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 276,
+          "estimatedCostUsd": 0.00157275
+        }
+      }
+    },
+    "rashid-shaheed": {
+      "playerId": "rashid-shaheed",
+      "name": "Rashid Shaheed",
+      "position": "WR",
+      "bio": "Rashid Shaheed is a fifth-year wide receiver with the Seattle Seahawks after a college career at Weber State. Limited career detail is available in the supplied record, but his latest season line shows a brief 2026 contribution, appearing in one game and making one catch for four yards. With no additional honors, transaction history, or team stops provided here, his biography remains centered on his current Seattle standing and the small statistical footprint available from the most recent season.",
+      "careerHighlights": [
+        "Weber State alumnus now listed with the Seattle Seahawks.",
+        "Appeared in one game in 2026 and recorded one reception for four yards."
+      ],
+      "seasonOverview": "Shaheed’s 2026 season opened with a very small sample, as he appeared in one game and finished with one catch for four yards. The line offers little broader context, but it does show that his usage was limited in the available record. With no additional seasonal milestones or postseason details supplied, his year is best read as an early or abbreviated contribution rather than a sustained statistical stretch.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "17eb9da867528b8e7ac0c9abba59747e563d9720f40d34998876193662c61366",
+        "providerPlayerId": "640",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 556,
+          "outputTokens": 411,
+          "estimatedCostUsd": 0.0022665
+        }
+      }
+    },
+    "jamie-sheriff": {
+      "playerId": "jamie-sheriff",
+      "name": "Jamie Sheriff",
+      "position": "LB",
+      "bio": "Jamie Sheriff is in his first NFL season with the Seattle Seahawks after finishing his college career at South Alabama. A linebacker by position, he arrived in Seattle as a newcomer to the league and joined the organization as part of its defensive depth. In 2025, Sheriff appeared in one game and recorded one tackle, a small but meaningful first step in establishing himself at the professional level. His early Seahawks tenure has been defined by that initial opportunity, with the focus now on building from his first season of experience.",
+      "careerHighlights": [
+        "First-year linebacker with the Seattle Seahawks",
+        "Played college football at South Alabama"
+      ],
+      "seasonOverview": "Sheriff’s 2025 season served as his introduction to the NFL stage. He saw action in one game for Seattle and logged a tackle, giving him an early statistical marker in his first year with the club. With limited opportunity so far, his season profile reflects a player just beginning to establish his place in the league and within the Seahawks' defensive mix.",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "591d97949eefb51540ddc5831cb8fd8a2fc31f081fe6a67b14ed9b059a6ca902",
+        "providerPlayerId": "278505",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 477,
+          "outputTokens": 337,
+          "estimatedCostUsd": 0.00187425
+        }
+      }
+    },
+    "jr-singleton": {
+      "playerId": "jr-singleton",
+      "name": "J.R. Singleton",
+      "position": "NT",
+      "bio": "J.R. Singleton is a nose tackle with the Seattle Seahawks. The available record here offers only his current place in Seattle, without further public detail on his earlier path, college background, or prior stops. In that context, his biography is defined by his presence on the Seahawks roster and his role as part of the team’s defensive interior depth.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "6b17148faa8918af03756d897d332fbebe1ab13cbd05f7a421e0e42edf773b24",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 269,
+          "estimatedCostUsd": 0.00154125
+        }
+      }
+    },
+    "jaxon-smith-njigba": {
+      "playerId": "jaxon-smith-njigba",
+      "name": "Jaxon Smith-Njigba",
+      "position": "WR",
+      "bio": "Jaxon Smith-Njigba entered his fourth season with the Seattle Seahawks in 2026 after establishing himself as one of the franchise’s most productive receivers. His role grew quickly in Seattle, and by 2024 he had earned his first Pro Bowl selection after catching 100 passes for 1,130 yards. That production carried into a landmark 2025 season, when he finished with 119 receptions, 1,793 receiving yards and 10 touchdowns. He led the NFL in receiving yards, set Seahawks single-season records for both receptions and receiving yards, and was named AP Offensive Player of the Year and first-team All-Pro.\n\nSmith-Njigba’s performance helped anchor a Seattle offense that finished 14-3 and went on to win Super Bowl LX in the 2025 season. The Seahawks followed that championship run by signing him to a multi-year contract extension on March 25, 2026, underscoring his place at the center of the team’s future. Through the early part of the 2026 season, he remained a focal point of the passing game, adding 8 receptions for 122 yards and a touchdown in the opening game.\n\nA former Ohio State receiver, Smith-Njigba’s Seattle tenure has been defined by steady growth into high-volume production and league-wide recognition. His progression from strong contributor to record-setting centerpiece has made him one of the defining players of the Seahawks’ recent era.",
+      "careerHighlights": [
+        "2024 Pro Bowl selection",
+        "2025 AP Offensive Player of the Year",
+        "2025 first-team All-Pro",
+        "Seahawks single-season receptions record",
+        "Seahawks single-season receiving-yards record",
+        "NFL receiving-yards leader in 2025",
+        "Super Bowl LX champion with Seattle"
+      ],
+      "seasonOverview": "Smith-Njigba opened the 2026 season with a productive Week 1 performance, posting 8 catches for 122 yards and a touchdown. After a 2025 campaign that brought league-leading yardage, major honors and a championship, his early production suggested the Seahawks were again leaning on him as a primary receiving option. The multi-year extension signed in March reflected the organization’s commitment following his record-setting rise.",
+      "materialUpdatedAt": "2026-09-11T03:54:38.653Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "03c2332418a38624178e8172fe4e17f18af3b3ef44e380d4cbfbaf3882eff04c",
+        "providerPlayerId": "869",
+        "generatedAt": "2026-09-11T03:54:38.653Z",
+        "usage": {
+          "inputTokens": 709,
+          "outputTokens": 650,
+          "estimatedCostUsd": 0.00345675
+        }
+      }
+    },
+    "aaron-smith": {
+      "playerId": "aaron-smith",
+      "name": "Aaron Smith",
+      "position": "LB",
+      "bio": "Aaron Smith is a linebacker for the Seattle Seahawks in his first season with the club. He came to the professional level after playing at South Carolina State, beginning his NFL path from there. With no additional career statistics, honors, or prior team history provided, his biography in Seattle is defined by that transition from college football to his current role with the Seahawks.",
+      "careerHighlights": [
+        "South Carolina State linebacker who entered his first NFL season with Seattle."
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9db0f3f170276c9754a9579fae0aa24862af1dc8058bc810c445afe0fcad1a27",
+        "providerPlayerId": "13878745",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 235,
+          "estimatedCostUsd": 0.001443
+        }
+      }
+    },
+    "beau-stephens": {
+      "playerId": "beau-stephens",
+      "name": "Beau Stephens",
+      "position": "G",
+      "bio": "Beau Stephens is a rookie guard with the Seattle Seahawks after his college career at Iowa. With no draft information or prior professional stops supplied, his path to Seattle is defined by that transition from the Hawkeyes to the NFL level. The available record does not include college honors, statistics, or other milestones, so his biography remains centered on his arrival as a first-year interior lineman in Seattle.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "6e1fd9ddcdfc059533719d8e70175015262cc40a482799323124a403748b1e41",
+        "providerPlayerId": "33935070",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 213,
+          "estimatedCostUsd": 0.00134325
+        }
+      }
+    },
+    "chris-stoll": {
+      "playerId": "chris-stoll",
+      "name": "Chris Stoll",
+      "position": "LS",
+      "bio": "Chris Stoll is a long snapper with the Seattle Seahawks and is in his fourth season. He played collegiately at Penn State before beginning his NFL career, and his biography remains defined by that transition into the league and his continued role with Seattle. With no additional career totals, honors, or seasonal context supplied here, his profile is best understood through his path from Penn State to the Seahawks and his current experience level.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "616a7327c5232150399738fa073e782272263d0bbf84f10ae1b7ffd246bd5812",
+        "providerPlayerId": "2455",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 176,
+          "estimatedCostUsd": 0.0011775
+        }
+      }
+    },
+    "jalen-sundell": {
+      "playerId": "jalen-sundell",
+      "name": "Jalen Sundell",
+      "position": "C",
+      "bio": "Jalen Sundell is a third-year center with the Seattle Seahawks after his college career at North Dakota State. Limited public career details are available in the supplied record, so his biography is best framed around that straightforward path: college football at North Dakota State and entry into the NFL with Seattle. In his third season, he remains part of the Seahawks’ personnel at center.",
+      "careerHighlights": [
+        "North Dakota State alum",
+        "Third-year NFL player with the Seattle Seahawks"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "f428e482164df2c144fe393a037c222271317bcf38b23610445e3123f819af3d",
+        "providerPlayerId": "278463",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 352,
+          "estimatedCostUsd": 0.001971
+        }
+      }
+    },
+    "chazz-surratt": {
+      "playerId": "chazz-surratt",
+      "name": "Chazz Surratt",
+      "position": "LB",
+      "bio": "Chazz Surratt is a linebacker in his fifth NFL season with the Seattle Seahawks. A North Carolina product, he has moved into the league with the experience of a player now deep into his professional career, even as the available record for his path remains limited here. In 2026, he appeared in one game and recorded two tackles, adding to a résumé that is still being built at the pro level. Seattle represents the latest stop in that progression, and his recent season offers a small but current snapshot of his role in the league.",
+      "careerHighlights": [
+        "Linebacker from North Carolina",
+        "Entering his fifth NFL season with Seattle",
+        "Recorded 2 tackles in 1 game during the 2026 season"
+      ],
+      "seasonOverview": "In 2026, Surratt saw action in one game for Seattle and finished with two tackles. It was a brief season line, but it showed him contributing when called upon while continuing his fifth-year NFL path. With only one appearance on the record, the season provides limited context beyond that short sample, though it does establish his presence on the Seahawks’ depth chart during the year.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "fbde2f90d1585a7fb2aff87f7e99ef009f42468318749c6328f0b69bcf01a2ff",
+        "providerPlayerId": "2221",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 550,
+          "outputTokens": 406,
+          "estimatedCostUsd": 0.0022395
+        }
+      }
+    },
+    "drake-thomas": {
+      "playerId": "drake-thomas",
+      "name": "Drake Thomas",
+      "position": "LB",
+      "bio": "Drake Thomas is in his fourth NFL season with the Seattle Seahawks after beginning his career at NC State. A linebacker by trade, he has worked his way into the league as a depth contributor and has remained part of Seattle’s roster through his early professional years. In 2026, Thomas appeared in one game and recorded nine tackles, a small but notable sample of production that reflected his ability to contribute when called upon.",
+      "careerHighlights": [
+        "Fourth NFL season",
+        "Recorded 9 tackles in 1 game during the 2026 season"
+      ],
+      "seasonOverview": "Thomas’ 2026 season was limited to a single appearance, but he made the most of the opportunity with nine tackles. That output stands out as the clearest snapshot of his role that year: a depth linebacker who could be counted on to handle meaningful work in limited action. The small workload makes the season hard to read beyond that one game, but the tackle total shows immediate activity when he was on the field.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "cc7767c0c9d3f4af7b1b0a74a93374e9642ec5fc5a92210eb4f9a8f657517e00",
+        "providerPlayerId": "2656",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 548,
+          "outputTokens": 263,
+          "estimatedCostUsd": 0.0015945
+        }
+      }
+    },
+    "rodney-thomas-ii": {
+      "playerId": "rodney-thomas-ii",
+      "name": "Rodney Thomas II",
+      "position": "S",
+      "bio": "Rodney Thomas II is a fifth-season safety with the Seattle Seahawks. A Yale product, he has continued his NFL career in Seattle after his college development in New Haven. His recent workload has been limited; in 2026, he appeared in one game and made four tackles.",
+      "careerHighlights": [
+        "Seattle Seahawks safety",
+        "Yale alumnus"
+      ],
+      "seasonOverview": "Thomas’s 2026 season was brief, with only one game played. Even in that limited action, he recorded four tackles, a small but clear snapshot of his role when available. With such a narrow sample, the season offers little in the way of trendlines beyond the fact that he was on the field and contributed in the tackle column.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9d2c465f5f7201bb726467807986a5566d7e5b6cbbf88d152762295ebf5823eb",
+        "providerPlayerId": "2416",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 339,
+          "estimatedCostUsd": 0.00193725
+        }
+      }
+    },
+    "bubba-thomas": {
+      "playerId": "bubba-thomas",
+      "name": "Bubba Thomas",
+      "position": "NT",
+      "bio": "Bubba Thomas is a nose tackle with the Seattle Seahawks. The available record does not provide details on his college career, draft path, or previous teams, leaving Seattle as the only confirmed stop in his professional profile. With no honors, postseason notes, or statistical milestones listed in the source material, his biography remains centered on his current place on the Seahawks roster.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "c2f09e34d7638b2786dac811d5f336de6218ff5bbed0b331251a1d76a7e3434b",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 441,
+          "outputTokens": 230,
+          "estimatedCostUsd": 0.00136575
+        }
+      }
+    },
+    "nick-vannett": {
+      "playerId": "nick-vannett",
+      "name": "Nick Vannett",
+      "position": "TE",
+      "bio": "Nick Vannett is a veteran tight end in his 11th season and currently with the Seattle Seahawks. A product of Ohio State, he has spent his career building on that college background as a steady NFL presence at a demanding position. With Seattle, Vannett brings experience and continuity to the tight end group, adding another chapter to a long professional career that began after his time with the Buckeyes.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "ce8b46f06cc3e75acec692088a5974983a26565f6b1159edcd6d38fc03086512",
+        "providerPlayerId": "1252",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 445,
+          "outputTokens": 246,
+          "estimatedCostUsd": 0.00144075
+        }
+      }
+    },
+    "jordan-washington": {
+      "playerId": "jordan-washington",
+      "name": "Jordan Washington",
+      "position": "CB",
+      "bio": "Jordan Washington is a rookie cornerback with the Seattle Seahawks after a collegiate career at Stanford. Entering the league without a long professional track record, he arrives in Seattle at the beginning of his NFL progression, where his early seasons will define his place in the secondary. His background at Stanford provides the foundation for his first steps with the Seahawks and the next stage of his career.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "4b253294297cc1c89e315e8be11652fec688a7827565753a98c0e2073d36ef60",
+        "providerPlayerId": "34105833",
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 442,
+          "outputTokens": 139,
+          "estimatedCostUsd": 0.000957
+        }
+      }
+    },
+    "cody-white": {
+      "playerId": "cody-white",
+      "name": "Cody White",
+      "position": "WR",
+      "bio": "Cody White is a wide receiver for the Seattle Seahawks. He is part of Seattle’s current roster, with his career background and progression not detailed in the available facts.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "f44ced54cb2a6f8573ea69eb0fe9a67ea0f360679565f8a240d3a769a0a57e8b",
+        "providerPlayerId": null,
+        "generatedAt": "2026-09-02T20:30:09.660Z",
+        "usage": {
+          "inputTokens": 440,
+          "outputTokens": 136,
+          "estimatedCostUsd": 0.000942
+        }
+      }
+    },
+    "ricky-white-iii": {
+      "playerId": "ricky-white-iii",
+      "name": "Ricky White III",
+      "position": "WR",
+      "bio": "Ricky White III is a wide receiver out of UNLV who is in his first season with the Seattle Seahawks. His football path to the NFL included his college career at UNLV, and he now begins his professional tenure in Seattle. With no additional career totals, honors, or season details provided, his biography is best defined by that transition from the college level to his first year with the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "86d14dcdb20d3698679e907bbea0f0e5890ba4870793c50ce850ab572714338a",
+        "providerPlayerId": "13874261",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 196,
+          "estimatedCostUsd": 0.00126825
+        }
+      }
+    },
+    "leonard-williams": {
+      "playerId": "leonard-williams",
+      "name": "Leonard Williams",
+      "position": "DT",
+      "bio": "Leonard Williams is a veteran defensive tackle in his 12th NFL season with the Seattle Seahawks. A USC product, he has brought a long professional résumé to Seattle, where his current chapter is defined by experience rather than volume. In 2026, he appeared in one game and recorded four tackles, a small sample that nonetheless reflects his continued presence on the field.",
+      "careerHighlights": [
+        "12th NFL season",
+        "Appeared in one game in 2026 and made four tackles"
+      ],
+      "seasonOverview": "Williams’ 2026 season has been limited to a single game, but he still made an impact with four tackles in that appearance. The small workload leaves little to measure statistically, yet it shows he was available and productive in the brief time he played. For a 12th-year veteran, even a lone outing carries some value as part of a longer professional career.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "73e0ad13f54574a56670d9f36e9b3d7a7b0ce67faf7d27569ece0137d625ec88",
+        "providerPlayerId": "1366",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 548,
+          "outputTokens": 293,
+          "estimatedCostUsd": 0.0017295
+        }
+      }
+    },
+    "emanuel-wilson": {
+      "playerId": "emanuel-wilson",
+      "name": "Emanuel Wilson",
+      "position": "RB",
+      "bio": "Emanuel Wilson is a fourth-season running back with the Seattle Seahawks after beginning his career at Fort Valley State. His path to the league is not detailed in the available record, but his professional profile now centers on his role in Seattle and the limited production logged in recent action. In 2026, Wilson appeared in one game and carried twice for 3 yards. That usage reflects a brief season sample in Seattle as he continues through his fourth year in the league.",
+      "careerHighlights": [
+        "Joined the Seattle Seahawks in his fourth professional season.",
+        "Appeared in one game in 2026 and recorded 2 rushing attempts for 3 yards."
+      ],
+      "seasonOverview": "Wilson’s 2026 season was brief, with only one game played and two rushing attempts. The small sample leaves little statistical context, but it does show him receiving an offensive touch in Seattle during his fourth season. With no additional season totals or milestones provided, his year is best viewed as a limited contribution rather than a sustained workload.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "af0de200adc36205f05d747b8ca092d892c8fc115f4c49316ad46595ac36152c",
+        "providerPlayerId": "593",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 567,
+          "outputTokens": 280,
+          "estimatedCostUsd": 0.00168525
+        }
+      }
+    },
+    "devon-witherspoon": {
+      "playerId": "devon-witherspoon",
+      "name": "Devon Witherspoon",
+      "position": "CB",
+      "bio": "Devon Witherspoon is a cornerback for the Seattle Seahawks and is in his fourth NFL season. After his college career at Illinois, he has continued his professional career in Seattle, where he remains part of the team’s secondary. His most recent season has been limited to one game, in which he recorded five tackles. Witherspoon’s NFL résumé is still relatively compact, but his profile is defined by his time developing from Illinois to an established role in Seattle.",
+      "careerHighlights": [
+        "Fourth NFL season with the Seattle Seahawks",
+        "Played collegiately at Illinois",
+        "Recorded five tackles in one game in 2026"
+      ],
+      "seasonOverview": "Witherspoon’s 2026 season has been brief so far, with one game played and five total tackles. The small sample makes it difficult to draw broader conclusions, but it does show him contributing when available. As a fourth-year defensive back, his season line reflects limited action rather than a lengthy statistical run, leaving his Seattle role and impact to be assessed from a very narrow window.",
+      "materialUpdatedAt": "2026-09-10T15:52:05.783Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "c608793dd0985c4a13fe56ac45f8b2e4da1de6e618fa4c29f54bef0f04f885f9",
+        "providerPlayerId": "1467",
+        "generatedAt": "2026-09-10T15:52:05.783Z",
+        "usage": {
+          "inputTokens": 549,
+          "outputTokens": 388,
+          "estimatedCostUsd": 0.00215775
+        }
+      }
+    },
+    "jacardia-wright": {
+      "playerId": "jacardia-wright",
+      "name": "Jacardia Wright",
+      "position": "RB",
+      "bio": "Jacardia Wright is a running back in his first season with the Seattle Seahawks after playing at Missouri State. He arrives in Seattle at the start of his professional career, giving the Seahawks a young backfield option with his college background as the main point of reference. With no additional career milestones supplied, his biography to date is defined by the move from Missouri State to the NFL and his first-year role in Seattle.",
+      "careerHighlights": [
+        "First season with the Seattle Seahawks"
+      ],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "21375a430fa1bbb9a166d8bbdc7f58bbb8e7e429658d1efe6410b3ad9ab1ba5b",
+        "providerPlayerId": "13873892",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 209,
+          "estimatedCostUsd": 0.00132675
+        }
+      }
+    },
+    "grey-zabel": {
+      "playerId": "grey-zabel",
+      "name": "Grey Zabel",
+      "position": "G",
+      "bio": "Grey Zabel is a guard for the Seattle Seahawks and is entering his second season. A North Dakota State product, he reached Seattle after his college career, though the supplied record does not include further details on his entry to the league or any previous professional stops. With no additional honors or statistical milestones provided, his biography at this stage is defined by his ongoing development and his role within Seattle’s offensive line group.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "95739006e2d52db809def61105511f997a967cc71048d7c5bf7f46e853a854ff",
+        "providerPlayerId": "13874862",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 304,
+          "estimatedCostUsd": 0.00175425
+        }
+      }
+    },
+    "jake-bobo": {
+      "playerId": "jake-bobo",
+      "name": "Jake Bobo",
+      "position": "WR",
+      "bio": "Jake Bobo is a wide receiver with the Seattle Seahawks in his fourth NFL season. A UCLA product, he has worked his way into the league without a long list of available public milestones in the supplied record. His career profile is defined more by continuity than by headline moments, with Seattle representing the current stage of his professional path.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "cbc8b331b758bb3f20a16f09a3468f030283aa62ded64947e7dd1cf6bd68e308",
+        "providerPlayerId": "751",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 204,
+          "estimatedCostUsd": 0.0013035
+        }
+      }
+    },
+    "bud-clark": {
+      "playerId": "bud-clark",
+      "name": "Bud Clark",
+      "position": "S",
+      "bio": "Bud Clark is a rookie safety for the Seattle Seahawks after playing college football at TCU. His background on the available record is brief, with no listed draft status, professional team history, or documented college honors in the supplied facts. He enters Seattle as an early-career defensive back beginning his professional progression.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "ffd3d4d4c64cfb45f0a5d1bc25730d83a653217c787710d3100d29a4a469a326",
+        "providerPlayerId": "33936498",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 512,
+          "outputTokens": 168,
+          "estimatedCostUsd": 0.00114
+        }
+      }
+    },
+    "robbie-ouzts": {
+      "playerId": "robbie-ouzts",
+      "name": "Robbie Ouzts",
+      "position": "FB",
+      "bio": "Robbie Ouzts is a fullback for the Seattle Seahawks in his second season. He played his college football at Alabama before continuing his career to Seattle, where he has moved into the professional ranks without the benefit of a listed draft path in the available record. With limited verified detail available, his career profile is defined by that college-to-NFL progression and his current role with the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "43b0dc0378ae80899123aab9a57aaa1aa27bf41841891bbf384bfdcd35fdf4b2",
+        "providerPlayerId": "13873895",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 207,
+          "estimatedCostUsd": 0.0013185
+        }
+      }
+    },
+    "mason-richman": {
+      "playerId": "mason-richman",
+      "name": "Mason Richman",
+      "position": "T/G",
+      "bio": "Mason Richman is a second-season tackle/guard with the Seattle Seahawks after his college career at Iowa. Listed at both tackle and guard, he entered the NFL as a developmental offensive lineman and has continued his professional career in Seattle. With limited public details supplied here, his path is defined by his transition from Iowa to the Seahawks and his ongoing second season with the club.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "367ffcefa53ac39573b735e15df1eb478cc77e80f224e7519be6d94e04486535",
+        "providerPlayerId": "13874815",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 178,
+          "estimatedCostUsd": 0.001188
+        }
+      }
+    },
+    "avery-smith": {
+      "playerId": "avery-smith",
+      "name": "Avery Smith",
+      "position": "CB",
+      "bio": "Avery Smith is a rookie cornerback with the Seattle Seahawks after playing college football at Toledo. With no draft details, professional stops, or statistical record provided here, his biography begins with his entry into the league and his current place on Seattle's roster. The available record offers only the basics of his path so far, making his Seahawks tenure the next step in a career still in its early stages.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "3a186935fe66c922fbb4cbaf096b7f7d60e9cbce3d452cb8b5b262c243da15ad",
+        "providerPlayerId": "33936650",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 513,
+          "outputTokens": 151,
+          "estimatedCostUsd": 0.00106425
+        }
+      }
+    },
+    "terrion-arnold": {
+      "playerId": "terrion-arnold",
+      "name": "Terrion Arnold",
+      "position": "CB",
+      "bio": "Terrion Arnold is a cornerback in his fourth season and is listed with the Seattle Seahawks after playing at Alabama. His career profile in the available record is limited, with no draft details, team history, or statistical summary provided here. Even so, his path is clear enough to place him in the early stages of his professional career, with Seattle marking the latest chapter in his football journey.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "d7b1ff84865dadfe5629595876759401bc8debc739c5e33a6baa7e20c3fbc0b9",
+        "providerPlayerId": "278251",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 514,
+          "outputTokens": 231,
+          "estimatedCostUsd": 0.001425
+        }
+      }
+    },
+    "patrick-o-x27-connell": {
+      "playerId": "patrick-o-x27-connell",
+      "name": "Patrick O'Connell",
+      "position": "LB",
+      "bio": "Patrick O'Connell is a Seattle Seahawks linebacker in his third NFL season after playing college football at Montana. With limited career detail available in the supplied record, his biography in Seattle is still being written, but he has established himself as part of the team’s linebacker group entering his third year in the league.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "8d2b394b83ad6c95625ada3973b14536a54a90ba1a270f0a16a7e6e73f2674f3",
+        "providerPlayerId": "2563",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 171,
+          "estimatedCostUsd": 0.00115575
+        }
+      }
+    },
+    "connor-o-x27-toole": {
+      "playerId": "connor-o-x27-toole",
+      "name": "Connor O'Toole",
+      "position": "LB",
+      "bio": "Connor O'Toole is a linebacker for the Seattle Seahawks and is entering his second season in the NFL. He played his college football at Utah before beginning his professional career with Seattle. With limited verified career detail available, his path is defined so far by that transition from the Utes to the Seahawks and his continued development in his second year.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "465d3d9028e7ca11d10438f0203998d65e518b14ac716aa66fc123c2bf7f8e62",
+        "providerPlayerId": "13878497",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 516,
+          "outputTokens": 164,
+          "estimatedCostUsd": 0.001125
+        }
+      }
+    },
+    "d-x27-anthony-bell": {
+      "playerId": "d-x27-anthony-bell",
+      "name": "D'Anthony Bell",
+      "position": "S",
+      "bio": "D'Anthony Bell is a safety for the Seattle Seahawks in his fifth NFL season. He played his college football at West Florida before reaching the NFL, and his career has since carried him into Seattle. With no additional career totals, honors, or recent-season details supplied, his profile is defined here by his current role and experience level as he continues his professional tenure with the Seahawks.",
+      "careerHighlights": [],
+      "seasonOverview": null,
+      "materialUpdatedAt": "2026-09-10T06:43:17.219Z",
+      "generation": {
+        "model": "gpt-5.4-mini",
+        "promptVersion": "reader-first-player-profile-v4",
+        "inputHash": "9842336bc77198cdc6663b8e35b18c1b245587159ebb29788ebdbc6515e2a98f",
+        "providerPlayerId": "2714",
+        "generatedAt": "2026-09-10T06:43:17.219Z",
+        "usage": {
+          "inputTokens": 515,
+          "outputTokens": 203,
+          "estimatedCostUsd": 0.00129975
+        }
+      }
+    }
+  }
+}

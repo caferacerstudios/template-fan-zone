@@ -9,6 +9,7 @@
 | packers | `src/data/history/packers.json` |
 | vikings | `src/data/history/vikings.json` |
 | chiefs | `src/data/history/chiefs.json` |
+| patriots | `src/data/history/patriots.json` |
 
 The existing build command selects history automatically. No separate history
 command or Airflow variable is needed. Adding history does not activate a site;

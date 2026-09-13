@@ -84,7 +84,7 @@ def build_command(root, slug, config_file=None, *, stage_only=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('team', choices=['seahawks', 'broncos', 'packers', 'vikings', 'chiefs'])
+    parser.add_argument('team', choices=['seahawks', 'broncos', 'packers', 'vikings', 'chiefs', 'patriots'])
     parser.add_argument('--dry-run', action='store_true', help='Check inputs and print the Docker command without building.')
     parser.add_argument('--stage-only', action='store_true', help='Build and validate in .team-build without replacing the served dist directory.')
     args = parser.parse_args()

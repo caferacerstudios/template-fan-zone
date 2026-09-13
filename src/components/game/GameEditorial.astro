@@ -27,8 +27,8 @@ const hasContent = (value) => typeof value === "string" ? Boolean(value.trim()) 
     <a href="/schedule">Full schedule</a>
     <a href="/team/injuries">Injury updates</a>
     <a href="/players">{Team} roster</a>
-    <a href="/standings">NFC standings</a>
-    {!game.completed && <a href="/tickets">Seattle ticket guide</a>}
+    <a href="/standings">Standings</a>
+    {!game.completed && <a href="/tickets">{Location} ticket guide</a>}
     {editorial.preview?.url && editorial.preview?.label && <a href={editorial.preview.url}>{editorial.preview.label}</a>}
     {editorial.players?.filter((player) => player?.url && player?.name).map((player) => <a href={player.url}>{player.name}</a>)}
     {game.completed && game?.recap?.url && <a href={game.recap.url}>Associated recap</a>}

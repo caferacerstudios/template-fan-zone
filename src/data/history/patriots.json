@@ -1,0 +1,240 @@
+{
+  "team": "patriots",
+  "fullName": "New England Patriots",
+  "city": "New England",
+  "firstSeason": "1960",
+  "heroSubtitle": "& New England Football",
+  "heroDescription": "From the Boston Patriots' AFL beginnings to Foxborough and six Super Bowl-winning seasons, explore the people, places and turning points behind New England's football history.",
+  "timelineKicker": "AFL roots, Foxborough and championship eras",
+  "timeline": [
+    {
+      "year": "1959",
+      "category": "Beginnings",
+      "title": "Boston receives an AFL franchise",
+      "description": "Billy Sullivan secured an American Football League franchise on November 22. A naming contest led to the Patriots identity, connecting the new club to New England's history.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1960",
+      "category": "AFL years",
+      "title": "The Boston Patriots begin play",
+      "description": "The Patriots opened their first regular season with a 13–10 loss to Denver on September 9. Eight days later, a 28–24 victory over the New York Titans gave Boston its first regular-season win.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1963",
+      "category": "First playoff run",
+      "title": "An Eastern Division breakthrough",
+      "description": "The Patriots defeated Buffalo 26–8 in a playoff for the AFL Eastern crown. It was an early postseason breakthrough for coach Mike Holovak's team.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1971",
+      "category": "A regional identity",
+      "title": "New England becomes the name",
+      "description": "The club changed its name from Boston to New England Patriots and moved to a new stadium in Foxborough. The move established a permanent home after the team's early years at several Boston-area venues.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1985",
+      "category": "First Super Bowl appearance",
+      "title": "Three road wins lead to Super Bowl XX",
+      "description": "Raymond Berry's Patriots went 11–5 and entered the playoffs as a wild card. Three consecutive road playoff wins delivered the franchise's first AFC championship before Chicago won Super Bowl XX on January 26, 1986.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1994",
+      "category": "A new ownership era",
+      "title": "Robert Kraft purchases the team",
+      "description": "Kraft acquired the Patriots in 1994, following earlier ownership changes from Billy Sullivan to Victor Kiam and James Orthwein. His purchase began a new chapter for the franchise in New England.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "year": "1996",
+      "category": "The Bledsoe years",
+      "title": "Back to the Super Bowl",
+      "description": "The 1996 Patriots reached a second Super Bowl after beating Jacksonville 20–6 in the AFC Championship Game. Green Bay won Super Bowl XXXI 35–21 on January 26, 1997.",
+      "sourceUrl": "https://www.patriots.com/press-room/history-1990s",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2001",
+      "category": "Super Bowl XXXVI",
+      "title": "A first Lombardi Trophy",
+      "description": "The 2001 season ended with a 20–17 victory over the St. Louis Rams on February 3, 2002. Adam Vinatieri's 48-yard field goal as time expired secured New England's first Super Bowl championship.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-xxxvi",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2002",
+      "category": "Gillette Stadium",
+      "title": "A new home opens with a championship banner",
+      "description": "Gillette Stadium hosted its first Patriots regular-season game on September 9. New England celebrated the previous season's championship and defeated Pittsburgh 30–14 in the new stadium's Monday night opener.",
+      "sourceUrl": "https://www.patriotshalloffame.com/gillette-stadium-memories",
+      "sourceName": "The Patriots Hall of Fame"
+    },
+    {
+      "year": "2003–04",
+      "category": "Championship seasons",
+      "title": "Three titles in four seasons",
+      "description": "New England beat Carolina 32–29 in Super Bowl XXXVIII on February 1, 2004, then Philadelphia 24–21 in Super Bowl XXXIX on February 6, 2005. Those wins completed a run of three championships in four football seasons.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowls",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2007",
+      "category": "A record regular season",
+      "title": "A 16–0 regular season",
+      "description": "A 38–35 win over the New York Giants on December 29 completed the first 16–0 regular season in NFL history. The Patriots reached Super Bowl XLII, where the Giants won 17–14 on February 3, 2008.",
+      "sourceUrl": "https://www.patriots.com/press-room/history-2000s",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2014",
+      "category": "Super Bowl XLIX",
+      "title": "Butler's interception seals a fourth championship",
+      "description": "Tom Brady threw four touchdown passes and Malcolm Butler intercepted Seattle at the goal line with 20 seconds left. New England won 28–24 on February 1, 2015, completing its fourth Super Bowl-winning season.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-xlix",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2016",
+      "category": "Super Bowl LI",
+      "title": "A comeback from 28–3",
+      "description": "Trailing Atlanta by 25 points in the third quarter, New England rallied to win 34–28 in overtime on February 5, 2017. James White scored three touchdowns as the Patriots earned their fifth Super Bowl title.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-li",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2018",
+      "category": "Super Bowl LIII",
+      "title": "Defense delivers a sixth title",
+      "description": "The Patriots defeated the Los Angeles Rams 13–3 on February 3, 2019. Their sixth Super Bowl victory completed the championship stretch shared by head coach Bill Belichick and quarterback Tom Brady.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-liii",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "year": "2024",
+      "category": "Preserving the legacy",
+      "title": "Tom Brady enters the Patriots Hall of Fame",
+      "description": "Brady was inducted into the Patriots Hall of Fame on June 12 in a ceremony at Gillette Stadium. The honor recognized a New England career spanning the 2000–2019 seasons and six Super Bowl championships.",
+      "sourceUrl": "https://www.patriotshalloffame.com/hall_of_famer/tom-brady",
+      "sourceName": "The Patriots Hall of Fame"
+    }
+  ],
+  "eras": [
+    {
+      "title": "Boston's AFL beginnings",
+      "description": "The Patriots started as an AFL charter member and played as Boston through 1970. The early period brought an Eastern Division championship and a search for a lasting home before the move to Foxborough.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "Foxborough and the first conference champions",
+      "description": "The new regional name and home established the setting for the next generations. The 1985 and 1996 teams reached the Super Bowl before New England's championship breakthrough in the following decade.",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-history",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "title": "The Belichick–Brady championships",
+      "description": "Super Bowl wins after the 2001, 2003, 2004, 2014, 2016 and 2018 seasons define the title-winning span. Last-second kicks, a goal-line interception, an overtime comeback and a defensive win gave those championships distinct stories.",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowls",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "title": "Remembering the people behind the seasons",
+      "description": "The Patriots Hall of Fame connects the franchise's eras through players, coaches and contributors. Its honorees include early stars, offensive linemen, defenders and specialists as well as the quarterbacks of the better-known championship years.",
+      "sourceUrl": "https://www.patriotshalloffame.com/hall-of-fame",
+      "sourceName": "The Patriots Hall of Fame"
+    }
+  ],
+  "numbers": [
+    {
+      "value": "1960",
+      "label": "First season, as the Boston Patriots",
+      "sourceUrl": "https://www.profootballhof.com/teams/new-england-patriots/team-facts",
+      "sourceName": "Pro Football Hall of Fame"
+    },
+    {
+      "value": "6",
+      "label": "Super Bowl-winning seasons between 2001 and 2018",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowls",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "value": "48",
+      "label": "Yards on Vinatieri's winning field goal in Super Bowl XXXVI",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-xxxvi",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "value": "16–0",
+      "label": "Record in the 2007 regular season",
+      "sourceUrl": "https://www.patriots.com/press-room/history-2000s",
+      "sourceName": "New England Patriots"
+    },
+    {
+      "value": "25",
+      "label": "Points erased in the Super Bowl LI comeback",
+      "sourceUrl": "https://www.patriots.com/press-room/super-bowl-li",
+      "sourceName": "New England Patriots"
+    }
+  ],
+  "players": [
+    {
+      "label": "An early-era quarterback",
+      "name": "Babe Parilli"
+    },
+    {
+      "label": "Offensive line standard",
+      "name": "John Hannah"
+    },
+    {
+      "label": "Pass-rushing linebacker",
+      "name": "Andre Tippett"
+    },
+    {
+      "label": "Long-serving offensive tackle",
+      "name": "Bruce Armstrong"
+    },
+    {
+      "label": "The 1990s at quarterback",
+      "name": "Drew Bledsoe"
+    },
+    {
+      "label": "Championship cornerback",
+      "name": "Ty Law"
+    },
+    {
+      "label": "Versatile receiver",
+      "name": "Troy Brown"
+    },
+    {
+      "label": "Defensive front cornerstone",
+      "name": "Vince Wilfork"
+    },
+    {
+      "label": "Versatile running back",
+      "name": "Kevin Faulk"
+    },
+    {
+      "label": "Six-title Patriots quarterback",
+      "name": "Tom Brady"
+    }
+  ],
+  "playerSource": {
+    "url": "https://www.patriotshalloffame.com/hall-of-fame",
+    "label": "The Patriots Hall of Fame"
+  },
+  "methodology": "This independent overview uses New England Patriots historical records, the Patriots Hall of Fame and the Pro Football Hall of Fame. Timeline labels follow football seasons where relevant; descriptions give the calendar dates of postseason games. The championship count describes the six winning seasons from 2001 through 2018, not a prediction about later seasons. Player selections span eras and are not a ranking. Timeline entries, eras and figures link to their sources.",
+  "heroArtwork": "stadium",
+  "metaTitle": "New England Patriots History, Eras and Franchise Players",
+  "metaDescription": "Explore a sourced guide to New England Patriots history, from Boston's AFL roots and the move to Foxborough to championship seasons and notable players.",
+  "heroKicker": "New England football · Since 1960"
+}

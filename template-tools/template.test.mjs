@@ -35,6 +35,22 @@ test('location substitution preserves actual places, URLs and code identifiers',
   assert.equal(renderText(text, teamSettings('patriots')), text.replace('{team}', 'patriots'));
 });
 
+test('division taxonomy tokens follow each selected team while literal opponents stay intact', () => {
+  for (const [slug, division, conference, members] of [
+    ['seahawks', 'NFC West', 'NFC', ['ARI', 'LAR', 'SEA', 'SF']],
+    ['broncos', 'AFC West', 'AFC', ['DEN', 'KC', 'LAC', 'LV']],
+    ['packers', 'NFC North', 'NFC', ['CHI', 'DET', 'GB', 'MIN']],
+    ['vikings', 'NFC North', 'NFC', ['CHI', 'DET', 'GB', 'MIN']],
+    ['chiefs', 'AFC West', 'AFC', ['DEN', 'KC', 'LAC', 'LV']],
+    ['patriots', 'AFC East', 'AFC', ['BUF', 'MIA', 'NE', 'NYJ']],
+  ]) {
+    const selected = teamSettings(slug);
+    assert.equal(renderText('{DivisionSlug}|{Division}|{Conference}|{DivisionTeams}', selected),
+      `${division.toLowerCase().replaceAll(' ', '-')}|${division}|${conference}|${JSON.stringify(members)}`);
+    assert.equal(renderText('Seattle Seahawks at New England Patriots', selected), 'Seattle Seahawks at New England Patriots');
+  }
+});
+
 test('themes preserve Seahawks styles and switch Broncos branding without recoloring statuses or data', () => {
   const original = ':root { --action-green:#70c934; --success:#25733c; --loss:#a43838; --warning:#9a6500; } .link{color:#2f660b} .card{background:#69be2818; border-color:rgba(112,201,52,.08)}';
   assert.equal(renderThemeCss(original, teamSettings('seahawks').theme), original);

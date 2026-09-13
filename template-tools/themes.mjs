@@ -39,6 +39,11 @@ const chiefsPalette = fanPalette({
   accent: '#ffb81c', light: '#ffd06b', focus: '#ffe39b', link: '#b5122d',
   wash: '#fff1f2', tint: '#fbdde2', border: '#f2b9c3',
 });
+const patriotsPalette = fanPalette({
+  darkest: '#071a2e', dark: '#002244', surface: '#163a5c',
+  accent: '#ff637b', light: '#ff8e9f', focus: '#ffd3db', link: '#b20d2e',
+  wash: '#f6f7fa', tint: '#e6ebf2', border: '#c6d1df',
+});
 
 export const TEAM_THEMES = {
   seahawks: {
@@ -69,6 +74,12 @@ export const TEAM_THEMES = {
     favicon: '/favicons/chiefs.svg', palette: chiefsPalette,
     brandMark: 'CFZ', heroMark: 'KC',
     fanTagline: 'Independent football coverage for Chiefs fans.',
+  },
+  patriots: {
+    key: 'patriots', stylesheet: '/styles/themes/patriots.css',
+    favicon: '/favicons/patriots.svg', palette: patriotsPalette,
+    brandMark: 'PFZ', heroMark: 'NE',
+    fanTagline: 'Independent football coverage for Patriots fans.',
   },
 };
 

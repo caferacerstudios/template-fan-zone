@@ -80,13 +80,16 @@ assert.ok(metadata.some(tag => /property="og:title"/.test(tag) && decode(tag).in
 assert.ok(metadata.some(tag => /name="twitter:title"/.test(tag) && decode(tag).includes(history.metaTitle)), 'Wrong social title');
 assert.ok(html.includes(`href="https://${slug}fanzone.com/history"`), 'Wrong history canonical URL');
 
+const knownHistoryTeams = new Set([history.team, ...otherHistories.map(other => other.team)]);
+
 // Inspect the actual files a static server can expose, including script bundles
 // and source maps. Other datasets must not merely be hidden in the visible DOM.
 async function checkPublishedFiles(folder, relative = '') {
   for (const entry of await readdir(folder, { withFileTypes: true })) {
     const name = path.join(relative, entry.name);
     if (entry.isDirectory()) {
-      assert.ok(!/^history\/(?:seahawks|broncos|packers|vikings|chiefs)(?:\/|$)/.test(name), `Alternate history route: ${name}`);
+      const routeParts = name.split(path.sep);
+      assert.ok(!(routeParts[0] === 'history' && knownHistoryTeams.has(routeParts[1])), `Alternate history route: ${name}`);
       await checkPublishedFiles(path.join(folder, entry.name), name);
     } else {
       assert.ok(!/(?:^|\/)history\/.*\.json$/.test(name) && !/(?:^|\/)history-timeline\.json$/.test(name), `Raw history data was published: ${name}`);

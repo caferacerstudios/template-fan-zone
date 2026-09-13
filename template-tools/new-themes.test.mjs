@@ -9,6 +9,7 @@ const teams = [
   ['packers', 'PFZ', 'GB', '#ffb612'],
   ['vikings', 'VFZ', 'MIN', '#ffc62f'],
   ['chiefs', 'CFZ', 'KC', '#ffb81c'],
+  ['patriots', 'PFZ', 'NE', '#ff637b'],
 ];
 
 for (const [slug, mark, heroMark, accent] of teams) {

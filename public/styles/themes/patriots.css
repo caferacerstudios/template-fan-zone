@@ -1,0 +1,80 @@
+/* Independent Patriots fan-site presentation: navy, red and silver. */
+body[data-team="patriots"][data-theme="patriots"] {
+  --off-white: #f8f9fb;
+  --color-bg-primary: #e7ebf0;
+  --color-border: #c6d1df;
+  --color-action: #b20d2e;
+  --font-display: "Arial Black", "Roboto Condensed", Arial, sans-serif;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --shadow-lg: 0 14px 36px #071a2e18;
+}
+body[data-team="patriots"][data-theme="patriots"]::before { display: none; }
+body[data-team="patriots"][data-theme="patriots"] .lr-header { border-bottom: 6px solid #c60c30; }
+body[data-team="patriots"][data-theme="patriots"] .patriots-header-bg { background: #002244; }
+body[data-team="patriots"][data-theme="patriots"] .sfz-mark {
+  clip-path: none;
+  border: 2px solid #b0b7bc;
+  border-bottom: 6px solid #c60c30;
+  border-radius: 4px;
+  background: #002244;
+  color: #fff;
+  width: 60px;
+  height: 50px;
+  letter-spacing: .015em;
+}
+body[data-team="patriots"][data-theme="patriots"] .sfz-mark span { transform: none; }
+body[data-team="patriots"][data-theme="patriots"] .lr-site-title { letter-spacing: -.03em; }
+body[data-team="patriots"][data-theme="patriots"] .lr-site-tagline { color: #d9e0e8; }
+body[data-team="patriots"][data-theme="patriots"] .hero-copy h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; text-wrap: balance; }
+body[data-team="patriots"][data-theme="patriots"] .patriots-paper::before { background: #c60c30; }
+body[data-team="patriots"][data-theme="patriots"] .home-intro {
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, .7fr);
+  align-items: center;
+  gap: 2rem;
+  background: #002244;
+  border-top: 0;
+  border-bottom: 8px solid #c60c30;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+body[data-team="patriots"][data-theme="patriots"] .home-intro::before {
+  background: repeating-linear-gradient(125deg, transparent 0 115px, #ffffff06 116px 117px);
+  opacity: 1;
+}
+body[data-team="patriots"][data-theme="patriots"] .home-intro h1 {
+  max-width: 18ch;
+  font-size: clamp(2.3rem, 4.8vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+body[data-team="patriots"][data-theme="patriots"] .home-kicker { color: #ff8e9f; letter-spacing: .12em; }
+body[data-team="patriots"][data-theme="patriots"] .home-brand-line { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+body[data-team="patriots"][data-theme="patriots"] .home-brand-line span { color: #ff8e9f; }
+body[data-team="patriots"][data-theme="patriots"] .home-value { max-width: 56ch !important; line-height: 1.65; }
+body[data-team="patriots"][data-theme="patriots"] .home-intro__art {
+  min-height: 210px;
+  justify-items: center;
+  align-content: center;
+  border-block: 5px solid #b0b7bc;
+  border-bottom-color: #c60c30;
+}
+body[data-team="patriots"][data-theme="patriots"] .home-intro__art::before,
+body[data-team="patriots"][data-theme="patriots"] .home-intro__art::after { display: none; }
+body[data-team="patriots"][data-theme="patriots"] .home-intro__art strong { color: #fff; font-size: clamp(4rem, 8vw, 7rem); line-height: 1; letter-spacing: -.07em; }
+body[data-team="patriots"][data-theme="patriots"] .home-intro__art > span:last-child { color: #d9e0e8; letter-spacing: .15em; font-size: .75rem; }
+body[data-team="patriots"][data-theme="patriots"] .lr-footer { background: #002244; border-top: 6px solid #c60c30; }
+/* The form badge means a win, regardless of the selected brand accent. */
+body[data-team="patriots"][data-theme="patriots"] .result-w { background: #70c934 !important; color: #071f34; }
+@media (max-width: 900px) {
+  body[data-team="patriots"][data-theme="patriots"] .home-intro { grid-template-columns: minmax(0, 1fr); }
+  body[data-team="patriots"][data-theme="patriots"] .home-intro__art { display: none; }
+}
+@media (max-width: 600px) {
+  body[data-team="patriots"][data-theme="patriots"] .lr-header-inner { gap: .75rem; }
+  body[data-team="patriots"][data-theme="patriots"] .sfz-brand { flex: 1 1 auto; min-width: 0; }
+  body[data-team="patriots"][data-theme="patriots"] .sfz-brand-copy { min-width: 0; }
+  body[data-team="patriots"][data-theme="patriots"] .lr-site-title { font-size: 1.05rem; }
+  body[data-team="patriots"][data-theme="patriots"] .sfz-mark { width: 44px; height: 44px; flex-shrink: 0; font-size: .85rem; }
+  body[data-team="patriots"][data-theme="patriots"] .home-intro h1 { font-size: clamp(2rem, 8.5vw, 3rem); max-width: 100%; }
+}

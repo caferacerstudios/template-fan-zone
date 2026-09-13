@@ -13,6 +13,7 @@ const identities = {
   packers: ['Green Bay', 'Green Bay Packers'],
   vikings: ['Minnesota', 'Minnesota Vikings'],
   chiefs: ['Kansas City', 'Kansas City Chiefs'],
+  patriots: ['New England', 'New England Patriots'],
 };
 const slugs = Object.keys(identities);
 const historyPath = slug => path.join(root, 'src/data/history', `${slug}.json`);
@@ -34,7 +35,7 @@ async function fixture(t) {
 
 test('every configured history has the intended franchise identity and explicit source labels', async () => {
   const trusted = new Set(['www.profootballhof.com', 'www.seahawks.com', 'www.historylink.org', 'www.lumenfield.com',
-    'www.denverbroncos.com', 'www.packers.com', 'www.vikings.com', 'www.chiefs.com', 'www.nfl.com']);
+    'www.denverbroncos.com', 'www.packers.com', 'www.vikings.com', 'www.chiefs.com', 'www.nfl.com', 'www.patriots.com', 'www.patriotshalloffame.com']);
   for (const [slug, [city, fullName]] of Object.entries(identities)) {
     const history = JSON.parse(await readFile(historyPath(slug), 'utf8'));
     assert.equal(history.team, slug);
@@ -63,7 +64,7 @@ test('Seattle migration preserves every existing timeline fact and citation', as
   assert.equal(seattle.heroArtwork, 'seattle');
 });
 
-test('all five rendered projects contain only their selected literal history and resolve the shared page import', async t => {
+test('all configured rendered projects contain only their selected literal history and resolve the shared page import', async t => {
   const { source, temp } = await fixture(t);
   for (const slug of slugs) {
     const target = path.join(temp, slug);
@@ -93,8 +94,8 @@ test('history text is not a replacement template, including literal tokens and o
 
 test('missing or mismatched team history fails before any project is rendered', async t => {
   const { source, temp } = await fixture(t);
-  const missingTarget = path.join(temp, 'patriots');
-  await assert.rejects(renderProject(source, missingTarget, teamSettings('patriots'), { linkDependencies: false }), /Add sourced history for TEAM=patriots/);
+  const missingTarget = path.join(temp, 'bills');
+  await assert.rejects(renderProject(source, missingTarget, teamSettings('bills'), { linkDependencies: false }), /Add sourced history for TEAM=bills/);
   await assert.rejects(readdir(missingTarget), { code: 'ENOENT' });
   const filename = path.join(source, 'src/data/history/packers.json');
   const data = JSON.parse(await readFile(filename, 'utf8'));
